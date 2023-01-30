@@ -51,4 +51,5 @@ CHAIN IF ~Global("Kachiko_Saved","GLOBAL",2)~ THEN VPNAJOKI 9
 @26
 == VPAINO @27 DO ~GiveItem("vpwardti",Player1)~
 = @28
-== VPNAJOKI @29 DO ~GiveItem("vpcharts",Player1) StartCutScene("TTcutFin")~ EXIT
+== VPNAJOKI @29 DO ~GiveItem("vpcharts",Player1) StartCutScene("TTcutFin")~
+EXIT

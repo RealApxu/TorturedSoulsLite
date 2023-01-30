@@ -57,20 +57,19 @@ END
 IF ~~ THEN EXTERN VPMASAKI 11
 
 CHAIN VPMASAKI 11
-@20 DO ~StartCutSceneMode()
-ActionOverride(Myself,ForceSpell(Myself,DRYAD_TELEPORT))
-ActionOverride(Myself,EndCutSceneMode())~
+@20
+DO ~ForceSpell(Myself,DRYAD_TELEPORT)~
 EXIT
 
 CHAIN IF ~Global("Kachiko_Kidnapped","GLOBAL",4)~ THEN VPMASAKI 12
 @21 DO ~SetGlobal("Kachiko_Kidnapped","GLOBAL",5)~
 == YOSHJ @22
-== VPMASAKI @23 DO ~StartCutSceneMode()
-ActionOverride(Myself,ForceSpell(Myself,DRYAD_TELEPORT))
-ActionOverride(Myself,EndCutSceneMode())~
+== VPMASAKI @23
+DO ~ForceSpell(Myself,DRYAD_TELEPORT)~
 EXIT
 
 CHAIN IF ~Global("Kachiko_Kidnapped","GLOBAL",5)~ THEN VPMASAKI 14
-@24 DO ~SetGlobal("Kachiko_Kidnapped","GLOBAL",6)
+@24
+DO ~SetGlobal("Kachiko_Kidnapped","GLOBAL",6)
 Enemy()~
 EXIT
