@@ -47,4 +47,3 @@ THEN
 		DisplayStringHead(Myself,73944)  // Second wind!
 		Spell(Myself,MONK_LAY_ON_HANDS)  // SPCL815.SPL (Lay On Hands)
 END
-

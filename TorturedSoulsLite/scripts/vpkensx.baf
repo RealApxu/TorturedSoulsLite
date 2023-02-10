@@ -43,5 +43,3 @@ THEN
 	RESPONSE #100
 		UseItem("POTN52",Myself) // Potion of Extra Healing
 END
-
-

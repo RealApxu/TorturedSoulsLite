@@ -1,8 +1,6 @@
 BEGIN VPNKLEAD
 
-IF ~NumTimesTalkedTo(0)
-Global("Samurai_Meeting","GLOBAL",0)~ THEN BEGIN 0
-  SAY @0
-  IF ~~ THEN DO ~SetGlobal("Samurai_Meeting","GLOBAL",1)
-Enemy()~ EXIT
-END
+CHAIN IF ~Global("Samurai_Meeting","GLOBAL",0)~ THEN VPNKLEAD 0
+@0
+DO ~SetGlobal("Samurai_Meeting","GLOBAL",1) Enemy()~
+EXIT

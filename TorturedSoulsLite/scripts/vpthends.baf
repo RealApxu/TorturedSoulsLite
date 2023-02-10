@@ -45,5 +45,3 @@ THEN
 		SetGlobal("AsylumPlot","GLOBAL",1)
 		ActionOverride("ppsaem",StartDialogueNoSet(Player1))
 END
-
-

@@ -48,5 +48,3 @@ THEN
 		ActionOverride("uhostile",DestroySelf())
 		ActionOverride("ppsaem",StartDialogueNoSet(Player1))
 END
-
-

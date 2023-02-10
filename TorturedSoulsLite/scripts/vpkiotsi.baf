@@ -170,5 +170,3 @@ THEN
 		AttackOneRound([PC])
 		AttackOneRound([PC])
 END
-
-

@@ -1,33 +1,22 @@
 BEGIN VPNANNY
 
+CHAIN
 IF ~NumberOfTimesTalkedTo(0)
-See("Yoshimo")~ THEN BEGIN 0
-  SAY @0
-  IF ~~ THEN DO ~SetGlobal("Yoshimo_Meet","LOCALS",1)~ EXTERN ~YOSHJ~ TS183
-END
+See("Yoshimo")~ THEN VPNANNY 0
+@0
+== YOSHJ @4
+== VPNANNY @1
+EXIT
 
-IF ~~ THEN BEGIN 1
-  SAY @1
-  IF ~~ THEN EXIT
-END
-
-IF ~!NumberOfTimesTalkedTo(0)~ THEN BEGIN 2
-  SAY @2
-  IF ~~ THEN EXIT
-END
-
+CHAIN
 IF ~NumberOfTimesTalkedTo(0)
 OR(2)
 !InPartySlot(LastTalkedToBy,0)
-!Name("Yoshimo",LastTalkedToBy)~ THEN BEGIN 3
-  SAY @3
-  IF ~~ THEN EXIT
-END
+!Name("Yoshimo",LastTalkedToBy)~ THEN VPNANNY 3
+@3
+EXIT
 
-APPEND YOSHJ
-
-IF ~~ THEN BEGIN TS183
-  SAY @4
-  IF ~~ THEN EXTERN ~VPNANNY~ 1
-END
-END
+CHAIN 
+IF ~!NumberOfTimesTalkedTo(0)~ THEN VPNANNY 2
+@2
+EXIT

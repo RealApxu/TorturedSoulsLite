@@ -18,5 +18,3 @@ THEN
 		SetGlobal("NPCRemark","GLOBAL",1)
 		ActionOverride("Minsc",StartDialogueNoSet(Player1))
 END
-
-

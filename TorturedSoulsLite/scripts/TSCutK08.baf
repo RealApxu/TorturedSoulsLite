@@ -6,5 +6,3 @@ THEN
 		MoveToObjectNoInterrupt(Player1)
 		StartDialogueNoSet(Player1)
 END
-
-

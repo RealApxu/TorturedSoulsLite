@@ -45,5 +45,3 @@ THEN
 		EquipMostDamagingMelee()
 		Attack(LastAttackerOf(Myself))
 END
-
-

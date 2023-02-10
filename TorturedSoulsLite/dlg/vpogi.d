@@ -1,13 +1,13 @@
 BEGIN VPOGI
 
-IF ~Name("Yoshimo",LastTalkedToBy)~ THEN BEGIN 0
-  SAY @0
-  IF ~True()~ THEN EXIT
-END
+CHAIN
+IF ~Name("Yoshimo",LastTalkedToBy)~ THEN VPOGI 0
+@0
+EXIT
 
+CHAIN
 IF ~OR(2)
 !InPartySlot(LastTalkedToBy,0)
-!Name("Yoshimo",LastTalkedToBy)~ THEN BEGIN 1
-  SAY @1
-  IF ~~ THEN EXIT
-END
+!Name("Yoshimo",LastTalkedToBy)~ THEN VPOGI 1
+@1
+EXIT

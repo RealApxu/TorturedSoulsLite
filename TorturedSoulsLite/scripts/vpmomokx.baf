@@ -44,5 +44,3 @@ THEN
 		ChangeEnemyAlly(Myself,NEUTRAL)
 		FadeFromColor([20.0],0)
 END
-
-

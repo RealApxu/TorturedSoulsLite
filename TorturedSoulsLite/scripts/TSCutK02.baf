@@ -9,5 +9,3 @@ THEN
 		EndCutSceneMode()
 		ForceSpell(Myself,TRANSFORMATION_DEATH)
 END
-
-

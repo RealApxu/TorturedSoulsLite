@@ -60,5 +60,3 @@ THEN
 	RESPONSE #40
 		AttackReevaluate(NearestEnemyOf(Myself),15)
 END
-
-

@@ -43,5 +43,3 @@ THEN
 		SetGlobal("Nakanishi_Attacked","LOCALS",1)
 		Enemy()
 END
-
-

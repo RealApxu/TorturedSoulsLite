@@ -21,10 +21,12 @@ END
 IF
 	Allegiance(Myself,ENEMY)
 	CheckStatLT(Myself,1,STONESKINS)
+	GlobalLT("VP_Monk_Contingency","LOCALS",2)
 THEN
 	RESPONSE #100
 		DisplayString(Myself,29736) // Contingency - Stoneskin
 		ApplySpell(Myself,WIZARD_STONE_SKIN)
+		IncrementGlobal("VP_Monk_Contingency","LOCALS",1)
 END
 
 IF
@@ -271,5 +273,3 @@ THEN
 		EquipMostDamagingMelee()
 		AttackReevaluate(LastSeenBy(Myself),30)
 END
-
-

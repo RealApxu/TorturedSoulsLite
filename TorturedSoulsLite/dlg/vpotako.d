@@ -1,6 +1,7 @@
 BEGIN VPOTAKO
 
-CHAIN IF ~NumberOfTimesTalkedTo(0)~ THEN VPOTAKO 0
+CHAIN
+IF ~NumberOfTimesTalkedTo(0)~ THEN VPOTAKO 0
 @0
 == YOSHJ @1
 == VPOTAKO @2
@@ -14,4 +15,3 @@ END
   IF ~~ THEN REPLY @9 EXIT
   IF ~~ THEN REPLY @10 EXIT
   IF ~~ THEN REPLY @11 EXIT
-  
