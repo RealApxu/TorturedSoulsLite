@@ -180,33 +180,33 @@ EXIT
 // Ressurection
 
 CHAIN IF WEIGHT #1 ~Global("Kachiko_Reborn","GLOBAL",1)~ THEN VPKACHIP 9
-@19 DO ~SetGlobal("Kachiko_Reborn","GLOBAL",2)~
-== YOSHJ @20
+~Who... who calls for me?~ [KACHIQ09] DO ~SetGlobal("Kachiko_Reborn","GLOBAL",2)~
+== YOSHJ ~Kachiko... oh, Kachiko. She is so pale and cold... ~
 END
  IF ~!Global("TT_Evil_Path","GLOBAL",2) !Dead("vpnajoki")~ THEN EXTERN VPKACHIP 10
  IF ~OR(2) Global("TT_Evil_Path","GLOBAL",2) Dead("vpnajoki")~ THEN EXTERN VPKACHIP 14
 
 CHAIN VPKACHIP 10
-@21
-== YOSHJ @22
-== VPKACHIP @23
-== YOSHJ @24
-== VPKACHIP @25
-== YOSHJ @26 DO ~ChangeAlignment(Myself,CHAOTIC_GOOD)
+~It 's so dreadfully dark in here, I cannot see...~
+== YOSHJ ~It's me, Kachiko, Yoshimo...~
+== VPKACHIP ~Yoshimo... I dreamt that I was walking a long trail between the mountains towards the exit from the valley bathed in a bright light... and I was walking and walking and it was so far... I grew tired and then I heard a voice, calling... I was not sure it was you, but I hoped it was.~ [KACHIQ10]
+== YOSHJ ~Of course, Kachiko it was me, whom else? How can I let you to run away so far and alone?~
+== VPKACHIP ~Where am I? It looks like... It looks like a coffin. Oh, mine! It is a tomb, is not it? My tomb. Now I remember. Yoshimo, you saved me! Despite everything, you have come for me.~
+== YOSHJ ~Kachiko, from the moment I saw you there in Athkatla, I knew that I would not allow any evil to come to you. I love you, Kachiko, and nothing could stop me. I would go to Nine Hells after you if I have to. With you around I feel like I have never been... I... I can be a better person...~ DO ~ChangeAlignment(Myself,CHAOTIC_GOOD)
 AddXPObject(Myself,80000)
 ActionOverride("Kachiko",ChangeAlignment(Myself,CHAOTIC_GOOD))
 ActionOverride("Kachiko",AddXPObject(Myself,80000))~
-== VPKACHIP @27 DO ~JoinParty()~
+== VPKACHIP ~Yoshimo, I love you too... Let's get out of this cold, terrible place...~ DO ~JoinParty()~
 EXIT
 
 CHAIN VPKACHIP 14
-@28
-== YOSHJ @29
-== VPKACHIP @30
-== YOSHJ @31
-== VPKACHIP @32
-== YOSHJ @33
-== VPKACHIP @34 DO ~SetGlobal("Kachiko_Saved","GLOBAL",3)
+~Yoshimo? What is the meaning of that? How dare you to disturb my rest? How dare you to come here, blood of my family on your hands? You are a fool and a pathetic liar, Yoshimo!~ [KACHIQ11]
+== YOSHJ ~I never lied to you...~
+== VPKACHIP ~All Hashimoto are liars! I was so blind and you almost fooled me, just like you fooled Naoko! I can see it all so clearly now... Masaki was right about you... you know, it was him, who discovered Naoko's treachery and punished it. ~
+== YOSHJ ~Masaki killed Naoko?~
+== VPKACHIP ~Yes, and he alerted the wizard who had helped us to get away from Kara-Tur to this blessed Island about your whereabouts. So even if you flee you'd have to face Joneleth, the great mage, who champions Nakanishi's case.~
+== YOSHJ ~As well as Hashimoto's it seems. My father told me that a mage named Joneleth made an offer of help to him also.~
+== VPKACHIP ~Liar! I will not listen to you any longer! Masaki! Father! Brothers! Let's kill them all! For Nakanishi's honor!~ DO ~SetGlobal("Kachiko_Saved","GLOBAL",3)
 StartCutScene("TTcutBad")~
 EXIT
 
@@ -216,16 +216,16 @@ CHAIN IF WEIGHT #4 ~Global("Kicked_Out","LOCALS",1)
 !InParty("Yoshimo")
 See("Yoshimo")
 GlobalGT("Chapter","GLOBAL",%bg2_chapter_3%)~ THEN VPKACHIP 18
-@35
+~It is good to see you again. Was there something that you wished?~
 END
- IF ~~ THEN REPLY @36 EXTERN VPKACHIP 7
- IF ~~ THEN REPLY @17 EXTERN VPKACHIP 8
+ IF ~~ THEN REPLY ~Maybe you can join my party?~ EXTERN VPKACHIP 7
+ IF ~~ THEN REPLY ~No.~ EXTERN VPKACHIP 8
 
 //Yoshimo Dies
 
 CHAIN IF WEIGHT #0 ~Global("VP_Yoshimo_Dies","GLOBAL",1)
 !Global("Kachiko_Reborn","GLOBAL",1)~ THEN VPKACHIP 19
-@37 DO ~EscapeArea()~
+~Sorry, <CHARNAME>, I cannot stay with you any longer. Without Yoshimo, I have nothing to do in your party. I must go back to Kozakura. Good luck to you.~ DO ~EscapeArea()~
 EXIT
 
 // Kachiko Pickup no Yoshimo

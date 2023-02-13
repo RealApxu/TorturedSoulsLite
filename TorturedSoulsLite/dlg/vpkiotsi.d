@@ -1,7 +1,0 @@
-BEGIN VPKIOTSI
-
-CHAIN
-IF ~True()~ THEN VPKIOTSI 0
-@0
-DO ~Enemy()~
-EXIT

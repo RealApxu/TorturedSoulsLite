@@ -1,4 +1,8 @@
-BEGIN VPKACHIB
+/////////////////////////////////////
+// Kachiko Banters with Party - SoA
+/////////////////////////////////////
+
+BEGIN VPKACHIB // Kachiko Banter Talks File - SoA
 
 //Aerie
 
@@ -46,18 +50,18 @@ DO ~SetGlobal("VPKachiAnomen1","GLOBAL",1)~
 == BANOMEN @16
 == VPKACHIB @17
 END
-IF ~Global("AnomenMatch","GLOBAL",1) !Global("AnomenRomanceActive","GLOBAL",0) !Global("AnomenRomanceActive","GLOBAL",3)~ THEN EXTERN ~BANOMEN~ TS591
+IF ~Global("AnomenMatch","GLOBAL",1) !Global("AnomenRomanceActive","GLOBAL",0) !Global("AnomenRomanceActive","GLOBAL",3)~ THEN EXTERN BANOMEN TS591
 IF ~OR(3) !Global("AnomenMatch","GLOBAL",1) Global("AnomenRomanceActive","GLOBAL",0) Global("AnomenRomanceActive","GLOBAL",3)~ THEN EXIT
 
 CHAIN BANOMEN TS591
 @18
 END
-IF ~~ THEN REPLY @19 EXTERN BANOMEN TS592
+ ++ @19 EXTERN BANOMEN TS592
 
 CHAIN BANOMEN TS592
 @20
 END
-IF ~~ THEN REPLY @21 EXTERN ~VPKACHIB~ 18
+ ++ @21 EXTERN VPKACHIB 18
 
 CHAIN VPKACHIB 18
 @22
@@ -84,23 +88,27 @@ DO ~SetGlobal("VPKachiEdwin1","GLOBAL",1)~
 == BEDWIN @28
 == VPKACHIB @29
 END
-  IF ~InParty("Minsc") See("Minsc") !StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN EXTERN ~BMINSC~ TS103
+  IF ~InParty("Minsc") See("Minsc") !StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN EXTERN BMINSC TS103
   IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @30 EXIT
-  IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @31 EXTERN ~BEDWIN~ TS108
-  IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @32 EXTERN ~BEDWIN~ TS109
+  IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @31 EXTERN BEDWIN TS108
+  IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @32 EXTERN BEDWIN TS109
 
 CHAIN BMINSC TS103
 @33
 END
-  IF ~~ THEN REPLY @30 EXIT
-  IF ~~ THEN REPLY @31 EXTERN ~BEDWIN~ TS108
-  IF ~~ THEN REPLY @32 EXTERN ~BEDWIN~ TS109
+   ++ @30 EXIT
+   ++ @31 EXTERN BEDWIN TS108
+   ++ @32 EXTERN BEDWIN TS109
 
 CHAIN BEDWIN TS108
-@34 DO ~LeaveParty() EscapeArea()~ EXIT
+@34
+DO ~LeaveParty() EscapeArea()~
+EXIT
 
 CHAIN BEDWIN TS109
-@35 DO ~LeaveParty() Enemy()~ EXIT
+@35
+DO ~LeaveParty() Enemy()~
+EXIT
 
 // Haer'Dalis
 
@@ -237,8 +245,8 @@ DO ~SetGlobal("VPKachiMazzy1","GLOBAL",1)~
 == VPKACHIB @87
 == BMAZZY @88
 END
-IF ~OR(2) !InParty("Valygar") StateCheck("Valygar",CD_STATE_NOTVALID)~ THEN EXIT
-IF ~InParty("Valygar") !StateCheck("Valygar",CD_STATE_NOTVALID)~ THEN EXTERN BMAZZY KachiMazzy1.1
+ IF ~OR(2) !InParty("Valygar") StateCheck("Valygar",CD_STATE_NOTVALID)~ THEN EXIT
+ IF ~InParty("Valygar") !StateCheck("Valygar",CD_STATE_NOTVALID)~ THEN EXTERN BMAZZY KachiMazzy1.1
 
 CHAIN BMAZZY KachiMazzy1.1
 @89
@@ -386,7 +394,9 @@ DO ~SetGlobal("VPKachiViconia1","GLOBAL",1)~
 == VPKACHIB @151
 EXIT
 
-// Lovetalks
+////////////////////////////////////
+// Kachiko Lovetalks with Yoshimo
+////////////////////////////////////
 
 CHAIN IF ~Global("LoveTalk","LOCALS",1)~ THEN VPKACHIB YoshiKachiLoveTalk1
 @152 DO ~SetGlobal("LoveTalk","LOCALS",2)~

@@ -49,26 +49,26 @@ StartCutScene("TSCutK03")~ EXIT
 // Dead Bodies
 
 CHAIN IF WEIGHT #6 ~Global("Dead_Bodies","GLOBAL",1)~ THEN YOSHJ TS169
-@101 DO ~SetGlobal("Dead_Bodies","GLOBAL",2)~
-== VPKACHIJ @102
-== YOSHJ @103
+~Dead bodies? Here? Must be another group stranded on this piece of land. We must step carefully.~ DO ~SetGlobal("Dead_Bodies","GLOBAL",2)~
+== VPKACHIJ ~Yoshimo, does not this... man looks a bit familiar to you? It is strange but he reminds me Otako Hashimoto.~ [KACHIQ03]
+== YOSHJ ~Kachiko, I can see the resemblance, but that cannot be. Otako was wearing a pendant in a shape of a crescent moon... just like this one... Oh, no! I must be dreaming! Otako...~
 END
- IF ~~ THEN REPLY @104 EXTERN YOSHJ TS171
+ IF ~~ THEN REPLY ~What? What are you both talking about? The dead man is one of your family, Yoshimo? Are you sure we are not in Kara Tur?~ EXTERN YOSHJ TS171
 
 CHAIN YOSHJ TS171
-@105
-== VPKACHIJ @106
+~I am afraid he is... he was my nephew, yes. But I have no idea how he came to this place and got killed; neither do I know where this place is...~
+== VPKACHIJ ~My guess is that the spell might have worked and we are somehow moving towards solving our family feud. But why are we on an island, and not at home?~
 END
-  IF ~~ THEN REPLY @107 EXTERN ~YOSHJ~ TS172
+  IF ~~ THEN REPLY ~The spell... Harpel must have done something that works for once. Let's go on, and we will have better chance to find some answers. Yoshimo, I am mourn your loss.~ EXTERN ~YOSHJ~ TS172
 
 CHAIN YOSHJ TS172
-@108
+~Thank you, <CHARNAME>.~
 EXIT
 
 // Kachiko Kidnapped
 
 CHAIN IF WEIGHT #7 ~Global("Kachiko_Kidnapped","GLOBAL",1)~ THEN YOSHJ TS177
-@109 DO ~SetGlobal("Kachiko_Kidnapped","GLOBAL",2) RealSetGlobalTimer("NKensais_Spawn","GLOBAL",10)~
+~No! Kachiko... No! I will kill them all! If they harm her in any way, I swear I will kill them all!~ DO ~SetGlobal("Kachiko_Kidnapped","GLOBAL",2) RealSetGlobalTimer("NKensais_Spawn","GLOBAL",10)~
 EXIT
 
 // Kachiko Found
@@ -257,19 +257,19 @@ CHAIN IF WEIGHT #6 ~Global("Kicked_Out","LOCALS",1)
 See("vpkachi")
 Global("VP_OnIsland","GLOBAL",0)
 GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)~ THEN YOSHP TS8
-@207
+~Heya, <CHARNAME>. How are you?~
 END
-  IF ~AreaCheck("AR0313")~ THEN REPLY @208 EXTERN YOSHP TS9
-  IF ~~ THEN REPLY @209 EXTERN YOSHP TS10
+  IF ~AreaCheck("AR0313")~ THEN REPLY ~I am well, thank you. Did you manage to find a ship?~ EXTERN YOSHP TS9
+  IF ~~ THEN REPLY ~Actually things have been pretty rough. Yoshimo, do you have time to help me out?~ EXTERN YOSHP TS10
 
 CHAIN YOSHP TS9
-@210
+~No, not yet. Kachiko's ship has already left, and it may take few months till we find another one.~
 END
-  IF ~~ THEN REPLY @211 EXTERN YOSHP TS10
-  IF ~~ THEN REPLY @212 EXTERN YOSHP 2
+  IF ~~ THEN REPLY ~Since you have nothing much to do, but wait, may be you can help me out?~ EXTERN YOSHP TS10
+  IF ~~ THEN REPLY ~Oh, well, that's life. Have patience, my friend.~ EXTERN YOSHP 2
 
 CHAIN YOSHP TS10
-@213
+~Kachiko, what do you think?~
 END
   IF ~Global("VP_Kachiko_Joined","GLOBAL",0) OR(2) AreaCheck("AR0313") AreaCheck("AR0406")~ THEN DO ~SetGlobal("Kicked_Out","LOCALS",0)~ EXTERN VPKACHI 23
   IF ~Global("VP_Kachiko_Joined","GLOBAL",0) !AreaCheck("AR0313") !AreaCheck("AR0406")~ THEN DO ~SetGlobal("Kicked_Out","LOCALS",0)~ EXTERN VPKACHI 24

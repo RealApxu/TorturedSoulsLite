@@ -180,7 +180,7 @@ EXIT
 // Interjections
 
 CHAIN IF ~Global("Dead_Bodies","GLOBAL",3)~ THEN VPKACHIJ N19
-@28 DO ~SetGlobal("Dead_Bodies","GLOBAL",4)~
+~There are more bodies out there. Do you see them? I cannot look, I am afraid to find my kin among them.~ DO ~SetGlobal("Dead_Bodies","GLOBAL",4)~
 EXIT
 
 //Imoen Return Dialogue

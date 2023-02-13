@@ -1,4 +1,8 @@
-BEGIN VPKACHB2
+/////////////////////////////////////
+// Kachiko Banters with Party - ToB
+/////////////////////////////////////
+
+BEGIN VPKACHIB // Kachiko Banter Talks File - ToB
 
 //Lovetalks ToB
 

@@ -1,0 +1,234 @@
+///////////////////////
+// Experience Set
+///////////////////////
+
+IF
+	Global("VP_KachiExpSet","GLOBAL",0)
+	InParty(Myself)
+	XPGT(Player1,1249999)
+	XPLT(Myself,1250000)
+THEN
+	RESPONSE #100
+	  SetInterrupt(FALSE)
+	  SetGlobal("VP_KachiExpSet","GLOBAL",1)
+	  ChangeStat(Myself,XP,1250000,SET)
+	  SetInterrupt(TRUE)
+END
+  
+IF
+	Global("VP_KachiExpSet","GLOBAL",0)
+	InParty(Myself)
+	XPGT(Player1,999999)
+	XPLT(Myself,1000000)
+THEN
+	RESPONSE #100
+	  SetInterrupt(FALSE)
+	  SetGlobal("VP_KachiExpSet","GLOBAL",1)
+	  ChangeStat(Myself,XP,1000000,SET)
+	  SetInterrupt(TRUE)
+END
+  
+  IF
+	Global("VP_KachiExpSet","GLOBAL",0)
+	InParty(Myself)
+	XPGT(Player1,749999)
+	XPLT(Myself,750000)
+  THEN
+	RESPONSE #100
+	  SetInterrupt(FALSE)
+	  SetGlobal("VP_KachiExpSet","GLOBAL",1)
+	  ChangeStat(Myself,XP,750000,SET)
+	  SetInterrupt(TRUE)
+END
+  
+IF
+	Global("VP_KachiExpSet","GLOBAL",0)
+	InParty(Myself)
+	XPGT(Player1,499999)
+	XPLT(Myself,500000)
+THEN
+	RESPONSE #100
+	  SetInterrupt(FALSE)
+	  SetGlobal("VP_KachiExpSet","GLOBAL",1)
+	  ChangeStat(Myself,XP,500000,SET)
+	  SetInterrupt(TRUE)
+END
+  
+IF
+	Global("VP_KachiExpSet","GLOBAL",0)
+	InParty(Myself)
+	XPGT(Player1,249999)
+	XPLT(Myself,250000)
+THEN
+	RESPONSE #100
+	  SetInterrupt(FALSE)
+	  SetGlobal("VP_KachiExpSet","GLOBAL",1)
+	  ChangeStat(Myself,XP,250000,SET)
+	  SetInterrupt(TRUE)
+END
+  
+IF
+	Global("VP_KachiExpSet","GLOBAL",0)
+	InParty(Myself)
+	XPGT(Player1,124999)
+	XPLT(Myself,125000)
+THEN
+	RESPONSE #100
+	  SetInterrupt(FALSE)
+	  SetGlobal("VP_KachiExpSet","GLOBAL",1)
+	  ChangeStat(Myself,XP,125000,SET)
+	  SetInterrupt(TRUE)
+END
+  
+IF
+	Global("VP_KachiExpSet","GLOBAL",0)
+	InParty(Myself)
+	XPLT(Player1,89001)
+THEN
+	RESPONSE #100
+	  SetInterrupt(FALSE)
+	  SetGlobal("VP_KachiExpSet","GLOBAL",1)
+	  SetInterrupt(TRUE)
+END
+
+////////////////////////
+// First meeting
+////////////////////////
+
+IF
+	See([PC])
+	InParty("Yoshimo")
+    InMyArea("Yoshimo")
+	See("Yoshimo")
+	Global("VP_Kachiko_Meet","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("VP_Kachiko_Meet","GLOBAL",1)
+		StartDialogNoSet("Yoshimo")
+END
+
+///////////////////////////////
+// Kachiko-Yoshimo Romance
+///////////////////////////////
+
+IF
+	InParty(Myself)
+	InParty("Yoshimo")
+	!Dead("Yoshimo")
+	Global("VP_KachYosh_Romance","GLOBAL",0)
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
+	!Global("VP_OnIsland","GLOBAL",1)
+	Global("LoveTalk","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobalTimer("VP_KachikoRomance","GLOBAL",ONE_DAY)
+		SetGlobal("VP_KachYosh_Romance","GLOBAL",1)
+END
+
+IF
+	InParty(Myself)
+	InParty("Yoshimo")
+	See("Yoshimo")
+	!Dead("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
+	!See([ENEMY])
+	GlobalTimerExpired("VP_KachikoRomance","GLOBAL")
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
+	!Global("VP_OnIsland","GLOBAL",1)
+	OR(2)
+		Global("LoveTalk","LOCALS",4)
+		Global("LoveTalk","LOCALS",6)
+THEN
+	RESPONSE #100
+		IncrementGlobal("LoveTalk","LOCALS",1)
+		SetGlobalTimer("VP_KachikoRomance","GLOBAL",TWO_DAYS)
+		PlaySong(0)
+		PlaySound("vpkachls")
+		Interact("Yoshimo")
+END
+
+IF
+	InParty(Myself)
+	Global("VP_YoshimoExcuse","GLOBAL",4)
+	Global("Kachiko_Saved","GLOBAL",2)
+	See("Yoshimo")
+	InParty("Yoshimo")
+	!Dead("Yoshimo")
+THEN
+	RESPONSE #100
+		SetGlobal("VP_YoshimoExcuse","GLOBAL",5)
+		SetGlobalTimer("VP_Kachiko_LastTalk","GLOBAL",ONE_DAY)
+END
+
+IF
+	InParty(Myself)
+	GlobalTimerExpired("VP_Kachiko_LastTalk","GLOBAL")
+	Global("VP_YoshimoExcuse","GLOBAL",5)
+	InParty(Myself)
+	See("Yoshimo")
+	InParty("Yoshimo")
+	!Dead("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
+	!Range([NEUTRAL],10)
+	PartyRested()
+THEN
+	RESPONSE #100
+		SetGlobal("VP_YoshimoExcuse","GLOBAL",6)
+		PlaySong(0)
+		PlaySound("vpkachls")
+		Interact("Yoshimo")
+END
+
+// Fight Blocks
+
+IF
+	Allegiance(Myself,ENEMY)
+	!InParty(Myself)
+	Global("NPCFight","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("NPCFight","LOCALS",1)
+		ChangeAIScript("",DEFAULT)
+		ChangeAIScript("useitem",GENERAL)
+		ChangeAIScript("vpkachix",SPECIFICS)
+		SetDialog("")
+		Continue()
+END
+
+IF
+	Allegiance(Myself,NEUTRAL)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		ChangeAIScript("vpkachix",SPECIFICS)
+		ChangeAIScript("useitem",GENERAL)
+		ChangeAIScript("",DEFAULT)
+		Enemy()
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!InParty(Myself)
+	Global("NPCFight","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("NPCFight","LOCALS",0)
+		ChangeAIScript("",GENERAL)
+		ChangeAIScript("",SPECIFICS)
+		Continue()
+END
+
+IF
+	Global("MyHome_Attacked","GLOBAL",1)
+	Global("Hashimoto_Attacked","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("Hashimoto_Attacked","LOCALS",1)
+		LeaveParty()
+		Enemy()
+END
