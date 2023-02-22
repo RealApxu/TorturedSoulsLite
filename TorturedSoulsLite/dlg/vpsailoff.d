@@ -85,9 +85,23 @@ IF ~Global("VP_TalkedToNomeas","GLOBAL",1)~ THEN VPNOMEAS KR5
 ~Hey, <CHARNAME>. It's nice to see you again. Have you gathered the required fee for me?~
 END
  IF ~PartyGoldLT(5000)~ THEN REPLY ~But I don't have enough coin.~ EXTERN VPNOMEAS KR3
- IF ~PartyGoldGT(4999)~ THEN REPLY ~Okay, take this money, and try to do your best.~ EXTERN VPKACHIJ sailoff2
+ IF ~PartyGoldGT(4999)~ THEN REPLY ~Okay, take this money, and try to do your best.~ EXTERN VPNOMEAS sailoff2
  ++ ~I think you are bluffing. Imoen is too dear to me to trust this suspicious spell. We won't have any detours.~ EXTERN YOSHJ TS167
 
+CHAIN VPNOMEAS sailoff2
+~With pleasure. Well, then everything is settled. Here is the scroll.~
+== VPKACHIJ ~Oh, we will see Kara-Turian shores and prove that Yoshimo is innocent and restore peace between our families. I agree with you, <CHARNAME>, let the fate decide! Cast the spell, captain!~
+== VPNOMEAS ~Then we are fully staffed and ready to sail. Never a fear nor worry should cross your thoughts this eve, m'<PRO_LADYLORD>. I have traveled this sea a good many times, and I foresee no troubles.~
+= ~Although, I am sure, nothing untoward will happen during our crossing, best that we get underway as soon as possible. Please follow me to the docks where my ship is waiting for us.~
+DO ~SetGlobal("Start_Island","GLOBAL",1)
+StartCutSceneMode()
+StartCutScene("Cut41isb")~
+EXIT
+
+CHAIN YOSHJ TS167
+~I understand. I wish you good luck in your dealings with Irenicus and rescuing Imoen. Farewell and do not think ill of us.~
+== VPKACHIJ ~Good luck to you, <CHARNAME>. Farewell.~
+  IF ~~ THEN DO ~SetGlobal("Start_Island","GLOBAL",2)~ EXTERN ~KACHIJ~ sailoff3
 
 EXTEND_TOP PPSAEM 13
  IF ~InParty("vpkachi")~ THEN EXTERN VPKACHIJ sailoff1
