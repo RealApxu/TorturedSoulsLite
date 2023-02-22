@@ -7,8 +7,8 @@ BEGIN VPKACHJ2
 CHAIN IF ~Global("VP_Yoshimo_Dies","GLOBAL",2)
 See(Player1)
 !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN VPKACHJ2 0
-~Sorry, <CHARNAME>, I cannot stay with you any longer. Without Yoshimo, I have nothing to do in your party. I must go back to Kozakura. Good luck to you.~ DO ~LeaveParty()
-EscapeArea()~ 
+~Sorry, <CHARNAME>, I cannot stay with you any longer. Without Yoshimo, I have nothing to do in your party. I must go back to Kozakura. Good luck to you.~
+DO ~LeaveParty() EscapeArea()~ 
 EXIT
 
 CHAIN VPKACHJ2 1
@@ -16,11 +16,15 @@ CHAIN VPKACHJ2 1
 EXIT
 
 CHAIN VPKACHJ2 2
-~Yes, Yoshimo, let's go. Sorry, <CHARNAME>... Take care...~ DO ~LeaveParty()
-EscapeArea()~ EXIT
+~Yes, Yoshimo, let's go. Sorry, <CHARNAME>... Take care...~
+DO ~LeaveParty() EscapeArea()~
+EXIT
 
+////////////////
 // Solar
+////////////////
 
+// Kachiko
 EXTEND_BOTTOM FINSOL01 27
   IF ~InParty("vpkachi")~ THEN EXTERN VPKACHJ2 KachiChoice
 END
@@ -33,12 +37,19 @@ END
 
 CHAIN VPKACHJ2 KachiChoiceKensai
 ~You are now offered a destiny each samurai dreams of since his or her first steps on the path. You can join the ranks of the immortals, <CHARNAME>-san. Kachiko Nakanishi bows to you.~
-END
 COPY_TRANS FINSOL01 27
 
 CHAIN VPKACHJ2 KachiChoiceNoKensai
 ~You might become one of them. I bow to your greatness and achievement, <CHARNAME>-san.~
+COPY_TRANS FINSOL01 27
+
+// Yoshimo
+EXTEND_BOTTOM FINSOL01 27
+  IF ~InParty("Yoshimo")~ THEN EXTERN YOSHJ VPYoshimoChoice
 END
+
+CHAIN YOSHJ VPYoshimoChoice
+~Say the word you think is proper. But be you god or be you mortal, always remember that Yoshimo is your friend.~
 COPY_TRANS FINSOL01 27
 
 //IF ~~ THEN BEGIN 6

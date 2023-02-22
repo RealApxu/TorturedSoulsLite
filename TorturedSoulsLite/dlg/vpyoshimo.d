@@ -81,21 +81,21 @@ EXIT
 
 INTERJECT PLAYER1 33 VPYoshiToL0
 == PLAYER1 IF ~InParty("Yoshimo") InMyArea("Yoshimo") !StateCheck("Yoshimo",CD_STATE_NOTVALID)~ THEN
-@116
+~Yoshimo... the man whom you helped to rescue his family from a bitter vendetta and to find his true love. Yet he is also a man who was once hired by Irenicus to facilitate your demise.~
 END
-	IF ~~ THEN REPLY @117 EXTERN ~YOSHJ~ TS221
-	IF ~~ THEN REPLY @118 EXTERN ~YOSHJ~ TS222
-	IF ~~ THEN REPLY @119 EXTERN ~YOSHJ~ TS221
+	IF ~~ THEN REPLY ~Yoshimo... Your life just started anew. If you do not want to face Irenicus again, you do not have to. ~ EXTERN ~YOSHJ~ TS221
+	IF ~~ THEN REPLY ~Listen, Yoshimo. I trust you and everything, but I need to hear that you are on my side in the upcoming battle.~ EXTERN ~YOSHJ~ TS222
+	IF ~~ THEN REPLY ~Irenicus is a mighty foe, Yoshimo. I do not know if all of us shall survive this battle. I would understand if you do not want to come with me.~ EXTERN ~YOSHJ~ TS221
 
 APPEND YOSHJ
 
 IF ~~ THEN BEGIN TS221
-  SAY @120
+  SAY ~Irenicus is my sworn enemy. I am eager to fight him.~
 COPY_TRANS PLAYER1 33
 END  
 
 IF ~~ THEN BEGIN TS222
-  SAY @121
+  SAY ~I side with the one, whose wise council brought Kachiko back to life and granted my family eternal peace. Do not fear, <CHARNAME> my blade will not backstab you.~
 COPY_TRANS PLAYER1 33
 END
 END
@@ -107,7 +107,7 @@ EXTEND_BOTTOM FINSOL01 27
 END
 
 CHAIN YOSHJ VPYoshimoChoice
-@122
+~Say the word you think is proper. But be you god or be you mortal, always remember that Yoshimo is your friend.~
 END
 COPY_TRANS FINSOL01 27
 

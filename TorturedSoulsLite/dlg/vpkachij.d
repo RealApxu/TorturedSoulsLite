@@ -186,33 +186,33 @@ EXIT
 //Imoen Return Dialogue
 
 INTERJECT IMOEN2 21 TSL_Imoen_Join1
-== VPKACHIJ IF ~Global("VP_YoshimoExcuse","GLOBAL",1)~ THEN @29 
+== VPKACHIJ IF ~Global("VP_YoshimoExcuse","GLOBAL",1)~ THEN ~<CHARNAME>, I think we should talk about what happened. Yoshimo had dishonorable intentions and it is your right to demand his death.~ [KACHIL06]
 END
-  IF ~~ THEN REPLY @30 EXTERN VPKACHIJ N33
-  IF ~~ THEN REPLY @31 EXTERN VPKACHIJ N34
-  IF ~~ THEN REPLY @32 EXTERN ~YOSHJ~ TS218
+  IF ~~ THEN REPLY ~What do you mean Kachiko? That sounds a bit extreme.~ EXTERN VPKACHIJ N33
+  IF ~~ THEN REPLY ~Kachiko, my custom is more forgiving than the code of a samurai. I have seen Yoshimo stand against Irenicus and refuse to surrender me. I trust him. ~ EXTERN VPKACHIJ N34
+  IF ~~ THEN REPLY ~Glad you reminded me of the traitor. I do not wish him in my party. He may do what he wants with his life, but he may not stay.~ EXTERN ~YOSHJ~ TS218
 
 CHAIN VPKACHIJ N33
-@33
+~My <PRO_LADYLORD>, Yoshimo pledged his service to you, yet he was serving Irenicus at the same time. His intention was to deceive you. Yoshimo is not a samurai and he does not follow a strict code of honor, but his upbringing was that of a noble. His actions towards you call for ritual suicide.~
 END
-  IF ~~ THEN REPLY @34 EXTERN VPKACHIJ N34
-  IF ~~ THEN REPLY @35 EXTERN ~YOSHJ~ TS218
+  IF ~~ THEN REPLY ~I respect your customs, but he has a noble heart, and he's faithful ally. He stood against Irenicus and refused to surrender me. I trust him.~ EXTERN VPKACHIJ N34
+  IF ~~ THEN REPLY ~Uh, well... He may do what he wants with his life, but he may not stay.~ EXTERN ~YOSHJ~ TS218
 
 CHAIN VPKACHIJ N34
-@36
+~So you do not see his actions as betrayal, then <CHARNAME>?~
 END
-  IF ~~ THEN REPLY @37 EXTERN VPKACHIJ N35
+  IF ~~ THEN REPLY ~No Kachiko, the way I see it, Yoshimo was loyal to me in deed if not always in his thoughts. I am quite comfortable with him staying in the party.~ EXTERN VPKACHIJ N35
 
 CHAIN VPKACHIJ N35
-@38 DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",2)~
-== IMOEN2 @39
+~You have a different way of thinking <CHARNAME>, but I am... I am glad you do. Yoshimo and I will prove our loyalty to you in battle.~ [KACHIL16] DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",2)~
+== IMOEN2 ~That's good, Kachiko.~
 END
 COPY_TRANS IMOEN2 21
 
 CHAIN YOSHJ TS218
-@40 DO ~SetGlobal("Kicked_Out","LOCALS",1)~
-== VPKACHIJ @41
-== IMOEN2 @42 DO ~ActionOverride("Yoshimo",LeaveParty())
+~Your wish is my command. I shall leave the group. I cannot say how much I am sorry for allowing Irenicus to capture me in the moment of my weakness. Fare thee well <CHARNAME>.~ DO ~SetGlobal("Kicked_Out","LOCALS",1)~
+== VPKACHIJ ~Yoshimo, wait. I am leaving with you. Alone you will only get into more troubles. Sorry <CHARNAME>, but I told you from the very start that I would follow whenever he goes... and I shall do so now.~ [KACHIL26]
+== IMOEN2 ~Bye, Kachiko.~ DO ~ActionOverride("Yoshimo",LeaveParty())
 ActionOverride("Yoshimo",EscapeArea())
 ActionOverride("vpkachi",LeaveParty())
 ActionOverride("vpkachi",EscapeArea())~
@@ -223,26 +223,26 @@ COPY_TRANS IMOEN2 21
 
 INTERJECT PLAYER1 33 VPKachiToL0
 == PLAYER1 IF ~InParty("vpkachi") InMyArea("vpkachi") !StateCheck("vpkachi",CD_STATE_NOTVALID)~ THEN
-@43
+~Kachiko. A warrior from a distant land, she insisted to join you to be close to Yoshimo whom she hated. She stayed with you through thick and thin to be close to Yoshimo she loved...~
 END
-  IF ~~ THEN REPLY @44 EXTERN VPKACHIJ VPKachiToL1
-  IF ~~ THEN REPLY @45 EXTERN VPKACHIJ VPKachiToL2
-  IF ~~ THEN REPLY @46 EXTERN VPKACHIJ VPKachiToL3
+  IF ~~ THEN REPLY ~Kachiko... You had fought valiantly by my side, but if you wish to go back to your life now, I would understand...~ EXTERN VPKACHIJ VPKachiToL1
+  IF ~~ THEN REPLY ~Irenicus is a terrible creature, Kachiko. Please, let me know that you are prepared to face such a challenge.~ EXTERN VPKACHIJ VPKachiToL2
+  IF ~~ THEN REPLY ~Behind these doors is death... May be it awaits Irenicus, may be it awaits all of us... You have seen death closer than I. Would you go through this door?~ EXTERN VPKACHIJ VPKachiToL3
   
 APPEND VPKACHIJ
 
 IF ~~ THEN BEGIN VPKachiToL1
-  SAY @47
+  SAY ~Avenging the suffering of my family is a part of my life, <CHARNAME>. My blade is thirsty for his blood. For Nakanishi's honor! For Hashimoto's honor! No more talk! I am going!~
 COPY_TRANS PLAYER1 33
 END  
 
 IF ~~ THEN BEGIN VPKachiToL2
-  SAY @48
+  SAY ~Try to stop me! You would have to tie me up to prevent me from fighting Irenicus. For Nakanishi's honor! For Hashimoto's honor!~
 COPY_TRANS PLAYER1 33
 END
 
 IF ~~ THEN BEGIN VPKachiToL3
-  SAY @49
+  SAY ~I have seen it, yes. I am not afraid to die if I know that Irenicus goes down with me. For Nakanishi's honor! For Hashimoto's honor!~
 COPY_TRANS PLAYER1 33
 END
 END
@@ -250,7 +250,7 @@ END
 //Hell
 
 I_C_T PLAYER1 25 VPKachiHell 
-== VPKACHIJ IF ~InParty("vpkachi") InMyArea("vpkachi") !StateCheck("vpkachi",CD_STATE_NOTVALID)~ @50
+== VPKACHIJ IF ~InParty("vpkachi") InMyArea("vpkachi") !StateCheck("vpkachi",CD_STATE_NOTVALID)~ ~Are we dead? I only wished I could tell Yoshimo a proper farewell.~
 END
 
 // Imoen Join Script Append
