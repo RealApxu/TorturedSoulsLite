@@ -2,8 +2,10 @@
 // Kachiko Join Event
 /////////////////////////
 
-BEGIN VPKACHI // Kachiko Initial Dialogue File
+BEGIN VPKACHI  // Kachiko Initial Dialogue File
 BEGIN VPKACHIP // Kachiko Join-In Dialogue (after you kicked her out of the group)
+BEGIN VPKACHIJ // Kachiko Talks
+BEGIN VPKACHIB // Kachiko Banters
 
 ///////////////////////////////////////////////////////////////
 // Kachiko finds you in Athkatla after conditions are met

@@ -1,3 +1,20 @@
+// Spawning Kachiko
+
+IF
+  InParty(Myself)
+  OR(6)
+    AreaCheck("AR0020")
+    AreaCheck("AR0300")
+    AreaCheck("AR0500")
+    AreaCheck("AR0700")
+    AreaCheck("AR0900")
+    AreaCheck("AR1000")
+  GlobalLT("Chapter","GLOBAL",%bg_chapter_4%)
+THEN
+  RESPONSE #100
+
+END
+
 IF
   Global("VP_Yoshimo_Kachiko","GLOBAL",1)
 THEN

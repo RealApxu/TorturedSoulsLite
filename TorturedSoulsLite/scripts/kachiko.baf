@@ -97,8 +97,12 @@ END
 
 IF
 	See([PC])
+	See("Yoshimo")
 	InParty("Yoshimo")
     InMyArea("Yoshimo")
+	!Dead("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
 	See("Yoshimo")
 	Global("VP_Kachiko_Meet","GLOBAL",0)
 THEN

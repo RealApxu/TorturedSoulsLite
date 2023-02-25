@@ -4,7 +4,7 @@
 
 BEGIN VPTSMESS // Quest Starter - Messenger
 BEGIN VPNOMEAS // Captain Nomeas
-BEGIN VPEMIS // Priest Emis
+BEGIN VPEMIS // Priestess Emis
 BEGIN VPOTAKO // Otako - from Yoshimo family
 BEGIN VPHASUNO // Hasuno - Merchant in Hashimoto House
 BEGIN VPLULU
@@ -35,16 +35,105 @@ IF ~Global("VPTorturedSoulsQuest","GLOBAL",1)~ THEN VPTSMESS 0
 
 // Talk with captain and sailoff
 
+CHAIN
+IF ~Global("VP_TalkedToNomeas","GLOBAL",0)~ THEN VPNOMEAS VPSAILOFF1
+~*HELLO STRING*~ DO ~SetGlobal("VP_TalkedToNomeas","GLOBAL",1)~
+END
+ ++ ~Nomeas, I have little knowledge of the sea travel. Can you tell me how long will it take us to get to Kara-Tur by sea?~ EXTERN PPSAEM VPSAILOFF2
+
+CHAIN VPNOMEAS VPSAILOFF2
+~Half a year, may be a year... It is a long and dangerous route. Not many ships go that far away, and of those that do few return back.~
+END
+ ++ ~Yoshimo, Kachiko, I am sorry, but I have to haste to Imoen's rescue, her life is at stake! May be after we find Imoen I will go to Kara-Tur with you...~ EXTERN YOSHJ TS166
+
+CHAIN YOSHJ TS166
+~No! This is impossible! Eh, no, I'd rather part our ways right now.~
+== VPNOMEAS ~Ahem, if I may interrupt... I think I have a solution for your problem. Recently I run into a... mmh... an arch-mage of great renown, Harkle Harpel. For a minor service, he gave me this scroll. It's called the Harpel's Fog of Fate. If I cast it, my ship will carry you to the place you destined to be in mere hours, even to Kara-Tur.~
+END
+ IF ~True()~ THEN EXTERN VPNOMEAS TS81
+ IF ~InParty("Valygar")~ THEN EXTERN VALYGARJ TS122
+ IF ~InParty("Anomen")~ THEN EXTERN ANOMENJ TS310
+ IF ~InParty("Jaheira")~ THEN EXTERN JAHEIRAJ TS531
+ IF ~InParty("Keldorn")~ THEN EXTERN KELDORJ TS252
+
+CHAIN KELDORJ TS252
+~<CHARNAME>, Harkle Harpel is no arch-mage, he belongs to a family of lunatics! For what I know of Harpels we might be turned into frogs or some such if you allow Nomeas to cast the spell! Be careful!~
+END
+ ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself. But if it works, my friends prepare to storm Spellhold this afternoon!~ DO ~SetGlobal("VP_Pay_to_Nomeas","GLOBAL",1)~ EXTERN PPSAEM TS81
+ ++ ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+
+CHAIN JAHEIRAJ TS252
+~<CHARNAME>, Harkle Harpel is no arch-mage, he belongs to a family of lunatics! For what I know of Harpels we might be turned into frogs or some such if you allow Nomeas to cast the spell! Be careful!~
+END
+ ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself. But if it works, my friends prepare to storm Spellhold this afternoon!~ DO ~SetGlobal("VP_Pay_to_Nomeas","GLOBAL",1)~ EXTERN PPSAEM TS81
+ ++ ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+
+CHAIN ANOMENJ TS252
+~<CHARNAME>, Harkle Harpel is no arch-mage, he belongs to a family of lunatics! For what I know of Harpels we might be turned into frogs or some such if you allow Nomeas to cast the spell! Be careful!~
+END
+ ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself. But if it works, my friends prepare to storm Spellhold this afternoon!~ DO ~SetGlobal("VP_Pay_to_Nomeas","GLOBAL",1)~ EXTERN PPSAEM TS81
+ ++ ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+
+CHAIN VALYGARJ TS252
+~<CHARNAME>, Harkle Harpel is no arch-mage, he belongs to a family of lunatics! For what I know of Harpels we might be turned into frogs or some such if you allow Nomeas to cast the spell! Be careful!~
+END
+ ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself. But if it works, my friends prepare to storm Spellhold this afternoon!~ DO ~SetGlobal("VP_Pay_to_Nomeas","GLOBAL",1)~ EXTERN PPSAEM TS81
+ ++ ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+
+CHAIN VPNOMEAS TS81
+~Of course, I would not part with this scroll for less then 5,000 gold.~
+END
+ IF ~PartyGoldGT(4999)~ THEN REPLY ~Okay, take this money, and try to do your best.~ EXTERN VPKACHIJ sailoff2
+ ++ ~We will pay you... if we are to survive this spell.~ EXTERN VPNOMEAS TS0
+ IF ~PartyGoldLT(5000)~ THEN REPLY ~It sounds good, but I don't have enough coin.~ EXTERN VPNOMEAS KR3
+ ++ ~On the second thought, this spell seems a way suspicious to trust it. We won't have any detours.~ EXTERN YOSHJ TS167
+
+CHAIN VPNOMEAS TS0
+~That is why I would like to get my payment before I cast the spell. Sorry to say, but business is business.~
+END
+ IF ~PartyGoldLT(5000)~ THEN REPLY ~But I don't have enough coin.~ EXTERN VPNOMEAS KR3
+ IF ~PartyGoldGT(4999)~ THEN REPLY ~Okay, take this money, and try to do your best.~ EXTERN VPKACHIJ sailoff2
+ ++ ~I think you are bluffing. Imoen is too dear to me to trust this suspicious spell. We won't have any detours.~ EXTERN YOSHJ TS167
+
+
+CHAIN VPNOMEAS KR3
+~I am sure you have spent as much in the past and will again. Surely there be work in the city for you. Or perhaps some of your expensive goods to sell?~
+= ~I'll wait for you here.~
+EXIT
+
+CHAIN
+IF ~Global("VP_TalkedToNomeas","GLOBAL",1)~ THEN VPNOMEAS KR5
+~Hey, <CHARNAME>. It's nice to see you again. Have you gathered the required fee for me?~
+END
+ IF ~PartyGoldLT(5000)~ THEN REPLY ~But I don't have enough coin.~ EXTERN VPNOMEAS KR3
+ IF ~PartyGoldGT(4999)~ THEN REPLY ~Okay, take this money, and try to do your best.~ EXTERN VPNOMEAS sailoff2
+ ++ ~I think you are bluffing. Imoen is too dear to me to trust this suspicious spell. We won't have any detours.~ EXTERN YOSHJ TS167
+
+CHAIN VPNOMEAS sailoff2
+~With pleasure. Well, then everything is settled. Here is the scroll.~
+== VPKACHIJ ~Oh, we will see Kara-Turian shores and prove that Yoshimo is innocent and restore peace between our families. I agree with you, <CHARNAME>, let the fate decide! Cast the spell, captain!~
+== VPNOMEAS ~Then we are fully staffed and ready to sail. Never a fear nor worry should cross your thoughts this eve, m'<PRO_LADYLORD>. I have traveled this sea a good many times, and I foresee no troubles.~
+= ~Although, I am sure, nothing untoward will happen during our crossing, best that we get underway as soon as possible. Please follow me to the docks where my ship is waiting for us.~
+DO ~SetGlobal("Start_Island","GLOBAL",1)
+StartCutSceneMode()
+StartCutScene("Cut41isb")~
+EXIT
+
+CHAIN YOSHJ TS167
+~I understand. I wish you good luck in your dealings with Irenicus and rescuing Imoen. Farewell and do not think ill of us.~
+== VPKACHIJ ~Good luck to you, <CHARNAME>. Farewell.~
+EXIT
+
 ///////////////////////////
 // Quest Main Content
 ///////////////////////////
 
 // Arrival to TS Island
 CHAIN
-IF WEIGHT #7 ~Global("Start_Island","GLOBAL",1) Global("Saemon_Mistake","GLOBAL",0)~ THEN VPNOMEAS TS3
-~Ahem... dear <SIRMAAM> we had arrived it seems...~
+IF WEIGHT #7 ~Global("Start_Island","GLOBAL",1) Global("Nomeas_Mistake","GLOBAL",0)~ THEN VPNOMEAS TS3
+~Ahem... dear <SIRMAAM> we had arrived it seems...~ DO ~SetGlobal("Nomeas_Mistake","GLOBAL",1)~
 END
- ++ ~Where?~ DO ~SetGlobal("Saemon_Mistake","GLOBAL",1)~ EXTERN VPNOMEAS TS4
+ ++ ~Where?~ EXTERN VPNOMEAS TS4
 
 CHAIN VPNOMEAS TS4
 ~Uhm, that's not our destination, I am positive... Maybe it is some part of Kara-Tur. You have couple locals among your ranks they would know better than I.~
@@ -316,13 +405,14 @@ END
  ++ ~I am not sure... Najoki, would you give me any practical help, like giving us directions back to civilization if I go save your daughter?~ EXTERN VPNAJOKI 7
 
 CHAIN VPNAJOKI 6
-~You do not know what love is? Love is strong and it can defeat both hatred and fate. I have a hope that if Hashimoto pledges his heart to Nakanishi, despite everything, the curse will be broken...~
+~You do not know what love is? Love is strong and it can defeat both hatred and fate.~
 == VICONIJ IF ~InParty("Viconia") !StateCheck("Viconia",CD_STATE_NOTVALID)~ THEN ~Love is for weak-hearted rivvins...~
 == KELDORJ IF ~InParty("Keldorn") !StateCheck("Keldorn",CD_STATE_NOTVALID)~ THEN ~Love of God is a higher calling, then an earthly passion, but still there is a measure of truth in your words, Najoki...~
 == KORGANJ IF ~InParty("Korgan") !StateCheck("Korgan",CD_STATE_NOTVALID)~ THEN ~Re yer gonna stop greasing the floor with yer mumbo-jumbo, stupid woman?~
 == AERIEJ IF ~InParty("Aerie") !StateCheck("Aerie",CD_STATE_NOTVALID)~ THEN ~How... how romantic...~
+== VPNAJOKI ~I have a hope that if Hashimoto pledges his heart to Nakanishi, despite everything, the curse will be broken...~
 END
-++ ~Could you be more specific?~ EXTERN VPNAJOKI 7
+ ++ ~Could you be more specific?~ EXTERN VPNAJOKI 7
 
 CHAIN VPNAJOKI 7
 ~If you will help Yoshimo to save my daughter I will give you a map... The wizard who cursed us gave it to me as a cruel joke. The map shows the Shiny Gate, the magical portal, which would teleport you wherever you wish to go... We spent years trying to build a seaworthy ship... but none would float. The wizard gave us yet another false hope and another torture for our souls... I will give you the map if you save my daughter.~

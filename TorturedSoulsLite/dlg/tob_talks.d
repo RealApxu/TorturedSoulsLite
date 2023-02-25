@@ -2,20 +2,20 @@
 // ToB Other Talks and Interjections
 ////////////////////////////////////////
 
-BEGIN VPKACHJ2
+BEGIN VPKACH2J
 
 CHAIN IF ~Global("VP_Yoshimo_Dies","GLOBAL",2)
 See(Player1)
-!StateCheck(Player1,CD_STATE_NOTVALID)~ THEN VPKACHJ2 0
+!StateCheck(Player1,CD_STATE_NOTVALID)~ THEN VPKACH2J 0
 ~Sorry, <CHARNAME>, I cannot stay with you any longer. Without Yoshimo, I have nothing to do in your party. I must go back to Kozakura. Good luck to you.~
 DO ~LeaveParty() EscapeArea()~ 
 EXIT
 
-CHAIN VPKACHJ2 1
+CHAIN VPKACH2J 1
 ~Oh, my love, I was so worried about you!~
 EXIT
 
-CHAIN VPKACHJ2 2
+CHAIN VPKACH2J 2
 ~Yes, Yoshimo, let's go. Sorry, <CHARNAME>... Take care...~
 DO ~LeaveParty() EscapeArea()~
 EXIT
@@ -26,20 +26,20 @@ EXIT
 
 // Kachiko
 EXTEND_BOTTOM FINSOL01 27
-  IF ~InParty("vpkachi")~ THEN EXTERN VPKACHJ2 KachiChoice
+  IF ~InParty("vpkachi")~ THEN EXTERN VPKACH2J KachiChoice
 END
 
-CHAIN VPKACHJ2 KachiChoice
+CHAIN VPKACH2J KachiChoice
 ~There are ten millions immortal spirits we worship in Kara-Tur.~
 END
-  IF ~Kit(Player1,KENSAI)~ THEN EXTERN VPKACHJ2 KachiChoiceKensai
-  IF ~!Kit(Player1,KENSAI)~ THEN EXTERN VPKACHJ2 KachiChoiceNoKensai
+  IF ~Kit(Player1,KENSAI)~ THEN EXTERN VPKACH2J KachiChoiceKensai
+  IF ~!Kit(Player1,KENSAI)~ THEN EXTERN VPKACH2J KachiChoiceNoKensai
 
-CHAIN VPKACHJ2 KachiChoiceKensai
+CHAIN VPKACH2J KachiChoiceKensai
 ~You are now offered a destiny each samurai dreams of since his or her first steps on the path. You can join the ranks of the immortals, <CHARNAME>-san. Kachiko Nakanishi bows to you.~
 COPY_TRANS FINSOL01 27
 
-CHAIN VPKACHJ2 KachiChoiceNoKensai
+CHAIN VPKACH2J KachiChoiceNoKensai
 ~You might become one of them. I bow to your greatness and achievement, <CHARNAME>-san.~
 COPY_TRANS FINSOL01 27
 

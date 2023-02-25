@@ -1,17 +1,6 @@
 
-@3    = ~NEW CHAPTER
-
-After Saemon Havarian had finished his incantations you stood for a few minutes in expectation. The ship, ready to sail was still in Athkatla's docks... You were about to sigh and pronounce your thanks that at least it was not frog-turning, and request refund from the sly sailor. Suddenly the crew became agitated, everyone pointing to the east. You turned and saw a gray cloud speeding across the sky straight for the "Gallante". A few of the crewmen leaped overboard. Someone behind your back whispered: "that's how the fate looks?" and spat heartily on the deck. Then the world became one great gray fog and all you could sense is the movement of tremendous speed... But you could not distinguish the direction or count the time... Slowly you had lost your consciousness... and regained it in what seemed a short instant. The ship is riding shallow waters in a sheltered bay by a stony beach. Captain Havarian approaches you hesitantly...~ [vptheme1]
-@4    = ~CHAPTER FOUR
-
-After few hours of uninterrupted sail you see a shiny circlet on the horizon. It is the portal! Saemon slows "Gallante" down. Your seasoned captain looks nervous as the ship enters the time gate. "Athkatla" says he steadily... and the familiar harbor appears in view... You do not stop in the port however, but lay your course straight for Brinnlaw.
-
-Bodhi was as good as her word. The journey is uneventful, and if there were other ships on the same course they must have kept a discreet distance. You make good time, and soon there is a sizable island on the horizon. It might have been considered a pleasant place, but a grim shadow extends the length of it. The asylum, Spellhold, looms from a cliff side.~ [vptheme2]
-@5    = ~CHAPTER FOUR
-
-After few hours of uninterrupted sail you see a shiny circlet on the horizon. It is the portal! Saemon slows "Gallante" down. Your seasoned captain looks nervous as the ship enters the time gate. "Athkatla" says he steadily... and the familiar harbor appears in view... You do not stop in the port however, but lay your course straight for Brinnlaw.
-
-Aran Linvail and Sime have proven trustworthy. The journey is uneventful, and if there were other ships on the same course they must have kept a discreet distance. You make good time, and soon there is a sizable island on the horizon. It might have been considered a pleasant place, but a grim shadow extends the length of it. The asylum, Spellhold, looms from a cliff side.~ [vptheme2]
+@3    = ~After Nomeas had finished his incantations you stood for a few minutes in expectation. The ship, ready to sail was still in Athkatla's docks... You were about to sigh and pronounce your thanks that at least it was not frog-turning, and request refund from the sly sailor. Suddenly the crew became agitated, everyone pointing to the east. You turned and saw a gray cloud speeding across the sky straight for the ship. A few of the crewmen leaped overboard. Someone behind your back whispered: "that's how the fate looks?" and spat heartily on the deck. Then the world became one great gray fog and all you could sense is the movement of tremendous speed... But you could not distinguish the direction or count the time... Slowly you had lost your consciousness... and regained it in what seemed a short instant. The ship is riding shallow waters in a sheltered bay by a stony beach. The captain approaches you hesitantly...~ [vptheme1]
+@4    = ~After few hours of uninterrupted sail you see a shiny circlet on the horizon. It is the portal! Nomeas slows the ship down. Your seasoned captain looks nervous as the ship enters the time gate. "Athkatla" says he steadily... and the familiar harbor appears in view...~ [vptheme2]
 @6    = ~Kachiko and Yoshimo traveled throughout Faerun for years after leaving company of <CHARNAME>. The couple were loved everywhere they went for their indomitable spirit and readiness to help anyone in need. They lived out of their backpacks and a few bags of holding for many years. Rumor has it that Yoshimo and Kachiko were agents in the service of the Harpers. Others say that they served nobody. 
 
 The Hashimoto family first doubled then tripled and all of their children grew up during the endless family journey. The eldest child was called <CHARNAME> in memory of their old friend. Yoshimo and Kachiko never returned to Kozakura, the demise of their families weighed heavily on them. Eventually, they retired to Athkatla. Yoshimo now owns the "Adventurer's Mart" and the Hashimoto's small home in the Bridge district is full of grandchildren and all sorts of wanderers.~
@@ -66,7 +55,7 @@ Requires:
  11 Strength
 
 Weight: 10~
-@18   = ~Chess Piece~
+/*@18   = ~Chess Piece~
 @19   = ~White Bishop~
 @20   = ~Chess is one of the "four universal games" (draughts, dice, and talis cards being the others). Many believe chess to be the most challenging and intriguing of the four games. Chess pieces and boards are often made from a wide variety of materials. Marble, wood, and ivory are the most common materials used for the construction of chess pieces.~
 @21   = ~This chess piece is a white bishop, crafted from soapstone. It is one of the many lost pieces from the fabled Chess Sets of Niri Alud. Niri Alud was a conjurer from Tethyr who loved playing chess. He frequently traveled with chess sets on his numerous voyages. He wanted the ability to summon allies at a moment's notice without giving away his intention. For that reason, he created a wide variety of chess sets of different colors that would summon constructed, golem-like automatons to aid him in battle. Almost all of Niri Alud's chess sets were lost when he was attacked by desert raiders in Calimshan. The raiders, ignorant of the ways of magic, let most of the chess sets sink into the desert sands. The chess sets that were taken were soon separated, pieces traveling through trade and theft over hundreds of miles. Treasure hunters search for the pieces still.
@@ -77,7 +66,7 @@ Charge abilities:
 – Summon 10th-level priest-like ally once per day
   Duration: 1 turn
 
-Weight: 1~
+Weight: 1~*/
 @22   = ~Blade Of The Night~
 @23   = ~This was the weapon used by the most famous assassin in Kara Tur, but none knew her name apart from the emperor. She was the greatest thief the world had ever seen. She received this powerful weapon after completing a series of succesful missions for the emperor, who decided she was worthy of the blade. It was made by the emperors best weapon smiths, and then tempered in the bloods of red, black, silver and blue dragons. The legend says this weapon would make anyone almost as good as thief as the original owner, but because of the strong enchantments, the katana requires much from its wielder, and it is only usable by a thief.
 
@@ -371,7 +360,7 @@ Weight: 0~
 STATISTICS:
 
 Weight: 0~
-@63   = ~Black Knight~
+/*@63   = ~Black Knight~
 @64   = ~This chess piece is a black knight, crafted from ebony. It is one of the many lost pieces from the fabled Chess Sets of Niri Alud. Niri Alud was a conjurer from Tethyr who loved playing chess. He frequently traveled with chess sets on his numerous voyages. He wanted the ability to summon allies at a moment's notice without giving away his intention. For that reason, he created a wide variety of chess sets of different colors that would summon constructed, golem-like automatons to aid him in battle. Almost all of Niri Alud's chess sets were lost when he was attacked by desert raiders in Calimshan. The raiders, ignorant of the ways of magic, let most of the chess sets sink into the desert sands. The chess sets that were taken were soon separated, pieces traveling through trade and theft over hundreds of miles. Treasure hunters search for the pieces still.
 
 STATISTICS:
@@ -380,7 +369,7 @@ Charge abilities:
 – Summon 9th-level warrior-like ally once per day.
   Duration: 1 turn
 
-Weight: 1~
+Weight: 1~*/
 @65   = ~Hojo War Ring of Nakanishi~
 @66   = ~Hojo War Ring of Nakanishi
 
@@ -767,21 +756,6 @@ Weight: 5~
 @252  = ~You have no method for which to climb down into the pit.  Perhaps some sort of rope would help.~
 @253  = ~This exit is magically sealed. You have no means to unseal it.~
 @254  = ~These stairs have collapsed. You will have to find another route.~
-
-////Crossmod lines
-
-//Alternatives
-
-@300  = ~CHAPTER FOUR
-
-    After few hours of uninterrupted sail you see a shiny circlet on the horizon. It is the portal! Saemon slows "Gallante" down. Your seasoned captain looks nervous as the ship enters the time gate. "Athkatla" says he steadily... and the familiar harbor appears in view... You do not stop in the port however, but lay your course straight for Brinnlaw.
-    
-    Aster and Sime have proven trustworthy. The journey is uneventful, and if there were other ships on the same course they must have kept a discreet distance. You make good time, and soon there is a sizable island on the horizon. It might have been considered a pleasant place, but a grim shadow extends the length of it. The asylum, Spellhold, looms from a cliff side.~ [vptheme2]
-@301  = ~CHAPTER FOUR
-
-    After few hours of uninterrupted sail you see a shiny circlet on the horizon. It is the portal! Saemon slows "Gallante" down. Your seasoned captain looks nervous as the ship enters the time gate. "Athkatla" says he steadily... and the familiar harbor appears in view... You do not stop in the port however, but lay your course straight for Maztica... or so you thought.
-    
-    Malficus was following the orders of Bodhi, a powerful vampire, and you were found at the shore of Brynnlaw, betrayed. Like it or not, you are here now, and the only way to get back is to go forward. The island might have been considered a pleasant place, but a grim shadow extends the length of it. The asylum, Spellhold, looms from a cliff side, and both Irenicus and Imoen are here.~ [vptheme2]
 
 ////New version
 

@@ -2,8 +2,6 @@
 // Kachiko Banters with Party - SoA
 /////////////////////////////////////
 
-BEGIN VPKACHIB // Kachiko Banter Talks File - SoA
-
 //Aerie
 
 CHAIN
