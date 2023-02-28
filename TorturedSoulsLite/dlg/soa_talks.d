@@ -2,13 +2,13 @@
 // SoA Other Talks and Interjections
 ////////////////////////////////////////
 
-//////////////////////////////////////
-// Irenicus Confrontation
-//////////////////////////////////////
+////////////////////////////////////////
+// After Quest Spellhold Sequence
+////////////////////////////////////////
 
-////////////////////
+// Irenicus Confrontation
+
 // PPIRENI1.DLG
-////////////////////
 
 // Scripts
 
@@ -112,9 +112,7 @@ CHAIN PPIRENI1 VP_PPIRENI1.3
 ~Now you will find you are powerless. I have taken precautions that you will not be damaged. Rage would be wasted.~
 EXTERN PPIRENI1 34
 
-////////////////////
 // PPIRENI2.DLG
-////////////////////
 
 // Scripts
 
@@ -289,12 +287,11 @@ CHAIN PPIRENI2 VP_PPIRENI2.3
 ~Now you will find you are powerless. I have taken precautions that you will not be damaged. Rage would be wasted.~
 EXTERN PPIRENI2 47
 
-///////////////////////////////
-//Imoen Return Dialogue
-///////////////////////////////
+// Talk near Imoen
 
-INTERJECT IMOEN2 21 TSL_Imoen_Join1
-== VPKACHIJ IF ~Global("VP_YoshimoExcuse","GLOBAL",1)~ THEN ~<CHARNAME>, I think we should talk about what happened. Yoshimo had dishonorable intentions and it is your right to demand his death.~ [KACHIL06]
+CHAIN
+IF ~Global("VP_YoshimoExcuse","GLOBAL",1)~ THEN VPKACHI TSL_Imoen_Join1
+~<CHARNAME>, I think we should talk about what happened. Yoshimo had dishonorable intentions and it is your right to demand his death.~ [KACHIL06] DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",2)~
 END
  ++ ~What do you mean Kachiko? That sounds a bit extreme.~ EXTERN VPKACHIJ N33
  ++ ~Kachiko, my custom is more forgiving than the code of a samurai. I have seen Yoshimo stand against Irenicus and refuse to surrender me. I trust him.~ EXTERN VPKACHIJ N34
@@ -312,20 +309,33 @@ END
  ++ ~No Kachiko, the way I see it, Yoshimo was loyal to me in deed if not always in his thoughts. I am quite comfortable with him staying in the party.~ EXTERN VPKACHIJ N35
 
 CHAIN VPKACHIJ N35
-~You have a different way of thinking <CHARNAME>, but I am... I am glad you do. Yoshimo and I will prove our loyalty to you in battle.~ [KACHIL16] DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",2)~
+~You have a different way of thinking <CHARNAME>, but I am... I am glad you do. Yoshimo and I will prove our loyalty to you in battle.~ [KACHIL16]
 == IMOEN2 ~That's good, Kachiko.~
-COPY_TRANS IMOEN2 21
+EXIT
 
 CHAIN YOSHJ TS218
 ~Your wish is my command. I shall leave the group. I cannot say how much I am sorry for allowing Irenicus to capture me in the moment of my weakness. Fare thee well <CHARNAME>.~ DO ~SetGlobal("Kicked_Out","LOCALS",1)~
 == VPKACHIJ ~Yoshimo, wait. I am leaving with you. Alone you will only get into more troubles. Sorry <CHARNAME>, but I told you from the very start that I would follow whenever he goes... and I shall do so now.~ [KACHIL26]
 == IMOEN2 ~Bye, Kachiko.~
-DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",2)
-ActionOverride("Yoshimo",LeaveParty())
+DO ~ActionOverride("Yoshimo",LeaveParty())
 ActionOverride("Yoshimo",EscapeArea())
 ActionOverride("vpkachi",LeaveParty())
 ActionOverride("vpkachi",EscapeArea())~
-COPY_TRANS IMOEN2 21
+EXIT
+
+// Hsiang Attack
+
+BEGIN VPHSIANG
+
+CHAIN
+IF ~Global("VP_YoshimoExcuse","GLOBAL",3)~ THEN VPHSIANG 0
+~Yoshimo, I came for you... for your black heart... for your soul.~
+== YOSHJ ~You have no rights! The deal is closed.~
+== VPHSIANG ~I have a contract for your soul. You cannot live your miserable life with this burden anymore.~
+== YOSHJ ~You won't get anything from me! I won't give up!~
+== VPHSIANG ~I have no choice but to force you to give me your heart and your soul.~
+DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",4) Enemy()~
+EXIT
 
 ////////////////////////
 // Tree of Life

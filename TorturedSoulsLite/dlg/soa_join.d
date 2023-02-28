@@ -98,13 +98,12 @@ CHAIN VPKACHI 12
 ~I won't come back without Yoshimo. If you want to stand between me and Yoshimo, I will crush you as well.~
 == YOSHJ ~Kachiko, sorry, I can't go with you. But I won't draw my sword against you either. Sorry, <CHARNAME>, but I have to leave. I'll see you later.~
 DO ~SetGlobal("Kicked_Out","LOCALS",1)
-ActionOverride("vpkachi",EscapeArea())
 ChangeAIScript("",DEFAULT)
-SetLeavePartyDialogFile()
-DestroyItem("NPSW02")
-GivePartyAllEquipment()
+SetLeavePartyDialogueFile()
 LeaveParty()
-EscapeArea()~
+EscapeAreaMove("AR0406",1368,1922,0)
+SetGlobal("VP_YoshimoEscapes","GLOBAL",1)
+ActionOverride("vpkachi",Enemy())~
 EXIT
 
 // Fight with Kachiko (agressive), Yoshimo escapes
@@ -139,18 +138,19 @@ CHAIN VPKACHI 9
 == YOSHJ ~<CHARNAME>, I am really sorry, but I shall go with Kachiko. Perhaps both you and I still have a chance. Believe me, it's the best choice I have ever made in my life.~
 DO ~SetGlobal("Kicked_Out","LOCALS",1)
 ChangeAIScript("",DEFAULT)
-SetLeavePartyDialogueFile()
+SetLeavePartyDialogFile()
+DestroyItem("NPSW02")
+GivePartyAllEquipment()
 LeaveParty()
-EscapeAreaMove("AR0406",1368,1922,0)
-SetGlobal("VP_YoshimoEscapes","GLOBAL",1)
-ActionOverride("vpkachi",Enemy())~
+EscapeArea()
+ActionOverride("vpkachi",EscapeArea())~
 EXIT
 
 // Kachiko joins the group
 CHAIN YOSHJ TS165
 ~Welcome on board, my friend.~
 == VPKACHI ~Watch your tongue, "friend".~
-DO ~SetGlobalTimer("VP_KachikoRomance","GLOBAL",ONE_DAY)
+DO ~SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)
 SetGlobal("VP_Kachiko_Joined","GLOBAL",1)
 JoinParty()~
 EXIT

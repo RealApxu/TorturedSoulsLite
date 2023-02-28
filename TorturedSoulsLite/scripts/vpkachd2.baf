@@ -6,7 +6,7 @@ IF
 	CombatCounter(0)
 	!StateCheck(Myself,CD_STATE_NOTVALID)
 	!StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	GlobalTimerExpired("VP_KachikoRomance","GLOBAL")
+	GlobalTimerExpired("VPKachikoRomanceTimer","GLOBAL")
 	OR(2)
 		Global("ExpLoveTalk","LOCALS",1)
 		Global("ExpLoveTalk","LOCALS",3)

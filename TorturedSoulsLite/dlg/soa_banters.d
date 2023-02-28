@@ -86,17 +86,17 @@ DO ~SetGlobal("VPKachiEdwin1","GLOBAL",1)~
 == BEDWIN @28
 == VPKACHIB @29
 END
-  IF ~InParty("Minsc") See("Minsc") !StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN EXTERN BMINSC TS103
-  IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @30 EXIT
-  IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @31 EXTERN BEDWIN TS108
-  IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @32 EXTERN BEDWIN TS109
+ IF ~InParty("Minsc") See("Minsc") !StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN EXTERN BMINSC TS103
+ IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @30 EXIT
+ IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @31 EXTERN BEDWIN TS108
+ IF ~OR(3) !InParty("Minsc") !See("Minsc") StateCheck("Minsc",CD_STATE_NOTVALID)~ THEN REPLY @32 EXTERN BEDWIN TS109
 
 CHAIN BMINSC TS103
 @33
 END
-   ++ @30 EXIT
-   ++ @31 EXTERN BEDWIN TS108
-   ++ @32 EXTERN BEDWIN TS109
+ ++ @30 EXIT
+ ++ @31 EXTERN BEDWIN TS108
+ ++ @32 EXTERN BEDWIN TS109
 
 CHAIN BEDWIN TS108
 @34
@@ -249,7 +249,7 @@ END
 CHAIN BMAZZY KachiMazzy1.1
 @89
 == BVALYGA @90
-== VPKACHIB  @91
+== VPKACHIB @91
 == BVALYGA @92
 == VPKACHIB @93
 EXIT
@@ -364,7 +364,7 @@ DO ~SetGlobal("VPKachiValygar3","GLOBAL",1)~
 == BVALYGA @136
 == BYOSHIM @137
 == VPKACHIB @138
-== BYOSHIM  @139
+== BYOSHIM @139
 == VPKACHIB @140
 == BYOSHIM @141
 == VPKACHIB @142
@@ -396,24 +396,32 @@ EXIT
 // Kachiko Lovetalks with Yoshimo
 ////////////////////////////////////
 
-CHAIN IF ~Global("LoveTalk","LOCALS",1)~ THEN VPKACHIB YoshiKachiLoveTalk1
-@152 DO ~SetGlobal("LoveTalk","LOCALS",2)~
+CHAIN
+IF ~Global("LoveTalk","LOCALS",1)~ THEN VPKACHIB YoshiKachiLoveTalk1
+@152
+DO ~SetGlobal("LoveTalk","LOCALS",2)~
 == BYOSHIM @153
 == VPKACHIB @154
 == BYOSHIM @155
 == VPKACHIB @156
-== BYOSHIM @157 DO ~RestParty()~
+== BYOSHIM @157
+DO ~RestParty()~
 EXIT
 
-CHAIN IF ~Global("LoveTalk","LOCALS",3)~ THEN VPKACHIB YoshiKachiLoveTalk2
-@158 DO ~SetGlobal("LoveTalk","LOCALS",4)~
+CHAIN
+IF ~Global("LoveTalk","LOCALS",3)~ THEN VPKACHIB YoshiKachiLoveTalk2
+@158
+DO ~SetGlobal("LoveTalk","LOCALS",4)~
 == BYOSHIM @159
 == VPKACHIB @160
-== BYOSHIM @161 DO ~RestParty()~
+== BYOSHIM @161
+DO ~RestParty()~
 EXIT
 
-CHAIN IF ~Global("LoveTalk","LOCALS",5)~ THEN VPKACHIB YoshiKachiLoveTalk3
-@162 DO ~SetGlobal("LoveTalk","LOCALS",6)~
+CHAIN
+IF ~Global("LoveTalk","LOCALS",5)~ THEN VPKACHIB YoshiKachiLoveTalk3
+@162
+DO ~SetGlobal("LoveTalk","LOCALS",6)~
 == BYOSHIM @163
 == VPKACHIB @164
 == BYOSHIM @165
@@ -421,31 +429,40 @@ CHAIN IF ~Global("LoveTalk","LOCALS",5)~ THEN VPKACHIB YoshiKachiLoveTalk3
 == BYOSHIM @167
 == VPKACHIB @168
 == BYOSHIM @169
+DO ~SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)~
 EXIT
 
-CHAIN IF ~Global("LoveTalk","LOCALS",7)~ THEN VPKACHIB YoshiKachiLoveTalk4
-@170 DO ~SetGlobal("LoveTalk","LOCALS",8)~
+CHAIN
+IF ~Global("LoveTalk","LOCALS",7)~ THEN VPKACHIB YoshiKachiLoveTalk4
+@170
+DO ~SetGlobal("LoveTalk","LOCALS",8)~
 == BYOSHIM @171
 == VPKACHIB @172
 == BYOSHIM @173
 == VPKACHIB @174
 == BYOSHIM @175
 == VPKACHIB @176
-== BYOSHIM @177 DO ~SetGlobalTimer("VP_KachikoRomance","GLOBAL",ONE_DAY)~
+== BYOSHIM @177
+DO ~SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)~
 EXIT
 
-CHAIN IF ~Global("LoveTalk","LOCALS",9)~ THEN VPKACHIB YoshiKachiLoveTalk5
-@178 DO ~SetGlobal("LoveTalk","LOCALS",10)~
+CHAIN
+IF ~Global("LoveTalk","LOCALS",9)~ THEN VPKACHIB YoshiKachiLoveTalk5
+@178
+DO ~SetGlobal("LoveTalk","LOCALS",10)~
 == BYOSHIM @179
 == VPKACHIB @180
 == BYOSHIM @181
 == VPKACHIB @182
-== BYOSHIM @183 DO ~RestParty()~
+== BYOSHIM @183
+DO ~RestParty()~
 EXIT
 
-CHAIN IF ~Global("VP_YoshimoExcuse","GLOBAL",6)~ THEN VPKACHIB YoshiKachiLoveTalk6
-@184 DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",7)~
-== BYOSHIM  @185
+CHAIN
+IF ~Global("VP_YoshimoExcuse","GLOBAL",6)~ THEN VPKACHIB YoshiKachiLoveTalk6
+@184
+DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",7)~
+== BYOSHIM @185
 == VPKACHIB @186
 == BYOSHIM @187
 == VPKACHIB @188

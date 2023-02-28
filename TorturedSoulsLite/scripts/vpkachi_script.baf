@@ -115,20 +115,24 @@ END
 // Kachiko-Yoshimo Romance
 ///////////////////////////////
 
+// Starting Romance
 IF
 	InParty(Myself)
 	InParty("Yoshimo")
 	!Dead("Yoshimo")
-	Global("VP_KachYosh_Romance","GLOBAL",0)
+	Global("VPKachikoMatch","GLOBAL",0)
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("VP_OnIsland","GLOBAL",1)
 	Global("LoveTalk","LOCALS",0)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("VP_KachikoRomance","GLOBAL",ONE_DAY)
-		SetGlobal("VP_KachYosh_Romance","GLOBAL",1)
+		SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)
+		SetGlobal("VPKachikoMatch","GLOBAL",1)
 END
 
+// Lovetalks 1-2 are in the Dream Script
+
+// Talks 3-4
 IF
 	InParty(Myself)
 	InParty("Yoshimo")
@@ -138,7 +142,7 @@ IF
     !StateCheck("Yoshimo",CD_STATE_NOTVALID)
 	CombatCounter(0)
 	!See([ENEMY])
-	GlobalTimerExpired("VP_KachikoRomance","GLOBAL")
+	GlobalTimerExpired("VPKachikoRomanceTimer","GLOBAL")
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("VP_OnIsland","GLOBAL",1)
 	OR(2)
@@ -147,7 +151,7 @@ IF
 THEN
 	RESPONSE #100
 		IncrementGlobal("LoveTalk","LOCALS",1)
-		SetGlobalTimer("VP_KachikoRomance","GLOBAL",TWO_DAYS)
+		SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",TWO_DAYS)
 		PlaySong(0)
 		PlaySound("vpkachls")
 		Interact("Yoshimo")

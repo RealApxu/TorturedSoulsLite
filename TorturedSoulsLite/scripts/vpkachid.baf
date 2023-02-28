@@ -7,8 +7,8 @@ IF
 	!Dead("Yoshimo")
 	!StateCheck(Myself,CD_STATE_NOTVALID)
     !StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	GlobalTimerExpired("VP_KachikoRomance","GLOBAL")
-	Global("VP_KachYosh_Romance","GLOBAL",1)
+	GlobalTimerExpired("VPKachikoRomanceTimer","GLOBAL")
+	Global("VPKachikoMatch","GLOBAL",1)
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("VP_OnIsland","GLOBAL",1)
 	Global("LoveTalk","LOCALS",0)
@@ -17,7 +17,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("LoveTalk","LOCALS",1)
-		SetGlobalTimer("VP_KachikoRomance","GLOBAL",ONE_DAY)
+		SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)
 		PlaySong(0)
 		PlaySound("vpkachls")
 		Interact("Yoshimo")
@@ -30,7 +30,7 @@ IF
 	!Dead("Yoshimo")
 	!StateCheck(Myself,CD_STATE_NOTVALID)
     !StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	GlobalTimerExpired("VP_KachikoRomance","GLOBAL")
+	GlobalTimerExpired("VPKachikoRomanceTimer","GLOBAL")
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("VP_OnIsland","GLOBAL",1)
 	Global("LoveTalk","LOCALS",2)
@@ -39,7 +39,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("LoveTalk","LOCALS",3)
-		SetGlobalTimer("VP_KachikoRomance","GLOBAL",TWO_DAYS)
+		SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",TWO_DAYS)
 		PlaySong(0)
 		PlaySound("vpkachls")
 		Interact("Yoshimo")
@@ -55,7 +55,7 @@ IF
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("VP_OnIsland","GLOBAL",1)
 	Global("LoveTalk","LOCALS",8)
-	GlobalTimerExpired("VP_KachikoRomance","GLOBAL")
+	GlobalTimerExpired("VPKachikoRomanceTimer","GLOBAL")
 	!AreaType(DUNGEON)
 	OR(2)
 		AreaType(OUTDOOR)

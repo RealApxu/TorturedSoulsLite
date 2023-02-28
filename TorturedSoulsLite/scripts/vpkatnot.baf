@@ -81,5 +81,3 @@ THEN
 		SetGlobal("Katana_Warning","GLOBAL",1)
 		DisplayStringHead(Player1,@251)
 END
-
-

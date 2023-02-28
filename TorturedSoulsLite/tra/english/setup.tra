@@ -644,7 +644,7 @@ Weight: 5~
 @121  = ~Alome Nakanishi~
 @122  = ~Alome~
 @123  = ~Basilisk~
-@124  = ~Bishop~
+
 @125  = ~Berserk Warrior~
 @126  = ~Ethereal Voice~
 @127  = ~Chromatic Dragon~
@@ -677,9 +677,7 @@ Weight: 5~
 @154  = ~Ogi~
 @155  = ~Otako Hashimoto~
 @156  = ~Otako~
-@157  = ~Pawn~
-@158  = ~Queen~
-@159  = ~Rook~
+
 @160  = ~Sasaki Hashimoto~
 @161  = ~Sasaki~
 @162  = ~Fledgling Vampire~

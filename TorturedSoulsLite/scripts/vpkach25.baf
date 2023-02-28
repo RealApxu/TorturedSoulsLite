@@ -60,12 +60,12 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("ExpLoveTalk","LOCALS",1)
-		SetGlobalTimer("VP_KachikoRomance","GLOBAL",ONE_DAY)
+		SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)
 END
 
 IF
 	InParty(Myself)
-	GlobalTimerExpired("VP_KachikoRomance","GLOBAL")
+	GlobalTimerExpired("VPKachikoRomanceTimer","GLOBAL")
 	AreaType(OUTDOOR)
 	See("Yoshimo")
 	!Dead("Yoshimo")

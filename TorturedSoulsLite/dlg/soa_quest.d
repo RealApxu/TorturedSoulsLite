@@ -30,7 +30,7 @@ IF ~Global("VPTorturedSoulsQuest","GLOBAL",1)~ THEN VPTSMESS 0
 == VPKACHIJ ~Yes, it is us. What do you need?~
 == VPTSMESS ~There goes a word that you need to go to Kara-Tur. I was paid to ~
 = ~Look for captain Nomeas in Vulgar Monkey Tavern. He has a proposition for you.~
-
+EXIT
 // Remind to PC
 
 // Talk with captain and sailoff
@@ -219,7 +219,7 @@ END
 CHAIN VPAINO 6
 ~I do not know. But try to talk to Najoki, Kachiko's mother. She is a priestess and a mage of great power, she might know of something...~
 END
- ++ ~No, talking is boring.  If we have to kill all of the Nakanishi to get the wardstone, then we shall.~ EXTERN VPKACHIJ N29
+ ++ ~No, talking is boring. If we have to kill all of the Nakanishi to get the wardstone, then we shall.~ EXTERN VPKACHIJ N29
  ++ ~I say we kill YOU, take the wardstone and get outta here. ~ EXTERN YOSHJ TS181
  ++ ~We shall talk to Najoki then.~ EXIT
  
@@ -306,7 +306,7 @@ CHAIN
 IF ~OR(2)
 !InPartySlot(LastTalkedToBy,0)
 !Name("Yoshimo",LastTalkedToBy)~ THEN VPOGI 1
-~Greetings to you. I am Ogi.  When I grow up big, I'll be a famous kensai.~
+~Greetings to you. I am Ogi. When I grow up big, I'll be a famous kensai.~
 EXIT
 
 // Sasaki - Sister
@@ -509,8 +509,8 @@ EXIT
 CHAIN IF ~See("Yoshimo") Global("Hitomi_Meet","GLOBAL",0)~ THEN VPHITOMI 0
 ~You have come for my daughter, Yoshimo Hashimoto...~
 END
-  IF ~!Dead("vpnajoki") !Global("TT_Evil_Path","GLOBAL",2)~ THEN REPLY ~Sir, I am afraid we have terrible misunderstanding here... See, your wife suggested that if Yoshimo is allowed to speak to Kachiko, all of us, Nakanishi, and Hashimoto... we can get away...~ DO ~SetGlobal("Hitomi_Meet","GLOBAL",1)~ EXTERN VPHITOMI 1
-  IF ~~ THEN REPLY ~I did not come here to talk. I do Hashimoto's bidding, which is to end your sorry lives!~ DO ~SetGlobal("Hitomi_Meet","GLOBAL",1)~ EXTERN VPHITOMI 3
+ IF ~!Dead("vpnajoki") !Global("TT_Evil_Path","GLOBAL",2)~ THEN REPLY ~Sir, I am afraid we have terrible misunderstanding here... See, your wife suggested that if Yoshimo is allowed to speak to Kachiko, all of us, Nakanishi, and Hashimoto... we can get away...~ DO ~SetGlobal("Hitomi_Meet","GLOBAL",1)~ EXTERN VPHITOMI 1
+ ++ ~I did not come here to talk. I do Hashimoto's bidding, which is to end your sorry lives!~ DO ~SetGlobal("Hitomi_Meet","GLOBAL",1)~ EXTERN VPHITOMI 3
 
 CHAIN VPHITOMI 1
 ~You are young and naive. My wife's words are those of a weak woman.~
@@ -562,7 +562,7 @@ IF ~~ THEN REPLY ~I think we need a short break.~ EXIT
 CHAIN IF ~Global("Player_Against_Michio","GLOBAL",3) Global("Player_Against_Momoko","GLOBAL",3) Global("Nakanishi_Duel","GLOBAL",0)~ THEN VPHITOMI 6
 ~I stand alone now between you and my daughter. She is still alive. I sense the presence of her soul...~
 END
-IF ~CheckStatGT(LastTalkedToBy(Myself),14,WIS) !Global("TT_Evil_Path","GLOBAL",2)~ THEN REPLY ~Hitomi, please, trust what your wife said. May be her words are true? May be it is our only chance?  Besides, we can always fight after we try to bring Kachiko back to life. ~ EXTERN VPHITOMI 11
+IF ~CheckStatGT(LastTalkedToBy(Myself),14,WIS) !Global("TT_Evil_Path","GLOBAL",2)~ THEN REPLY ~Hitomi, please, trust what your wife said. May be her words are true? May be it is our only chance? Besides, we can always fight after we try to bring Kachiko back to life. ~ EXTERN VPHITOMI 11
 IF ~~ THEN REPLY ~Nothing will stand in my way! Be prepared to cower and flee!~ EXTERN VPHITOMI 12
 IF ~~ THEN REPLY ~Do you still want to fight against us?~ EXTERN VPHITOMI 13
 
@@ -584,28 +584,36 @@ CHAIN IF ~Global("Nakanishi_Duel","GLOBAL",1)~ THEN VPHITOMI 8
 CHAIN VPHITOMI 9
 ~I assume you would not honor our ancient custom and commit a ritual suicide?~
 END
-  IF ~~ THEN REPLY ~My custom condemns suicide as a sin. I shall fight and die with honor in battle if I am not to win!~ EXTERN VPHITOMI 10
+ ++ ~My custom condemns suicide as a sin. I shall fight and die with honor in battle if I am not to win!~ EXTERN VPHITOMI 10
 
 CHAIN VPHITOMI 10
-~I shall honor your custom, as you just have honored mine in agreeing to the duel. So be it, let's fight to death.~ DO ~SetGlobal("Hitomi_Attacked","GLOBAL",1)~ EXIT
+~I shall honor your custom, as you just have honored mine in agreeing to the duel. So be it, let's fight to death.~
+DO ~SetGlobal("Hitomi_Attacked","GLOBAL",1)~
+EXIT
 
 CHAIN VPHITOMI 11
-~Maybe Najoki is right... I can see that you are stronger than me, and I shall not dishonor myself anymore. I love my daughter, but I can do nothing to save her. I am a dead man. My soul cannot find a place outside this damned island. And I have no choice but to trust you... Possibly, you are my last chance... Here is my wardstone. Take it, save my daughter, and find your way outside the island.  Now, I beg you to stand back and let me commit my last ritual suicide... Last... (*you don't know why but you feel a great sorrow about this man when you see he smiles*)~ DO ~GiveItem("vpwardex",Player1) StartCutSceneMode() StartCutScene("TTcutHit")~ EXIT
+~Maybe Najoki is right... I can see that you are stronger than me, and I shall not dishonor myself anymore. I love my daughter, but I can do nothing to save her. I am a dead man. My soul cannot find a place outside this damned island. And I have no choice but to trust you... Possibly, you are my last chance... Here is my wardstone. Take it, save my daughter, and find your way outside the island. Now, I beg you to stand back and let me commit my last ritual suicide... Last... (*you don't know why but you feel a great sorrow about this man when you see he smiles*)~
+DO ~GiveItem("vpwardex",Player1) StartCutSceneMode() StartCutScene("TTcutHit")~
+EXIT
 
 CHAIN VPHITOMI 12
-~So be it, let's fight to your death.~ DO ~SetGlobal("Hitomi_Attacked","GLOBAL",1)~ EXIT
+~So be it, let's fight to your death.~
+DO ~SetGlobal("Hitomi_Attacked","GLOBAL",1)~
+EXIT
 
 CHAIN VPHITOMI 13
 ~I can see that you are stronger than me, and I shall not dishonor myself by loosing a battle to a foreigner. Now, I beg you to stand back and let me commit a ritual suicide.~
 END
-  IF ~~ THEN REPLY ~My custom condemns suicide as a sin. Fight and die with honor in battle!~ EXTERN VPHITOMI 14
-  IF ~~ THEN REPLY ~*You step back and keep quiet while Hitomi commits harakiri*~ DO ~StartCutSceneMode() StartCutScene("TTcutHit")~ EXIT
+ ++ ~My custom condemns suicide as a sin. Fight and die with honor in battle!~ EXTERN VPHITOMI 14
+ ++ ~*You step back and keep quiet while Hitomi commits harakiri*~ DO ~StartCutSceneMode() StartCutScene("TTcutHit")~ EXIT
 
 CHAIN VPHITOMI 14
-~I shall honor your custom, as you just have honored mine in agreeing to the duels. So be it, let's fight to your death. ~ DO ~SetGlobal("Hitomi_Attacked","GLOBAL",1)~
+~I shall honor your custom, as you just have honored mine in agreeing to the duels. So be it, let's fight to your death.~
+DO ~SetGlobal("Hitomi_Attacked","GLOBAL",1)~
 EXIT
 
-CHAIN IF ~!See("Yoshimo") Global("Hitomi_Meet","GLOBAL",0)~ THEN VPHITOMI 15
+CHAIN
+IF ~!See("Yoshimo") Global("Hitomi_Meet","GLOBAL",0)~ THEN VPHITOMI 15
 ~Until you bring Yoshimo Hashimoto to me, I have nothing to say to you.~
 EXIT
 
@@ -658,7 +666,11 @@ IF ~Global("Kachiko_Saved","GLOBAL",2)~ THEN VPNAJOKI 9
 ~Let fate smile at you, brave stranger, for you have freed the doomed from their eternal torture.~
 == VPAINO ~Our souls were accepted by our gods and we all now rest in peace... Nakanishi and Hashimoto alike. Here is the map, stranger, let the winds and the waves be kind to you and your passage be swift.~ DO ~GiveItem("vpwardti",Player1)~
 = ~My son, I am proud of you and you had shown wisdom and strength beyond your years. Your father bows to you with respect.~
-== VPNAJOKI ~Kachiko and Yoshimo, each of you is now the only surviving member of your family. We paid dearly for our hatred, but now it's no more. Love defeated death. Both Nakanishi and Hashimoto shall continue in your children. Bless you my daughter and fare thee well... Yoshimo, take a good care of her.~ DO ~GiveItem("vpcharts",Player1) StartCutScene("TTcutFin")~
+== VPNAJOKI ~Kachiko and Yoshimo, each of you is now the only surviving member of your family. We paid dearly for our hatred, but now it's no more. Love defeated death. Both Nakanishi and Hashimoto shall continue in your children. Bless you my daughter and fare thee well... Yoshimo, take a good care of her.~
+DO ~GiveItem("vpcharts",Player1)
+SetGlobal("End_Island","GLOBAL",1)
+ActionOverride("vpnajoka",ForceSpell(Myself,DRYAD_TELEPORT))
+ActionOverride("vpainoa",ForceSpell(Myself,DRYAD_TELEPORT))~
 EXIT
 
 // Island Shore - Aino - Bad Ending
@@ -668,16 +680,17 @@ Global("Kachiko_Saved","GLOBAL",3)
 Global("TT_Evil_Path","GLOBAL",2)~ THEN VPAINO 11
 ~My son, your friends and you fought valiantly and I am grateful. Unfortunately, the curse is not lifted, and we will wake up tomorrow to battle Nakanishi once more. They have Kachiko back with them now, but I have no heart to pull you into this madness. Here is the wardstone, which will let you to get away. Run, my son and run swiftly... Farewell.~ DO ~GiveItem("vpwardti",Player1)~
 == YOSHJ ~Father, I do not wish to leave without you.~
-== VPAINO ~You do not understand. I cannot leave. None of us can leave. We are all dead, long dead. Flee, my son, as you had done once, save your soul untouched by hatred and treachery!~ DO ~SetGlobal("End_Island","GLOBAL",1)~
+== VPAINO ~You do not understand. I cannot leave. None of us can leave. We are all dead, long dead. Flee, my son, as you had done once, save your soul untouched by hatred and treachery!~
 == YOSHJ ~I am afraid it's too late. Kachiko is dead and she was my only reason to be unstained by treachery...~
 END
  ++ ~What are you talking about, Yoshimo?~ EXTERN YOSHJ TS204
 
 CHAIN YOSHJ TS204
 ~Nothing, <CHARNAME>. You were right, we should not have come here. Now, let's go rescue your friend.~
-DO ~SetGlobal("TT_Evil_Path","GLOBAL",3)
-ChangeAlignment(Myself,CHAOTIC_EVIL)
-StartCutScene("TTcutFi2")~
+DO ~SetGlobal("End_Island","GLOBAL",1)
+SetGlobal("TT_Evil_Path","GLOBAL",3)
+ActionOverride("vpainoa",ForceSpell(Myself,DRYAD_TELEPORT))
+ChangeAlignment(Myself,CHAOTIC_EVIL)~
 EXIT
 
 // Island Shore - Talk with Captain

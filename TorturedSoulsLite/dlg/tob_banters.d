@@ -7,35 +7,35 @@
 CHAIN
 IF ~Global("ExpLoveTalk","LOCALS",2)~ THEN VPKACH2B YoshiKachiLoveTalk1TOB
 @0
-== BYOSHIM @1
+== VPYOSH2B @1
 == VPKACH2B @2
-== BYOSHIM @3
+== VPYOSH2B @3
 == VPKACH2B @4
 EXIT
 
 CHAIN
 IF ~Global("ExpLoveTalk","LOCALS",4)~ THEN VPKACH2B YoshiKachiLoveTalk2TOB
 @5
-== BYOSHIM @6
+== VPYOSH2B @6
 == VPKACH2B @7
-== BYOSHIM @8
+== VPYOSH2B @8
 == VPKACH2B @9
-== BYOSHIM @10
+== VPYOSH2B @10
 == VPKACH2B @11
-== BYOSHIM @12
+== VPYOSH2B @12
 == VPKACH2B @13
 EXIT
 
 CHAIN
 IF ~Global("ExpLoveTalk","LOCALS",6)~ THEN VPKACH2B YoshiKachiLoveTalk3TOB
 @14
-== BYOSHIM @15
+== VPYOSH2B @15
 == VPKACH2B @16
-== BYOSHIM @17
+== VPYOSH2B @17
 == VPKACH2B @18
-== BYOSHIM @19
+== VPYOSH2B @19
 == VPKACH2B @20
-== BYOSHIM @21
+== VPYOSH2B @21
 == VPKACH2B @22
 EXIT
 
@@ -78,12 +78,12 @@ Global("VPKachiValygar2TOB","GLOBAL",0)~ THEN BVALYG25 KachiValygarTalk2TOB
 DO ~SetGlobal("VPKachiValygar2TOB","GLOBAL",1)~
 == VPKACH2B ~(*Hugs Valygar*)~
 == BVALYG25 ~Kachiko, the Kara-Turians are supposed to be a reserved people. Besides, Yoshimo is going to cut my throat shortly.~
-== BYOSHIM ~I'll spare you this time, ranger. Cherry Blossom, you embarrass Valygar.~
+== VPYOSH2B ~I'll spare you this time, ranger. Cherry Blossom, you embarrass Valygar.~
 == VPKACH2B ~Of course I do not!~
-== BYOSHIM ~Yes you do. After all, it is a private matter.~
+== VPYOSH2B ~Yes you do. After all, it is a private matter.~
 == VPKACH2B ~Oh, you are right, Dragon Tongue.~
 == BVALYG25 ~What this is all about, lovebirds?~
-== BYOSHIM ~(*sighs*) You and <CHARNAME> of course.~
+== VPYOSH2B ~(*sighs*) You and <CHARNAME> of course.~
 == BVALYG25 ~I did not think the City Crier's had announced that yet.~
 == VPKACH2B ~Sorry, Valygar. It is impossible not to notice.~
 == BVALYG25 ~If something goes wrong I know whom to blame, don't I?~
@@ -103,12 +103,12 @@ CombatCounter(0)
 Global("VPYoshiValygar1TOB","GLOBAL",0)~ THEN BVALYG25 YoshiValygar1TOB
 @23
 DO ~SetGlobal("VPYoshiValygar1TOB","GLOBAL",1)~
-== BYOSHIM @24
+== VPYOSH2B @24
 == BVALYG25 @25
-== BYOSHIM @26
+== VPYOSH2B @26
 == BVALYG25 @27
-== BYOSHIM @28
+== VPYOSH2B @28
 == BVALYG25 @29
-== BYOSHIM @30
+== VPYOSH2B @30
 == BVALYG25 @31
 EXIT

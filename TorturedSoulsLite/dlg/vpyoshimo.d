@@ -17,19 +17,19 @@ REPLACE_STATE_TRIGGER YOSHIMO 21
 CHAIN IF WEIGHT #-1 ~AreaCheck("AR0313")
 Global("VP_OnIsland","GLOBAL",0)
 GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)~ THEN YOSHIMO TS8
-@0
+~Heya, <CHARNAME>. How are you?~
 END
-  IF ~~ THEN REPLY @1 EXTERN YOSHIMO TS9
-  IF ~~ THEN REPLY @2 EXTERN YOSHIMO TS10
+  IF ~~ THEN REPLY ~I am well, thank you. Did you manage to find a ship?~ EXTERN YOSHIMO TS9
+  IF ~~ THEN REPLY ~Actually things have been pretty rough. Yoshimo, do you have time to help me out?~ EXTERN YOSHIMO TS10
 
 CHAIN YOSHIMO TS9
-@3
+~No, not yet. Kachiko's ship has already left, and it may take few months till we find another one.~
 END
-  IF ~~ THEN REPLY @4 EXTERN YOSHIMO TS10
-  IF ~~ THEN REPLY @5 EXTERN YOSHIMO 2
+  IF ~~ THEN REPLY ~Since you have nothing much to do, but wait, may be you can help me out?~ EXTERN YOSHIMO TS10
+  IF ~~ THEN REPLY ~Oh, well, that's life. Have patience, my friend.~ EXTERN YOSHIMO 2
 
 CHAIN YOSHIMO TS10
-@6
+~Kachiko, what do you think?~
 END
   IF ~OR(2) Global("VP_Kachiko_Joined","GLOBAL",0) Global("VP_YoshFollowsKach","GLOBAL",1)~ THEN DO ~SetGlobal("Kicked_Out","LOCALS",0)~ EXTERN VPKACHI 23
   IF ~Global("VP_Kachiko_Joined","GLOBAL",1)~ THEN DO ~SetGlobal("Kicked_Out","LOCALS",0)~ EXTERN VPKACHIP 0
@@ -42,7 +42,7 @@ END
 CHAIN IF WEIGHT #0 ~Global("VP_Kachiko_Dies","GLOBAL",3)
 See(Player1)
 !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN YOSHJ TS223
-@100 DO ~SetGlobal("VP_Kachiko_Dies","GLOBAL",4)
+~<CHARNAME>, it's my fault. I couldn't save Kachiko... And she was my only reason to live in this damned world... No, I have no rights to continue this miserable existance... I am very sorry, <CHARNAME>... (*Suddenly, the blick of Yoshimo's katana, and...*) ~ DO ~SetGlobal("VP_Kachiko_Dies","GLOBAL",4)
 StartCutSceneMode()
 StartCutScene("TSCutK03")~ EXIT
 
@@ -146,13 +146,13 @@ REPLACE_ACTION_TEXT yoshp
 CHAIN IF WEIGHT #7 ~Global("Kicked_Out","LOCALS",0)
 Global("VP_OnIsland","GLOBAL",0)
 InParty("vpkachi")~ THEN YOSHP TS7
-@200
+~I do not wish to end our pairing before our tasks are done, but perhaps a rest is in order. Are you sure you want to go seperate paths?~ [YOSHIM65]
 END
-  IF ~~ THEN REPLY @201 EXTERN YOSHP TS12
-  IF ~~ THEN REPLY @202 DO ~JoinParty()~ EXIT
+  IF ~~ THEN REPLY ~We don't need your services right now. Sorry Yoshimo.~ EXTERN YOSHP TS12
+  IF ~~ THEN REPLY ~No, I don't want you to leave just yet, Yoshimo.~ DO ~JoinParty()~ EXIT
 
 CHAIN YOSHP TS12
-@203
+~Where do you want to meet if we are to adventure again together?~
 END
   IF ~!AreaCheck("AR0601")
 !AreaCheck("AR0602")
@@ -205,7 +205,7 @@ END
 !InWatchersKeep()
 Global("VP_InHalruaa","GLOBAL",0)
 Global("VP_OnIsland","GLOBAL",0)
-GlobalLT("Chapter","GLOBAL",%bg2_chapter_7%)~ THEN REPLY @204 EXTERN YOSHP partway1
+GlobalLT("Chapter","GLOBAL",%bg2_chapter_7%)~ THEN REPLY ~Go to the Copper Coronet. If we need to find you, we'll meet you there.~ EXTERN YOSHP partway1
   IF ~!AreaCheck("AR0301")
 !AreaCheck("AR0302")
 !AreaCheck("AR0303")
@@ -246,9 +246,9 @@ GlobalLT("Chapter","GLOBAL",%bg2_chapter_7%)~ THEN REPLY @204 EXTERN YOSHP partw
 !AreaCheck("AR1509")
 !AreaCheck("AR1510")
 !AreaCheck("AR1511")
-!InWatchersKeep()~ THEN REPLY @205 EXTERN YOSHP partway2
+!InWatchersKeep()~ THEN REPLY ~Wait here. If we need your services we'll be back.~ EXTERN YOSHP partway2
   IF ~Global("VP_InHalruaa","GLOBAL",0)
-Global("VP_OnIsland","GLOBAL",0)~ THEN REPLY @206 EXTERN YOSHP partway1
+Global("VP_OnIsland","GLOBAL",0)~ THEN REPLY ~Perhaps at a major inn or tavern? Somewhere we are sure to go.~ EXTERN YOSHP partway1
 
 // Before Spellhold Joining
 
@@ -279,15 +279,15 @@ END
 //Island Kickout
 
 CHAIN IF WEIGHT #5 ~Global("Kicked_Out","LOCALS",0) Global("VP_OnIsland","GLOBAL",1)~ THEN YOSHP TS11
-@214
+~<CHARNAME>, are you serious? You want to leave me when I really need your help?~
 END
-  IF ~!InParty("vpkachi")~ THEN REPLY @215 EXTERN YOSHP TS21
-  IF ~InParty("vpkachi")~ THEN REPLY @215 EXTERN YOSHP partway1
-  IF ~~ THEN REPLY @216 EXTERN YOSHP TS22
+  IF ~!InParty("vpkachi")~ THEN REPLY ~Yes, Yoshimo. I am tired of all these complications with your crazy families. Look for somebody else to help you. I need to save Imoen.~ EXTERN YOSHP TS21
+  IF ~InParty("vpkachi")~ THEN REPLY ~Yes, Yoshimo. I am tired of all these complications with your crazy families. Look for somebody else to help you. I need to save Imoen.~ EXTERN YOSHP partway1
+  IF ~~ THEN REPLY ~Sorry, Yoshimo. I've just pressed the wrong button.~ EXTERN YOSHP TS22
 
 CHAIN YOSHP partway1
-@217 DO ~SetGlobal("Kicked_Out","LOCALS",1)~
-== VPKACHIJ @218 DO ~SetGlobal("Kicked_Out","LOCALS",1)
+~Oh, well that's okay, then.~ DO ~SetGlobal("Kicked_Out","LOCALS",1)~
+== VPKACHIJ ~Yoshimo, wait. I am leaving with you. Alone you will only get into more troubles. Sorry <CHARNAME>, but I told you from the very start that I would follow whenever he goes... and I shall do so now.~ [KACHIL26] DO ~SetGlobal("Kicked_Out","LOCALS",1)
 ActionOverride("Yoshimo",ChangeAIScript("",DEFAULT))
 ActionOverride("Yoshimo",SetLeavePartyDialogFile())
 ActionOverride("Yoshimo",LeaveParty())
@@ -299,20 +299,20 @@ EscapeAreaMove("AR0406",1381,1959,1)~
 EXIT
 
 CHAIN YOSHP partway2
-@219 DO ~SetGlobal("Kicked_Out","LOCALS",1)~
-== VPKACHIJ @220 DO ~SetGlobal("Kicked_Out","LOCALS",1)
+~Then return when you can. I will wait if you are sure to return.~ DO ~SetGlobal("Kicked_Out","LOCALS",1)~
+== VPKACHIJ ~Yoshimo, I am staying with you. Alone you will only get into more troubles. Sorry <CHARNAME>, but I told you from the very start that I wouldn't allow him to escape... and I shan't do so now.~ DO ~SetGlobal("Kicked_Out","LOCALS",1)
 ChangeAIScript("",DEFAULT)
 SetLeavePartyDialogFile()
 LeaveParty()~
 EXIT
 
 CHAIN YOSHP TS21
-@221 DO ~SetGlobal("Kicked_Out","LOCALS",1)
+~Oh, well... I suppose we'll meet soon anyway.~ DO ~SetGlobal("Kicked_Out","LOCALS",1)
 EscapeAreaMove("TT0307",243,876,10)~
 EXIT
 
 CHAIN YOSHP TS22
-@217 DO ~SetGlobal("Kicked_Out","LOCALS",0)
+~Oh, well that's okay, then.~ DO ~SetGlobal("Kicked_Out","LOCALS",0)
 JoinParty()~
 EXIT
 
@@ -321,11 +321,11 @@ EXIT
 CHAIN IF WEIGHT #4 ~Global("Kicked_Out","LOCALS",1)
 Global("VP_OnIsland","GLOBAL",1)
 !InParty("vpkachi")~ THEN YOSHP TS23
-@222
+~<CHARNAME>, how are you? I see you didn't leave the island yet. So, could I beg your assisstance once again? Kachiko is dying... Please, join me to save her.~
 END
-  IF ~~ THEN REPLY @223 EXTERN YOSHP TS24
-  IF ~~ THEN REPLY @224 EXTERN YOSHP 2
+  IF ~~ THEN REPLY ~Of course.~ EXTERN YOSHP TS24
+  IF ~~ THEN REPLY ~No, not just yet.~ EXTERN YOSHP 2
  
 CHAIN YOSHP TS24
-@225 DO ~SetGlobal("Kicked_Out","LOCALS",0)
+~Thank you.~ DO ~SetGlobal("Kicked_Out","LOCALS",0)
 JoinParty()~ EXIT
