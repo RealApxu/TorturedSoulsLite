@@ -104,10 +104,10 @@ IF
 	!StateCheck(Myself,CD_STATE_NOTVALID)
     !StateCheck("Yoshimo",CD_STATE_NOTVALID)
 	See("Yoshimo")
-	Global("VP_Kachiko_Meet","GLOBAL",0)
+	Global("VP_Kachiko_Meet","GLOBAL",1)
 THEN
 	RESPONSE #100
-		SetGlobal("VP_Kachiko_Meet","GLOBAL",1)
+		SetGlobal("VP_Kachiko_Meet","GLOBAL",2)
 		StartDialogNoSet("Yoshimo")
 END
 
@@ -191,7 +191,68 @@ THEN
 		Interact("Yoshimo")
 END
 
+/////////////////////////////////
+// Yoshimo is wounded or dead
+/////////////////////////////////
+
+IF
+	InParty(Myself)
+	InParty("Yoshimo")
+	HPPercentLT("Yoshimo",20)
+	!Dead("Yoshimo")
+	!CombatCounter(0)
+	Exists(LastAttackerOf("Yoshimo"))
+	Allegiance(LastAttackerOf("Yoshimo"),ENEMY)
+	Global("VP_Yoshimo_Dies","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("VP_Yoshimo_Dies","GLOBAL",1)
+		DisplayStringHead(Myself,@247)
+		Continue()
+END
+
+IF
+	InParty(Myself)
+	Dead("Yoshimo")
+	CombatCounter(0)
+	OR(2)
+		Global("VP_Yoshimo_Dies","GLOBAL",0)
+		Global("VP_Yoshimo_Dies","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("VP_Yoshimo_Dies","GLOBAL",2)
+END
+
+IF
+	InParty(Myself)
+	Dead("vpkachi")  // Kachiko
+	!InParty("vpkachi")
+	CombatCounter(0)
+	See(Player1)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("VP_Yoshimo_Dies","GLOBAL",2)
+THEN
+	RESPONSE #100
+		SetGlobal("VP_Yoshimo_Dies","GLOBAL",3)
+		StartDialogueNoSet([PC])
+END
+
+IF
+	InParty(Myself)
+	InParty("Yoshimo")
+	!Dead("Yoshimo")
+	OR(2)
+		Global("VP_Yoshimo_Dies","GLOBAL",1)
+		Global("VP_Yoshimo_Dies","GLOBAL",2)
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		SetGlobal("VP_Yoshimo_Dies","GLOBAL",0)
+END
+
+///////////////////////
 // Fight Blocks
+///////////////////////
 
 IF
 	Allegiance(Myself,ENEMY)

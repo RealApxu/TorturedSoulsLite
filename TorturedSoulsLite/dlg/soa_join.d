@@ -12,9 +12,9 @@ BEGIN VPKACHIB // Kachiko Banters
 ///////////////////////////////////////////////////////////////
 
 CHAIN
-IF WEIGHT #2 ~InParty("Yoshimo") Global("VP_Kachiko_Meet","GLOBAL",1)~ THEN VPKACHI 0
+IF WEIGHT #2 ~InParty("Yoshimo") Global("VP_Kachiko_Meet","GLOBAL",2)~ THEN VPKACHI 0
 ~Ah, here you are, bastard! You thought you could flee far enough? I promised to find you even in Nine Hells! I am Kachiko Nakanishi, prepare to die!~ [KACHI01]
-DO ~SetGlobal("VP_Kachiko_Meet","GLOBAL",2)~
+DO ~SetGlobal("VP_Kachiko_Meet","GLOBAL",3)~
 == YOSHJ ~Kachiko, stop threatening me! I am not alone, and I will not give up so easily.~
 == VPKACHI ~Who are these people with you? Are they your new associates? Don't think you're so safe. I can deal with all of them if they try to stop me.~ [KACHI02]
 END
@@ -168,7 +168,7 @@ END
  ++ ~No.~ EXTERN VPKACHI 27
 
 CHAIN VPKACHI 26
-~Good. Not another word, then.~ DO ~SetGlobal("Kicked_Out","LOCALS",0)~
+~Good. Not another word, then.~
 == YOSHP ~Oh, well that's okay, then.~
 DO ~SetGlobal("VP_YoshimoFollowsKachiko","GLOBAL",2)
 SetGlobal("Kicked_Out","LOCALS",0)
@@ -201,7 +201,6 @@ CHAIN YOSHP TS10
 ~Kachiko, what do you think?~ DO ~SetGlobal("Kicked_Out","LOCALS",0)~
 == VPKACHI ~I think it is a good idea! Better than staying in this barbaric tavern and listening to drunkard sailors!~
 DO ~SetGlobal("VP_YoshimoFollowsKachiko","GLOBAL",2)
-SetGlobal("Kicked_Out","LOCALS",0)
 ActionOverride("Yoshimo",JoinParty())
 JoinParty()~
 EXIT
@@ -295,6 +294,16 @@ END
  ++ ~Please, come back to the ship, and stay around there.~ DO ~SetGlobal("Kicked_Out","LOCALS",1)~ EXTERN YOSHJ TS214
  ++ ~We go on as before. Let's go.~ DO ~JoinParty()~ EXIT
 
+CHAIN YOSHJ TS2141
+~Sorry, <CHARNAME>. I cannot leave her alone. We must continue our mission.~
+DO ~SetGlobal("Kicked_Out","LOCALS",1)
+ActionOverride("vpkachi",EscapeAreaMove("TT0102",165,727,8))
+ChangeAIScript("",DEFAULT)
+SetLeavePartyDialogFile()
+LeaveParty()
+EscapeAreaMove("TT0102",225,683,8)~
+EXIT
+
 // Yoshimo with Kachiko Dropout Dialogue (Default)
 CHAIN
 IF WEIGHT #7 ~Global("Kicked_Out","LOCALS",0)
@@ -348,23 +357,23 @@ IF WEIGHT #5 ~Global("Kicked_Out","LOCALS",0)
 Global("VP_OnIsland","GLOBAL",1)~ THEN YOSHP TS11
 ~<CHARNAME>, are you serious? You want to leave me when I really need your help?~
 END
- IF ~!InParty("Kachiko")~ THEN REPLY ~Yes, Yoshimo. I am tired of all these complications with your crazy families. Look for somebody else to help you. I need to save Imoen.~ GOTO TS21
- IF ~InParty("Kachiko")~ THEN REPLY ~Yes, Yoshimo. I am tired of all these complications with your crazy families. Look for somebody else to help you. I need to save Imoen.~ GOTO partway1
- ++ ~Sorry, Yoshimo. I've just pressed the wrong button.~ GOTO TS22
+ IF ~!InParty("Kachiko")~ THEN REPLY ~Yes, Yoshimo. I am tired of all these complications with your crazy families. Look for somebody else to help you. I need to save Imoen.~ EXTERN YOSHP TS21
+ IF ~InParty("Kachiko")~ THEN REPLY ~Yes, Yoshimo. I am tired of all these complications with your crazy families. Look for somebody else to help you. I need to save Imoen.~ EXTERN YOSHP partway1
+ ++ ~Sorry, Yoshimo. I've just pressed the wrong button.~ EXTERN YOSHP TS22
 
-IF ~~ THEN BEGIN TS21
- SAY ~Oh, well... I suppose we'll meet soon anyway.~
- IF ~~ THEN DO ~SetGlobal("Kicked_Out","LOCALS",1)
-EscapeAreaMove("TT0307",243,876,10)~ EXIT
-END
+CHAIN YOSHP TS21
+~Oh, well... I suppose we'll meet soon anyway.~
+DO ~SetGlobal("Kicked_Out","LOCALS",1)
+EscapeAreaMove("TT0307",243,876,10)~
+EXIT
 
-IF ~~ THEN BEGIN TS22
- SAY ~Oh, well that's okay, then.~
- IF ~~ THEN DO ~SetGlobal("Kicked_Out","LOCALS",0)
-JoinParty()~ EXIT
-END
+CHAIN YOSHP TS22
+~Oh, well that's okay, then.~
+DO ~SetGlobal("Kicked_Out","LOCALS",0)
+JoinParty()~
+EXIT
 
-// Yoshimo Island Join-in
+// Yoshimo Island Dungeon Join-in
 CHAIN
 IF WEIGHT #4 ~Global("Kicked_Out","LOCALS",1)
 Global("VP_OnIsland","GLOBAL",1)
@@ -377,11 +386,4 @@ END
 CHAIN YOSHP TS24
 ~Thank you.~
 DO ~SetGlobal("Kicked_Out","LOCALS",0) JoinParty()~
-EXIT
-
-CHAIN YOSHP TS25
-~Oh, well that's okay, then.~
-DO ~SetGlobal("Kicked_Out","LOCALS",0)
-ActionOverride("Kachiko",JoinParty())
-JoinParty()~
 EXIT
