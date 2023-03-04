@@ -2,14 +2,35 @@
 // ToB Other Talks and Interjections
 ////////////////////////////////////////
 
-BEGIN VPKACH2J
+/////////////////////////////////////////////////////////////////////
+// Kachiko is Dead and Dumped from the party - Yoshimo Reaction
+/////////////////////////////////////////////////////////////////////
 
-CHAIN IF ~Global("VP_Yoshimo_Dies","GLOBAL",2)
+CHAIN
+IF WEIGHT #0 ~Global("VP_Kachiko_Dies","GLOBAL",3)
 See(Player1)
-!StateCheck(Player1,CD_STATE_NOTVALID)~ THEN VPKACH2J 0
-~Sorry, <CHARNAME>, I cannot stay with you any longer. Without Yoshimo, I have nothing to do in your party. I must go back to Kozakura. Good luck to you.~
-DO ~LeaveParty() EscapeArea()~ 
+!StateCheck(Player1,CD_STATE_NOTVALID)~ THEN VPYOSH2J TS223
+~<CHARNAME>, it's my fault. I couldn't save Kachiko... And she was my only reason to live in this damned world... No, I have no rights to continue this miserable existance... I am very sorry, <CHARNAME>... (*Suddenly, the blick of Yoshimo's katana, and...*)~
+DO ~SetGlobal("VP_Kachiko_Dies","GLOBAL",4)
+StartCutSceneMode()
+Wait(2)
+ForceSpell(Myself,TRANSFORMATION_DEATH)
+EndCutSceneMode()~
 EXIT
+
+/////////////////////////////////////////////////////////////////////
+// Yoshimo is Dead and Dumped from the party - Kachiko Reaction
+/////////////////////////////////////////////////////////////////////
+
+CHAIN
+IF WEIGHT #0 ~Global("VP_Yoshimo_Dies","GLOBAL",3)
+See(Player1)
+!StateCheck(Player1,CD_STATE_NOTVALID)~ THEN VPKACH2J 19
+~Sorry, <CHARNAME>, I cannot stay with you any longer. Without Yoshimo, I have nothing to do in your party. I must go back to Kozakura. Good luck to you.~
+DO ~LeaveParty()
+EscapeArea()~
+EXIT
+
 
 CHAIN VPKACH2J 1
 ~Oh, my love, I was so worried about you!~

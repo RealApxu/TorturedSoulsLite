@@ -150,7 +150,7 @@ EXIT
 CHAIN YOSHJ TS165
 ~Welcome on board, my friend.~
 == VPKACHI ~Watch your tongue, "friend".~
-DO ~SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)
+DO ~SetGlobalTimer("VP_KachikoRomanceTimer","GLOBAL",ONE_DAY)
 SetGlobal("VP_Kachiko_Joined","GLOBAL",1)
 JoinParty()~
 EXIT

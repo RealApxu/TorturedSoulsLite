@@ -56,16 +56,16 @@ END
 // ToB Romance
 
 IF
-	Global("ExpLoveTalk","LOCALS",0)
+	Global("VP_KachikoRomanceTOB","GLOBAL",0)
 THEN
 	RESPONSE #100
-		SetGlobal("ExpLoveTalk","LOCALS",1)
-		SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)
+		SetGlobal("VP_KachikoRomanceTOB","GLOBAL",1)
+		SetGlobalTimer("VP_KachikoRomanceTimerTOB","GLOBAL",ONE_DAY)
 END
 
 IF
 	InParty(Myself)
-	GlobalTimerExpired("VPKachikoRomanceTimer","GLOBAL")
+	GlobalTimerExpired("VP_KachikoRomanceTimerTOB","GLOBAL")
 	AreaType(OUTDOOR)
 	See("Yoshimo")
 	!Dead("Yoshimo")
@@ -73,10 +73,10 @@ IF
 	!StateCheck(Myself,CD_STATE_NOTVALID)
 	CombatCounter(0)
 	!See([ENEMY])
-	Global("ExpLoveTalk","LOCALS",5)
+	Global("VP_KachikoRomanceTOB","GLOBAL",5)
 THEN
 	RESPONSE #100
-		SetGlobal("ExpLoveTalk","LOCALS",6)
+		SetGlobal("VP_KachikoRomanceTOB","GLOBAL",6)
 		PlaySong(0)
 		PlaySound("vpkachls")
 		Interact("Yoshimo")

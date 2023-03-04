@@ -5,7 +5,7 @@
 //Lovetalks ToB
 
 CHAIN
-IF ~Global("ExpLoveTalk","LOCALS",2)~ THEN VPKACH2B YoshiKachiLoveTalk1TOB
+IF ~Global("VP_KachikoRomanceTOB","GLOBAL",2)~ THEN VPKACH2B YoshiKachiLoveTalk1TOB
 @0
 == VPYOSH2B @1
 == VPKACH2B @2
@@ -14,7 +14,7 @@ IF ~Global("ExpLoveTalk","LOCALS",2)~ THEN VPKACH2B YoshiKachiLoveTalk1TOB
 EXIT
 
 CHAIN
-IF ~Global("ExpLoveTalk","LOCALS",4)~ THEN VPKACH2B YoshiKachiLoveTalk2TOB
+IF ~Global("VP_KachikoRomanceTOB","GLOBAL",4)~ THEN VPKACH2B YoshiKachiLoveTalk2TOB
 @5
 == VPYOSH2B @6
 == VPKACH2B @7
@@ -27,7 +27,7 @@ IF ~Global("ExpLoveTalk","LOCALS",4)~ THEN VPKACH2B YoshiKachiLoveTalk2TOB
 EXIT
 
 CHAIN
-IF ~Global("ExpLoveTalk","LOCALS",6)~ THEN VPKACH2B YoshiKachiLoveTalk3TOB
+IF ~Global("VP_KachikoRomanceTOB","GLOBAL",6)~ THEN VPKACH2B YoshiKachiLoveTalk3TOB
 @14
 == VPYOSH2B @15
 == VPKACH2B @16

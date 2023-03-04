@@ -6,13 +6,13 @@ IF
 	CombatCounter(0)
 	!StateCheck(Myself,CD_STATE_NOTVALID)
 	!StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	GlobalTimerExpired("VPKachikoRomanceTimer","GLOBAL")
+	GlobalTimerExpired("VP_KachikoRomanceTimerTOB","GLOBAL")
 	OR(2)
-		Global("ExpLoveTalk","LOCALS",1)
-		Global("ExpLoveTalk","LOCALS",3)
+		Global("VP_KachikoRomanceTOB","GLOBAL",1)
+		Global("VP_KachikoRomanceTOB","GLOBAL",3)
 THEN
 	RESPONSE #100
-		IncrementGlobal("ExpLoveTalk","LOCALS",1)
+		IncrementGlobal("VP_KachikoRomanceTOB","GLOBAL",1)
 		PlaySong(0)
 		PlaySound("vpkachls")
 		Interact("Yoshimo")

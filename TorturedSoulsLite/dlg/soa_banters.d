@@ -397,9 +397,9 @@ EXIT
 ////////////////////////////////////
 
 CHAIN
-IF ~Global("LoveTalk","LOCALS",1)~ THEN VPKACHIB YoshiKachiLoveTalk1
+IF ~Global("VP_KachikoRomance","GLOBAL",1)~ THEN VPKACHIB YoshiKachiLoveTalk1
 @152
-DO ~SetGlobal("LoveTalk","LOCALS",2)~
+DO ~SetGlobal("VP_KachikoRomance","GLOBAL",2)~
 == BYOSHIM @153
 == VPKACHIB @154
 == BYOSHIM @155
@@ -409,9 +409,9 @@ DO ~RestParty()~
 EXIT
 
 CHAIN
-IF ~Global("LoveTalk","LOCALS",3)~ THEN VPKACHIB YoshiKachiLoveTalk2
+IF ~Global("VP_KachikoRomance","GLOBAL",3)~ THEN VPKACHIB YoshiKachiLoveTalk2
 @158
-DO ~SetGlobal("LoveTalk","LOCALS",4)~
+DO ~SetGlobal("VP_KachikoRomance","GLOBAL",4)~
 == BYOSHIM @159
 == VPKACHIB @160
 == BYOSHIM @161
@@ -419,9 +419,9 @@ DO ~RestParty()~
 EXIT
 
 CHAIN
-IF ~Global("LoveTalk","LOCALS",5)~ THEN VPKACHIB YoshiKachiLoveTalk3
+IF ~Global("VP_KachikoRomance","GLOBAL",5)~ THEN VPKACHIB YoshiKachiLoveTalk3
 @162
-DO ~SetGlobal("LoveTalk","LOCALS",6)~
+DO ~SetGlobal("VP_KachikoRomance","GLOBAL",6)~
 == BYOSHIM @163
 == VPKACHIB @164
 == BYOSHIM @165
@@ -429,13 +429,13 @@ DO ~SetGlobal("LoveTalk","LOCALS",6)~
 == BYOSHIM @167
 == VPKACHIB @168
 == BYOSHIM @169
-DO ~SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)~
+DO ~SetGlobalTimer("VP_KachikoRomanceTimer","GLOBAL",ONE_DAY)~
 EXIT
 
 CHAIN
-IF ~Global("LoveTalk","LOCALS",7)~ THEN VPKACHIB YoshiKachiLoveTalk4
+IF ~Global("VP_KachikoRomance","GLOBAL",7)~ THEN VPKACHIB YoshiKachiLoveTalk4
 @170
-DO ~SetGlobal("LoveTalk","LOCALS",8)~
+DO ~SetGlobal("VP_KachikoRomance","GLOBAL",8)~
 == BYOSHIM @171
 == VPKACHIB @172
 == BYOSHIM @173
@@ -443,13 +443,13 @@ DO ~SetGlobal("LoveTalk","LOCALS",8)~
 == BYOSHIM @175
 == VPKACHIB @176
 == BYOSHIM @177
-DO ~SetGlobalTimer("VPKachikoRomanceTimer","GLOBAL",ONE_DAY)~
+DO ~SetGlobalTimer("VP_KachikoRomanceTimer","GLOBAL",ONE_DAY)~
 EXIT
 
 CHAIN
-IF ~Global("LoveTalk","LOCALS",9)~ THEN VPKACHIB YoshiKachiLoveTalk5
+IF ~Global("VP_KachikoRomance","GLOBAL",9)~ THEN VPKACHIB YoshiKachiLoveTalk5
 @178
-DO ~SetGlobal("LoveTalk","LOCALS",10)~
+DO ~SetGlobal("VP_KachikoRomance","GLOBAL",10)~
 == BYOSHIM @179
 == VPKACHIB @180
 == BYOSHIM @181
