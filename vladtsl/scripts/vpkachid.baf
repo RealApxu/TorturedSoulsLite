@@ -1,4 +1,8 @@
-// Romance
+///////////////////////
+// Romance Talks
+///////////////////////
+
+// Talks 1-2
 
 IF
 	InParty(Myself)
@@ -7,43 +11,23 @@ IF
 	!Dead("Yoshimo")
 	!StateCheck(Myself,CD_STATE_NOTVALID)
     !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
 	GlobalTimerExpired("VP_KachikoRomanceTimer","GLOBAL")
-	Global("VPKachikoMatch","GLOBAL",1)
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("VP_OnIsland","GLOBAL",1)
-	Global("VP_KachikoRomance","GLOBAL",0)
+	OR(2)
+		Global("VP_KachikoRomance","GLOBAL",1)
+		Global("VP_KachikoRomance","GLOBAL",3)
 	!AreaType(DUNGEON)
-	CombatCounter(0)
 THEN
 	RESPONSE #100
-		SetGlobal("VP_KachikoRomance","GLOBAL",1)
-		SetGlobalTimer("VP_KachikoRomanceTimer","GLOBAL",ONE_DAY)
+		IncrementGlobal("VP_KachikoRomance","GLOBAL",1)
 		PlaySong(0)
 		PlaySound("vpkachls")
 		Interact("Yoshimo")
 END
 
-IF
-	InParty(Myself)
-	InParty("Yoshimo")
-	See("Yoshimo")
-	!Dead("Yoshimo")
-	!StateCheck(Myself,CD_STATE_NOTVALID)
-    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	GlobalTimerExpired("VP_KachikoRomanceTimer","GLOBAL")
-	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
-	!Global("VP_OnIsland","GLOBAL",1)
-	Global("VP_KachikoRomance","GLOBAL",2)
-	!AreaType(DUNGEON)
-	CombatCounter(0)
-THEN
-	RESPONSE #100
-		SetGlobal("VP_KachikoRomance","GLOBAL",3)
-		SetGlobalTimer("VP_KachikoRomanceTimer","GLOBAL",TWO_DAYS)
-		PlaySong(0)
-		PlaySound("vpkachls")
-		Interact("Yoshimo")
-END
+// Talk 5
 
 IF
 	InParty(Myself)
@@ -52,15 +36,15 @@ IF
 	!Dead("Yoshimo")
 	!StateCheck(Myself,CD_STATE_NOTVALID)
     !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("VP_OnIsland","GLOBAL",1)
-	Global("VP_KachikoRomance","GLOBAL",8)
+	Global("VP_KachikoRomance","GLOBAL",7)
 	GlobalTimerExpired("VP_KachikoRomanceTimer","GLOBAL")
 	!AreaType(DUNGEON)
 	OR(2)
 		AreaType(OUTDOOR)
 		AreaType(FOREST)
-	CombatCounter(0)
 THEN
 	RESPONSE #100
 		IncrementGlobal("VP_KachikoRomance","GLOBAL",1)

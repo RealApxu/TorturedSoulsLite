@@ -7,6 +7,7 @@
 CHAIN
 IF ~Global("VP_KachikoRomanceTOB","GLOBAL",2)~ THEN VPKACH2B YoshiKachiLoveTalk1TOB
 @0
+DO ~IncrementGlobal("VP_KachikoRomanceTOB","GLOBAL",1) SetGlobalTimer("VP_KachikoRomanceTimerTOB","GLOBAL",ONE_DAY)~
 == VPYOSH2B @1
 == VPKACH2B @2
 == VPYOSH2B @3
@@ -16,6 +17,7 @@ EXIT
 CHAIN
 IF ~Global("VP_KachikoRomanceTOB","GLOBAL",4)~ THEN VPKACH2B YoshiKachiLoveTalk2TOB
 @5
+DO ~IncrementGlobal("VP_KachikoRomanceTOB","GLOBAL",1) SetGlobalTimer("VP_KachikoRomanceTimerTOB","GLOBAL",ONE_DAY)~
 == VPYOSH2B @6
 == VPKACH2B @7
 == VPYOSH2B @8
@@ -29,6 +31,7 @@ EXIT
 CHAIN
 IF ~Global("VP_KachikoRomanceTOB","GLOBAL",6)~ THEN VPKACH2B YoshiKachiLoveTalk3TOB
 @14
+DO ~IncrementGlobal("VP_KachikoRomanceTOB","GLOBAL",1) SetGlobalTimer("VP_KachikoRomanceTimerTOB","GLOBAL",ONE_DAY)~
 == VPYOSH2B @15
 == VPKACH2B @16
 == VPYOSH2B @17

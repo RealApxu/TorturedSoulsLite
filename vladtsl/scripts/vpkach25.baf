@@ -1,4 +1,6 @@
-//Yoshimo Wounded
+/////////////////////////////////
+// Yoshimo is wounded or dead
+/////////////////////////////////
 
 IF
 	InParty(Myself)
@@ -12,10 +14,7 @@ IF
 THEN
 	RESPONSE #100
 		SetGlobal("VP_Yoshimo_Dies","GLOBAL",1)
-		EquipMostDamagingMelee()
 		DisplayStringHead(Myself,@247)
-		MoveToObjectNoInterrupt(LastAttackerOf("Yoshimo"))
-		AttackReevaluate(LastAttackerOf("Yoshimo"),75)
 		Continue()
 END
 
@@ -23,15 +22,18 @@ IF
 	InParty(Myself)
 	Dead("Yoshimo")
 	CombatCounter(0)
-	Global("VP_Yoshimo_Is_Dead","GLOBAL",0)
+	OR(2)
+		Global("VP_Yoshimo_Dies","GLOBAL",0)
+		Global("VP_Yoshimo_Dies","GLOBAL",1)
 THEN
 	RESPONSE #100
-		SetGlobal("VP_Yoshimo_Is_Dead","GLOBAL",1)
 		SetGlobal("VP_Yoshimo_Dies","GLOBAL",2)
 END
 
 IF
 	InParty(Myself)
+	Dead("Yoshimo")  // Kachiko
+	!InParty("Yoshimo")
 	CombatCounter(0)
 	See(Player1)
 	!StateCheck(Player1,CD_STATE_NOTVALID)
@@ -46,14 +48,18 @@ IF
 	InParty(Myself)
 	InParty("Yoshimo")
 	!Dead("Yoshimo")
-	Global("VP_Yoshimo_Dies","GLOBAL",1)
+	OR(2)
+		Global("VP_Yoshimo_Dies","GLOBAL",1)
+		Global("VP_Yoshimo_Dies","GLOBAL",2)
 	CombatCounter(0)
 THEN
 	RESPONSE #100
 		SetGlobal("VP_Yoshimo_Dies","GLOBAL",0)
 END
 
+//////////////////////////
 // ToB Romance
+//////////////////////////
 
 IF
 	Global("VP_KachikoRomanceTOB","GLOBAL",0)
@@ -82,7 +88,9 @@ THEN
 		Interact("Yoshimo")
 END
 
+//////////////////////////////
 // Fight Blocks
+//////////////////////////////
 
 IF
 	Allegiance(Myself,ENEMY)

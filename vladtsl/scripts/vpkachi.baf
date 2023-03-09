@@ -120,14 +120,13 @@ IF
 	InParty(Myself)
 	InParty("Yoshimo")
 	!Dead("Yoshimo")
-	Global("VPKachikoMatch","GLOBAL",0)
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("VP_OnIsland","GLOBAL",1)
 	Global("VP_KachikoRomance","GLOBAL",0)
 THEN
 	RESPONSE #100
 		SetGlobalTimer("VP_KachikoRomanceTimer","GLOBAL",ONE_DAY)
-		SetGlobal("VPKachikoMatch","GLOBAL",1)
+		SetGlobal("VP_KachikoRomance","GLOBAL",1)
 END
 
 // Lovetalks 1-2 are in the Dream Script
@@ -146,16 +145,19 @@ IF
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("VP_OnIsland","GLOBAL",1)
 	OR(2)
-		Global("VP_KachikoRomance","GLOBAL",4)
-		Global("VP_KachikoRomance","GLOBAL",6)
+		Global("VP_KachikoRomance","GLOBAL",3)
+		Global("VP_KachikoRomance","GLOBAL",5)
 THEN
 	RESPONSE #100
 		IncrementGlobal("VP_KachikoRomance","GLOBAL",1)
-		SetGlobalTimer("VP_KachikoRomanceTimer","GLOBAL",TWO_DAYS)
 		PlaySong(0)
 		PlaySound("vpkachls")
 		Interact("Yoshimo")
 END
+
+// Lovetalk 5 is in the Dream Script
+
+// Talk 6
 
 IF
 	InParty(Myself)

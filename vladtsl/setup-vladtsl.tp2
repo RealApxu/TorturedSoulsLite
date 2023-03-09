@@ -27,9 +27,11 @@ LANGUAGE ~English~
 ~english~
 ~%MOD_FOLDER%/tra/english/setup.tra~
 
+/*
 LANGUAGE ~Russian~
 ~russian~
 ~%MOD_FOLDER%/tra/russian/setup.tra~
+*/
 
 // Main Component
 
@@ -178,7 +180,7 @@ END
 
 //NPC Portraits
 
-BEGIN ~Add Portraits to Island NPCs?~
+BEGIN ~Portraits for Island NPCs~
 DESIGNATED 50 LABEL ~TSL_MiscPortraits~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
