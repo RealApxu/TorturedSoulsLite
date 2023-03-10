@@ -29,7 +29,7 @@ END
  ++ ~Find your own way. We won't meet again.~ EXTERN VPYOSH2J TS214
 
 CHAIN VPYOSH2J TS214
-~Sorry, <CHARNAME>. I cannot leave her alone. We must continue our mission.~
+~Sorry, <CHARNAME>. I cannot leave her alone. Goodbye.~
 DO ~SetGlobal("VP_Kachiko_Yoshimo","GLOBAL",3)
 SetGlobal("Kicked_Out","LOCALS",1)
 ActionOverride("vpkachi",EscapeArea())
@@ -130,8 +130,7 @@ END
 CHAIN YOSHP TS10
 ~Kachiko, what do you think?~ DO ~SetGlobal("Kicked_Out","LOCALS",0)~
 == VPKACHI ~I think it is a good idea! Better than staying in this place!~
-DO ~SetGlobal("VP_YoshimoFollowsKachiko","GLOBAL",2)
-ActionOverride("Yoshimo",JoinParty())
+DO ~ActionOverride("Yoshimo",JoinParty())
 JoinParty()~
 EXIT
 
