@@ -1,18 +1,18 @@
 IF
 	OnCreation()
-	Global("Kachiko_Saved","GLOBAL",2)
+	Global("ttKachikoSaved","GLOBAL",2)
 THEN
 	RESPONSE #100
-		CreateCreatureDoor("vpvpainoa",[326.495],8)
-		CreateCreatureDoor("vpnajoka",[392.500],8)
-		CreateCreature("vpnomeas",[68.1209],8)
+		CreateCreatureDoor("ttainoa",[326.495],8)
+		CreateCreatureDoor("ttnajoka",[392.500],8)
+		CreateCreature("ttnomeas",[68.1209],8)
 END
 
 IF
 	OnCreation()
-	Global("Kachiko_Saved","GLOBAL",3)
+	Global("ttKachikoSaved","GLOBAL",3)
 THEN
 	RESPONSE #100
-		CreateCreatureDoor("vpvpainoa",[326.495],8)
-		CreateCreature("vpnomeas",[68.1209],8)
+		CreateCreatureDoor("ttainoa",[326.495],8)
+		CreateCreature("ttnomeas",[68.1209],8)
 END

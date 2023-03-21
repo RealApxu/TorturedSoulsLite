@@ -1,0 +1,66 @@
+IF
+	Clicked([ANYONE])
+	!PartyHasItem("ttkeypla")
+	Global("ttUnivAltar","GLOBAL",0)
+	Range(LastTrigger,9)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,@242)
+END
+
+IF
+	Clicked([ANYONE])
+	PartyHasItem("ttkeypla")
+	Global("ttUnivAltar","GLOBAL",0)
+	Range(LastTrigger,9)
+	OR(4)
+		!PartyHasItem("ttpot1a")
+		!PartyHasItem("ttpot3c")
+		!PartyHasItem("ttpot4b")
+		!PartyHasItem("ttpot5b")
+THEN
+	RESPONSE #100
+		DisplayString(Myself,@244) 
+END
+
+IF
+	Clicked([ANYONE])
+	PartyHasItem("ttkeypla")
+	PartyHasItem("ttpot1a")
+	PartyHasItem("ttpot3c")
+	PartyHasItem("ttpot4b")
+	PartyHasItem("ttpot5b")
+	Global("ttUnivAltar","GLOBAL",0)
+	Range(LastTrigger,9)
+THEN
+	RESPONSE #100
+		SetGlobal("ttUnivAltar","GLOBAL",1)
+		DestroyItem("ttkeypla")
+		DestroyItem("ttpot1a")
+		DestroyItem("ttpot3c")
+		DestroyItem("ttpot4b")
+		DestroyItem("ttpot5b")
+		TakePartyItem("ttkeypla")
+		TakePartyItem("ttpot1a")
+		TakePartyItem("ttpot3c")
+		TakePartyItem("ttpot4b")
+		TakePartyItem("ttpot5b")
+		GiveItemCreate("ttpot4c",Player1,0,0,0)
+END
+
+IF
+	Clicked([ANYONE])
+	Range(LastTrigger,9)
+	Global("ttUnivAltar","GLOBAL",1)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,@243) 
+END
+
+IF
+	Clicked([ANYONE])
+	!Range(LastTrigger,9)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,14702) // You are too far away to use that.
+END

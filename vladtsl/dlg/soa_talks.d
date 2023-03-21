@@ -7,11 +7,11 @@
 /////////////////////////////////////////////////////////////////////
 
 CHAIN
-IF WEIGHT #0 ~Global("VP_Kachiko_Dies","GLOBAL",3)
+IF WEIGHT #0 ~Global("ttKachikoDies","GLOBAL",3)
 See(Player1)
 !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN YOSHJ TS223
 ~<CHARNAME>, it's my fault. I couldn't save Kachiko... And she was my only reason to live in this damned world... No, I have no rights to continue this miserable existance... I am very sorry, <CHARNAME>... (*Suddenly, the blick of Yoshimo's katana, and...*)~
-DO ~SetGlobal("VP_Kachiko_Dies","GLOBAL",4)
+DO ~SetGlobal("ttKachikoDies","GLOBAL",4)
 StartCutSceneMode()
 Wait(2)
 ForceSpell(Myself,TRANSFORMATION_DEATH)
@@ -23,9 +23,9 @@ EXIT
 /////////////////////////////////////////////////////////////////////
 
 CHAIN
-IF WEIGHT #0 ~Global("VP_Yoshimo_Dies","GLOBAL",3)
+IF WEIGHT #0 ~Global("ttYoshimo_Dies","GLOBAL",3)
 See(Player1)
-!StateCheck(Player1,CD_STATE_NOTVALID)~ THEN VPKACHIJ 19
+!StateCheck(Player1,CD_STATE_NOTVALID)~ THEN TTKACHIJ 19
 ~Sorry, <CHARNAME>, I cannot stay with you any longer. Without Yoshimo, I have nothing to do in your party. I must go back to Kozakura. Good luck to you.~
 DO ~LeaveParty()
 EscapeArea()~
@@ -66,29 +66,29 @@ END
 
 ADD_TRANS_TRIGGER PPIRENI1 34
 ~OR(2)
-!Global("Kachiko_Saved","GLOBAL",2)
-Global("TT_Evil_Path","GLOBAL",3)~ DO 0
+!Global("ttKachikoSaved","GLOBAL",2)
+Global("ttEvilPath","GLOBAL",3)~ DO 0
 
 EXTEND_BOTTOM PPIRENI1 34
-  IF ~Global("Kachiko_Saved","GLOBAL",2)~ THEN DO ~SetGlobal("AsylumPlot","GLOBAL",20)
+  IF ~Global("ttKachikoSaved","GLOBAL",2)~ THEN DO ~SetGlobal("AsylumPlot","GLOBAL",20)
 DisplayString(Myself,50707)
 Spell(Myself,DO_NOTHING)
 StartCutSceneMode()
-StartCutScene("vp41g")~ EXIT
+StartCutScene("tt41g")~ EXIT
 END
 
 ADD_TRANS_TRIGGER PPIRENI1 45
 ~OR(2)
-Global("Kachiko_Saved","GLOBAL",3)
-Global("TT_Evil_Path","GLOBAL",3)~ DO 0
+Global("ttKachikoSaved","GLOBAL",3)
+Global("ttEvilPath","GLOBAL",3)~ DO 0
 
 EXTEND_BOTTOM PPIRENI1 45
-  IF ~Global("Kachiko_Saved","GLOBAL",2)~ THEN EXTERN ~YOSHJ~ TS209
+  IF ~Global("ttKachikoSaved","GLOBAL",2)~ THEN EXTERN YOSHJ TS209
 END
 
 // Dialogue
 
-CHAIN YOSHJ VP_PPIRENI1.1
+CHAIN YOSHJ ttPPIRENI1.1
 ~N-No, Master Irenicus...~
 == PPIRENI1 ~I don't understand what are you talking about?~
 == YOSHJ ~I... I am not cursed anymore.~
@@ -96,15 +96,15 @@ CHAIN YOSHJ VP_PPIRENI1.1
 == YOSHJ ~There are circumstances that you are not aware of...~
 == PPIRENI1 ~So, <CHARNAME>, you have been much more capable than I thought.~
 END
- ++ ~I hate to impose, but could you tell me what's going on here?~ EXTERN PPIRENI1 VP_PPIRENI1.1.1
- ++ ~What is he talking about, Yoshimo?~ EXTERN YOSHJ VP_PPIRENI1.2
- ++ ~I don't know what's going on here, but I know I don't like it...~ EXTERN PPIRENI1 VP_PPIRENI1.1.1
+ ++ ~I hate to impose, but could you tell me what's going on here?~ EXTERN PPIRENI1 ttPPIRENI1.1.1
+ ++ ~What is he talking about, Yoshimo?~ EXTERN YOSHJ ttPPIRENI1.2
+ ++ ~I don't know what's going on here, but I know I don't like it...~ EXTERN PPIRENI1 ttPPIRENI1.1.1
 
-CHAIN PPIRENI1 VP_PPIRENI1.1.1
+CHAIN PPIRENI1 ttPPIRENI1.1.1
 ~I knew you were strong, but I couldn't imagine that you are so powerful... I congratulate you, though I am really disappointed. Yoshimo was my best servant, but now he is betraying me without any obvious reason. We had a deal, and I paid him well... So, Yoshimo, you betrayed me to <CHARNAME>. I thought I had earned your soul...~
-EXTERN YOSHJ VP_PPIRENI1.2
+EXTERN YOSHJ ttPPIRENI1.2
 
-CHAIN YOSHJ VP_PPIRENI1.2
+CHAIN YOSHJ ttPPIRENI1.2
 ~Our deal is closed, Irenicus. The war is over, and my family is saved.~
 == PPIRENI1 ~Are you serious? Do you think you've saved anybody? They are all dead... they were dead long time ago, even before I met you.~
 == YOSHJ ~(*Tears appear in his eyes.*) W-What? Y-you k-knew that? You knew that... and you arranged our meeting to persuade me to sell my soul to you! You devil!~
@@ -121,23 +121,23 @@ CHAIN YOSHJ VP_PPIRENI1.2
 = ~Do you now see? Being there I can do everything I did in your world, but I am unfettered by the chains of mortality that time hangs upon us.~
 = ~My reasons for returning aren't what you'd think. I have no aspirations for power or domination like you. I need you powerful living soul to come back and pay an old debt of mine. I need your power to plan my revenge.~
 END
- ++ ~I have come to the conclusion that you are really insane. This asylum is the most suitable place for you where you may continue planning your revenge. I'll just take Imoen and be going...~ EXTERN PPIRENI1 VP_PPIRENI1.2.1
- ++ ~The time for talk is over. Let's finish this.~ EXTERN PPIRENI1 VP_PPIRENI1.2.2
- ++ ~Uh... I think that I'm still gonna kill you.~ EXTERN PPIRENI1 VP_PPIRENI1.2.3
+ ++ ~I have come to the conclusion that you are really insane. This asylum is the most suitable place for you where you may continue planning your revenge. I'll just take Imoen and be going...~ EXTERN PPIRENI1 ttPPIRENI1.2.1
+ ++ ~The time for talk is over. Let's finish this.~ EXTERN PPIRENI1 ttPPIRENI1.2.2
+ ++ ~Uh... I think that I'm still gonna kill you.~ EXTERN PPIRENI1 ttPPIRENI1.2.3
 
-CHAIN PPIRENI1 VP_PPIRENI1.2.1
+CHAIN PPIRENI1 ttPPIRENI1.2.1
 ~I'm very sorry, but I'm afraid that you'll be going nowhere.~
-EXTERN PPIRENI1 VP_PPIRENI1.3
+EXTERN PPIRENI1 ttPPIRENI1.3
 
-CHAIN PPIRENI1 VP_PPIRENI1.2.2
+CHAIN PPIRENI1 ttPPIRENI1.2.2
 ~Oh, I don't think so. Perhaps our conversation is coming to an end.~
-EXTERN PPIRENI1 VP_PPIRENI1.3
+EXTERN PPIRENI1 ttPPIRENI1.3
 
-CHAIN PPIRENI1 VP_PPIRENI1.2.3
+CHAIN PPIRENI1 ttPPIRENI1.2.3
 ~I suppose you won't be able to do that.~
-EXTERN PPIRENI1 VP_PPIRENI1.3
+EXTERN PPIRENI1 ttPPIRENI1.3
 
-CHAIN PPIRENI1 VP_PPIRENI1.3
+CHAIN PPIRENI1 ttPPIRENI1.3
 ~Now you will find you are powerless. I have taken precautions that you will not be damaged. Rage would be wasted.~
 EXTERN PPIRENI1 34
 
@@ -150,8 +150,8 @@ BEGIN 19 END // state number (can be more than one)
 BEGIN 0 END // transition number (can be more than one)
 BEGIN // list of changes, see below for flags
   "TRIGGER" ~OR(2)
-Global("Kachiko_Saved","GLOBAL",3)
-Global("TT_Evil_Path","GLOBAL",3)
+Global("ttKachikoSaved","GLOBAL",3)
+Global("ttEvilPath","GLOBAL",3)
 OR(2)
 !InParty("Yoshimo")
 Dead("Yoshimo")~
@@ -167,8 +167,8 @@ END
 
 EXTEND_TOP PPIRENI2 19
 	IF ~OR(2)
-Global("Kachiko_Saved","GLOBAL",2)
-Global("Kachiko_Saved","GLOBAL",0)
+Global("ttKachikoSaved","GLOBAL",2)
+Global("ttKachikoSaved","GLOBAL",0)
 	OR(2)
 !InParty("Yoshimo")
 Dead("Yoshimo")~ THEN DO ~EraseJournalEntry(15751)
@@ -190,19 +190,19 @@ END
 
 ADD_TRANS_TRIGGER PPIRENI2 27
 ~OR(4)
-Global("Kachiko_Saved","GLOBAL",3)
-Global("TT_Evil_Path","GLOBAL",3)
+Global("ttKachikoSaved","GLOBAL",3)
+Global("ttEvilPath","GLOBAL",3)
 !InParty("Yoshimo")
 Dead("Yoshimo")~ DO 0
 
 EXTEND_BOTTOM PPIRENI2 27
-	IF ~Global("Kachiko_Saved","GLOBAL",2)~ THEN DO ~EraseJournalEntry(7252)
+	IF ~Global("ttKachikoSaved","GLOBAL",2)~ THEN DO ~EraseJournalEntry(7252)
 EraseJournalEntry(7253)
 EraseJournalEntry(22952)
 EraseJournalEntry(23306)
 SetGlobal("AsylumPlot","GLOBAL",40)
 StartCutSceneMode()
-StartCutScene("vp41j")~ SOLVED_JOURNAL #7255 EXIT
+StartCutScene("tt41j")~ SOLVED_JOURNAL #7255 EXIT
 END
 
 ALTER_TRANS PPIRENI2 // file name
@@ -229,7 +229,7 @@ BEGIN // list of changes, see below for flags
 END
 
 ADD_TRANS_TRIGGER PPIRENI2 47
-~Global("Kachiko_Saved","GLOBAL",2)~ DO 0
+~Global("ttKachikoSaved","GLOBAL",2)~ DO 0
 
 ALTER_TRANS PPIRENI2 // file name
 BEGIN 47 END // state number (can be more than one)
@@ -239,13 +239,13 @@ BEGIN // list of changes, see below for flags
 DisplayString(Myself,50707)
 Spell(Myself,DO_NOTHING)
 StartCutSceneMode()
-StartCutScene("vp41g")~
+StartCutScene("tt41g")~
 END
 
 EXTEND_BOTTOM PPIRENI2 47
   IF ~OR(2)
-!Global("Kachiko_Saved","GLOBAL",2)
-Global("TT_Evil_Path","GLOBAL",3)~ THEN DO ~SetGlobal("AsylumPlot","GLOBAL",20)
+!Global("ttKachikoSaved","GLOBAL",2)
+Global("ttEvilPath","GLOBAL",3)~ THEN DO ~SetGlobal("AsylumPlot","GLOBAL",20)
 DisplayString(Myself,50707)
 Spell(Myself,DO_NOTHING)
 StartCutSceneMode()
@@ -254,16 +254,16 @@ END
 
 ADD_TRANS_TRIGGER PPIRENI2 66
 ~OR(2)
-Global("Kachiko_Saved","GLOBAL",3)
-Global("TT_Evil_Path","GLOBAL",3)~ DO 0
+Global("ttKachikoSaved","GLOBAL",3)
+Global("ttEvilPath","GLOBAL",3)~ DO 0
 
 EXTEND_BOTTOM PPIRENI2 66
-  IF ~Global("Kachiko_Saved","GLOBAL",2)~ THEN EXTERN ~YOSHJ~ TS209
+  IF ~Global("ttKachikoSaved","GLOBAL",2)~ THEN EXTERN YOSHJ TS209
 END
 
 // Dialogue
 
-CHAIN YOSHJ VP_PPIRENI2.1
+CHAIN YOSHJ ttPPIRENI2.1
 ~N-No, Master Irenicus...~
 == PPIRENI2 ~I don't understand what are you talking about?~
 == YOSHJ ~I... I am not cursed anymore.~
@@ -271,15 +271,15 @@ CHAIN YOSHJ VP_PPIRENI2.1
 == YOSHJ ~There are circumstances that you are not aware of...~
 == PPIRENI2 ~So, <CHARNAME>, you have been much more capable than I thought.~
 END
- ++ ~I hate to impose, but could you tell me what's going on here?~ EXTERN PPIRENI2 VP_PPIRENI2.1.1
- ++ ~What is he talking about, Yoshimo?~ EXTERN YOSHJ VP_PPIRENI2.2
- ++ ~I don't know what's going on here, but I know I don't like it...~ EXTERN PPIRENI2 VP_PPIRENI2.1.1
+ ++ ~I hate to impose, but could you tell me what's going on here?~ EXTERN PPIRENI2 ttPPIRENI2.1.1
+ ++ ~What is he talking about, Yoshimo?~ EXTERN YOSHJ ttPPIRENI2.2
+ ++ ~I don't know what's going on here, but I know I don't like it...~ EXTERN PPIRENI2 ttPPIRENI2.1.1
 
-CHAIN PPIRENI2 VP_PPIRENI2.1.1
+CHAIN PPIRENI2 ttPPIRENI2.1.1
 ~I knew you were strong, but I couldn't imagine that you are so powerful... I congratulate you, though I am really disappointed. Yoshimo was my best servant, but now he is betraying me without any obvious reason. We had a deal, and I paid him well... So, Yoshimo, you betrayed me to <CHARNAME>. I thought I had earned your soul...~
-EXTERN YOSHJ VP_PPIRENI2.2
+EXTERN YOSHJ ttPPIRENI2.2
 
-CHAIN YOSHJ VP_PPIRENI2.2
+CHAIN YOSHJ ttPPIRENI2.2
 ~Our deal is closed, Irenicus. The war is over, and my family is saved.~
 == PPIRENI2 ~Are you serious? Do you think you've saved anybody? They are all dead... they were dead long time ago, even before I met you.~
 == YOSHJ ~(*Tears appear in his eyes.*) W-What? Y-you k-knew that? You knew that... and you arranged our meeting to persuade me to sell my soul to you! You devil!~
@@ -296,60 +296,60 @@ CHAIN YOSHJ VP_PPIRENI2.2
 = ~Do you now see? Being there I can do everything I did in your world, but I am unfettered by the chains of mortality that time hangs upon us.~
 = ~My reasons for returning aren't what you'd think. I have no aspirations for power or domination like you. I need you powerful living soul to come back and pay an old debt of mine. I need your power to plan my revenge.~
 END
- ++ ~I have come to the conclusion that you are really insane. This asylum is the most suitable place for you where you may continue planning your revenge. I'll just take Imoen and be going...~ EXTERN PPIRENI2 VP_PPIRENI2.2.1
- ++ ~The time for talk is over. Let's finish this.~ EXTERN PPIRENI2 VP_PPIRENI2.2.2
- ++ ~Uh... I think that I'm still gonna kill you.~ EXTERN PPIRENI2 VP_PPIRENI2.2.3
+ ++ ~I have come to the conclusion that you are really insane. This asylum is the most suitable place for you where you may continue planning your revenge. I'll just take Imoen and be going...~ EXTERN PPIRENI2 ttPPIRENI2.2.1
+ ++ ~The time for talk is over. Let's finish this.~ EXTERN PPIRENI2 ttPPIRENI2.2.2
+ ++ ~Uh... I think that I'm still gonna kill you.~ EXTERN PPIRENI2 ttPPIRENI2.2.3
 
-CHAIN PPIRENI2 VP_PPIRENI2.2.1
+CHAIN PPIRENI2 ttPPIRENI2.2.1
 ~I'm very sorry, but I'm afraid that you'll be going nowhere.~
-EXTERN PPIRENI2 VP_PPIRENI2.3
+EXTERN PPIRENI2 ttPPIRENI2.3
 
-CHAIN PPIRENI2 VP_PPIRENI2.2.2
+CHAIN PPIRENI2 ttPPIRENI2.2.2
 ~Oh, I don't think so. Perhaps our conversation is coming to an end.~
-EXTERN PPIRENI2 VP_PPIRENI2.3
+EXTERN PPIRENI2 ttPPIRENI2.3
 
-CHAIN PPIRENI2 VP_PPIRENI2.2.3
+CHAIN PPIRENI2 ttPPIRENI2.2.3
 ~I suppose you won't be able to do that.~
-EXTERN PPIRENI2 VP_PPIRENI2.3
+EXTERN PPIRENI2 ttPPIRENI2.3
 
-CHAIN PPIRENI2 VP_PPIRENI2.3
+CHAIN PPIRENI2 ttPPIRENI2.3
 ~Now you will find you are powerless. I have taken precautions that you will not be damaged. Rage would be wasted.~
 EXTERN PPIRENI2 47
 
 // Talk near Imoen
 
 CHAIN
-IF ~Global("VP_YoshimoExcuse","GLOBAL",1)~ THEN VPKACHI TSL_Imoen_Join1
-~<CHARNAME>, I think we should talk about what happened. Yoshimo had dishonorable intentions and it is your right to demand his death.~ [KACHIL06] DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",2)~
+IF ~Global("ttYoshimoExcuse","GLOBAL",1)~ THEN TTKACHI TSL_Imoen_Join1
+~<CHARNAME>, I think we should talk about what happened. Yoshimo had dishonorable intentions and it is your right to demand his death.~ [KACHIL06] DO ~SetGlobal("ttYoshimoExcuse","GLOBAL",2)~
 END
- ++ ~What do you mean Kachiko? That sounds a bit extreme.~ EXTERN VPKACHIJ N33
- ++ ~Kachiko, my custom is more forgiving than the code of a samurai. I have seen Yoshimo stand against Irenicus and refuse to surrender me. I trust him.~ EXTERN VPKACHIJ N34
+ ++ ~What do you mean Kachiko? That sounds a bit extreme.~ EXTERN TTKACHIJ N33
+ ++ ~Kachiko, my custom is more forgiving than the code of a samurai. I have seen Yoshimo stand against Irenicus and refuse to surrender me. I trust him.~ EXTERN TTKACHIJ N34
  ++ ~Glad you reminded me of the traitor. I do not wish him in my party. He may do what he wants with his life, but he may not stay.~ EXTERN YOSHJ TS218
 
-CHAIN VPKACHIJ N33
+CHAIN TTKACHIJ N33
 ~My <PRO_LADYLORD>, Yoshimo pledged his service to you, yet he was serving Irenicus at the same time. His intention was to deceive you. Yoshimo is not a samurai and he does not follow a strict code of honor, but his upbringing was that of a noble. His actions towards you call for ritual suicide.~
 END
- ++ ~I respect your customs, but he has a noble heart, and he's faithful ally. He stood against Irenicus and refused to surrender me. I trust him.~ EXTERN VPKACHIJ N34
+ ++ ~I respect your customs, but he has a noble heart, and he's faithful ally. He stood against Irenicus and refused to surrender me. I trust him.~ EXTERN TTKACHIJ N34
  ++ ~Uh, well... He may do what he wants with his life, but he may not stay.~ EXTERN YOSHJ TS218
 
-CHAIN VPKACHIJ N34
+CHAIN TTKACHIJ N34
 ~So you do not see his actions as betrayal, then <CHARNAME>?~
 END
- ++ ~No Kachiko, the way I see it, Yoshimo was loyal to me in deed if not always in his thoughts. I am quite comfortable with him staying in the party.~ EXTERN VPKACHIJ N35
+ ++ ~No Kachiko, the way I see it, Yoshimo was loyal to me in deed if not always in his thoughts. I am quite comfortable with him staying in the party.~ EXTERN TTKACHIJ N35
 
-CHAIN VPKACHIJ N35
+CHAIN TTKACHIJ N35
 ~You have a different way of thinking <CHARNAME>, but I am... I am glad you do. Yoshimo and I will prove our loyalty to you in battle.~ [KACHIL16]
 == IMOEN2 ~That's good, Kachiko.~
 EXIT
 
 CHAIN YOSHJ TS218
 ~Your wish is my command. I shall leave the group. I cannot say how much I am sorry for allowing Irenicus to capture me in the moment of my weakness. Fare thee well <CHARNAME>.~ DO ~SetGlobal("Kicked_Out","LOCALS",1)~
-== VPKACHIJ ~Yoshimo, wait. I am leaving with you. Alone you will only get into more troubles. Sorry <CHARNAME>, but I told you from the very start that I would follow whenever he goes... and I shall do so now.~ [KACHIL26]
+== TTKACHIJ ~Yoshimo, wait. I am leaving with you. Alone you will only get into more troubles. Sorry <CHARNAME>, but I told you from the very start that I would follow whenever he goes... and I shall do so now.~ [KACHIL26]
 == IMOEN2 ~Bye, Kachiko.~
 DO ~ActionOverride("Yoshimo",LeaveParty())
 ActionOverride("Yoshimo",EscapeArea())
-ActionOverride("vpkachi",LeaveParty())
-ActionOverride("vpkachi",EscapeArea())~
+ActionOverride("ttkachi",LeaveParty())
+ActionOverride("ttkachi",EscapeArea())~
 EXIT
 
 // Hsiang Attack
@@ -357,13 +357,13 @@ EXIT
 BEGIN VPHSIANG
 
 CHAIN
-IF ~Global("VP_YoshimoExcuse","GLOBAL",3)~ THEN VPHSIANG 0
+IF ~Global("ttYoshimoExcuse","GLOBAL",3)~ THEN VPHSIANG 0
 ~Yoshimo, I came for you... for your black heart... for your soul.~
 == YOSHJ ~You have no rights! The deal is closed.~
 == VPHSIANG ~I have a contract for your soul. You cannot live your miserable life with this burden anymore.~
 == YOSHJ ~You won't get anything from me! I won't give up!~
 == VPHSIANG ~I have no choice but to force you to give me your heart and your soul.~
-DO ~SetGlobal("VP_YoshimoExcuse","GLOBAL",4) Enemy()~
+DO ~SetGlobal("ttYoshimoExcuse","GLOBAL",4) Enemy()~
 EXIT
 
 ////////////////////////
@@ -371,23 +371,23 @@ EXIT
 ////////////////////////
 
 // Kachiko
-INTERJECT PLAYER1 33 VPKachiToL0
-== PLAYER1 IF ~InParty("vpkachi") InMyArea("vpkachi") !StateCheck("vpkachi",CD_STATE_NOTVALID)~ THEN
+INTERJECT PLAYER1 33 ttKachiToL0
+== PLAYER1 IF ~InParty("ttkachi") InMyArea("ttkachi") !StateCheck("ttkachi",CD_STATE_NOTVALID)~ THEN
 ~Kachiko. A warrior from a distant land, she insisted to join you to be close to Yoshimo whom she hated. She stayed with you through thick and thin to be close to Yoshimo she loved...~
 END
- ++ ~Kachiko... You had fought valiantly by my side, but if you wish to go back to your life now, I would understand...~ EXTERN VPKACHIJ VPKachiToL1
- ++ ~Irenicus is a terrible creature, Kachiko. Please, let me know that you are prepared to face such a challenge.~ EXTERN VPKACHIJ VPKachiToL2
- ++ ~Behind these doors is death... May be it awaits Irenicus, may be it awaits all of us... You have seen death closer than I. Would you go through this door?~ EXTERN VPKACHIJ VPKachiToL3
+ ++ ~Kachiko... You had fought valiantly by my side, but if you wish to go back to your life now, I would understand...~ EXTERN TTKACHIJ ttKachiToL1
+ ++ ~Irenicus is a terrible creature, Kachiko. Please, let me know that you are prepared to face such a challenge.~ EXTERN TTKACHIJ ttKachiToL2
+ ++ ~Behind these doors is death... May be it awaits Irenicus, may be it awaits all of us... You have seen death closer than I. Would you go through this door?~ EXTERN TTKACHIJ ttKachiToL3
  
-CHAIN VPKACHIJ VPKachiToL1
+CHAIN TTKACHIJ ttKachiToL1
 ~Avenging the suffering of my family is a part of my life, <CHARNAME>. My blade is thirsty for his blood. For Nakanishi's honor! For Hashimoto's honor! No more talk! I am going!~
 COPY_TRANS PLAYER1 33
 
-CHAIN VPKACHIJ VPKachiToL2
+CHAIN TTKACHIJ ttKachiToL2
 ~Try to stop me! You would have to tie me up to prevent me from fighting Irenicus. For Nakanishi's honor! For Hashimoto's honor!~
 COPY_TRANS PLAYER1 33
 
-CHAIN VPKACHIJ VPKachiToL3
+CHAIN TTKACHIJ ttKachiToL3
 ~I have seen it, yes. I am not afraid to die if I know that Irenicus goes down with me. For Nakanishi's honor! For Hashimoto's honor!~
 COPY_TRANS PLAYER1 33
 
@@ -413,6 +413,6 @@ COPY_TRANS PLAYER1 33
 ////////////
 
 // Kachiko
-I_C_T PLAYER1 25 VPKachiHell 
-== VPKACHIJ IF ~InParty("vpkachi") InMyArea("vpkachi") !StateCheck("vpkachi",CD_STATE_NOTVALID)~ ~Are we dead? I only wished I could tell Yoshimo a proper farewell.~
+I_C_T PLAYER1 25 ttKachiHell 
+== TTKACHIJ IF ~InParty("ttkachi") InMyArea("ttkachi") !StateCheck("ttkachi",CD_STATE_NOTVALID)~ ~Are we dead? I only wished I could tell Yoshimo a proper farewell.~
 END

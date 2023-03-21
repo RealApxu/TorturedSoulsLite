@@ -1,0 +1,8 @@
+IF
+	IsOverMe([PC])
+	Global("ttSealPassInform","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ttSealPassInform","GLOBAL",1)
+		DisplayStringHead([PC],@254)
+END

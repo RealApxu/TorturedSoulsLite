@@ -1,0 +1,19 @@
+IF
+	IsOverMe([PC])
+	Global("ttNakanishiHostile","GLOBAL",0)
+	!PartyHasItem("ttwardex")
+THEN
+	RESPONSE #100
+		SetGlobal("ttNakanishiHostile","GLOBAL",1)
+		DisplayStringHead([PC],@245)
+END
+
+IF
+	IsOverMe([PC])
+	Global("ttNakanishiHostile","GLOBAL",1)
+	PartyHasItem("ttwardex")
+THEN
+	RESPONSE #100
+		SetGlobal("ttNakanishiHostile","GLOBAL",2)
+		DisplayStringHead([PC],@246)
+END

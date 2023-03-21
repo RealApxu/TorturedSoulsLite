@@ -1,0 +1,8 @@
+IF
+	See([PC])
+	Global("ttEndIsland","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ttEndIsland","GLOBAL",2)
+		StartDialogueNoSet([PC])
+END

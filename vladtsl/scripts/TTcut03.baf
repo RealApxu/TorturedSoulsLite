@@ -3,13 +3,13 @@ IF
 THEN
 	RESPONSE #100
 		CutSceneId(Player3)
-		SetGlobal("Player_Against_Momoko","GLOBAL",1)
-		SetGlobal("Nakanishi_Duel","GLOBAL",1)
+		SetGlobal("ttPlayerVsMomoko","GLOBAL",1)
+		SetGlobal("ttNakanishiDuel","GLOBAL",1)
 		StorePartyLocations()
 		DropInventory()
 		StartCombatCounter()
 		FadeToColor([20.0],0)
-		ActionOverride("vpmomoko",DestroySelf())
+		ActionOverride("ttmomoko",DestroySelf())
 		Wait(1)
 		LeaveAreaLUAPanic("TT0308","",[550.485],0)
 		LeaveAreaLUA("TT0308","",[550.485],0)
@@ -17,7 +17,7 @@ THEN
 		MultiPlayerSync()
 		Wait(1)
 		FadeFromColor([20.0],0)
-		CreateCreature("vpmomoko",[738.664],7)
-		ActionOverride("vpmomoko",Enemy())
+		CreateCreature("ttmomoko",[738.664],7)
+		ActionOverride("ttmomoko",Enemy())
 		EndCutSceneMode()
 END

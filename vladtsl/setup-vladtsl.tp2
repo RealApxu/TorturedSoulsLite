@@ -47,27 +47,27 @@ DESIGNATED 20 LABEL ~TSL_KachikoPortrait_Original~
 SUBCOMPONENT ~Kachiko Portrait~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
-COPY ~%MOD_FOLDER%/portraits/vpkachi1l.bmp~ ~override/vpkachiL.bmp~
-COPY ~%MOD_FOLDER%/portraits/vpkachi1m.bmp~ ~override/vpkachiM.bmp~
-COPY ~%MOD_FOLDER%/portraits/vpkachi1s.bmp~ ~override/vpkachiS.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi1l.bmp~ ~override/ttkachiL.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi1m.bmp~ ~override/ttkachiM.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi1s.bmp~ ~override/ttkachiS.bmp~
 
 BEGIN ~Kachiko Alternate Portrait 1 (Enkida)~
 DESIGNATED 21 LABEL ~TSL_KachikoPortrait_Alt1~
 SUBCOMPONENT ~Kachiko Portrait~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
-COPY ~%MOD_FOLDER%/portraits/vpkachi2l.bmp~ ~override/vpkachiL.bmp~
-COPY ~%MOD_FOLDER%/portraits/vpkachi2m.bmp~ ~override/vpkachiM.bmp~
-COPY ~%MOD_FOLDER%/portraits/vpkachi2s.bmp~ ~override/vpkachiS.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi2l.bmp~ ~override/ttkachiL.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi2m.bmp~ ~override/ttkachiM.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi2s.bmp~ ~override/ttkachiS.bmp~
 
 BEGIN ~Kachiko Alternate Portrait 2~
 DESIGNATED 22 LABEL ~TSL_KachikoPortrait_Alt2~
 SUBCOMPONENT ~Kachiko Portrait~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
-COPY ~%MOD_FOLDER%/portraits/vpkachi3l.bmp~ ~override/vpkachiL.bmp~
-COPY ~%MOD_FOLDER%/portraits/vpkachi3m.bmp~ ~override/vpkachiM.bmp~
-COPY ~%MOD_FOLDER%/portraits/vpkachi3s.bmp~ ~override/vpkachiS.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi3l.bmp~ ~override/ttkachiL.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi3m.bmp~ ~override/ttkachiM.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi3s.bmp~ ~override/ttkachiS.bmp~
 
 // Soundsets
 
@@ -76,7 +76,7 @@ DESIGNATED 30 LABEL ~TSL_KachikoSoundset_New~
 SUBCOMPONENT ~Kachiko Soundset~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
-COPY_EXISTING ~vpkachi.cre~ override
+COPY_EXISTING ~ttkachi.cre~ override
   SAY MORALE @174
   SAY LEADER @175
   SAY BATTLE_CRY1 @176
@@ -127,7 +127,7 @@ DESIGNATED 31 LABEL ~TSL_KachikoSoundset_Old~
 SUBCOMPONENT ~Kachiko Soundset~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
-COPY_EXISTING ~vpkachi.cre~ override
+COPY_EXISTING ~ttkachi.cre~ override
   SAY LEADER @213
   SAY BATTLE_CRY1 @214
   SAY BATTLE_CRY2 @215

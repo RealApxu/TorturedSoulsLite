@@ -3,36 +3,36 @@ APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~ UNLESS ~CD_STATE_NOTVALID~
 
 // Splash Screens
 
-COPY ~%MOD_FOLDER%/2da/vptsstrt.2da~ override
+COPY ~%MOD_FOLDER%/2da/ttstart.2da~ override
 REPLACE ~scrtxt09~ @3
 
-COPY ~%MOD_FOLDER%/2da/vptsfin.2da~ override
+COPY ~%MOD_FOLDER%/2da/ttend.2da~ override
 REPLACE ~scrtxt11~ @4
 
-COPY ~%MOD_FOLDER%/2da/vpyoshnd.2da~ override
+COPY ~%MOD_FOLDER%/2da/ttyoshnd.2da~ override
 REPLACE ~yoshifin~ @6
 
 // Adding Kachiko and Yoshimo to 2DAs
 
 APPEND ~PDIALOG.2da~
-~VPKACHI VPKACHIP VPKACHIJ VPKACHID VPKACHP2 VPKACH2J VPKACHD2 VPKACH25~
-UNLESS ~VPKACHI~
+~TTKACHI TTKACHIP TTKACHIJ TTKACHID TTKACH2P TTKACH2J TTKACH2D TTKACH25~
+UNLESS ~TTKACHI~
 
 APPEND ~INTERDIA.2da~
-~VPKACHI VPKACHIB VPKACH2B~
-UNLESS ~VPKACHI~
+~TTKACHI TTKACHIB TTKACH2B~
+UNLESS ~TTKACHI~
 
 // Changing Yoshimo Values in 2DAs (Taken from jmaeq's Yoshimo's Remorse)
 
 COPY_EXISTING ~pdialog.2da~ ~override~
 REPLACE_TEXTUALLY
 ~YOSHIMO[%tab% %lnl%%mnl%%wnl%]+YOSHP[%tab% %lnl%%mnl%%wnl%]+YOSHJ[%tab% %lnl%%mnl%%wnl%]+YOSHD[%tab% %lnl%%mnl%%wnl%]+YOSHP[%tab% %lnl%%mnl%%wnl%]+YOSHJ[%tab% %lnl%%mnl%%wnl%]+YOSHD[%tab% %lnl%%mnl%%wnl%]+yosh25~
-~YOSHIMO YOSHP YOSHJ YOSHD VPYOSH2P VPYOSH2J VPYOSH2D VPYOSH25~
+~YOSHIMO YOSHP YOSHJ YOSHD TTYOSH2P TTYOSH2J TTYOSH2D TTYOSH25~
 
 COPY_EXISTING ~interdia.2da~ ~override~
 REPLACE_TEXTUALLY
 ~YOSHIMO[%tab% %lnl%%mnl%%wnl%]+BYOSHIM[%tab% %lnl%%mnl%%wnl%]+BYOSHIM~
-~YOSHIMO BYOSHIM VPYOSH2B~
+~YOSHIMO BYOSHIM TTYOSH2B~
 
 // Lizardman Animation
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~MLI2A1.BAM~ THEN BEGIN 
@@ -51,159 +51,178 @@ STR_VAR
 END
 
 // Epilogue Art
-COPY ~%MOD_FOLDER%/portraits/vphashil.bmp~ ~override/vphashiL.bmp~
+COPY ~%MOD_FOLDER%/portraits/tthashil.bmp~ ~override/tthashiL.bmp~
 
 // Dialogues
-COMPILE ~%MOD_FOLDER%/dlg/vpppireni.d~
-~%MOD_FOLDER%/dlg/vpppsaem.d~
-~%MOD_FOLDER%/dlg/vpsailoff.d~
-~%MOD_FOLDER%/dlg/vpaino.d~
-~%MOD_FOLDER%/dlg/vpalome.d~
-~%MOD_FOLDER%/dlg/vpchess.d~
-~%MOD_FOLDER%/dlg/vpchrdr1.d~
-~%MOD_FOLDER%/dlg/vphasuno.d~
-~%MOD_FOLDER%/dlg/vphitomi.d~
-~%MOD_FOLDER%/dlg/vphsiang.d~
-~%MOD_FOLDER%/dlg/vpkachb2.d~
-~%MOD_FOLDER%/dlg/vpkachi.d~
-~%MOD_FOLDER%/dlg/vpkachib.d~
-~%MOD_FOLDER%/dlg/vpkachij.d~
-~%MOD_FOLDER%/dlg/vpkachj2.d~
-~%MOD_FOLDER%/dlg/vpkiotsi.d~
-~%MOD_FOLDER%/dlg/vplulu.d~
-~%MOD_FOLDER%/dlg/vpmasaki.d~
-~%MOD_FOLDER%/dlg/vpnajoki.d~
-~%MOD_FOLDER%/dlg/vpnanny.d~
-~%MOD_FOLDER%/dlg/vpnklead.d~
-~%MOD_FOLDER%/dlg/vpnsons.d~
-~%MOD_FOLDER%/dlg/vpogi.d~
-~%MOD_FOLDER%/dlg/vpotako.d~
-~%MOD_FOLDER%/dlg/vpsasaki.d~
-~%MOD_FOLDER%/dlg/vpnpcrem.d~
-~%MOD_FOLDER%/dlg/vpyoshimo.d~
-~%MOD_FOLDER%/dlg/vpkachip.d~
+COMPILE ~%MOD_FOLDER%/dlg/ttppireni.d~
+~%MOD_FOLDER%/dlg/ttppsaem.d~
+~%MOD_FOLDER%/dlg/ttsailoff.d~
+~%MOD_FOLDER%/dlg/ttaino.d~
+~%MOD_FOLDER%/dlg/ttalome.d~
+~%MOD_FOLDER%/dlg/ttchess.d~
+~%MOD_FOLDER%/dlg/ttchrdr1.d~
+~%MOD_FOLDER%/dlg/tthasuno.d~
+~%MOD_FOLDER%/dlg/tthitomi.d~
+~%MOD_FOLDER%/dlg/tthsiang.d~
+~%MOD_FOLDER%/dlg/ttkachb2.d~
+~%MOD_FOLDER%/dlg/ttkachi.d~
+~%MOD_FOLDER%/dlg/ttkachib.d~
+~%MOD_FOLDER%/dlg/ttkachij.d~
+~%MOD_FOLDER%/dlg/ttkachj2.d~
+~%MOD_FOLDER%/dlg/ttkiotsi.d~
+~%MOD_FOLDER%/dlg/ttlulu.d~
+~%MOD_FOLDER%/dlg/ttmasaki.d~
+~%MOD_FOLDER%/dlg/ttnajoki.d~
+~%MOD_FOLDER%/dlg/ttnanny.d~
+~%MOD_FOLDER%/dlg/ttnklead.d~
+~%MOD_FOLDER%/dlg/ttnsons.d~
+~%MOD_FOLDER%/dlg/ttogi.d~
+~%MOD_FOLDER%/dlg/ttotako.d~
+~%MOD_FOLDER%/dlg/ttsasaki.d~
+~%MOD_FOLDER%/dlg/ttnpcrem.d~
+~%MOD_FOLDER%/dlg/ttyoshimo.d~
+~%MOD_FOLDER%/dlg/ttkachip.d~
 
 // Scripts
-COMPILE ~%MOD_FOLDER%/scripts/TSCutK01.baf~
-~%MOD_FOLDER%/scripts/TSCutK02.baf~
-~%MOD_FOLDER%/scripts/TSCutK03.baf~
-~%MOD_FOLDER%/scripts/TSCutK08.baf~
-~%MOD_FOLDER%/scripts/TSCutK09.baf~
-~%MOD_FOLDER%/scripts/TT0100.baf~
-~%MOD_FOLDER%/scripts/TT0102.baf~
-~%MOD_FOLDER%/scripts/TTcut01.baf~
-~%MOD_FOLDER%/scripts/TTcut02.baf~
-~%MOD_FOLDER%/scripts/TTcut03.baf~
-~%MOD_FOLDER%/scripts/TTcut04.baf~
-~%MOD_FOLDER%/scripts/TTcut05.baf~
-~%MOD_FOLDER%/scripts/TTcut06.baf~
-~%MOD_FOLDER%/scripts/TTcut11.baf~
-~%MOD_FOLDER%/scripts/TTcut12.baf~
-~%MOD_FOLDER%/scripts/TTcut13.baf~
-~%MOD_FOLDER%/scripts/TTcut14.baf~
-~%MOD_FOLDER%/scripts/TTcut15.baf~
-~%MOD_FOLDER%/scripts/TTcut16.baf~
-~%MOD_FOLDER%/scripts/TTcutBad.baf~
-~%MOD_FOLDER%/scripts/TTcutFi2.baf~
-~%MOD_FOLDER%/scripts/TTcutFin.baf~
-~%MOD_FOLDER%/scripts/TTcutHit.baf~
-~%MOD_FOLDER%/scripts/vp41ci.baf~
-~%MOD_FOLDER%/scripts/vp41disc.baf~
-~%MOD_FOLDER%/scripts/vpaino.baf~
-~%MOD_FOLDER%/scripts/vpainox.baf~
-~%MOD_FOLDER%/scripts/vpalome.baf~
-~%MOD_FOLDER%/scripts/vpaltair.baf~
-~%MOD_FOLDER%/scripts/vpaltear.baf~
-~%MOD_FOLDER%/scripts/vpaltfir.baf~
-~%MOD_FOLDER%/scripts/vpaltwat.baf~
-~%MOD_FOLDER%/scripts/vpaltuni.baf~
-~%MOD_FOLDER%/scripts/vpbasilc.baf~
-~%MOD_FOLDER%/scripts/vpchrdr1.baf~
-~%MOD_FOLDER%/scripts/vpchess.baf~
-~%MOD_FOLDER%/scripts/vpdbod.baf~
-~%MOD_FOLDER%/scripts/vpdbod2.baf~
-~%MOD_FOLDER%/scripts/vpdoorse.baf~
-~%MOD_FOLDER%/scripts/vphasuno.baf~
-~%MOD_FOLDER%/scripts/vphasunx.baf~
-~%MOD_FOLDER%/scripts/vphchild.baf~
-~%MOD_FOLDER%/scripts/vphitomi.baf~
-~%MOD_FOLDER%/scripts/vphitomx.baf~
-~%MOD_FOLDER%/scripts/vphkens.baf~
-~%MOD_FOLDER%/scripts/vphsiang.baf~
-~%MOD_FOLDER%/scripts/vphsianx.baf~
-~%MOD_FOLDER%/scripts/vphvisit.baf~
-~%MOD_FOLDER%/scripts/vpkach25.baf~
-~%MOD_FOLDER%/scripts/vpkachd2.baf~
-~%MOD_FOLDER%/scripts/vpkachis.baf~
-~%MOD_FOLDER%/scripts/vpkachix.baf~
-~%MOD_FOLDER%/scripts/vpkatnot.baf~
-~%MOD_FOLDER%/scripts/vpkattrp.baf~
-~%MOD_FOLDER%/scripts/vpkensx.baf~
-~%MOD_FOLDER%/scripts/vpkidnap.baf~
-~%MOD_FOLDER%/scripts/vpking.baf~
-~%MOD_FOLDER%/scripts/vpkiotsi.baf~
-~%MOD_FOLDER%/scripts/vpmasaki.baf~
-~%MOD_FOLDER%/scripts/vpmasakx.baf~
-~%MOD_FOLDER%/scripts/vpmichio.baf~
-~%MOD_FOLDER%/scripts/vpmichix.baf~
-~%MOD_FOLDER%/scripts/vpmkens.baf~
-~%MOD_FOLDER%/scripts/vpmomoko.baf~
-~%MOD_FOLDER%/scripts/vpmomokx.baf~
-~%MOD_FOLDER%/scripts/vpnajoki.baf~
-~%MOD_FOLDER%/scripts/vpnanny.baf~
-~%MOD_FOLDER%/scripts/vpnklead.baf~
-~%MOD_FOLDER%/scripts/vpnmonk.baf~
-~%MOD_FOLDER%/scripts/vpnpcrem.baf~
-~%MOD_FOLDER%/scripts/vpotakox.baf~
-~%MOD_FOLDER%/scripts/vppit.baf~
-~%MOD_FOLDER%/scripts/vpsamur1.baf~
-~%MOD_FOLDER%/scripts/vpsamur2.baf~
-~%MOD_FOLDER%/scripts/vpsebckp.baf~
-~%MOD_FOLDER%/scripts/vpseexit.baf~
-~%MOD_FOLDER%/scripts/vpsepass.baf~
-~%MOD_FOLDER%/scripts/vptalk01.baf~
-~%MOD_FOLDER%/scripts/vpthend.baf~
-~%MOD_FOLDER%/scripts/vpthends.baf~
-~%MOD_FOLDER%/scripts/vptrapai.baf~
-~%MOD_FOLDER%/scripts/vptrapea.baf~
-~%MOD_FOLDER%/scripts/vptrapfi.baf~
-~%MOD_FOLDER%/scripts/vptrapwa.baf~
-~%MOD_FOLDER%/scripts/vpundken.baf~
-~%MOD_FOLDER%/scripts/vpvaend.baf~
-~%MOD_FOLDER%/scripts/vpyoshex.baf~
-~%MOD_FOLDER%/scripts/vpkachi.baf~
-~%MOD_FOLDER%/scripts/vpkachid.baf~
+COMPILE ~%MOD_FOLDER%/scripts/ttcutk01.baf~
+~%MOD_FOLDER%/scripts/ttcutk02.baf~
+~%MOD_FOLDER%/scripts/ttcutk03.baf~
+~%MOD_FOLDER%/scripts/ttcutk08.baf~
+~%MOD_FOLDER%/scripts/ttcutk09.baf~
+~%MOD_FOLDER%/scripts/tt0100.baf~
+~%MOD_FOLDER%/scripts/tt0102.baf~
+~%MOD_FOLDER%/scripts/ttcut01.baf~
+~%MOD_FOLDER%/scripts/ttcut02.baf~
+~%MOD_FOLDER%/scripts/ttcut03.baf~
+~%MOD_FOLDER%/scripts/ttcut04.baf~
+~%MOD_FOLDER%/scripts/ttcut05.baf~
+~%MOD_FOLDER%/scripts/ttcut06.baf~
+~%MOD_FOLDER%/scripts/ttcut11.baf~
+~%MOD_FOLDER%/scripts/ttcut12.baf~
+~%MOD_FOLDER%/scripts/ttcut13.baf~
+~%MOD_FOLDER%/scripts/ttcut14.baf~
+~%MOD_FOLDER%/scripts/ttcut15.baf~
+~%MOD_FOLDER%/scripts/ttcut16.baf~
+~%MOD_FOLDER%/scripts/ttcutbad.baf~
+~%MOD_FOLDER%/scripts/ttcutfi2.baf~
+~%MOD_FOLDER%/scripts/ttcutfin.baf~
+~%MOD_FOLDER%/scripts/ttcuthit.baf~
+~%MOD_FOLDER%/scripts/tt41ci.baf~
+~%MOD_FOLDER%/scripts/tt41disc.baf~
+~%MOD_FOLDER%/scripts/ttaino.baf~
+~%MOD_FOLDER%/scripts/ttainox.baf~
+~%MOD_FOLDER%/scripts/ttalome.baf~
+~%MOD_FOLDER%/scripts/ttaltair.baf~
+~%MOD_FOLDER%/scripts/ttaltear.baf~
+~%MOD_FOLDER%/scripts/ttaltfir.baf~
+~%MOD_FOLDER%/scripts/ttaltwat.baf~
+~%MOD_FOLDER%/scripts/ttaltuni.baf~
+~%MOD_FOLDER%/scripts/ttbasilc.baf~
+~%MOD_FOLDER%/scripts/ttchrdr1.baf~
+~%MOD_FOLDER%/scripts/ttchess.baf~
+~%MOD_FOLDER%/scripts/ttdbod.baf~
+~%MOD_FOLDER%/scripts/ttdbod2.baf~
+~%MOD_FOLDER%/scripts/ttdoorse.baf~
+~%MOD_FOLDER%/scripts/tthasuno.baf~
+~%MOD_FOLDER%/scripts/tthasunx.baf~
+~%MOD_FOLDER%/scripts/tthchild.baf~
+~%MOD_FOLDER%/scripts/tthitomi.baf~
+~%MOD_FOLDER%/scripts/tthitomx.baf~
+~%MOD_FOLDER%/scripts/tthkens.baf~
+~%MOD_FOLDER%/scripts/tthsiang.baf~
+~%MOD_FOLDER%/scripts/tthsianx.baf~
+~%MOD_FOLDER%/scripts/tthvisit.baf~
+~%MOD_FOLDER%/scripts/ttkach25.baf~
+~%MOD_FOLDER%/scripts/ttkachd2.baf~
+~%MOD_FOLDER%/scripts/ttkachis.baf~
+~%MOD_FOLDER%/scripts/ttkachix.baf~
+~%MOD_FOLDER%/scripts/ttkatnot.baf~
+~%MOD_FOLDER%/scripts/ttkattrp.baf~
+~%MOD_FOLDER%/scripts/ttkensx.baf~
+~%MOD_FOLDER%/scripts/ttkidnap.baf~
+~%MOD_FOLDER%/scripts/ttking.baf~
+~%MOD_FOLDER%/scripts/ttkiotsi.baf~
+~%MOD_FOLDER%/scripts/ttmasaki.baf~
+~%MOD_FOLDER%/scripts/ttmasakx.baf~
+~%MOD_FOLDER%/scripts/ttmichio.baf~
+~%MOD_FOLDER%/scripts/ttmichix.baf~
+~%MOD_FOLDER%/scripts/ttmkens.baf~
+~%MOD_FOLDER%/scripts/ttmomoko.baf~
+~%MOD_FOLDER%/scripts/ttmomokx.baf~
+~%MOD_FOLDER%/scripts/ttnajoki.baf~
+~%MOD_FOLDER%/scripts/ttnanny.baf~
+~%MOD_FOLDER%/scripts/ttnklead.baf~
+~%MOD_FOLDER%/scripts/ttnmonk.baf~
+~%MOD_FOLDER%/scripts/ttnpcrem.baf~
+~%MOD_FOLDER%/scripts/ttotakox.baf~
+~%MOD_FOLDER%/scripts/ttpit.baf~
+~%MOD_FOLDER%/scripts/ttsamur1.baf~
+~%MOD_FOLDER%/scripts/ttsamur2.baf~
+~%MOD_FOLDER%/scripts/ttsebckp.baf~
+~%MOD_FOLDER%/scripts/ttseexit.baf~
+~%MOD_FOLDER%/scripts/ttsepass.baf~
+~%MOD_FOLDER%/scripts/tttalk01.baf~
+~%MOD_FOLDER%/scripts/ttthend.baf~
+~%MOD_FOLDER%/scripts/ttthends.baf~
+~%MOD_FOLDER%/scripts/tttrapai.baf~
+~%MOD_FOLDER%/scripts/tttrapea.baf~
+~%MOD_FOLDER%/scripts/tttrapfi.baf~
+~%MOD_FOLDER%/scripts/tttrapwa.baf~
+~%MOD_FOLDER%/scripts/ttundken.baf~
+~%MOD_FOLDER%/scripts/ttvaend.baf~
+~%MOD_FOLDER%/scripts/ttyoshex.baf~
+~%MOD_FOLDER%/scripts/ttkachi.baf~
+~%MOD_FOLDER%/scripts/ttkachid.baf~
 
 EXTEND_TOP ~AR1516.BCS~ ~%MOD_FOLDER%/scripts/ar1516.baf~
-EXTEND_BOTTOM ~AR6200.BCS~ ~%MOD_FOLDER%/scripts/ar6200.baf~
+EXTEND_TOP ~AR6200.BCS~ ~%MOD_FOLDER%/scripts/ar6200.baf~
 EXTEND_TOP ~YOSHIMO.BCS~ ~%MOD_FOLDER%/scripts/yoshimo.baf~
 EXTEND_TOP ~YOSHX.BCS~ ~%MOD_FOLDER%/scripts/yoshx.baf~
-EXTEND_TOP ~PPSAEM2.BCS~ ~%MOD_FOLDER%/scripts/ppsaem2.baf~
+//EXTEND_TOP ~PPSAEM2.BCS~ ~%MOD_FOLDER%/scripts/ppsaem2.baf~
 
 // Modified Original Scripts
-COPY_EXISTING ~cut41c.bcs~ ~override/vp41cn.bcs~
+
+COPY_EXISTING ~AR1516.BCS~ override
  DECOMPILE_AND_PATCH BEGIN
- REPLACE_TEXTUALLY ~ActionOverride("ppsaem",DestroySelf())~ ~ActionOverride("ppsaem",DestroySelf()) ActionOverride("Yoshimo",LeaveParty()) ActionOverride("Yoshimo",EscapeArea()) ActionOverride("vpkachi",LeaveParty()) ActionOverride("vpkachi",EscapeArea())~
+  REPLACE_TEXTUALLY
+   ~Global\("YoshJump","AR1516",0\)~
+   ~Global("YoshJump","AR1516",0) OR(2) Global("ttKachikoSaved","GLOBAL",3) Global("ttEvilPath","GLOBAL",3)~
  END
- BUT_ONLY_IF_IT_CHANGES
+BUT_ONLY_IF_IT_CHANGES
 
-COPY_EXISTING ~cut41d.bcs~ ~override/vp41dnsc.bcs~
+/*
+COPY_EXISTING ~CUT41C.BCS~ ~override/tt41cn.bcs~
  DECOMPILE_AND_PATCH BEGIN
- REPLACE_TEXTUALLY EXACT_MATCH ~ActionOverride("aran",DestroySelf())~ ~ActionOverride("aran",DestroySelf()) ActionOverride("Yoshimo",LeaveParty()) ActionOverride("Yoshimo",EscapeArea()) ActionOverride("vpkachi",LeaveParty()) ActionOverride("vpkachi",EscapeArea())~
-END
- BUT_ONLY_IF_IT_CHANGES
+  REPLACE_TEXTUALLY
+   ~ActionOverride("ppsaem",DestroySelf())~
+   ~ActionOverride("ppsaem",DestroySelf()) ActionOverride("Yoshimo",LeaveParty()) ActionOverride("Yoshimo",EscapeArea()) ActionOverride("ttkachi",LeaveParty()) ActionOverride("ttkachi",EscapeArea())~
+ END
+BUT_ONLY_IF_IT_CHANGES
 
-COPY_EXISTING ~cut41g.bcs~ ~override/vp41g.bcs~
+COPY_EXISTING ~CUT41D.BCS~ ~override/tt41dnsc.bcs~
  DECOMPILE_AND_PATCH BEGIN
- REPLACE_TEXTUALLY ~\(ActionOverride("Yoshimo",[^!])\)~ ~~
-END
- BUT_ONLY_IF_IT_CHANGES
+  REPLACE_TEXTUALLY EXACT_MATCH
+   ~ActionOverride("aran",DestroySelf())~
+   ~ActionOverride("aran",DestroySelf()) ActionOverride("Yoshimo",LeaveParty()) ActionOverride("Yoshimo",EscapeArea()) ActionOverride("ttkachi",LeaveParty()) ActionOverride("ttkachi",EscapeArea())~
+ END
+BUT_ONLY_IF_IT_CHANGES
+*/
 
-COPY_EXISTING ~cut41j.bcs~ ~override/vp41j.bcs~
+COPY_EXISTING ~CUT41G.BCS~ ~override/tt41g.bcs~
  DECOMPILE_AND_PATCH BEGIN
- REPLACE_TEXTUALLY ~\(ActionOverride("Yoshimo",[^!])\)~ ~~
-END
- BUT_ONLY_IF_IT_CHANGES
+  REPLACE_TEXTUALLY
+   ~\(ActionOverride("Yoshimo",[^!])\)~
+   ~~
+ END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~CUT41J.bcs~ ~override/tt41j.bcs~
+ DECOMPILE_AND_PATCH BEGIN
+  REPLACE_TEXTUALLY
+   ~\(ActionOverride("Yoshimo",[^!])\)~
+   ~~
+ END
+BUT_ONLY_IF_IT_CHANGES
 
 //Areas
 COPY ~%MOD_FOLDER%/are~ override
@@ -241,229 +260,229 @@ UNLESS ~TT0100~
 //Items
 COPY ~%MOD_FOLDER%/eff~ override
 
-COPY ~%MOD_FOLDER%/itm/vpaxecha.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttaxecha.itm~ override
  SAY NAME2 @12
  SAY DESC @13
 
-COPY ~%MOD_FOLDER%/itm/vpbeltst.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttbeltst.itm~ override
  SAY NAME2 @14
  SAY DESC @15
  
-COPY ~%MOD_FOLDER%/itm/vpbess.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttbess.itm~ override
  SAY NAME2 @16
  SAY DESC @17
 
-COPY ~%MOD_FOLDER%/itm/vpbbow.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttbbow.itm~ override
  SAY NAME2 @24
  SAY DESC @25
 
-COPY ~%MOD_FOLDER%/itm/vpbook08.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttbook08.itm~ override
  
-COPY ~%MOD_FOLDER%/itm/vpbootfo.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttbootfo.itm~ override
  SAY NAME2 @26
  SAY DESC @27
  
-COPY ~%MOD_FOLDER%/itm/vpboring.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttboring.itm~ override
  SAY NAME2 @28
 
-COPY ~%MOD_FOLDER%/itm/vpedven.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttedven.itm~ override
  SAY NAME2 @28 
  
-COPY ~%MOD_FOLDER%/itm/vpbowham.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttbowham.itm~ override
  SAY NAME2 @29
  SAY DESC @30
  
-COPY ~%MOD_FOLDER%/itm/vpkatair.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkatair.itm~ override
  SAY NAME2 @31
  SAY DESC @32
  
-COPY ~%MOD_FOLDER%/itm/vpkatear.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkatear.itm~ override
  SAY NAME2 @33
  SAY DESC @34
  
-COPY ~%MOD_FOLDER%/itm/vpkatfir.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkatfir.itm~ override
  SAY NAME2 @35
  SAY DESC @36
 
-COPY ~%MOD_FOLDER%/itm/vpkatwat.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkatwat.itm~ override
  SAY NAME2 @37
  SAY DESC @38
  
-COPY ~%MOD_FOLDER%/itm/vpwardex.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttwardex.itm~ override
  SAY NAME2 @39
  SAY DESC @40
 
-COPY ~%MOD_FOLDER%/itm/vpgodble.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttgodble.itm~ override
  SAY NAME2 @41
  SAY DESC @42
  
-COPY ~%MOD_FOLDER%/itm/vpkswor1.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkswor1.itm~ override
  SAY NAME2 @43
  SAY DESC @44
  
-COPY ~%MOD_FOLDER%/itm/vpkswor2.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkswor2.itm~ override
  SAY NAME2 @45
  SAY DESC @46
 
-COPY ~%MOD_FOLDER%/itm/vpkedl.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkedl.itm~ override
  SAY NAME2 @47
  SAY DESC @48
 
-COPY ~%MOD_FOLDER%/itm/vpkeybro.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkeybro.itm~ override
  SAY NAME2 @49
  SAY UNIDENTIFIED_DESC @50
  SAY DESC @50
  
-COPY ~%MOD_FOLDER%/itm/vpkeycop.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkeycop.itm~ override
  SAY NAME2 @51
  SAY UNIDENTIFIED_DESC @52
  SAY DESC @52
  
-COPY ~%MOD_FOLDER%/itm/vpkeydun.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkeydun.itm~ override
  SAY NAME2 @53
  SAY UNIDENTIFIED_DESC @54
  SAY DESC @54
  
-COPY ~%MOD_FOLDER%/itm/vpkeyele.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkeyele.itm~ override
  SAY NAME2 @55
  SAY UNIDENTIFIED_DESC @56
  SAY DESC @56
  
-COPY ~%MOD_FOLDER%/itm/vpkeygol.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkeygol.itm~ override
  SAY NAME2 @57
  SAY UNIDENTIFIED_DESC @58
  SAY DESC @58
 
-COPY ~%MOD_FOLDER%/itm/vpkeypla.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkeypla.itm~ override
  SAY NAME2 @59
  SAY UNIDENTIFIED_DESC @60
  SAY DESC @60
 
-COPY ~%MOD_FOLDER%/itm/vpkeysil.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkeysil.itm~ override
  SAY NAME2 @61
  SAY UNIDENTIFIED_DESC @62
  SAY DESC @62
 
-COPY ~%MOD_FOLDER%/itm/vpnring2.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttnring2.itm~ override
  SAY NAME2 @65
  SAY DESC @66
 
-COPY ~%MOD_FOLDER%/itm/vpyoring.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttyoring.itm~ override
  SAY NAME2 @67
  SAY DESC @68
 
-COPY ~%MOD_FOLDER%/itm/vpotakam.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttotakam.itm~ override
  SAY NAME1 @69
  SAY NAME2 @69
  SAY UNIDENTIFIED_DESC @70
  SAY DESC @70
  
-COPY ~%MOD_FOLDER%/itm/vptsrope.itm~ override
+COPY ~%MOD_FOLDER%/itm/tttsrope.itm~ override
  SAY NAME2 @72
  SAY UNIDENTIFIED_DESC @73
  SAY DESC @73
  
-COPY ~%MOD_FOLDER%/itm/vppursta.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttpursta.itm~ override
  SAY DESC @75
  
-COPY ~%MOD_FOLDER%/itm/vpringed.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttringed.itm~ override
  SAY NAME2 @76
  SAY DESC @77
  
-COPY ~%MOD_FOLDER%/itm/vprobear.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttrobear.itm~ override
  SAY NAME2 @78
  SAY DESC @79
  
-COPY ~%MOD_FOLDER%/itm/vproghat.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttroghat.itm~ override
  SAY NAME1 @80
  SAY NAME2 @81
  SAY UNIDENTIFIED_DESC @82
  SAY DESC @83
 
-COPY ~%MOD_FOLDER%/itm/vpscarab.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttscarab.itm~ override
  SAY NAME2 @84
  SAY DESC @85
 
-COPY ~%MOD_FOLDER%/itm/vpwardti.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttwardti.itm~ override
  SAY NAME2 @86
  
-COPY ~%MOD_FOLDER%/itm/vptrrin2.itm~ override
+COPY ~%MOD_FOLDER%/itm/tttrrin2.itm~ override
  SAY NAME2 @87
  SAY DESC @88
 
-COPY ~%MOD_FOLDER%/itm/vppot1a.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttpot1a.itm~ override
  SAY NAME2 @89
  SAY DESC @90
  
-COPY ~%MOD_FOLDER%/itm/vppot3c.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttpot3c.itm~ override
  SAY NAME2 @91
  SAY DESC @90
  
-COPY ~%MOD_FOLDER%/itm/vppot4b.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttpot4b.itm~ override
  SAY NAME2 @92
  SAY DESC @90
  
-COPY ~%MOD_FOLDER%/itm/vppot4c.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttpot4c.itm~ override
  SAY NAME2 @93
  SAY DESC @94
  
-COPY ~%MOD_FOLDER%/itm/vppot5b.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttpot5b.itm~ override
  SAY NAME2 @95
  SAY DESC @90
 
-COPY ~%MOD_FOLDER%/itm/vpwuhalt.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttwuhalt.itm~ override
  SAY NAME2 @96
  SAY DESC @97
  
-COPY ~%MOD_FOLDER%/itm/vpwujen.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttwujen.itm~ override
  SAY NAME2 @400
  SAY DESC @98
 
-COPY ~%MOD_FOLDER%/itm/vpogi.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttogi.itm~ override
  SAY NAME2 @99
  SAY DESC @100
 
-COPY ~%MOD_FOLDER%/itm/vpkenbra.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttkenbra.itm~ override
  SAY NAME2 @101
  SAY DESC @102
 
-COPY ~%MOD_FOLDER%/itm/vpyoleat.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttyoleat.itm~ override
  SAY NAME2 @103
  SAY DESC @104
 
-COPY ~%MOD_FOLDER%/itm/vpyokat.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttyokat.itm~ override
  SAY NAME2 @105
  SAY DESC @106
 
-COPY ~%MOD_FOLDER%/itm/vpunknin.itm~ override
-COPY ~%MOD_FOLDER%/itm/vpcharts.itm~ override
-COPY ~%MOD_FOLDER%/itm/vpdaxe.itm~ override
-COPY ~%MOD_FOLDER%/itm/vpdplate.itm~ override
-COPY ~%MOD_FOLDER%/itm/vpdshld.itm~ override
-COPY ~%MOD_FOLDER%/itm/vpelhyd1.itm~ override
-COPY ~%MOD_FOLDER%/itm/vpmasitm.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttunknin.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttcharts.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttdaxe.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttdplate.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttdshld.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttelhyd1.itm~ override
+COPY ~%MOD_FOLDER%/itm/ttmasitm.itm~ override
 
 //2da Appends
 
 APPEND ~item_use.2da~
-~vpnring2 vpkachi 9382 2 99999
-vpkswor1 vpkachi 9382 2 99999
-vpkswor2 vpkachi 9382 2 99999
-vpyokat yoshimo 9382 2 99998
-vpyoring yoshimo 9382 2 99998~
-UNLESS ~vpsleat~
+~ttnring2 ttkachi 9382 2 99999
+ttkswor1 ttkachi 9382 2 99999
+ttkswor2 ttkachi 9382 2 99999
+ttyokat yoshimo 9382 2 99998
+ttyoring yoshimo 9382 2 99998~
+UNLESS ~ttnring2~
 
 COPY_EXISTING ~item_use.2da~ override
 REPLACE ~99999~ @135
 REPLACE ~99998~ #9141
 
 APPEND ~TOOLTIP.2DA~
-~vproghat 77777774 77777775 -1
-vpscarab 77777776 77777777 -1
-vpwujen 77777783 99998921 -1
-vpnring2 99999921 99999922 99999923
-vpringed 88888887 88888888 88888889~
-UNLESS ~vproghat~
+~ttroghat 77777774 77777775 -1
+ttscarab 77777776 77777777 -1
+ttwujen 77777783 99998921 -1
+ttnring2 99999921 99999922 99999923
+ttringed 88888887 88888888 88888889~
+UNLESS ~ttroghat~
 
 COPY_EXISTING ~TOOLTIP.2DA~ override
 REPLACE ~99998921~ #8786 //Heal
@@ -479,173 +498,169 @@ REPLACE ~88888888~ #13075 //Stoneskin
 REPLACE ~88888889~ #15211 //Conjure Fire Elemental
 
 //Stores
-COPY ~%MOD_FOLDER%/sto/vphasuno.sto~ override
+COPY ~%MOD_FOLDER%/sto/tthasuno.sto~ override
 SAY NAME2 @118
 
 ///////////////////////////////
 //Creatures
 //////////////////////////////
 
-COPY ~%MOD_FOLDER%/cre/vpaino.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttaino.cre~ override
  SAY NAME1 @119
  SAY NAME2 @120
 
-COPY ~%MOD_FOLDER%/cre/vpainoa.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttainoa.cre~ override
  SAY NAME1 @119
  SAY NAME2 @120
 
-COPY ~%MOD_FOLDER%/cre/vpalome.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttalome.cre~ override
  SAY NAME1 @121
  SAY NAME2 @122
 
-COPY ~%MOD_FOLDER%/cre/vpbasil.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttbasil.cre~ override
  SAY NAME1 @123
  SAY NAME2 @123
 
-COPY ~%MOD_FOLDER%/cre/vpchrdr1.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttchdrag.cre~ override
  SAY NAME1 @127
  SAY NAME2 @127
  
-COPY ~%MOD_FOLDER%/cre/vpdeadkf.cre~ override
-COPY ~%MOD_FOLDER%/cre/vpdeadkm.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttdeadkf.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttdeadkm.cre~ override
 
-COPY ~%MOD_FOLDER%/cre/vpwatelg.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttwatelg.cre~ override
  SAY NAME1 @128
  SAY NAME2 @128
  
-COPY ~%MOD_FOLDER%/cre/vpwatel.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttwatel.cre~ override
  SAY NAME1 @128
  SAY NAME2 @128
 
-COPY ~%MOD_FOLDER%/cre/vpgzomb.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttgzomb.cre~ override
  SAY NAME1 @129
  SAY NAME2 @129
 
-COPY ~%MOD_FOLDER%/cre/vphaksu.cre~ override
+COPY ~%MOD_FOLDER%/cre/tthaksu.cre~ override
 
-COPY ~%MOD_FOLDER%/cre/vphheal.cre~ override
+COPY ~%MOD_FOLDER%/cre/tthasuno.cre~ override
  SAY NAME1 @118
  SAY NAME2 @118
 
-COPY ~%MOD_FOLDER%/cre/vphitomi.cre~ override
+COPY ~%MOD_FOLDER%/cre/tthitomi.cre~ override
  SAY NAME1 @130
  SAY NAME2 @131
 
-COPY ~%MOD_FOLDER%/cre/vphkensf.cre~ override
+COPY ~%MOD_FOLDER%/cre/tthkensf.cre~ override
  SAY NAME1 @132
  SAY NAME2 @132
 
-COPY ~%MOD_FOLDER%/cre/vphkens.cre~ override
+COPY ~%MOD_FOLDER%/cre/tthkens.cre~ override
  SAY NAME1 @132
  SAY NAME2 @132
 
-COPY ~%MOD_FOLDER%/cre/vpsamur1.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttsamur1.cre~ override
  SAY NAME1 @133
  SAY NAME2 @133
 
-COPY ~%MOD_FOLDER%/cre/vpsamur2.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttsamur2.cre~ override
  SAY NAME1 @134
  SAY NAME2 @134
 
-COPY ~%MOD_FOLDER%/cre/vpkachis.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttkachis.cre~ override
  SAY NAME1 @135
  SAY NAME2 @135
 
- COPY ~%MOD_FOLDER%/cre/vpkachid.cre~ override
+ COPY ~%MOD_FOLDER%/cre/ttkachid.cre~ override
  SAY NAME1 @135
  SAY NAME2 @135
-
-COPY ~%MOD_FOLDER%/cre/vpking.cre~ override
- SAY NAME1 @136
- SAY NAME2 @136
  
-COPY ~%MOD_FOLDER%/cre/vpkiotsi.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttkiotsi.cre~ override
  SAY NAME1 @137
  SAY NAME2 @137
 
-COPY ~%MOD_FOLDER%/cre/vplulu.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttlulu.cre~ override
  SAY NAME1 @139
  SAY NAME2 @140
  
-COPY ~%MOD_FOLDER%/cre/vpmasaki.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttmasaki.cre~ override
  SAY NAME1 @141
  SAY NAME2 @142
 
-COPY ~%MOD_FOLDER%/cre/vpmichio.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttmichio.cre~ override
  SAY NAME1 @143
  SAY NAME2 @144
  
-COPY ~%MOD_FOLDER%/cre/vpmomoko.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttmomoko.cre~ override
  SAY NAME1 @145
  SAY NAME2 @146
  
-COPY ~%MOD_FOLDER%/cre/vpnajoki.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttnajoki.cre~ override
  SAY NAME1 @147
  SAY NAME2 @148
  
-COPY ~%MOD_FOLDER%/cre/vpnajoka.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttnajoka.cre~ override
  SAY NAME1 @147
  SAY NAME2 @148
  
-COPY ~%MOD_FOLDER%/cre/vpnanny.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttnanny.cre~ override
  SAY NAME1 @149
  SAY NAME2 @149
  
-COPY ~%MOD_FOLDER%/cre/vpnkens.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttnkens.cre~ override
  SAY NAME1 @150
  SAY NAME2 @150
 
-COPY ~%MOD_FOLDER%/cre/vpmkens.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttnkensm.cre~ override
  SAY NAME1 @150
  SAY NAME2 @150
 
-COPY ~%MOD_FOLDER%/cre/vpfkens.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttnkensf.cre~ override
  SAY NAME1 @150
  SAY NAME2 @150
 
-COPY ~%MOD_FOLDER%/cre/vpnlead.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttnlead.cre~ override
  SAY NAME1 @151
  SAY NAME2 @151
  
-COPY ~%MOD_FOLDER%/cre/vpnmonk.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttnmonk.cre~ override
  SAY NAME1 @152
  SAY NAME2 @152
  
-COPY ~%MOD_FOLDER%/cre/vpogi.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttogi.cre~ override
  SAY NAME1 @153
  SAY NAME2 @154
  
-COPY ~%MOD_FOLDER%/cre/vpotako.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttotako.cre~ override
  SAY NAME1 @155
  SAY NAME2 @156
 
-COPY ~%MOD_FOLDER%/cre/vpsasaki.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttsasaki.cre~ override
  SAY NAME1 @160
  SAY NAME2 @161
 
-COPY ~%MOD_FOLDER%/cre/vpstonvf.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttstonvf.cre~ override
  SAY NAME1 @162
  SAY NAME2 @162
  
-COPY ~%MOD_FOLDER%/cre/vpstonvm.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttstonvm.cre~ override
  SAY NAME1 @162
  SAY NAME2 @162
  
-COPY ~%MOD_FOLDER%/cre/vpundken.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttundken.cre~ override
  SAY NAME1 @151
  SAY NAME2 @151
 
-COPY ~%MOD_FOLDER%/cre/vphsiang.cre~ override
+COPY ~%MOD_FOLDER%/cre/tthsiang.cre~ override
  SAY NAME1 @164
  SAY NAME2 @164
-COPY ~%MOD_FOLDER%/cre/vpkuku.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttkuku.cre~ override
  SAY NAME1 @165
  SAY NAME2 @165
 
-COPY ~%MOD_FOLDER%/cre/vpliz06.cre~ override
-COPY ~%MOD_FOLDER%/cre/vpliz07.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttliz06.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttliz07.cre~ override
 
-COPY ~%MOD_FOLDER%/cre/vpkachi.cre~ override
+COPY ~%MOD_FOLDER%/cre/ttkachi.cre~ override
  SAY NAME1 @135
  SAY NAME2 @135
  SAY BIO @211

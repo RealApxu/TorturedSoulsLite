@@ -1,0 +1,54 @@
+///////////////////////
+// Romance Talks
+///////////////////////
+
+// Talks 1-2
+
+IF
+	InParty(Myself)
+	InParty("Yoshimo")
+	See("Yoshimo")
+	!Dead("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
+	GlobalTimerExpired("ttKachikoRomanceTimer","GLOBAL")
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
+	!Global("ttOnIsland","GLOBAL",1)
+	OR(2)
+		Global("ttKachikoRomance","GLOBAL",1)
+		Global("ttKachikoRomance","GLOBAL",3)
+	!AreaType(DUNGEON)
+THEN
+	RESPONSE #100
+		IncrementGlobal("ttKachikoRomance","GLOBAL",1)
+		PlaySong(0)
+		PlaySound("ttkachls")
+		Interact("Yoshimo")
+END
+
+// Talk 5
+
+IF
+	InParty(Myself)
+	InParty("Yoshimo")
+	See("Yoshimo")
+	!Dead("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
+	!Global("ttOnIsland","GLOBAL",1)
+	Global("ttKachikoRomance","GLOBAL",7)
+	GlobalTimerExpired("ttKachikoRomanceTimer","GLOBAL")
+	!AreaType(DUNGEON)
+	OR(2)
+		AreaType(OUTDOOR)
+		AreaType(FOREST)
+THEN
+	RESPONSE #100
+		IncrementGlobal("ttKachikoRomance","GLOBAL",1)
+		PlaySong(0)
+		PlaySound("ttkachls")
+		Interact("Yoshimo")
+END

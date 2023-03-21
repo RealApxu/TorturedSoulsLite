@@ -1,0 +1,59 @@
+////////////////////////////////
+// Kachiko is wounded or dead
+////////////////////////////////
+
+IF
+    InParty(Myself)
+    InParty("ttkachi")  // Kachiko
+    HPPercentLT("ttkachi",20)  // Kachiko
+    !Dead("ttkachi")  // Kachiko
+    !CombatCounter(0)
+    Exists(LastAttackerOf("Yoshimo"))
+      Allegiance(LastAttackerOf("Yoshimo"),ENEMY)
+    Global("ttKachikoDies","GLOBAL",0)
+THEN
+    RESPONSE #100
+      SetGlobal("ttKachikoDies","GLOBAL",1)
+      DisplayStringHead(Myself,@240)  // @240
+      Continue()
+END
+  
+IF
+    InParty(Myself)
+    Dead("ttkachi")  // Kachiko
+    CombatCounter(0)
+    OR(2)
+      Global("ttKachikoDies","GLOBAL",0)
+      Global("ttKachikoDies","GLOBAL",1)
+THEN
+    RESPONSE #100
+      SetGlobal("ttKachikoDies","GLOBAL",2)
+END
+  
+IF
+    InParty(Myself)
+    Dead("ttkachi")  // Kachiko
+    !InParty("ttkachi")
+    CombatCounter(0)
+    See(Player1)
+    !StateCheck(Player1,CD_STATE_NOTVALID)
+    Global("ttKachikoDies","GLOBAL",2)
+THEN
+    RESPONSE #100
+      SetGlobal("ttKachikoDies","GLOBAL",3)
+      StartDialogueNoSet([PC])
+END
+  
+IF
+    InParty(Myself)
+    InParty("ttkachi")  // Kachiko
+    !Dead("ttkachi")  // Kachiko
+    OR(2)
+      Global("ttKachikoDies","GLOBAL",1)
+      Global("ttKachikoDies","GLOBAL",2)
+    CombatCounter(0)
+THEN
+    RESPONSE #100
+      SetGlobal("ttKachikoDies","GLOBAL",0)
+END
+

@@ -1,0 +1,45 @@
+IF
+	Allegiance(Myself,NEUTRAL)
+	Global("ttHitomiAttacked","GLOBAL",1)
+	Global("ttNHomeAttacked","GLOBAL",0)
+	Global("ttNakanishiAttacked","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ttNHomeAttacked","GLOBAL",1)
+		SetGlobal("ttNakanishiAttacked","LOCALS",1)
+		Enemy()
+END
+
+IF
+	Allegiance(Myself,NEUTRAL)
+	Global("ttNHomeAttacked","GLOBAL",0)
+	Global("ttNakanishiAttacked","LOCALS",0)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("ttNHomeAttacked","GLOBAL",1)
+		SetGlobal("ttNakanishiAttacked","LOCALS",1)
+		Enemy()
+END
+
+IF
+	Allegiance(Myself,NEUTRAL)
+	Global("ttNHomeAttacked","GLOBAL",0)
+	Global("ttNakanishiAttacked","LOCALS",0)
+	AttackedBy([PC],DEFAULT)
+THEN
+	RESPONSE #100
+		SetGlobal("ttNHomeAttacked","GLOBAL",1)
+		SetGlobal("ttNakanishiAttacked","LOCALS",1)
+		Enemy()
+END
+
+IF
+	Allegiance(Myself,NEUTRAL)
+	Global("ttNakanishiAttacked","LOCALS",0)
+	Global("ttNHomeAttacked","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ttNakanishiAttacked","LOCALS",1)
+		Enemy()
+END

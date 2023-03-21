@@ -3,13 +3,13 @@ IF
 THEN
 	RESPONSE #100
 		CutSceneId(Player6)
-		SetGlobal("Player_Against_Michio","GLOBAL",1)
-		SetGlobal("Nakanishi_Duel","GLOBAL",1)
+		SetGlobal("ttPlayerVsMichio","GLOBAL",1)
+		SetGlobal("ttNakanishiDuel","GLOBAL",1)
 		StorePartyLocations()
 		DropInventory()
 		StartCombatCounter()
 		FadeToColor([20.0],0)
-		ActionOverride("vpmichio",DestroySelf())
+		ActionOverride("ttmichio",DestroySelf())
 		Wait(1)
 		LeaveAreaLUAPanic("TT0308","",[550.485],0)
 		LeaveAreaLUA("TT0308","",[550.485],0)
@@ -17,7 +17,7 @@ THEN
 		MultiPlayerSync()
 		Wait(1)
 		FadeFromColor([20.0],0)
-		CreateCreature("vpmichio",[738.664],7)
-		ActionOverride("vpmichio",Enemy())
+		CreateCreature("ttmichio",[738.664],7)
+		ActionOverride("ttmichio",Enemy())
 		EndCutSceneMode()
 END

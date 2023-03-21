@@ -1,0 +1,7 @@
+IF
+	IsOverMe([PC])
+	Global("ttHashimotoVisited","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ttHashimotoVisited","GLOBAL",1)
+END
