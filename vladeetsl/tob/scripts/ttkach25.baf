@@ -1,0 +1,154 @@
+//////////////////////////
+// ToB Romance
+//////////////////////////
+
+IF
+	InParty(Myself)
+	InParty("Yoshimo")
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+	Global("ttKachikoRomanceActive","GLOBAL",1)
+	Global("ttKachikoLoveTalkTOB","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ttKachikoLoveTalkTOB","GLOBAL",1)
+		SetGlobalTimer("ttKachikoRomanceTimerTOB","GLOBAL",ONE_DAY)
+END
+
+//Talk 3
+IF
+	GlobalTimerExpired("ttKachikoRomanceTimerTOB","GLOBAL")
+	Global("ttKachikoRomanceActive","GLOBAL",1)
+	InParty(Myself)
+	InParty("Yoshimo")
+	See("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
+	!See([ENEMY])
+	!AreaType(DUNGEON)
+	Global("ttKachikoLoveTalkTOB","GLOBAL",5)
+THEN
+	RESPONSE #100
+		IncrementGlobal("ttKachikoLoveTalkTOB","GLOBAL",1)
+END
+
+IF
+	GlobalTimerExpired("ttKachikoRomanceTimerTOB","GLOBAL")
+	Global("ttKachikoRomanceActive","GLOBAL",1)
+	InParty(Myself)
+	InParty("Yoshimo")
+	See("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
+	!See([ENEMY])
+	!AreaType(DUNGEON)
+	Global("ttKachikoLoveTalkTOB","GLOBAL",6)
+THEN
+	RESPONSE #100
+		PlaySong(0)
+		PlaySound("ttkachls")
+		Interact("Yoshimo")
+END
+
+/////////////////////////////////
+// Yoshimo is wounded or dead
+/////////////////////////////////
+
+IF
+	InParty(Myself)
+	InParty("Yoshimo")
+	HPPercentLT("Yoshimo",20)
+	!Dead("Yoshimo")
+	!CombatCounter(0)
+	Exists(LastAttackerOf("Yoshimo"))
+	Allegiance(LastAttackerOf("Yoshimo"),ENEMY)
+	Global("ttYoshimoDies","GLOBAL",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ttYoshimoDies","GLOBAL",1)
+		DisplayStringHead(Myself,@247)
+		Continue()
+END
+
+IF
+	InParty(Myself)
+	Dead("Yoshimo")
+	CombatCounter(0)
+	OR(2)
+		Global("ttYoshimoDies","GLOBAL",0)
+		Global("ttYoshimoDies","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ttYoshimoDies","GLOBAL",2)
+END
+
+IF
+	InParty(Myself)
+	Dead("Yoshimo")  // Kachiko
+	!InParty("Yoshimo")
+	CombatCounter(0)
+	See(Player1)
+	!StateCheck(Player1,CD_STATE_NOTVALID)
+	Global("ttYoshimoDies","GLOBAL",2)
+THEN
+	RESPONSE #100
+		SetGlobal("ttYoshimoDies","GLOBAL",3)
+		StartDialogueNoSet([PC])
+END
+
+IF
+	InParty(Myself)
+	InParty("Yoshimo")
+	!Dead("Yoshimo")
+	OR(2)
+		Global("ttYoshimoDies","GLOBAL",1)
+		Global("ttYoshimoDies","GLOBAL",2)
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		SetGlobal("ttYoshimoDies","GLOBAL",0)
+END
+
+//////////////////////////////
+// Fight Blocks
+//////////////////////////////
+
+IF
+	Allegiance(Myself,ENEMY)
+	!InParty(Myself)
+	Global("NPCFight","LOCALS",0)
+THEN
+	RESPONSE #100
+		SetGlobal("NPCFight","LOCALS",1)
+		ChangeAIScript("",DEFAULT)
+		ChangeAIScript("useitem",GENERAL)
+		ChangeAIScript("ttkachix",SPECIFICS)
+		SetDialog("")
+		Continue()
+END
+
+IF
+	Allegiance(Myself,NEUTRAL)
+	AttackedBy([GOODCUTOFF],DEFAULT)
+THEN
+	RESPONSE #100
+		ChangeAIScript("ttkachix",SPECIFICS)
+		ChangeAIScript("useitem",GENERAL)
+		ChangeAIScript("",DEFAULT)
+		Enemy()
+		Continue()
+END
+
+IF
+	!Allegiance(Myself,ENEMY)
+	!InParty(Myself)
+	Global("NPCFight","LOCALS",1)
+THEN
+	RESPONSE #100
+		SetGlobal("NPCFight","LOCALS",0)
+		ChangeAIScript("",GENERAL)
+		ChangeAIScript("",SPECIFICS)
+		Continue()
+END

@@ -1,0 +1,31 @@
+IF
+	OnCreation()
+	Global("ttRevealArea","MYAREA",0)
+THEN
+	RESPONSE #100
+		SetGlobal("ttRevealArea","MYAREA",1)
+		Explore()
+END
+
+IF
+	RealGlobalTimerExpired("ttNKensaiSpawn","GLOBAL")
+	Global("ttKachikoKidnapped","GLOBAL",2)
+THEN
+	RESPONSE #100
+		CreateCreatureObjectOffScreen("ttnkens",Player1,0,0,0)
+		CreateCreatureObjectOffScreen("ttnkens",Player1,0,0,0)
+		CreateCreatureObjectOffScreen("ttnkens",Player1,0,0,0)
+		SetGlobal("ttKachikoKidnapped","GLOBAL",3)
+END
+
+IF
+	InParty("Yoshimo")
+	Global("ttAlomeMeet","GLOBAL",0)
+	GlobalGT("SPRITE_IS_DEADttnkens","GLOBAL",2)
+	CombatCounter(0)
+THEN
+	RESPONSE #100
+		SetGlobal("ttAlomeMeet","GLOBAL",1)
+		CreateCreatureObjectOffScreen("ttalome","Yoshimo",0,0,0)
+		ActionOverride("ttalome",Dialogue("Yoshimo"))
+END

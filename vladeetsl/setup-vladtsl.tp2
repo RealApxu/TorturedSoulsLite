@@ -1,0 +1,199 @@
+///////////////////////////////
+// Tortured Souls Lite
+///////////////////////////////
+
+BACKUP ~weidu_external/backup/vladeetsl~
+AUTHOR ~Vladislav Papper (vladp6@gmail.com)~
+VERSION ~0.4.1~
+
+NO_IF_EVAL_BUG
+AUTO_EVAL_STRINGS
+
+ALWAYS
+ ACTION_IF (GAME_IS ~eet~) BEGIN
+ OUTER_SET bg2_chapter = 12
+ END ELSE BEGIN
+ OUTER_SET bg2_chapter = 0
+ END
+ OUTER_FOR (i=1; i<=10; i=i+1) BEGIN
+ OUTER_SET bg2_chapter = bg2_chapter + 1
+ OUTER_SPRINT name_source ~bg2_chapter_%i%~
+ OUTER_SET ~%name_source%~ = bg2_chapter
+ END
+END
+
+AUTO_TRA ~%MOD_FOLDER%/tra/%s~
+
+LANGUAGE ~English~
+~english~
+~%MOD_FOLDER%/language/english/setup.tra~
+
+/*
+LANGUAGE ~Russian~
+~russian~
+~%MOD_FOLDER%/tra/russian/setup.tra~
+*/
+
+///////////////////////////////
+// Main Component
+///////////////////////////////
+
+BEGIN ~Tortured Souls Lite~
+DESIGNATED 0 LABEL ~vladee_tsl_main~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~Leina NPC can only be installed on BG2:EE or EET.~
+INCLUDE ~%MOD_FOLDER%/main.tpa~
+
+///////////////////////////////
+// Throne of Bhaal component
+///////////////////////////////
+
+BEGIN ~Tortured Souls Lite - Throne of Bhaal Expansion~
+DESIGNATED 10 LABEL ~vladee_tsl_tob~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
+INCLUDE ~%MOD_FOLDER%/tob.tpa~
+
+///////////////////////////////
+// Portraits
+///////////////////////////////
+
+BEGIN ~Kachiko Original Portrait (poemmaker2)~
+DESIGNATED 20 LABEL ~vladee_tsl_kachikoportrait_original~
+SUBCOMPONENT ~Kachiko Portrait~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
+
+COPY ~%MOD_FOLDER%/portraits/ttkachi1l.bmp~ ~override/ttkachiL.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi1m.bmp~ ~override/ttkachiM.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi1s.bmp~ ~override/ttkachiS.bmp~
+
+BEGIN ~Kachiko Alternate Portrait 1 (Enkida)~
+DESIGNATED 21 LABEL ~vladee_tsl_kachikoportrait_alt1~
+SUBCOMPONENT ~Kachiko Portrait~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
+
+COPY ~%MOD_FOLDER%/portraits/ttkachi2l.bmp~ ~override/ttkachiL.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi2m.bmp~ ~override/ttkachiM.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi2s.bmp~ ~override/ttkachiS.bmp~
+
+BEGIN ~Kachiko Alternate Portrait 2~
+DESIGNATED 22 LABEL ~vladee_tsl_kachikoportrait_alt2~
+SUBCOMPONENT ~Kachiko Portrait~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
+
+COPY ~%MOD_FOLDER%/portraits/ttkachi3l.bmp~ ~override/ttkachiL.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi3m.bmp~ ~override/ttkachiM.bmp~
+COPY ~%MOD_FOLDER%/portraits/ttkachi3s.bmp~ ~override/ttkachiS.bmp~
+
+///////////////////////////////
+// Soundsets
+///////////////////////////////
+
+BEGIN ~Kachiko Default Soundset~
+DESIGNATED 30 LABEL ~vladee_tsl_kachikosoundset_new~
+SUBCOMPONENT ~Kachiko Soundset~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
+
+COPY_EXISTING ~ttkachi.cre~ override
+ SAY MORALE @174
+ SAY LEADER @175
+ SAY BATTLE_CRY1 @176
+ SAY BATTLE_CRY2 @177
+ SAY BATTLE_CRY3 @178
+ SAY BATTLE_CRY4 @179
+ SAY BATTLE_CRY5 @180
+ SAY TIRED @181
+ SAY BORED @182
+ SAY DAMAGE ~[Kachiko Damaged Sound]~ [KACHIST]
+ SAY DYING ~[Kachiko Dying Sound]~ [KACHIDI]
+ SAY HURT @185
+ SAY AREA_DUNGEON ~[Kachiko In Dungeon Sound]~ [KACHIDU]
+ SAY AREA_FOREST ~[Kachiko In Forest Sound]~ [KACHIOU]
+ SAY AREA_DAY ~[Kachiko Day Time Sound]~ [KACHIDA]
+ SAY AREA_NIGHT ~[Kachiko Night Time Sound]~ [KACHINI]
+ SAY SELECT_COMMON1 @190
+ SAY SELECT_COMMON2 @191
+ SAY SELECT_COMMON3 @192
+ SAY SELECT_COMMON4 @193
+ SAY SELECT_COMMON5 @194
+ SAY SELECT_COMMON6 @195
+ SAY SELECT_ACTION1 @196
+ SAY SELECT_ACTION2 @197
+ SAY SELECT_ACTION3 @198
+ SAY SELECT_ACTION4 @199
+ SAY SELECT_ACTION5 @200
+ SAY SELECT_ACTION6 @201
+ SAY SELECT_ACTION7 @202
+ SAY SELECT_RARE1 @203
+ SAY SELECT_RARE1 @204
+ SAY REACT_TO_DIE_GENERAL @205
+ SAY CRITICAL_HIT ~[Kachiko Critical Hit Sound]~ [KACHICR]
+ SAY CRITICAL_MISS ~[Kachiko Critical Miss Sound]~ [KACHIMI]
+ SAY TARGET_IMMUNE ~[Kachiko Target Immunity Sound]~ [KACHIIM]
+ SAY INVENTORY_FULL ~[Kachiko Inventory Full Sound]~ [KACHICA]
+ SAY SPELL_DISRUPTED ~[Kachiko Spell Disrupted Sound]~ [KACHIFA]
+ 
+LAF HANDLE_AUDIO
+ STR_VAR
+ audio_path = ~%MOD_FOLDER%/audio/ss_new~
+ oggdec_path = ~%MOD_FOLDER%/audio~
+ sox_path = ~%MOD_FOLDER%/audio~
+END
+
+BEGIN ~Kachiko Legacy Soundset and Voiceover~
+DESIGNATED 31 LABEL ~vladee_tsl_kachikosoundset_old~
+SUBCOMPONENT ~Kachiko Soundset~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
+
+COPY_EXISTING ~ttkachi.cre~ override
+ SAY LEADER @213
+ SAY BATTLE_CRY1 @214
+ SAY BATTLE_CRY2 @215
+ SAY TIRED ~[Kachiko Tired Sound]~ [KACHITI]
+ SAY 0xdc @217
+ SAY DAMAGE ~[Kachiko Damaged Sound]~ [KACHIST]
+ SAY DYING ~[Kachiko Dying Sound]~ [KACHIDI]
+ SAY HURT @218
+ SAY AREA_DUNGEON @219
+ SAY AREA_FOREST @220
+ SAY AREA_DAY @221
+ SAY AREA_NIGHT @222
+ SAY SELECT_COMMON1 @223
+ SAY SELECT_COMMON2 @224
+ SAY SELECT_COMMON3 @225
+ SAY SELECT_COMMON4 @226
+ SAY SELECT_COMMON5 @227
+ SAY SELECT_COMMON6 @228
+ SAY SELECT_ACTION1 @229
+ SAY SELECT_ACTION2 @230
+ SAY SELECT_ACTION3 @231
+ SAY SELECT_ACTION4 @232
+ SAY SELECT_ACTION5 @233
+ SAY SELECT_ACTION6 @228
+ SAY CRITICAL_HIT @234
+ SAY CRITICAL_MISS @235
+ SAY TARGET_IMMUNE @236
+ SAY INVENTORY_FULL @237
+ SAY SPELL_DISRUPTED @238
+ 
+LAF HANDLE_AUDIO
+ STR_VAR
+ audio_path = ~%MOD_FOLDER%/audio/ss_old~
+ oggdec_path = ~%MOD_FOLDER%/audio~
+ sox_path = ~%MOD_FOLDER%/audio~
+END
+
+LAF HANDLE_AUDIO
+ STR_VAR
+ audio_path = ~%MOD_FOLDER%/audio/vo_old~
+ oggdec_path = ~%MOD_FOLDER%/audio~
+ sox_path = ~%MOD_FOLDER%/audio~
+END
+
+///////////////////////////////
+//NPC Portraits
+///////////////////////////////
+
+BEGIN ~Portraits for Island NPCs~
+DESIGNATED 50 LABEL ~vladee_tsl_miscportraits~
+REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
+
+COPY ~%MOD_FOLDER%/portraits/npc~ override

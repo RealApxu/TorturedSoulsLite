@@ -1,0 +1,54 @@
+///////////////////////
+// Romance Talks
+///////////////////////
+
+// Talks 1-2
+IF
+	GlobalTimerExpired("ttKachikoRomanceTimer","GLOBAL")
+	Global("ttKachikoRomanceActive","GLOBAL",1)
+	InParty(Myself)
+	InParty("Yoshimo")
+	See("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
+	!See([ENEMY])
+	!AreaType(DUNGEON)
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
+	!Global("ttOnIsland","GLOBAL",1)
+	OR(2)
+		Global("ttKachikoLoveTalk","GLOBAL",1)
+		Global("ttKachikoLoveTalk","GLOBAL",3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("ttKachikoLoveTalk","GLOBAL",1)
+		PlaySong(0)
+		PlaySound("ttkachls")
+		Interact("Yoshimo")
+END
+
+// Talk 5
+IF
+	GlobalTimerExpired("ttKachikoRomanceTimer","GLOBAL")
+	Global("ttKachikoRomanceActive","GLOBAL",1)
+	InParty(Myself)
+	InParty("Yoshimo")
+	See("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
+	!See([ENEMY])
+	!AreaType(DUNGEON)
+	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
+	!Global("ttOnIsland","GLOBAL",1)
+	OR(2)
+		AreaType(OUTDOOR)
+		AreaType(FOREST)
+	Global("ttKachikoLoveTalk","GLOBAL",9)
+THEN
+	RESPONSE #100
+		IncrementGlobal("ttKachikoLoveTalk","GLOBAL",1)
+		PlaySong(0)
+		PlaySound("ttkachls")
+		Interact("Yoshimo")
+END

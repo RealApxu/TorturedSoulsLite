@@ -1,0 +1,137 @@
+IF
+	IsOverMe(Player1)
+	OR(4)
+		PartyHasItem("ttkatair")
+		PartyHasItem("ttkatear")
+		PartyHasItem("ttkatfir")
+		PartyHasItem("ttkatwat")
+THEN
+	RESPONSE #100
+		Kill(Player1)
+END
+
+IF
+	IsOverMe(Player2)
+	OR(4)
+		PartyHasItem("ttkatair")
+		PartyHasItem("ttkatear")
+		PartyHasItem("ttkatfir")
+		PartyHasItem("ttkatwat")
+THEN
+	RESPONSE #100
+		Kill(Player2)
+END
+
+IF
+	IsOverMe(Player3)
+	OR(4)
+		PartyHasItem("ttkatair")
+		PartyHasItem("ttkatear")
+		PartyHasItem("ttkatfir")
+		PartyHasItem("ttkatwat")
+THEN
+	RESPONSE #100
+		Kill(Player3)
+END
+
+IF
+	IsOverMe(Player4)
+	OR(4)
+		PartyHasItem("ttkatair")
+		PartyHasItem("ttkatear")
+		PartyHasItem("ttkatfir")
+		PartyHasItem("ttkatwat")
+THEN
+	RESPONSE #100
+		Kill(Player4)
+END
+
+IF
+	IsOverMe(Player5)
+	OR(4)
+		PartyHasItem("ttkatair")
+		PartyHasItem("ttkatear")
+		PartyHasItem("ttkatfir")
+		PartyHasItem("ttkatwat")
+THEN
+	RESPONSE #100
+		Kill(Player5)
+END
+
+IF
+	IsOverMe(Player6)
+	OR(4)
+		PartyHasItem("ttkatair")
+		PartyHasItem("ttkatear")
+		PartyHasItem("ttkatfir")
+		PartyHasItem("ttkatwat")
+THEN
+	RESPONSE #100
+		Kill(Player6)
+END
+
+IF
+	OR(6)
+		IsOverMe(Player1)
+		IsOverMe(Player2)
+		IsOverMe(Player3)
+		IsOverMe(Player4)
+		IsOverMe(Player5)
+		IsOverMe(Player6)
+	Global("ttPlayerVsMomoko","GLOBAL",1)
+	Global("ttNakanishiDuel","GLOBAL",1)
+	!Dead("ttmomoko")
+THEN
+	RESPONSE #100
+		SetGlobal("ttHitomiAttacked","GLOBAL",1)
+END
+
+IF
+	OR(6)
+		IsOverMe(Player1)
+		IsOverMe(Player2)
+		IsOverMe(Player3)
+		IsOverMe(Player4)
+		IsOverMe(Player5)
+		IsOverMe(Player6)
+	Global("ttPlayerVsMomoko","GLOBAL",1)
+	Global("ttNakanishiDuel","GLOBAL",1)
+	Dead("ttmomoko")
+THEN
+	RESPONSE #100
+		SetGlobal("ttPlayerVsMomoko","GLOBAL",3)
+		SetGlobal("ttNakanishiDuel","GLOBAL",0)
+END
+
+IF
+	OR(6)
+		IsOverMe(Player1)
+		IsOverMe(Player2)
+		IsOverMe(Player3)
+		IsOverMe(Player4)
+		IsOverMe(Player5)
+		IsOverMe(Player6)
+	Global("ttPlayerVsMichio","GLOBAL",1)
+	Global("ttNakanishiDuel","GLOBAL",1)
+	!Dead("ttmichio")
+THEN
+	RESPONSE #100
+		SetGlobal("ttHitomiAttacked","GLOBAL",1)
+END
+
+IF
+	OR(6)
+		IsOverMe(Player1)
+		IsOverMe(Player2)
+		IsOverMe(Player3)
+		IsOverMe(Player4)
+		IsOverMe(Player5)
+		IsOverMe(Player6)
+	Global("ttPlayerVsMichio","GLOBAL",1)
+	Global("ttNakanishiDuel","GLOBAL",1)
+	Dead("ttmichio")
+THEN
+	RESPONSE #100
+		SetGlobal("ttPlayerVsMichio","GLOBAL",3)
+		SetGlobal("ttNakanishiDuel","GLOBAL",0)
+END

@@ -1,0 +1,643 @@
+//CamDawg's CD_STATE_NOTVALID
+APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~ UNLESS ~CD_STATE_NOTVALID~
+
+//Lizardman Animation
+ACTION_IF NOT FILE_EXISTS_IN_GAME ~MLI2A1.BAM~ THEN BEGIN 
+ COPY ~%MOD_FOLDER%/main/anim/lizard~ override
+END 
+
+//Splash Screens
+COPY ~%MOD_FOLDER%/main/2da/ttstart.2da~ override
+REPLACE ~99999~ @3
+
+COPY ~%MOD_FOLDER%/main/2da/ttend.2da~ override
+REPLACE ~99999~ @4
+
+//Adding Kachiko to 2DAs
+APPEND ~PDIALOG.2da~
+~TTKACHI TTKACHIP TTKACHIJ TTKACHID TTKACH2P TTKACH2J TTKACH2D TTKACH25~
+UNLESS ~TTKACHI~
+
+APPEND ~INTERDIA.2da~
+~TTKACHI TTKACHIB TTKACH2B~
+UNLESS ~TTKACHI~
+
+//Music & Ambient
+LAF HANDLE_AUDIO
+STR_VAR
+ audio_path = ~%MOD_FOLDER%/main/audio/sounds~
+ oggdec_path = ~%MOD_FOLDER%/main/audio~
+ sox_path = ~%MOD_FOLDER%/main/audio~
+END
+
+//Areas
+COPY ~%MOD_FOLDER%/main/are~ override
+COPY ~%MOD_FOLDER%/main/tis~ override
+
+COPY_EXISTING ~TT0100.ARE~ override
+ SAY 0x3e10 @7
+
+COPY_EXISTING ~TT0301.ARE~ override 
+ SAY 0x354 @8
+ SAY 0x418 @8
+ SAY 0x4dc @9
+
+COPY_EXISTING ~TT0307.ARE~ override
+ SAY 0x684 @10
+ SAY 0x5c0 @11
+
+APPEND ~MASTAREA.2DA~
+~TT0100 value
+TT0102 value
+TT0201 value
+TT0202 value
+TT0203 value
+TT0204 value
+TT0301 value
+TT0302 value
+TT0303 value
+TT0304 value
+TT0305 value
+TT0306 value
+TT0307 value
+TT0308 value~
+UNLESS ~TT0100~
+
+//Icons
+COPY ~%MOD_FOLDER%/main/bam~ override
+
+//Items
+COPY ~%MOD_FOLDER%/main/eff~ override
+
+COPY ~%MOD_FOLDER%/main/itm/ttaxecha.itm~ override
+ SAY NAME2 @12
+ SAY DESC @13
+
+COPY ~%MOD_FOLDER%/main/itm/ttbeltst.itm~ override
+ SAY NAME2 @14
+ SAY DESC @15
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttbess.itm~ override
+ SAY NAME2 @16
+ SAY DESC @17
+
+COPY ~%MOD_FOLDER%/main/itm/ttbbow.itm~ override
+ SAY NAME2 @24
+ SAY DESC @25
+
+COPY ~%MOD_FOLDER%/main/itm/ttbootfo.itm~ override
+ SAY NAME2 @26
+ SAY DESC @27
+
+COPY ~%MOD_FOLDER%/main/itm/ttbowham.itm~ override
+ SAY NAME2 @29
+ SAY DESC @30
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttkatair.itm~ override
+ SAY NAME2 @31
+ SAY DESC @32
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttkatear.itm~ override
+ SAY NAME2 @33
+ SAY DESC @34
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttkatfir.itm~ override
+ SAY NAME2 @35
+ SAY DESC @36
+
+COPY ~%MOD_FOLDER%/main/itm/ttkatwat.itm~ override
+ SAY NAME2 @37
+ SAY DESC @38
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttwardex.itm~ override
+ SAY NAME2 @39
+ SAY DESC @40
+
+COPY ~%MOD_FOLDER%/main/itm/ttgodble.itm~ override
+ SAY NAME2 @41
+ SAY DESC @42
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttkswor1.itm~ override
+ SAY NAME2 @43
+ SAY DESC @44
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttkswor2.itm~ override
+ SAY NAME2 @45
+ SAY DESC @46
+
+COPY ~%MOD_FOLDER%/main/itm/ttkedl.itm~ override
+ SAY NAME2 @47
+ SAY DESC @48
+
+COPY ~%MOD_FOLDER%/main/itm/ttkeybro.itm~ override
+ SAY NAME2 @49
+ SAY UNIDENTIFIED_DESC @50
+ SAY DESC @50
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttkeycop.itm~ override
+ SAY NAME2 @51
+ SAY UNIDENTIFIED_DESC @52
+ SAY DESC @52
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttkeydun.itm~ override
+ SAY NAME2 @53
+ SAY UNIDENTIFIED_DESC @54
+ SAY DESC @54
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttkeyele.itm~ override
+ SAY NAME2 @55
+ SAY UNIDENTIFIED_DESC @56
+ SAY DESC @56
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttkeygol.itm~ override
+ SAY NAME2 @57
+ SAY UNIDENTIFIED_DESC @58
+ SAY DESC @58
+
+COPY ~%MOD_FOLDER%/main/itm/ttkeypla.itm~ override
+ SAY NAME2 @59
+ SAY UNIDENTIFIED_DESC @60
+ SAY DESC @60
+
+COPY ~%MOD_FOLDER%/main/itm/ttkeysil.itm~ override
+ SAY NAME2 @61
+ SAY UNIDENTIFIED_DESC @62
+ SAY DESC @62
+
+COPY ~%MOD_FOLDER%/main/itm/ttnring2.itm~ override
+ SAY NAME2 @65
+ SAY DESC @66
+
+COPY ~%MOD_FOLDER%/main/itm/ttyoring.itm~ override
+ SAY NAME2 @67
+ SAY DESC @68
+
+COPY ~%MOD_FOLDER%/main/itm/ttotakam.itm~ override
+ SAY NAME1 @69
+ SAY NAME2 @69
+ SAY UNIDENTIFIED_DESC @70
+ SAY DESC @70
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttrope.itm~ override
+ SAY NAME2 @72
+ SAY UNIDENTIFIED_DESC @73
+ SAY DESC @73
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttpursta.itm~ override
+ SAY DESC @75
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttringed.itm~ override
+ SAY NAME2 @76
+ SAY DESC @77
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttrobear.itm~ override
+ SAY NAME2 @78
+ SAY DESC @79
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttroghat.itm~ override
+ SAY NAME1 @80
+ SAY NAME2 @81
+ SAY UNIDENTIFIED_DESC @82
+ SAY DESC @83
+
+COPY ~%MOD_FOLDER%/main/itm/ttscarab.itm~ override
+ SAY NAME2 @84
+ SAY DESC @85
+
+COPY ~%MOD_FOLDER%/main/itm/ttwardti.itm~ override
+ SAY NAME2 @86
+ 
+COPY ~%MOD_FOLDER%/main/itm/tttrrin2.itm~ override
+ SAY NAME2 @87
+ SAY DESC @88
+
+COPY ~%MOD_FOLDER%/main/itm/ttpot1a.itm~ override
+ SAY NAME2 @89
+ SAY DESC @90
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttpot3c.itm~ override
+ SAY NAME2 @91
+ SAY DESC @90
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttpot4b.itm~ override
+ SAY NAME2 @92
+ SAY DESC @90
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttpot4c.itm~ override
+ SAY NAME2 @93
+ SAY DESC @94
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttpot5b.itm~ override
+ SAY NAME2 @95
+ SAY DESC @90
+
+COPY ~%MOD_FOLDER%/main/itm/ttwuhalt.itm~ override
+ SAY NAME2 @96
+ SAY DESC @97
+ 
+COPY ~%MOD_FOLDER%/main/itm/ttwujen.itm~ override
+ SAY NAME2 @400
+ SAY DESC @98
+
+COPY ~%MOD_FOLDER%/main/itm/ttogi.itm~ override
+ SAY NAME2 @99
+ SAY DESC @100
+
+COPY ~%MOD_FOLDER%/main/itm/ttkenbra.itm~ override
+ SAY NAME2 @101
+ SAY DESC @102
+
+COPY ~%MOD_FOLDER%/main/itm/ttyoleat.itm~ override
+ SAY NAME2 @103
+ SAY DESC @104
+
+COPY ~%MOD_FOLDER%/main/itm/ttyokat.itm~ override
+ SAY NAME2 @105
+ SAY DESC @106
+
+COPY ~%MOD_FOLDER%/main/itm/ttcharts.itm~ override // Sea Charts
+
+COPY ~%MOD_FOLDER%/main/itm/ttunknin.itm~ override //waninja.itm
+COPY ~%MOD_FOLDER%/main/itm/ttbook08.itm~ override //book08.itm
+COPY ~%MOD_FOLDER%/main/itm/ttdaxe.itm~ override //ah1h03.itm
+COPY ~%MOD_FOLDER%/main/itm/ttdplate.itm~ override //plat19.itm
+COPY ~%MOD_FOLDER%/main/itm/ttdshld.itm~ override //shld19.itm
+COPY ~%MOD_FOLDER%/main/itm/ttboring.itm~ override //ring09.itm
+COPY ~%MOD_FOLDER%/main/itm/ttedven.itm~ override //ring09.itm
+
+COPY ~%MOD_FOLDER%/main/itm/ttelhyd1.itm~ override
+COPY ~%MOD_FOLDER%/main/itm/ttmasitm.itm~ override
+
+//Items 2da Appends
+APPEND ~item_use.2da~
+~ttnring2 ttkachi 9382 2 99999
+ttkswor1 ttkachi 9382 2 99999
+ttkswor2 ttkachi 9382 2 99999
+ttyokat yoshimo 9382 2 99998
+ttyoring yoshimo 9382 2 99998~
+UNLESS ~ttnring2~
+
+COPY_EXISTING ~item_use.2da~ override
+REPLACE ~99999~ @135
+REPLACE ~99998~ #9141
+
+APPEND ~TOOLTIP.2DA~
+~ttroghat 77777774 77777775 -1
+ttscarab 77777776 77777777 -1
+ttwujen 77777783 99998921 -1
+ttnring2 99999921 99999922 99999923
+ttringed 88888887 88888888 88888889~
+UNLESS ~ttroghat~
+
+COPY_EXISTING ~TOOLTIP.2DA~ override
+REPLACE ~99998921~ #8786 //Heal
+REPLACE ~77777774~ #12015 //Blindness 
+REPLACE ~77777775~ #13016 //Color Spray
+REPLACE ~77777776~ #12046 //Friends
+REPLACE ~77777777~ #14033 //Charm
+REPLACE ~77777783~ #35603 //Greater Restoration
+REPLACE ~99999921~ #12021 //Improved Invisibility
+REPLACE ~99999922~ #25937 //Improved Haste
+REPLACE ~88888887~ #13070 //Fireshield (Blue)
+REPLACE ~88888888~ #13075 //Stoneskin
+REPLACE ~88888889~ #15211 //Conjure Fire Elemental
+
+//Dialogues
+COMPILE ~%MOD_FOLDER%/main/dlg/ttppireni.d~
+~%MOD_FOLDER%/main/dlg/ttppsaem.d~
+~%MOD_FOLDER%/main/dlg/ttsailoff.d~
+~%MOD_FOLDER%/main/dlg/ttaino.d~
+~%MOD_FOLDER%/main/dlg/ttalome.d~
+~%MOD_FOLDER%/main/dlg/ttchess.d~
+~%MOD_FOLDER%/main/dlg/ttchrdr1.d~
+~%MOD_FOLDER%/main/dlg/tthasuno.d~
+~%MOD_FOLDER%/main/dlg/tthitomi.d~
+~%MOD_FOLDER%/main/dlg/tthsiang.d~
+~%MOD_FOLDER%/main/dlg/ttkachb2.d~
+~%MOD_FOLDER%/main/dlg/ttkachi.d~
+~%MOD_FOLDER%/main/dlg/ttkachib.d~
+~%MOD_FOLDER%/main/dlg/ttkachij.d~
+~%MOD_FOLDER%/main/dlg/ttkachj2.d~
+~%MOD_FOLDER%/main/dlg/ttkiotsi.d~
+~%MOD_FOLDER%/main/dlg/ttlulu.d~
+~%MOD_FOLDER%/main/dlg/ttmasaki.d~
+~%MOD_FOLDER%/main/dlg/ttnajoki.d~
+~%MOD_FOLDER%/main/dlg/ttnanny.d~
+~%MOD_FOLDER%/main/dlg/ttnklead.d~
+~%MOD_FOLDER%/main/dlg/ttnsons.d~
+~%MOD_FOLDER%/main/dlg/ttogi.d~
+~%MOD_FOLDER%/main/dlg/ttotako.d~
+~%MOD_FOLDER%/main/dlg/ttsasaki.d~
+~%MOD_FOLDER%/main/dlg/ttnpcrem.d~
+~%MOD_FOLDER%/main/dlg/ttyoshimo.d~
+~%MOD_FOLDER%/main/dlg/ttkachip.d~
+
+//Scripts
+COMPILE ~%MOD_FOLDER%/main/scripts/ttcutk01.baf~
+~%MOD_FOLDER%/main/scripts/ttcutk02.baf~
+~%MOD_FOLDER%/main/scripts/ttcutk03.baf~
+~%MOD_FOLDER%/main/scripts/ttcutk08.baf~
+~%MOD_FOLDER%/main/scripts/ttcutk09.baf~
+~%MOD_FOLDER%/main/scripts/tt0100.baf~
+~%MOD_FOLDER%/main/scripts/tt0102.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf01.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf02.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf03.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf04.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf05.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf06.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf11.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf12.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf13.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf14.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf15.baf~
+~%MOD_FOLDER%/main/scripts/ttcutf16.baf~
+~%MOD_FOLDER%/main/scripts/ttcutbad.baf~
+~%MOD_FOLDER%/main/scripts/ttcutfi2.baf~
+~%MOD_FOLDER%/main/scripts/ttcutfin.baf~
+~%MOD_FOLDER%/main/scripts/ttcuthit.baf~
+~%MOD_FOLDER%/main/scripts/tt41ci.baf~
+~%MOD_FOLDER%/main/scripts/tt41disc.baf~
+~%MOD_FOLDER%/main/scripts/ttaino.baf~
+//~%MOD_FOLDER%/main/scripts/ttainox.baf~
+~%MOD_FOLDER%/main/scripts/ttalome.baf~
+~%MOD_FOLDER%/main/scripts/ttaltair.baf~
+~%MOD_FOLDER%/main/scripts/ttaltear.baf~
+~%MOD_FOLDER%/main/scripts/ttaltfir.baf~
+~%MOD_FOLDER%/main/scripts/ttaltwat.baf~
+~%MOD_FOLDER%/main/scripts/ttaltuni.baf~
+~%MOD_FOLDER%/main/scripts/ttbasilc.baf~ //gbasilsk.bcs
+~%MOD_FOLDER%/main/scripts/ttchrdr1.baf~
+//~%MOD_FOLDER%/main/scripts/ttchess.baf~
+~%MOD_FOLDER%/main/scripts/ttdbod.baf~
+~%MOD_FOLDER%/main/scripts/ttdbod2.baf~
+~%MOD_FOLDER%/main/scripts/ttdoorse.baf~
+~%MOD_FOLDER%/main/scripts/tthasuno.baf~
+//~%MOD_FOLDER%/main/scripts/tthasunx.baf~
+~%MOD_FOLDER%/main/scripts/tthchild.baf~
+~%MOD_FOLDER%/main/scripts/tthitomi.baf~
+//~%MOD_FOLDER%/main/scripts/tthitomx.baf~
+~%MOD_FOLDER%/main/scripts/tthkens.baf~
+~%MOD_FOLDER%/main/scripts/tthsiang.baf~
+~%MOD_FOLDER%/main/scripts/tthsianx.baf~
+~%MOD_FOLDER%/main/scripts/tthvisit.baf~
+~%MOD_FOLDER%/main/scripts/ttkach25.baf~
+~%MOD_FOLDER%/main/scripts/ttkachd2.baf~
+~%MOD_FOLDER%/main/scripts/ttkachis.baf~
+~%MOD_FOLDER%/main/scripts/ttkachix.baf~
+~%MOD_FOLDER%/main/scripts/ttkatnot.baf~
+~%MOD_FOLDER%/main/scripts/ttkattrp.baf~
+~%MOD_FOLDER%/main/scripts/ttkensx.baf~
+~%MOD_FOLDER%/main/scripts/ttkidnap.baf~
+~%MOD_FOLDER%/main/scripts/ttking.baf~
+~%MOD_FOLDER%/main/scripts/ttkiotsi.baf~
+~%MOD_FOLDER%/main/scripts/ttmasaki.baf~
+~%MOD_FOLDER%/main/scripts/ttmasakx.baf~
+~%MOD_FOLDER%/main/scripts/ttmichio.baf~
+~%MOD_FOLDER%/main/scripts/ttmichix.baf~
+~%MOD_FOLDER%/main/scripts/ttmkens.baf~
+~%MOD_FOLDER%/main/scripts/ttmomoko.baf~
+~%MOD_FOLDER%/main/scripts/ttmomokx.baf~
+~%MOD_FOLDER%/main/scripts/ttnajoki.baf~
+~%MOD_FOLDER%/main/scripts/ttnanny.baf~
+~%MOD_FOLDER%/main/scripts/ttnklead.baf~
+~%MOD_FOLDER%/main/scripts/ttnmonk.baf~
+~%MOD_FOLDER%/main/scripts/ttnpcrem.baf~
+~%MOD_FOLDER%/main/scripts/ttotako.baf~
+~%MOD_FOLDER%/main/scripts/ttpit.baf~
+~%MOD_FOLDER%/main/scripts/ttsamur1.baf~
+~%MOD_FOLDER%/main/scripts/ttsamur2.baf~
+~%MOD_FOLDER%/main/scripts/ttsebckp.baf~
+~%MOD_FOLDER%/main/scripts/ttseexit.baf~
+~%MOD_FOLDER%/main/scripts/ttsepass.baf~
+~%MOD_FOLDER%/main/scripts/tttalk01.baf~
+~%MOD_FOLDER%/main/scripts/ttthend.baf~
+~%MOD_FOLDER%/main/scripts/ttthends.baf~
+~%MOD_FOLDER%/main/scripts/tttrapai.baf~
+~%MOD_FOLDER%/main/scripts/tttrapea.baf~
+~%MOD_FOLDER%/main/scripts/tttrapfi.baf~
+~%MOD_FOLDER%/main/scripts/tttrapwa.baf~
+~%MOD_FOLDER%/main/scripts/ttundken.baf~
+~%MOD_FOLDER%/main/scripts/ttvaend.baf~
+~%MOD_FOLDER%/main/scripts/ttyoshex.baf~
+~%MOD_FOLDER%/main/scripts/ttkachi.baf~
+~%MOD_FOLDER%/main/scripts/ttkachid.baf~
+
+EXTEND_TOP ~AR1516.BCS~ ~%MOD_FOLDER%/main/scripts/ar1516.baf~
+EXTEND_TOP ~AR6200.BCS~ ~%MOD_FOLDER%/main/scripts/ar6200.baf~
+EXTEND_TOP ~YOSHIMO.BCS~ ~%MOD_FOLDER%/main/scripts/yoshimo.baf~
+EXTEND_TOP ~YOSHX.BCS~ ~%MOD_FOLDER%/main/scripts/yoshx.baf~
+//EXTEND_TOP ~PPSAEM2.BCS~ ~%MOD_FOLDER%/main/scripts/ppsaem2.baf~
+
+// Modified Original Scripts
+
+COPY_EXISTING ~AR1516.BCS~ override
+ DECOMPILE_AND_PATCH BEGIN
+  REPLACE_TEXTUALLY
+   ~Global\("YoshJump","AR1516",0\)~
+   ~Global("YoshJump","AR1516",0) OR(2) Global("ttKachikoSaved","GLOBAL",3) Global("ttEvilPath","GLOBAL",3)~
+ END
+BUT_ONLY_IF_IT_CHANGES
+
+/*
+COPY_EXISTING ~CUT41C.BCS~ ~override/tt41cn.bcs~
+ DECOMPILE_AND_PATCH BEGIN
+  REPLACE_TEXTUALLY
+   ~ActionOverride("ppsaem",DestroySelf())~
+   ~ActionOverride("ppsaem",DestroySelf()) ActionOverride("Yoshimo",LeaveParty()) ActionOverride("Yoshimo",EscapeArea()) ActionOverride("ttkachi",LeaveParty()) ActionOverride("ttkachi",EscapeArea())~
+ END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~CUT41D.BCS~ ~override/tt41dnsc.bcs~
+ DECOMPILE_AND_PATCH BEGIN
+  REPLACE_TEXTUALLY EXACT_MATCH
+   ~ActionOverride("aran",DestroySelf())~
+   ~ActionOverride("aran",DestroySelf()) ActionOverride("Yoshimo",LeaveParty()) ActionOverride("Yoshimo",EscapeArea()) ActionOverride("ttkachi",LeaveParty()) ActionOverride("ttkachi",EscapeArea())~
+ END
+BUT_ONLY_IF_IT_CHANGES
+*/
+
+COPY_EXISTING ~CUT41G.BCS~ ~override/ttcut41g.bcs~
+ DECOMPILE_AND_PATCH BEGIN
+  REPLACE_TEXTUALLY
+   ~\(ActionOverride\("Yoshimo",[^!])\)~
+   ~~
+ END
+BUT_ONLY_IF_IT_CHANGES
+
+COPY_EXISTING ~CUT41J.bcs~ ~override/ttcut41j.bcs~
+ DECOMPILE_AND_PATCH BEGIN
+  REPLACE_TEXTUALLY
+   ~\(ActionOverride\("Yoshimo",[^!])\)~
+   ~~
+ END
+BUT_ONLY_IF_IT_CHANGES
+
+///////////////////////////////
+//Creatures
+//////////////////////////////
+
+COPY ~%MOD_FOLDER%/main/cre/ttaino.cre~ override
+ SAY NAME1 @119
+ SAY NAME2 @120
+
+COPY ~%MOD_FOLDER%/main/cre/ttainoa.cre~ override
+ SAY NAME1 @119
+ SAY NAME2 @120
+
+COPY ~%MOD_FOLDER%/main/cre/ttalome.cre~ override
+ SAY NAME1 @121
+ SAY NAME2 @122
+
+COPY ~%MOD_FOLDER%/main/cre/ttbasil.cre~ override
+ SAY NAME1 @123
+ SAY NAME2 @123
+
+COPY ~%MOD_FOLDER%/main/cre/ttchdrag.cre~ override
+ SAY NAME1 @127
+ SAY NAME2 @127
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttdeadkf.cre~ override
+COPY ~%MOD_FOLDER%/main/cre/ttdeadkm.cre~ override
+
+COPY ~%MOD_FOLDER%/main/cre/ttwatelg.cre~ override
+ SAY NAME1 @128
+ SAY NAME2 @128
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttwatel.cre~ override
+ SAY NAME1 @128
+ SAY NAME2 @128
+
+COPY ~%MOD_FOLDER%/main/cre/ttgzomb.cre~ override
+ SAY NAME1 @129
+ SAY NAME2 @129
+
+//COPY ~%MOD_FOLDER%/main/cre/tthaksu.cre~ override //haksu.cre
+
+COPY ~%MOD_FOLDER%/main/cre/tthasuno.cre~ override
+ SAY NAME1 @118
+ SAY NAME2 @118
+
+COPY ~%MOD_FOLDER%/main/cre/tthitomi.cre~ override
+ SAY NAME1 @130
+ SAY NAME2 @131
+
+COPY ~%MOD_FOLDER%/main/cre/tthkensf.cre~ override
+ SAY NAME1 @132
+ SAY NAME2 @132
+
+COPY ~%MOD_FOLDER%/main/cre/tthkens.cre~ override
+ SAY NAME1 @132
+ SAY NAME2 @132
+
+COPY ~%MOD_FOLDER%/main/cre/ttsamur1.cre~ override
+ SAY NAME1 @133
+ SAY NAME2 @133
+
+COPY ~%MOD_FOLDER%/main/cre/ttsamur2.cre~ override
+ SAY NAME1 @134
+ SAY NAME2 @134
+
+COPY ~%MOD_FOLDER%/main/cre/ttkachis.cre~ override
+ SAY NAME1 @135
+ SAY NAME2 @135
+
+ COPY ~%MOD_FOLDER%/main/cre/ttkachid.cre~ override
+ SAY NAME1 @135
+ SAY NAME2 @135
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttkiotsi.cre~ override
+ SAY NAME1 @137
+ SAY NAME2 @137
+
+COPY ~%MOD_FOLDER%/main/cre/ttlulu.cre~ override
+ SAY NAME1 @139
+ SAY NAME2 @140
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttmasaki.cre~ override
+ SAY NAME1 @141
+ SAY NAME2 @142
+
+COPY ~%MOD_FOLDER%/main/cre/ttmichio.cre~ override
+ SAY NAME1 @143
+ SAY NAME2 @144
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttmomoko.cre~ override
+ SAY NAME1 @145
+ SAY NAME2 @146
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttnajoki.cre~ override
+ SAY NAME1 @147
+ SAY NAME2 @148
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttnajoka.cre~ override
+ SAY NAME1 @147
+ SAY NAME2 @148
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttnanny.cre~ override
+ SAY NAME1 @149
+ SAY NAME2 @149
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttnkens.cre~ override
+ SAY NAME1 @150
+ SAY NAME2 @150
+
+COPY ~%MOD_FOLDER%/main/cre/ttnkensm.cre~ override
+ SAY NAME1 @150
+ SAY NAME2 @150
+
+COPY ~%MOD_FOLDER%/main/cre/ttnkensf.cre~ override
+ SAY NAME1 @150
+ SAY NAME2 @150
+
+COPY ~%MOD_FOLDER%/main/cre/ttnlead.cre~ override
+ SAY NAME1 @151
+ SAY NAME2 @151
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttnmonk.cre~ override
+ SAY NAME1 @152
+ SAY NAME2 @152
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttogi.cre~ override
+ SAY NAME1 @153
+ SAY NAME2 @154
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttotako.cre~ override
+ SAY NAME1 @155
+ SAY NAME2 @156
+
+COPY ~%MOD_FOLDER%/main/cre/ttsasaki.cre~ override
+ SAY NAME1 @160
+ SAY NAME2 @161
+
+COPY ~%MOD_FOLDER%/main/cre/ttstonvf.cre~ override
+ SAY NAME1 @162
+ SAY NAME2 @162
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttstonvm.cre~ override
+ SAY NAME1 @162
+ SAY NAME2 @162
+ 
+COPY ~%MOD_FOLDER%/main/cre/ttundken.cre~ override
+ SAY NAME1 @151
+ SAY NAME2 @151
+
+COPY ~%MOD_FOLDER%/main/cre/tthsiang.cre~ override
+ SAY NAME1 @164
+ SAY NAME2 @164
+
+COPY ~%MOD_FOLDER%/main/cre/ttkuku.cre~ override
+ SAY NAME1 @165
+ SAY NAME2 @165
+
+COPY ~%MOD_FOLDER%/main/cre/ttliz06.cre~ override
+COPY ~%MOD_FOLDER%/main/cre/ttliz07.cre~ override
+
+COPY ~%MOD_FOLDER%/main/cre/ttkachi.cre~ override
+ SAY NAME1 @135
+ SAY NAME2 @135
+ SAY BIO @211
+
+//Stores
+COPY ~%MOD_FOLDER%/main/sto/tthasuno.sto~ override
+SAY NAME2 @118

@@ -1,0 +1,10 @@
+IF
+	InParty("Yoshimo")
+	!StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	Global("YoshimoTeleport","GLOBAL",1)
+	Global("ttYoshimoExcused","GLOBAL",1)
+THEN
+	RESPONSE #100
+		SetGlobal("ttYoshimoExcused","GLOBAL",2)
+		CreateCreatureObjectDoor("tthsiang","Yoshimo",0,0,0)
+END

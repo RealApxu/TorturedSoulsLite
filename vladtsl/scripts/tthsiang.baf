@@ -1,8 +1,0 @@
-IF
-	!StateCheck(Player1,CD_STATE_NOTVALID)
-	CombatCounter(0)
-	NumTimesTalkedTo(0)
-THEN
-	RESPONSE #100
-		Dialogue("Yoshimo")
-END

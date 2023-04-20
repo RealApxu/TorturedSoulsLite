@@ -1,0 +1,9 @@
+IF
+	Global("AsylumPlot","GLOBAL",20)
+    Global("ttKachikoGoodEnd","GLOBAL",1)
+THEN
+	RESPONSE #0
+		ClearAllActions()
+		StartCutSceneMode()
+		StartCutScene("ttcut41g")
+END

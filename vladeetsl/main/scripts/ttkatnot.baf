@@ -1,0 +1,19 @@
+IF
+	OR(6)
+		IsOverMe(Player1)
+		IsOverMe(Player2)
+		IsOverMe(Player3)
+		IsOverMe(Player4)
+		IsOverMe(Player5)
+		IsOverMe(Player6)
+	Global("ttKatanaWarning","GLOBAL",0)
+	OR(4)
+		PartyHasItem("ttkatair")
+		PartyHasItem("ttkatear")
+		PartyHasItem("ttkatfir")
+		PartyHasItem("ttkatwat")
+THEN
+	RESPONSE #100
+		SetGlobal("ttKatanaWarning","GLOBAL",1)
+		DisplayStringHead(Player1,@251)
+END

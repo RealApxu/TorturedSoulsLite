@@ -1,0 +1,26 @@
+//////////////////////////
+// ToB Romance
+//////////////////////////
+
+//Talks 1-2
+IF
+	GlobalTimerExpired("ttKachikoRomanceTimerTOB","GLOBAL")
+	Global("ttKachikoRomanceActive","GLOBAL",1)
+	InParty(Myself)
+	InParty("Yoshimo")
+	See("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID)
+    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0)
+	!See([ENEMY])
+	!AreaType(DUNGEON)
+	OR(2)
+		Global("ttKachikoLoveTalkTOB","GLOBAL",1)
+		Global("ttKachikoLoveTalkTOB","GLOBAL",3)
+THEN
+	RESPONSE #100
+		IncrementGlobal("ttKachikoLoveTalkTOB","GLOBAL",1)
+		PlaySong(0)
+		PlaySound("ttkachls")
+		Interact("Yoshimo")
+END

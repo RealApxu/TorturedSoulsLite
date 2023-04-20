@@ -1,0 +1,33 @@
+// Changing Yoshimo Values in 2DAs (Taken from jmaeq's Yoshimo's Remorse)
+COPY_EXISTING ~pdialog.2da~ ~override~
+REPLACE_TEXTUALLY
+~YOSHIMO[%tab% %lnl%%mnl%%wnl%]+YOSHP[%tab% %lnl%%mnl%%wnl%]+YOSHJ[%tab% %lnl%%mnl%%wnl%]+YOSHD[%tab% %lnl%%mnl%%wnl%]+YOSHP[%tab% %lnl%%mnl%%wnl%]+YOSHJ[%tab% %lnl%%mnl%%wnl%]+YOSHD[%tab% %lnl%%mnl%%wnl%]+yosh25~
+~YOSHIMO YOSHP YOSHJ YOSHD TTYOSH2P TTYOSH2J TTYOSH2D TTYOSH25~
+
+COPY_EXISTING ~interdia.2da~ ~override~
+REPLACE_TEXTUALLY
+~YOSHIMO[%tab% %lnl%%mnl%%wnl%]+BYOSHIM[%tab% %lnl%%mnl%%wnl%]+BYOSHIM~
+~YOSHIMO BYOSHIM TTYOSH2B~
+
+//Epilogue
+COPY ~%MOD_FOLDER%/main/2da/ttyoshnd.2da~ override
+REPLACE ~99999~ @6
+
+//Epilogue Art
+COPY ~%MOD_FOLDER%/main/portraits/tthashil.bmp~ ~override/tthashiL.bmp~
+
+//Creatures
+COPY ~%MOD_FOLDER%/tob/cre/ttkach25.cre~ override
+
+//Dialogues
+COMPILE ~%MOD_FOLDER%/tob/dialogue/tob_join.d~
+~%MOD_FOLDER%/tob/dialogue/tob_talks.d~
+~%MOD_FOLDER%/tob/dialogue/tob_banters.d~
+
+//Scripts
+
+EXTEND_TOP ~AR6200.BCS~ ~%MOD_FOLDER%/tob/scripts/append_ar6200.baf~
+
+COMPILE ~%MOD_FOLDER%/tob/scripts/ttkach25.baf~
+~%MOD_FOLDER%/tob/scripts/ttkach2d.baf~
+~%MOD_FOLDER%/tob/scripts/ttyosh25.baf~
