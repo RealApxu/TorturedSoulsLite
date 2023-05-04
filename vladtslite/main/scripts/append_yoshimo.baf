@@ -6,7 +6,9 @@ IF
   InParty(Myself)
   See(Player1)
   CombatCounter(0)
+  !See([ENEMY])
   !StateCheck(Player1,CD_STATE_NOTVALID)
+  !StateCheck("Yoshimo",CD_STATE_NOTVALID)
   GlobalLT("Chapter","GLOBAL",%bg_chapter_4%)
   Global("ttKachikoMeet","GLOBAL",0)
 THEN

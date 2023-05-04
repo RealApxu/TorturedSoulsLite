@@ -47,7 +47,7 @@ INCLUDE ~%MOD_FOLDER%/main.tpa~
 // Throne of Bhaal component
 ///////////////////////////////
 
-BEGIN ~Tortured Souls Lite - Throne of Bhaal Expansion~
+BEGIN ~Tortured Souls Lite - ToB Expansion~
 DESIGNATED 10 LABEL ~vladee_tsl_tob~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 INCLUDE ~%MOD_FOLDER%/tob.tpa~
@@ -56,7 +56,7 @@ INCLUDE ~%MOD_FOLDER%/tob.tpa~
 // Portraits
 ///////////////////////////////
 
-BEGIN ~Kachiko Original Portrait (poemmaker2)~
+BEGIN ~Tortured Souls Lite - Kachiko Original Portrait (poemmaker2)~
 DESIGNATED 20 LABEL ~vladee_tsl_kachikoportrait_original~
 SUBCOMPONENT ~Kachiko Portrait~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
@@ -65,7 +65,7 @@ COPY ~%MOD_FOLDER%/portraits/ttkachi1l.bmp~ ~override/ttkachiL.bmp~
 COPY ~%MOD_FOLDER%/portraits/ttkachi1m.bmp~ ~override/ttkachiM.bmp~
 COPY ~%MOD_FOLDER%/portraits/ttkachi1s.bmp~ ~override/ttkachiS.bmp~
 
-BEGIN ~Kachiko Alternate Portrait 1 (Enkida)~
+BEGIN ~Tortured Souls Lite - Kachiko Alternate Portrait 1 (Enkida)~
 DESIGNATED 21 LABEL ~vladee_tsl_kachikoportrait_alt1~
 SUBCOMPONENT ~Kachiko Portrait~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
@@ -74,7 +74,7 @@ COPY ~%MOD_FOLDER%/portraits/ttkachi2l.bmp~ ~override/ttkachiL.bmp~
 COPY ~%MOD_FOLDER%/portraits/ttkachi2m.bmp~ ~override/ttkachiM.bmp~
 COPY ~%MOD_FOLDER%/portraits/ttkachi2s.bmp~ ~override/ttkachiS.bmp~
 
-BEGIN ~Kachiko Alternate Portrait 2~
+BEGIN ~Tortured Souls Lite - Kachiko Alternate Portrait 2~
 DESIGNATED 22 LABEL ~vladee_tsl_kachikoportrait_alt2~
 SUBCOMPONENT ~Kachiko Portrait~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
@@ -87,7 +87,7 @@ COPY ~%MOD_FOLDER%/portraits/ttkachi3s.bmp~ ~override/ttkachiS.bmp~
 // Soundsets
 ///////////////////////////////
 
-BEGIN ~Kachiko Default Soundset~
+BEGIN ~Tortured Souls Lite - Kachiko Default Soundset~
 DESIGNATED 30 LABEL ~vladee_tsl_kachikosoundset_new~
 SUBCOMPONENT ~Kachiko Soundset~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
@@ -138,7 +138,7 @@ LAF HANDLE_AUDIO
  sox_path = ~%MOD_FOLDER%/audio~
 END
 
-BEGIN ~Kachiko Legacy Soundset and Voiceover~
+BEGIN ~Tortured Souls Lite - Kachiko Legacy Soundset and Voiceover~
 DESIGNATED 31 LABEL ~vladee_tsl_kachikosoundset_old~
 SUBCOMPONENT ~Kachiko Soundset~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
@@ -192,7 +192,7 @@ END
 //NPC Portraits
 ///////////////////////////////
 
-BEGIN ~Portraits for Island NPCs~
+BEGIN ~Tortured Souls Lite - Portraits for Minor Mod NPCs~
 DESIGNATED 50 LABEL ~vladee_tsl_miscportraits~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
