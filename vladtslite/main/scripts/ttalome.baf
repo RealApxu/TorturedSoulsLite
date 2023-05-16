@@ -2,6 +2,7 @@ IF
 	InParty("Yoshimo")
 	!StateCheck("Yoshimo",CD_STATE_NOTVALID)
 	!StateCheck(Player1,CD_STATE_NOTVALID)
+	!See([ENEMY])
 	CombatCounter(0)
 	Global("ttAlomeMeet","GLOBAL",1)
 THEN
