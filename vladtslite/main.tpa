@@ -1,10 +1,12 @@
 //CamDawg's CD_STATE_NOTVALID
 APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~ UNLESS ~CD_STATE_NOTVALID~
 
-//Lizardman Animation
+//IWD Lizardman Animation
 ACTION_IF NOT FILE_EXISTS_IN_GAME ~MLI2A1.BAM~ THEN BEGIN 
  COPY ~%MOD_FOLDER%/main/anim/lizard~ override
-END 
+END
+
+//IWD Water Elemental Animation
 
 //Splash Screens
 COPY ~%MOD_FOLDER%/main/2da/ttstart.2da~ override
@@ -63,12 +65,10 @@ TT0307 value
 TT0308 value~
 UNLESS ~TT0100~
 
-//Icons
+//Item Icons
 COPY ~%MOD_FOLDER%/main/bam~ override
 
 //Items
-COPY ~%MOD_FOLDER%/main/eff~ override
-
 COPY ~%MOD_FOLDER%/main/itm/ttaxecha.itm~ override
  SAY NAME2 @12
  SAY DESC @13
@@ -257,6 +257,7 @@ COPY ~%MOD_FOLDER%/main/itm/ttyokat.itm~ override
 
 COPY ~%MOD_FOLDER%/main/itm/ttcharts.itm~ override // Sea Charts
 
+/*
 COPY ~%MOD_FOLDER%/main/itm/ttunknin.itm~ override //waninja.itm
 COPY ~%MOD_FOLDER%/main/itm/ttbook08.itm~ override //book08.itm
 COPY ~%MOD_FOLDER%/main/itm/ttdaxe.itm~ override //ah1h03.itm
@@ -264,6 +265,7 @@ COPY ~%MOD_FOLDER%/main/itm/ttdplate.itm~ override //plat19.itm
 COPY ~%MOD_FOLDER%/main/itm/ttdshld.itm~ override //shld19.itm
 COPY ~%MOD_FOLDER%/main/itm/ttboring.itm~ override //ring09.itm
 COPY ~%MOD_FOLDER%/main/itm/ttedven.itm~ override //ring09.itm
+*/
 
 COPY ~%MOD_FOLDER%/main/itm/ttelhyd1.itm~ override
 COPY ~%MOD_FOLDER%/main/itm/ttmasitm.itm~ override
@@ -303,34 +305,10 @@ REPLACE ~88888888~ #13075 //Stoneskin
 REPLACE ~88888889~ #15211 //Conjure Fire Elemental
 
 //Dialogues
-COMPILE ~%MOD_FOLDER%/main/dlg/ttppireni.d~
-~%MOD_FOLDER%/main/dlg/ttppsaem.d~
-~%MOD_FOLDER%/main/dlg/ttsailoff.d~
-~%MOD_FOLDER%/main/dlg/ttaino.d~
-~%MOD_FOLDER%/main/dlg/ttalome.d~
-~%MOD_FOLDER%/main/dlg/ttchess.d~
-~%MOD_FOLDER%/main/dlg/ttchrdr1.d~
-~%MOD_FOLDER%/main/dlg/tthasuno.d~
-~%MOD_FOLDER%/main/dlg/tthitomi.d~
-~%MOD_FOLDER%/main/dlg/tthsiang.d~
-~%MOD_FOLDER%/main/dlg/ttkachb2.d~
-~%MOD_FOLDER%/main/dlg/ttkachi.d~
-~%MOD_FOLDER%/main/dlg/ttkachib.d~
-~%MOD_FOLDER%/main/dlg/ttkachij.d~
-~%MOD_FOLDER%/main/dlg/ttkachj2.d~
-~%MOD_FOLDER%/main/dlg/ttkiotsi.d~
-~%MOD_FOLDER%/main/dlg/ttlulu.d~
-~%MOD_FOLDER%/main/dlg/ttmasaki.d~
-~%MOD_FOLDER%/main/dlg/ttnajoki.d~
-~%MOD_FOLDER%/main/dlg/ttnanny.d~
-~%MOD_FOLDER%/main/dlg/ttnklead.d~
-~%MOD_FOLDER%/main/dlg/ttnsons.d~
-~%MOD_FOLDER%/main/dlg/ttogi.d~
-~%MOD_FOLDER%/main/dlg/ttotako.d~
-~%MOD_FOLDER%/main/dlg/ttsasaki.d~
-~%MOD_FOLDER%/main/dlg/ttnpcrem.d~
-~%MOD_FOLDER%/main/dlg/ttyoshimo.d~
-~%MOD_FOLDER%/main/dlg/ttkachip.d~
+COMPILE ~%MOD_FOLDER%/main/dialogue/soa_join.d~
+~%MOD_FOLDER%/main/dialogue/soa_talks.d~
+~%MOD_FOLDER%/main/dialogue/soa_quest.d~
+~%MOD_FOLDER%/main/dialogue/soa_banters.d~
 
 //Scripts
 COMPILE ~%MOD_FOLDER%/main/scripts/ttcutk01.baf~
@@ -439,28 +417,10 @@ COPY_EXISTING ~AR1516.BCS~ override
  END
 BUT_ONLY_IF_IT_CHANGES
 
-/*
-COPY_EXISTING ~CUT41C.BCS~ ~override/tt41cn.bcs~
- DECOMPILE_AND_PATCH BEGIN
-  REPLACE_TEXTUALLY
-   ~ActionOverride("ppsaem",DestroySelf())~
-   ~ActionOverride("ppsaem",DestroySelf()) ActionOverride("Yoshimo",LeaveParty()) ActionOverride("Yoshimo",EscapeArea()) ActionOverride("ttkachi",LeaveParty()) ActionOverride("ttkachi",EscapeArea())~
- END
-BUT_ONLY_IF_IT_CHANGES
-
-COPY_EXISTING ~CUT41D.BCS~ ~override/tt41dnsc.bcs~
- DECOMPILE_AND_PATCH BEGIN
-  REPLACE_TEXTUALLY EXACT_MATCH
-   ~ActionOverride("aran",DestroySelf())~
-   ~ActionOverride("aran",DestroySelf()) ActionOverride("Yoshimo",LeaveParty()) ActionOverride("Yoshimo",EscapeArea()) ActionOverride("ttkachi",LeaveParty()) ActionOverride("ttkachi",EscapeArea())~
- END
-BUT_ONLY_IF_IT_CHANGES
-*/
-
 COPY_EXISTING ~CUT41G.BCS~ ~override/ttcut41g.bcs~
  DECOMPILE_AND_PATCH BEGIN
   REPLACE_TEXTUALLY
-   ~\(ActionOverride\("Yoshimo",[^!])\)~
+   ~\(ActionOverride\("Yoshimo",[^!]\)\)~
    ~~
  END
 BUT_ONLY_IF_IT_CHANGES
@@ -468,7 +428,7 @@ BUT_ONLY_IF_IT_CHANGES
 COPY_EXISTING ~CUT41J.bcs~ ~override/ttcut41j.bcs~
  DECOMPILE_AND_PATCH BEGIN
   REPLACE_TEXTUALLY
-   ~\(ActionOverride\("Yoshimo",[^!])\)~
+   ~\(ActionOverride\("Yoshimo",[^!]\)\)~
    ~~
  END
 BUT_ONLY_IF_IT_CHANGES

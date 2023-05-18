@@ -2,7 +2,7 @@
 // Tortured Souls Lite
 ///////////////////////////////
 
-BACKUP ~weidu_external/backup/vladeetsl~
+BACKUP ~weidu_external/backup/vladtslite~
 AUTHOR ~Vladislav Papper (vladp6@gmail.com)~
 VERSION ~0.4.1~
 
@@ -138,7 +138,7 @@ LAF HANDLE_AUDIO
  sox_path = ~%MOD_FOLDER%/audio~
 END
 
-BEGIN ~Tortured Souls Lite - Kachiko Legacy Soundset and Voiceover~
+BEGIN ~Tortured Souls Lite - Kachiko Legacy Soundset + Voiceover~
 DESIGNATED 31 LABEL ~vladee_tsl_kachikosoundset_old~
 SUBCOMPONENT ~Kachiko Soundset~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
