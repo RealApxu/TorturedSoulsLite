@@ -25,7 +25,7 @@ BEGIN TTNSONS
 //////////////////////////////
 
 CHAIN
-IF ~Global("VPTorturedSoulsQuest","GLOBAL",1)~ THEN TTMESS 0
+IF ~Global("ttKachikoQuest","GLOBAL",1)~ THEN TTMESS 0
 ~Well, you seem like people I was asked to found. Are you Yoshimo and Kachiko?~
 == TTKACHIJ ~Yes, it is us. What do you need?~
 == TTMESS ~There goes a word that you need to go to Kara-Tur. I was paid to ~
@@ -36,12 +36,13 @@ EXIT
 // Talk with captain and sailoff
 
 CHAIN
-IF ~Global("ttTalkedToNomeas","GLOBAL",0)~ THEN TTNOMEAS VPSAILOFF1
-~*HELLO STRING*~ DO ~SetGlobal("ttTalkedToNomeas","GLOBAL",1)~
+IF ~Global("ttTalkedToNomeas","GLOBAL",0)~ THEN TTNOMEAS ttSailoff1
+~*HELLO STRING*~
+DO ~SetGlobal("ttTalkedToNomeas","GLOBAL",1)~
 END
- ++ ~Nomeas, I have little knowledge of the sea travel. Can you tell me how long will it take us to get to Kara-Tur by sea?~ EXTERN PPSAEM VPSAILOFF2
+ ++ ~Nomeas, I have little knowledge of the sea travel. Can you tell me how long will it take us to get to Kara-Tur by sea?~ EXTERN PPSAEM ttSailoff2
 
-CHAIN TTNOMEAS VPSAILOFF2
+CHAIN TTNOMEAS ttSailoff2
 ~Half a year, may be a year... It is a long and dangerous route. Not many ships go that far away, and of those that do few return back.~
 END
  ++ ~Yoshimo, Kachiko, I am sorry, but I have to haste to Imoen's rescue, her life is at stake! May be after we find Imoen I will go to Kara-Tur with you...~ EXTERN YOSHJ TS166
@@ -51,10 +52,10 @@ CHAIN YOSHJ TS166
 == TTNOMEAS ~Ahem, if I may interrupt... I think I have a solution for your problem. Recently I run into a... mmh... an arch-mage of great renown, Harkle Harpel. For a minor service, he gave me this scroll. It's called the Harpel's Fog of Fate. If I cast it, my ship will carry you to the place you destined to be in mere hours, even to Kara-Tur.~
 END
  IF ~True()~ THEN EXTERN TTNOMEAS TS81
- IF ~InParty("Valygar")~ THEN EXTERN VALYGARJ TS122
- IF ~InParty("Anomen")~ THEN EXTERN ANOMENJ TS310
- IF ~InParty("Jaheira")~ THEN EXTERN JAHEIRAJ TS531
- IF ~InParty("Keldorn")~ THEN EXTERN KELDORJ TS252
+ IF ~InParty("Valygar") InMyArea("Valygar") !StateCheck("Valygar",CD_STATE_NOTVALID)~ THEN EXTERN VALYGARJ TS122
+ IF ~InParty("Anomen") InMyArea("Anomen") !StateCheck("Anomen",CD_STATE_NOTVALID)~ THEN EXTERN ANOMENJ TS310
+ IF ~InParty("Jaheira") InMyArea("Jaheira") !StateCheck("Jaheira",CD_STATE_NOTVALID)~ THEN EXTERN JAHEIRAJ TS531
+ IF ~InParty("Keldorn") InMyArea("Keldorn") !StateCheck("Keldorn",CD_STATE_NOTVALID)~ THEN EXTERN KELDORJ TS252
 
 CHAIN KELDORJ TS252
 ~<CHARNAME>, Harkle Harpel is no arch-mage, he belongs to a family of lunatics! For what I know of Harpels we might be turned into frogs or some such if you allow Nomeas to cast the spell! Be careful!~
@@ -114,14 +115,14 @@ CHAIN TTNOMEAS sailoff2
 == TTKACHIJ ~Oh, we will see Kara-Turian shores and prove that Yoshimo is innocent and restore peace between our families. I agree with you, <CHARNAME>, let the fate decide! Cast the spell, captain!~
 == TTNOMEAS ~Then we are fully staffed and ready to sail. Never a fear nor worry should cross your thoughts this eve, m'<PRO_LADYLORD>. I have traveled this sea a good many times, and I foresee no troubles.~
 = ~Although, I am sure, nothing untoward will happen during our crossing, best that we get underway as soon as possible. Please follow me to the docks where my ship is waiting for us.~
-DO ~SetGlobal("Start_Island","GLOBAL",1)
-StartCutSceneMode()
+DO ~StartCutSceneMode()
 StartCutScene("Cut41isb")~
 EXIT
 
 CHAIN YOSHJ TS167
 ~I understand. I wish you good luck in your dealings with Irenicus and rescuing Imoen. Farewell and do not think ill of us.~
 == TTKACHIJ ~Good luck to you, <CHARNAME>. Farewell.~
+DO ~~
 EXIT
 
 ///////////////////////////
