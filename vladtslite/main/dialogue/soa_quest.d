@@ -700,8 +700,7 @@ EXIT
 
 // Island Shore - Talk with Captain
 CHAIN
-IF WEIGHT #9 ~Global("ttOnIsland","GLOBAL",1)
-Global("ttEndIsland","GLOBAL",2)~ THEN TTNOMEAS TS29
+IF WEIGHT #9 ~Global("ttOnIsland","GLOBAL",1) Global("ttEndIsland","GLOBAL",2)~ THEN TTNOMEAS TS29
 ~The good news is that the ship is ready to sail. The bad news is that we are far to the south from Athkatla, and I am not sure if we will see Amn's shores again.~
 = ~I have no knowledge of these waters and I am reluctant to start out without more information... What is your command, my <PRO_LADYLORD>?~
 END
