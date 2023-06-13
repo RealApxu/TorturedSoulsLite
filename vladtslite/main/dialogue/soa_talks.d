@@ -10,10 +10,7 @@ CHAIN
 IF WEIGHT #0 ~Global("ttKachikoDies","GLOBAL",3)~ THEN YOSHJ TS223
 ~<CHARNAME>, it's my fault. I couldn't save Kachiko... And she was my only reason to live in this damned world... No, I have no rights to continue this miserable existance... I am very sorry, <CHARNAME>... (*Suddenly, the blick of Yoshimo's katana, and...*)~
 DO ~SetGlobal("ttKachikoDies","GLOBAL",4)
-StartCutSceneMode()
-Wait(2)
-ForceSpell(Myself,TRANSFORMATION_DEATH)
-EndCutSceneMode()~
+ForceSpell(Myself,TRANSFORMATION_DEATH)~
 EXIT
 
 /////////////////////////////////////////////////////////////////////
@@ -23,7 +20,8 @@ EXIT
 CHAIN
 IF WEIGHT #0 ~Global("ttYoshimoDies","GLOBAL",3)~ THEN TTKACHIJ 19
 ~Sorry, <CHARNAME>, I cannot stay with you any longer. Without Yoshimo, I have nothing to do in your party. I must go back to Kozakura. Good luck to you.~
-DO ~LeaveParty()
+DO ~SetGlobal("ttYoshimoDies","GLOBAL",4)
+LeaveParty()
 EscapeArea()~
 EXIT
 
@@ -37,8 +35,7 @@ EXIT
 
 // PPIRENI1.DLG
 INTERJECT PPIRENI 45 ttPPIRENI1.1
-== YOSHJ IF ~Global("ttKachikoGoodEnd","GLOBAL",1)~ THEN ~N-No, Master Irenicus...~
-DO ~SetGlobal("ButtPluggingCumBubble","GLOBAL",1)~
+== YOSHJ IF ~Global("ttKachikoGoodEnd","GLOBAL",1)~ THEN ~N-No, Master Irenicus...~ DO ~SetGlobal("ButtPluggingCumBubble","GLOBAL",1)~
 == PPIRENI1 ~I don't understand what are you talking about?~
 == YOSHJ ~I... I am not cursed anymore.~
 == PPIRENI1 ~What did you say? Hmm... And how did you manage to avoid the geas?~
