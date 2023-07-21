@@ -184,7 +184,7 @@ See("Jan")
 !StateCheck("ttkachi",CD_STATE_NOTVALID)
 CombatCounter(0)
 !See([ENEMY])
-!Global("ttEndIsland","GLOBAL",0)
+!Global("ttIslandEnd","GLOBAL",0)
 Global("ttKachiJan1","GLOBAL",0)~ THEN TTKACHIB KachiJan1
 @60
 DO ~SetGlobal("ttKachiJan1","GLOBAL",1)~

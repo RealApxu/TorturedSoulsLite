@@ -38,27 +38,34 @@ LANGUAGE ~Russian~
 // Main Component
 ///////////////////////////////
 
-BEGIN ~Tortured Souls Lite~
-DESIGNATED 0 LABEL ~vladee_tsl_main~
-REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~Leina NPC can only be installed on BG2:EE or EET.~
+BEGIN ~Vlad Compilation - Tortured Souls Lite~
+DESIGNATED 0
+LABEL ~vlad_tslite_main~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~Tortured Souls Lite can only be installed on BG2:EE or EET.~
 INCLUDE ~%MOD_FOLDER%/main.tpa~
+LAF tslite_main END
 
 ///////////////////////////////
 // Throne of Bhaal component
 ///////////////////////////////
 
 BEGIN ~Tortured Souls Lite - ToB Expansion~
-DESIGNATED 10 LABEL ~vladee_tsl_tob~
+DESIGNATED 10
+LABEL ~vlad_tslite_tob~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~Tortured Souls Lite can only be installed on BG2:EE or EET.~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 INCLUDE ~%MOD_FOLDER%/tob.tpa~
+LAF tslite_tob END
 
 ///////////////////////////////
 // Portraits
 ///////////////////////////////
 
 BEGIN ~Tortured Souls Lite - Kachiko Original Portrait (poemmaker2)~
-DESIGNATED 20 LABEL ~vladee_tsl_kachikoportrait_original~
+DESIGNATED 20
+LABEL ~vlad_tslite_kachikoportrait_original~
 SUBCOMPONENT ~Kachiko Portrait~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~Tortured Souls Lite can only be installed on BG2:EE or EET.~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
 COPY ~%MOD_FOLDER%/portraits/ttkachi1l.bmp~ ~override/ttkachiL.bmp~
@@ -66,8 +73,10 @@ COPY ~%MOD_FOLDER%/portraits/ttkachi1m.bmp~ ~override/ttkachiM.bmp~
 COPY ~%MOD_FOLDER%/portraits/ttkachi1s.bmp~ ~override/ttkachiS.bmp~
 
 BEGIN ~Tortured Souls Lite - Kachiko Alternate Portrait 1 (Enkida)~
-DESIGNATED 21 LABEL ~vladee_tsl_kachikoportrait_alt1~
+DESIGNATED 21
+LABEL ~vlad_tslite_kachikoportrait_alt1~
 SUBCOMPONENT ~Kachiko Portrait~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~Tortured Souls Lite can only be installed on BG2:EE or EET.~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
 COPY ~%MOD_FOLDER%/portraits/ttkachi2l.bmp~ ~override/ttkachiL.bmp~
@@ -75,8 +84,10 @@ COPY ~%MOD_FOLDER%/portraits/ttkachi2m.bmp~ ~override/ttkachiM.bmp~
 COPY ~%MOD_FOLDER%/portraits/ttkachi2s.bmp~ ~override/ttkachiS.bmp~
 
 BEGIN ~Tortured Souls Lite - Kachiko Alternate Portrait 2~
-DESIGNATED 22 LABEL ~vladee_tsl_kachikoportrait_alt2~
+DESIGNATED 22
+LABEL ~vlad_tslite_kachikoportrait_alt2~
 SUBCOMPONENT ~Kachiko Portrait~
+REQUIRE_PREDICATE (GAME_IS ~BG2EE EET~) ~Tortured Souls Lite can only be installed on BG2:EE or EET.~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
 COPY ~%MOD_FOLDER%/portraits/ttkachi3l.bmp~ ~override/ttkachiL.bmp~
@@ -88,43 +99,44 @@ COPY ~%MOD_FOLDER%/portraits/ttkachi3s.bmp~ ~override/ttkachiS.bmp~
 ///////////////////////////////
 
 BEGIN ~Tortured Souls Lite - Kachiko Default Soundset~
-DESIGNATED 30 LABEL ~vladee_tsl_kachikosoundset_new~
+DESIGNATED 30
+LABEL ~vlad_tslite_kachikosoundset_new~
 SUBCOMPONENT ~Kachiko Soundset~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
 COPY_EXISTING ~ttkachi.cre~ override
- SAY MORALE @174
- SAY LEADER @175
- SAY BATTLE_CRY1 @176
- SAY BATTLE_CRY2 @177
- SAY BATTLE_CRY3 @178
- SAY BATTLE_CRY4 @179
- SAY BATTLE_CRY5 @180
- SAY TIRED @181
- SAY BORED @182
+ SAY MORALE ~Uhm, I have to go now...~ [KACHIMO]
+ SAY LEADER ~I will try to fill this role as well as I can.~ [KACHIMC]
+ SAY BATTLE_CRY1 ~My aim shall be true!~ [KACHIBC1]
+ SAY BATTLE_CRY2 ~Onward, to glorious battle!~ [KACHIBC2]
+ SAY BATTLE_CRY3 ~Into the fray!~ [KACHIBC3]
+ SAY BATTLE_CRY4 ~Time to test my metal!~ [KACHIBC4]
+ SAY BATTLE_CRY5 ~Taking it to them!~ [KACHIBC5]
+ SAY TIRED ~Let me find some place to set camp.~ [KACHITI]
+ SAY BORED ~Am I to stay here all day long?~ [KACHIBO]
  SAY DAMAGE ~[Kachiko Damaged Sound]~ [KACHIST]
  SAY DYING ~[Kachiko Dying Sound]~ [KACHIDI]
- SAY HURT @185
+ SAY HURT ~Help me... I am in peril!~ [KACHIWO]
  SAY AREA_DUNGEON ~[Kachiko In Dungeon Sound]~ [KACHIDU]
  SAY AREA_FOREST ~[Kachiko In Forest Sound]~ [KACHIOU]
  SAY AREA_DAY ~[Kachiko Day Time Sound]~ [KACHIDA]
  SAY AREA_NIGHT ~[Kachiko Night Time Sound]~ [KACHINI]
- SAY SELECT_COMMON1 @190
- SAY SELECT_COMMON2 @191
- SAY SELECT_COMMON3 @192
- SAY SELECT_COMMON4 @193
- SAY SELECT_COMMON5 @194
- SAY SELECT_COMMON6 @195
- SAY SELECT_ACTION1 @196
- SAY SELECT_ACTION2 @197
- SAY SELECT_ACTION3 @198
- SAY SELECT_ACTION4 @199
- SAY SELECT_ACTION5 @200
- SAY SELECT_ACTION6 @201
- SAY SELECT_ACTION7 @202
- SAY SELECT_RARE1 @203
- SAY SELECT_RARE1 @204
- SAY REACT_TO_DIE_GENERAL @205
+ SAY SELECT_COMMON1 ~I am prepared... I hope.~ [KACHISE1]
+ SAY SELECT_COMMON2 ~Yes?~ [KACHISE2]
+ SAY SELECT_COMMON3 ~Let me know what you want.~ [KACHISE3]
+ SAY SELECT_COMMON4 ~I await your orders.~ [KACHISE4]
+ SAY SELECT_COMMON5 ~Go ahead.~ [KACHISE5]
+ SAY SELECT_COMMON6 ~Your command?~ [KACHIAC6]
+ SAY SELECT_ACTION1 ~I'm on it.~ [KACHIAC1]
+ SAY SELECT_ACTION2 ~Understood.~ [KACHIAC2]
+ SAY SELECT_ACTION3 ~That sounds reasonable.~ [KACHIAC3]
+ SAY SELECT_ACTION4 ~Yes.~ [KACHIAC4]
+ SAY SELECT_ACTION5 ~Agreed.~ [KACHIAC5]
+ SAY SELECT_ACTION6 ~My duty is clear.~ [KACHIAC6]
+ SAY SELECT_ACTION7 ~Acknowledged.~ [KACHIAC7]
+ SAY SELECT_RARE1 ~Yeah, yeah... Tell me what you want.~ [KACHIRA1]
+ SAY SELECT_RARE1 ~What exactly are you trying to accomplish?~ [KACHIRA2]
+ SAY REACT_TO_DIE_GENERAL ~No! You will not have died in vain!~ [KACHIRD]
  SAY CRITICAL_HIT ~[Kachiko Critical Hit Sound]~ [KACHICR]
  SAY CRITICAL_MISS ~[Kachiko Critical Miss Sound]~ [KACHIMI]
  SAY TARGET_IMMUNE ~[Kachiko Target Immunity Sound]~ [KACHIIM]
@@ -139,40 +151,41 @@ LAF HANDLE_AUDIO
 END
 
 BEGIN ~Tortured Souls Lite - Kachiko Legacy Soundset + Voiceover~
-DESIGNATED 31 LABEL ~vladee_tsl_kachikosoundset_old~
+DESIGNATED 31
+LABEL ~vlad_tslite_kachikosoundset_old~
 SUBCOMPONENT ~Kachiko Soundset~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
 COPY_EXISTING ~ttkachi.cre~ override
- SAY LEADER @213
- SAY BATTLE_CRY1 @214
- SAY BATTLE_CRY2 @215
+ SAY LEADER ~Well, we're not out of the woods yet... Oh, wait, we are! *laughs*~ [KACHIMC]
+ SAY BATTLE_CRY1 ~I'll make you sorry you attacked me... Right before you die!~ [KACHIBC]
+ SAY BATTLE_CRY2 ~Don't you mess with me!~ [KACHIHA]
  SAY TIRED ~[Kachiko Tired Sound]~ [KACHITI]
- SAY 0xdc @217
+ SAY 0xdc ~It's time for some action!~ [KACHIAT]
  SAY DAMAGE ~[Kachiko Damaged Sound]~ [KACHIST]
  SAY DYING ~[Kachiko Dying Sound]~ [KACHIDI]
- SAY HURT @218
- SAY AREA_DUNGEON @219
- SAY AREA_FOREST @220
- SAY AREA_DAY @221
- SAY AREA_NIGHT @222
- SAY SELECT_COMMON1 @223
- SAY SELECT_COMMON2 @224
- SAY SELECT_COMMON3 @225
- SAY SELECT_COMMON4 @226
- SAY SELECT_COMMON5 @227
- SAY SELECT_COMMON6 @228
- SAY SELECT_ACTION1 @229
- SAY SELECT_ACTION2 @230
- SAY SELECT_ACTION3 @231
- SAY SELECT_ACTION4 @232
- SAY SELECT_ACTION5 @233
- SAY SELECT_ACTION6 @228
- SAY CRITICAL_HIT @234
- SAY CRITICAL_MISS @235
- SAY TARGET_IMMUNE @236
- SAY INVENTORY_FULL @237
- SAY SPELL_DISRUPTED @238
+ SAY HURT ~I won't survive any more wounds...~ [KACHIWO]
+ SAY AREA_DUNGEON ~I hate closed spaces.~ [KACHIDU]
+ SAY AREA_FOREST ~The air is so fresh.~ [KACHIOU]
+ SAY AREA_DAY ~Oh, what a lovely day!~ [KACHIDA]
+ SAY AREA_NIGHT ~Look at all the stars!~ [KACHINI]
+ SAY SELECT_COMMON1 ~M-hm.~ [KACHISE1]
+ SAY SELECT_COMMON2 ~What can I do?~ [KACHISE2]
+ SAY SELECT_COMMON3 ~Yes?~ [KACHISE3]
+ SAY SELECT_COMMON4 ~You wanted me?~ [KACHISE4]
+ SAY SELECT_COMMON5 ~I'm here.~ [KACHISE5]
+ SAY SELECT_COMMON6 ~That's an idea.~ [KACHIAC6]
+ SAY SELECT_ACTION1 ~Sure.~ [KACHIAC1]
+ SAY SELECT_ACTION2 ~Sounds good.~ [KACHIAC2]
+ SAY SELECT_ACTION3 ~Okay.~ [KACHIAC3]
+ SAY SELECT_ACTION4 ~I'd love to!~ [KACHIAC4]
+ SAY SELECT_ACTION5 ~Oh, I got it!~ [KACHIAC5]
+ SAY SELECT_ACTION6 ~That's an idea.~ [KACHIAC6]
+ SAY CRITICAL_HIT ~Wow, good strike!~ [KACHICR]
+ SAY CRITICAL_MISS ~Couldn't hurt.~ [KACHIIM]
+ SAY TARGET_IMMUNE ~I can't hurt it!~ [KACHIBA]
+ SAY INVENTORY_FULL ~Oops! I'm carrying too much.~ [KACHICA]
+ SAY SPELL_DISRUPTED ~Oh, fiddlesticks!~ [KACHIFA]
  
 LAF HANDLE_AUDIO
  STR_VAR
@@ -193,7 +206,8 @@ END
 ///////////////////////////////
 
 BEGIN ~Tortured Souls Lite - Portraits for Minor Mod NPCs~
-DESIGNATED 50 LABEL ~vladee_tsl_miscportraits~
+DESIGNATED 50
+LABEL ~vlad_tslite_miscportraits~
 REQUIRE_PREDICATE (MOD_IS_INSTALLED ~Setup-TorturedSoulsLite.tp2~ ~0~) ~Please, install Tortured Souls Main Component~
 
 COPY ~%MOD_FOLDER%/portraits/npc~ override

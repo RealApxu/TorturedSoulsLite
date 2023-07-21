@@ -35,7 +35,8 @@ EXIT
 
 // PPIRENI1.DLG
 INTERJECT PPIRENI 45 ttPPIRENI1.1
-== YOSHJ IF ~Global("ttKachikoGoodEnd","GLOBAL",1)~ THEN ~N-No, Master Irenicus...~ DO ~SetGlobal("ButtPluggingCumBubble","GLOBAL",1)~
+== YOSHJ IF ~Global("ttKachikoGoodEnd","GLOBAL",1)~ THEN ~N-No, Master Irenicus...~
+DO ~SetGlobal("ButtPluggingCumBubble","GLOBAL",1)~
 == PPIRENI1 ~I don't understand what are you talking about?~
 == YOSHJ ~I... I am not cursed anymore.~
 == PPIRENI1 ~What did you say? Hmm... And how did you manage to avoid the geas?~
@@ -87,8 +88,8 @@ CHAIN PPIRENI1 ttPPIRENI1.3
 ~Now you will find you are powerless. I have taken precautions that you will not be damaged. Rage would be wasted.~
 = #44676
 DO ~SetGlobal("AsylumPlot","GLOBAL",20)
-DisplayString(Myself,50707)  // Slumber
-Spell(Myself,DO_NOTHING)  // SPIN905.SPL (No such index)
+DisplayString(Myself,50707)
+Spell(Myself,DO_NOTHING)
 StartCutSceneMode()
 StartCutScene("ttcut41g")~
 EXIT

@@ -1,23 +1,21 @@
 IF
-	SpellCastOnMe([PC],CLERIC_RAISE_DEAD)
 	Global("ttKachikoSaved","GLOBAL",1)
 THEN
 	RESPONSE #100
 		SetGlobal("ttKachikoSaved","GLOBAL",2)
-		SetGlobal("ttKachikoReborn","GLOBAL",1)
 		Wait(2)
 		StartCutSceneMode()
 		FadeToColor([20.0],0)
 		Wait(1)
 		MoveGlobal("TT0307","ttkachi",[1392.736])
 		ActionOverride("ttkachi",SetName(@135))
-		DestroySelf()
 		AddXPObject("ttkachi",200000)
 		ReallyForceSpell("ttkachi",HELL_GAIN_WIS)
 		ReallyForceSpell("ttkachi",HELL_GAIN_WIS)
 		ReallyForceSpell("ttkachi",HELL_GAIN_WIS)
 		ReallyForceSpell("ttkachi",HELL_GAIN_WIS)
 		ReallyForceSpell("ttkachi",HELL_GAIN_WIS)
+		DestroySelf()
 		FadeFromColor([20.0],0)
 		ActionOverride("ttkachi",StartDialogueNoSet([PC]))
 		EndCutSceneMode()
@@ -28,5 +26,5 @@ IF
 	Global("ttKachikoSaved","GLOBAL",0)
 THEN
 	RESPONSE #100
-		SetGlobal("ttHitomiAttacked","GLOBAL",1)
+		SetGlobal("ttKachikoSaved","GLOBAL",1)
 END

@@ -1,8 +1,16 @@
 IF
 	Clicked([ANYONE])
-	!PartyHasItem("ttkeygol")
-	Global("ttFireAltar","GLOBAL",0)
+	!Range(LastTrigger,9)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,14702) // You are too far away to use that.
+END
+
+IF
+	Clicked([ANYONE])
 	Range(LastTrigger,9)
+	Global("ttFireAltar","GLOBAL",0)
+	!PartyHasItem("ttkeygol")
 THEN
 	RESPONSE #100
 		DisplayString(Myself,@242)
@@ -10,9 +18,9 @@ END
 
 IF
 	Clicked([ANYONE])
-	PartyHasItem("ttkeygol")
-	Global("ttFireAltar","GLOBAL",0)
 	Range(LastTrigger,9)
+	Global("ttFireAltar","GLOBAL",0)
+	PartyHasItem("ttkeygol")
 THEN
 	RESPONSE #100
 		SetGlobal("ttFireAltar","GLOBAL",1)
@@ -28,12 +36,4 @@ IF
 THEN
 	RESPONSE #100
 		DisplayString(Myself,@243)
-END
-
-IF
-	Clicked([ANYONE])
-	!Range(LastTrigger,9)
-THEN
-	RESPONSE #100
-		DisplayString(Myself,14702) // You are too far away to use that.
 END

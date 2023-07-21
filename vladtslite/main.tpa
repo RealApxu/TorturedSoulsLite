@@ -1,3 +1,5 @@
+DEFINE_ACTION_FUNCTION tslite_main BEGIN
+
 //CamDawg's CD_STATE_NOTVALID
 APPEND ~STATE.IDS~ ~0x80101FEF CD_STATE_NOTVALID~ UNLESS ~CD_STATE_NOTVALID~
 
@@ -6,14 +8,12 @@ ACTION_IF NOT FILE_EXISTS_IN_GAME ~MLI2A1.BAM~ THEN BEGIN
  COPY ~%MOD_FOLDER%/main/anim/lizard~ override
 END
 
-//IWD Water Elemental Animation
-
 //Splash Screens
 COPY ~%MOD_FOLDER%/main/2da/ttstart.2da~ override
-REPLACE ~99999~ @3
+REPLACE ~99999~ ~After Nomeas had finished his incantations you stood for a few minutes in expectation. The ship, ready to sail was still in Athkatla's docks... You were about to sigh and pronounce your thanks that at least it was not frog-turning, and request refund from the sly sailor. Suddenly the crew became agitated, everyone pointing to the east. You turned and saw a gray cloud speeding across the sky straight for the ship. A few of the crewmen leaped overboard. Someone behind your back whispered: "that's how the fate looks?" and spat heartily on the deck. Then the world became one great gray fog and all you could sense is the movement of tremendous speed... But you could not distinguish the direction or count the time... Slowly you had lost your consciousness... and regained it in what seemed a short instant. The ship is riding shallow waters in a sheltered bay by a stony beach. The captain approaches you hesitantly...~ [vptheme1]
 
 COPY ~%MOD_FOLDER%/main/2da/ttend.2da~ override
-REPLACE ~99999~ @4
+REPLACE ~99999~ ~After few hours of uninterrupted sail you see a shiny circlet on the horizon. It is the portal! Nomeas slows the ship down. Your seasoned captain looks nervous as the ship enters the time gate. "Athkatla" says he steadily... and the familiar harbor appears in view...~ [vptheme2]
 
 //Adding Kachiko to 2DAs
 APPEND ~PDIALOG.2da~
@@ -37,223 +37,748 @@ COPY ~%MOD_FOLDER%/main/are~ override
 COPY ~%MOD_FOLDER%/main/tis~ override
 
 COPY_EXISTING ~TT0100.ARE~ override
- SAY 0x3e10 @7
+ SAY 0x3e10 ~Fighting Pit~
 
 COPY_EXISTING ~TT0301.ARE~ override 
- SAY 0x354 @8
- SAY 0x418 @8
- SAY 0x4dc @9
+ SAY 0x354 ~This statue is a representation of the Goddess Waukeen. It depicts a beautiful young woman with an outstretched palm.~
+ SAY 0x418 ~These shelves are crammed with books dealing with trade and commerce in Kara-Tur.~
+ SAY 0x4dc ~This staircase is blocked.~
 
 COPY_EXISTING ~TT0307.ARE~ override
- SAY 0x684 @10
- SAY 0x5c0 @11
-
-APPEND ~MASTAREA.2DA~
-~TT0100 value
-TT0102 value
-TT0201 value
-TT0202 value
-TT0203 value
-TT0204 value
-TT0301 value
-TT0302 value
-TT0303 value
-TT0304 value
-TT0305 value
-TT0306 value
-TT0307 value
-TT0308 value~
-UNLESS ~TT0100~
+ SAY 0x684 ~This staircase is blocked.~
+ SAY 0x5c0 ~This passage is magically sealed. You cannot enter the fighting arena without special permission.~
 
 //Item Icons
 COPY ~%MOD_FOLDER%/main/bam~ override
 
 //Items
 COPY ~%MOD_FOLDER%/main/itm/ttaxecha.itm~ override
- SAY NAME2 @12
- SAY DESC @13
+ SAY NAME2 ~Charged Battle Axe +3~
+ SAY DESC ~Besides its superb craftsmanship, tiny runes of power can be seen etched all along the surface. It's obvious a lot of time and effort went into its creation and although not apparent at first, a slight blue glow can be seen emanating from the runes.
+
+STATISTICS:
+
+Combat abilities:
+– 25% chance of each hit stunning the target for 4 rounds
+– 50% chance of an extra 1d3 electrical damage to hit target
+
+THAC0: +3
+Damage: 1d8+3 (slashing)
+Speed Factor: 7
+Proficiency Type: Axe
+Type: One-handed
+Requires:
+ 10 Strength
+
+Weight: 7~
 
 COPY ~%MOD_FOLDER%/main/itm/ttbeltst.itm~ override
- SAY NAME2 @14
- SAY DESC @15
+ SAY NAME2 ~Girdle of Stromnos~
+ SAY DESC ~The enchanter Presdon of the Vast created this girdle several hundred years ago for his bodyguard, Dendes the Wry. He named the broad belt after a hill giant who had almost killed him when he was looking for spell components. Dendes died defending Presdon from rival mages near Ordulin.
+
+STATISTICS:
+
+Equipped abilities:
+– Strength: 20
+
+Weight: 2~
  
 COPY ~%MOD_FOLDER%/main/itm/ttbess.itm~ override
- SAY NAME2 @16
- SAY DESC @17
+ SAY NAME2 ~The Love of Black Bess~
+ SAY DESC ~This fell weapon was crafted by a beautiful and cruel wizardess who worshipped the lady of misfortune, Beshaba. Her name was Redani, and she was known both for her powers as an enchanter and a seductress. The Love of Black Bess was always given to her favored consort at any particular time. Unknown to her lovers, she would place a Ring of Readiness on the morning star, saving the matching ring for a special time. When she grew tired of her consorts, as she always did, she would give the matching ring to a new lover and send the young man out to kill her old paramour. The new lover would simply call upon the ring and the morning star would fly to his hand. 
+
+Unfortunately, Redani was done in when she trusted the wrong man to kill her old lover. Gural of Chessenta, a well-disguised priest of Hoar, took it upon himself to gain vengeance for a man whose skull he had picked up by the side of a road. Unluckily for Redani, priests of Hoar will go to any length to avenge the dead, even if it means animating all of her dead lovers to tear her limb from limb.
+
+STATISTICS:
+
+Combat abilities:
+– 10% of all hits cause the target to lose 4 points of luck and run in panic for 16 rounds
+
+THAC0: +4
+Damage: 2d6+5 (crushing)
+Speed Factor: 4
+Proficiency Type: Flail/Morning Star
+Type: One-handed
+Requires:
+ 11 Strength
+
+Weight: 10~
 
 COPY ~%MOD_FOLDER%/main/itm/ttbbow.itm~ override
- SAY NAME2 @24
- SAY DESC @25
+ SAY NAME2 ~The Black Bow~
+ SAY DESC ~A rough bow with a dusty appearance, the Black Bow was created as an instrument of vengeance by a Cormyrean settler in the Western Heartlands of Faerun. A former soldier named Jonan of Suzail, after years of campaigning in the name of the crown, finally returned home to marry his childhood sweetheart. Through all of his years in the military, he remained true to his love and saved his earnings. He and his new wife moved west in the hopes that they would find frontier land to settle. In the lands north of Baldur's Gate and east of the Trollbark Forest, Jonan built his home and farm. Within five years, there were raiders in the area, and farms were being destroyed all around Jonan's. Eventually, the raiders targeted Jonan's home, killing his wife and child and leaving him for dead. His farm was burned to the ground. Weeks later, Jonan crafted this bow and rubbed the ashes of his farm and family into the grain of the wood. He later went on a murderous rampage, slaying each of the bandits where he found them, and later killing anyone they associated with. Sages debate how the bow became enchanted, but most believe that, after Jonan's death, it was blessed by a god. Some say it was blessed by Tyr, some say by Hoar, and others say by Bhaal. Theories tend to revolve around whether the speaker believes Jonan's actions were just, vengeful, or murderous.
+
+STATISTICS:
+
+Combat abilities:
+– 1 extra attack per round
+
+THAC0: +4
+Damage: +3 (missile)
+Speed Factor: 4
+Proficiency Type: Longbow
+Type: Two-handed
+Requires:
+ 12 Strength
+
+Weight: 3~
 
 COPY ~%MOD_FOLDER%/main/itm/ttbootfo.itm~ override
- SAY NAME2 @26
- SAY DESC @27
+ SAY NAME2 ~Boots of the Forgotten Ones~
+ SAY DESC ~These wrinkled, rough boots were made from the scalps of dead orc shamans from the Stinking Paw tribe. The power hungry religious leader of the tribe, Algrash Who-Watches-In-Darkness, ordered his underlings to make the boots by digging up the corpses of his predecessors. Algrash was killed when he provoked a fight with a gang of ogres. His boots were left at the scene of the battle.
+
+STATISTICS:
+
+Equipped abilities:
+– Can memorize 2 extra 1st-, 2 extra 2nd-, and 1 extra 3rd-level divine spell
+– Doubles movement rate
+
+Weight: 4~
 
 COPY ~%MOD_FOLDER%/main/itm/ttbowham.itm~ override
- SAY NAME2 @29
- SAY DESC @30
+ SAY NAME2 ~Defender +4~
+ SAY DESC ~The composite bow is similar to the long bow, except that the staff being made from more than one type of material is heavier, and about as high as the archer is, usually 6 to 6.5 feet. Even though the composite bow is slightly slower then the long bow, it has more range and is more accurate. This particular bow has been enhanced with magical properties, giving it an air of perfection. Moreover the heavy staff of this bow is made of magically enhanted cedar and cembra pine, which grants additional protection to its wielder.
+
+STATISTICS:
+
+Combat abilities:
+– 3 extra attacks per round
+
+THAC0: +4
+Damage: +4 (missile)
+Speed Factor: 7
+Proficiency Type: Longbow
+Type: Two-handed
+Requires:
+ 17 Strength
+ 17 Dexterity
+
+Weight: 8~
  
 COPY ~%MOD_FOLDER%/main/itm/ttkatair.itm~ override
- SAY NAME2 @31
- SAY DESC @32
+ SAY NAME2 ~Katana +3: Air Element~
+ SAY DESC ~Katana +3 Air Element
+
+One of the four elemental katanas, this katana bestows the power of Air upon the wielder, who must respect the customs of Kara-Tur. Not doing so could drastically change one's luck for the worse. Only those of pure heart may use the elemental katanas.
+
+STATISTICS:
+
+Equipped abilities:
+– Strength: -2
+– Dexterity: +1
+– Intelligence: +1
+– Immunity to acid
+– Immunity to poison
+– Immunity to any electricity and lighting effects, including wing buffet
+
+ Combat abilities:
+ – Air elementals must save vs. Spell or be utterly destroyed
+
+THAC0: +3
+Damage: 1d10+3, +1d10 electrical damage
+Damage Type: Slashing
+Speed Factor: 1
+Proficiency Type: Katana
+Type: One-handed
+Requires:
+ 16 Dexterity
+
+Weight: 2~
  
 COPY ~%MOD_FOLDER%/main/itm/ttkatear.itm~ override
- SAY NAME2 @33
- SAY DESC @34
+ SAY NAME2 ~Katana +3: Earth Element~
+ SAY DESC ~Katana +3 Earth Element
+
+One of the four elemental katanas, this katana bestows the power of Earth upon the wielder, who must respect the customs of Kara-Tur. Not doing so could drastically change one's luck for the worse. Only those of pure heart may use the elemental katanas.
+
+STATISTICS:
+
+Equipped abilities:
+– Strength: +1
+– Dexterity: -2
+– Constitution: +1
+– Immunity to pertrification, polymorph, panic and disease
+– Immunity to crushing weapons and backstab
+
+Combat abilities:
+– 10% chance of each hit to petrify the target (Save vs. Petrify/Polymorph negates)
+– Earth elementals must save vs. Spell or be utterly destroyed
+
+THAC0: +3
+Damage: 1d10+3, +1d10 crushing damage
+Damage Type: Slashing
+Speed Factor: 1
+Proficiency Type: Katana
+Type: One-handed
+Requires:
+ 16 Constitution
+
+Weight: 2~
  
 COPY ~%MOD_FOLDER%/main/itm/ttkatfir.itm~ override
- SAY NAME2 @35
- SAY DESC @36
+ SAY NAME2 ~Katana +3: Fire Element~
+ SAY DESC ~Katana +3 Fire Element
+
+One of the four elemental katanas, probably the most formidable, but at the same time, the most difficult to handle, this katana bestows the power of Fire upon the wielder, who must respect the customs of Kara-Tur. Not doing so could drastically change one's luck for the worse. Only those of pure heart may use the elemental katanas. In addition, this particular katana requires its owner respects the natural ballance.
+
+STATISTICS:
+
+Equipped abilities:
+– Strength: +1
+– Dexterity: +1
+– Wisdom: -2
+– Immunity to charm, control, confusion and sleep
+– Immunity to hold, haste, slow and stun
+– Fire Resistance: 100%
+– Magic Fire Resistance: 100%
+
+Combat abilities:
+– Fire elementals must save vs. Spell or be utterly destroyed
+
+THAC0: +3
+Damage: 1d10+3, +1d10 fire damage
+Damage Type: Slashing
+Speed Factor: 1
+Proficiency Type: Katana
+Type: One-handed
+Requires:
+ 17 Strength
+ 17 Dexterity
+
+Weight: 2~
 
 COPY ~%MOD_FOLDER%/main/itm/ttkatwat.itm~ override
- SAY NAME2 @37
- SAY DESC @38
+ SAY NAME2 ~Katana +3: Water Element~
+ SAY DESC ~Katana +3 Water Element
+
+One of the four elemental katanas, this katana bestows the power of Water upon the wielder, who must respect the customs of Kara-Tur. Not doing so could drastically change one's luck for the worse. Only those of pure heart may use the elemental katanas.
+
+STATISTICS:
+
+Equipped abilities:
+– Constitution: -2
+– Wisdom: +1
+– Charisma: +1
+– Immunity to blindness and silence
+– Immunity to wild magic
+– Cold Resistance: 100%
+– Magic Cold Resistance: 100%
+
+Combat abilities:
+– Vampiric creatures must save vs. Spell or be utterly destroyed
+
+THAC0: +3
+Damage: 1d10+3, +1d10 cold damage
+Damage Type: Slashing
+Speed Factor: 1
+Proficiency Type: Katana
+Type: One-handed
+Requires:
+ 16 Wisdom
+ 16 Charisma
+
+Weight: 2~
  
 COPY ~%MOD_FOLDER%/main/itm/ttwardex.itm~ override
- SAY NAME2 @39
- SAY DESC @40
+ SAY NAME2 ~Nakanishi Wardstone~
+ SAY DESC ~Upon closer examination this wardstone appears to be a gem of mediocre value, with several symbols carved upon the outer edge.
+
+STATISTICS:
+
+Weight: 5~
 
 COPY ~%MOD_FOLDER%/main/itm/ttgodble.itm~ override
- SAY NAME2 @41
- SAY DESC @42
+ SAY NAME2 ~Ring of Holiness II~
+ SAY DESC ~Ring of Holiness II: God Blessing
+
+Rings of this type were given to the most faithful priests of Sune who demonstrated actions of astounding integrity and kindness.
+
+STATISTICS:
+
+Equipped abilities:
+– Can memorize one extra divine spell of each level from 5th to 7th
+
+Weight: 0~
  
 COPY ~%MOD_FOLDER%/main/itm/ttkswor1.itm~ override
- SAY NAME2 @43
- SAY DESC @44
+ SAY NAME2 ~Kachiko's Wakizashi +3~
+ SAY DESC ~Kachiko's Wakizashi +3
+
+This special sword was granted to Kachiko by her father upon her ascension to adulthood.
+
+STATISTICS:
+
+Combat abilities:
+– Drains 2 points of target's Wisdom for 2 rounds on each hit (Save vs. Death to negate)
+
+THAC0: +3
+Damage: 1d8+3 (piercing)
+Speed Factor: 0
+Proficiency Type: Scimitar/Wakizashi/Ninja-To
+Type: One-handed
+Requires:
+ 5 Strength
+
+Weight: 2~
  
 COPY ~%MOD_FOLDER%/main/itm/ttkswor2.itm~ override
- SAY NAME2 @45
- SAY DESC @46
+ SAY NAME2 ~Bamboo Spirit Wakizashi +4~
+ SAY DESC ~Bamboo Spirit Wakizashi +4
+
+This fine wakizashi sword is of unusual construction. The blade is crafted from an unknown colourglow metal, but the edge appears to be of the finest silver. Shimmering runes have been etched the entire length of the blade. When examined closely, the runes writhe with a life of their own. Not much is known about origins of this sword. Kachiko said that this sword is her favoured weapon, and it had been granted to her by Bamboo Spirit folk who lives in southern forests of Kozakura.
+
+STATISTICS:
+
+Equipped Abilities:
+– Regenerate 1 Hit Point per round
+
+THAC0: +4
+Damage: 1d8+4 (slashing)
+Proficiency type: Scimitar/Wakizashi/Ninja-To
+Speed Factor: 1
+Type: One-handed
+Requires:
+ 8 Strength
+
+Weight: 4~
 
 COPY ~%MOD_FOLDER%/main/itm/ttkedl.itm~ override
- SAY NAME2 @47
- SAY DESC @48
+ SAY NAME2 ~Silver Bracers of Kedl~
+ SAY DESC ~This mage, who made his home in Phlan, was known as "Kedl of the Three Rings," for it was said that he perfected a technique whereby he could wear three magical rings simultaneously. An enchanter of items, he was well known for his discriminating taste in clothing, jewelry, and other accessories. His polished silver bracers were a constant part of his wardrobe. Kedl eventually sold his bracers when he needed the money for some powerful rings. Unfortunately, Kedl died in an orc attack on Phlan several years later.
+
+STATISTICS:
+
+Equipped abilities:
+– Armor Class: 2
+
+Weight: 2~
 
 COPY ~%MOD_FOLDER%/main/itm/ttkeybro.itm~ override
- SAY NAME2 @49
- SAY UNIDENTIFIED_DESC @50
- SAY DESC @50
+ SAY NAME2 ~Bronze Key~
+ SAY UNIDENTIFIED_DESC ~An ornate key crafted in bronze.
+
+STATISTICS:
+
+Weight: 0~
+ SAY DESC ~An ornate key crafted in bronze.
+
+STATISTICS:
+
+Weight: 0~
  
 COPY ~%MOD_FOLDER%/main/itm/ttkeycop.itm~ override
- SAY NAME2 @51
- SAY UNIDENTIFIED_DESC @52
- SAY DESC @52
+ SAY NAME2 ~Copper Key~
+ SAY UNIDENTIFIED_DESC ~An ornate key crafted in copper.
+
+STATISTICS:
+
+Weight: 0~
+ SAY DESC ~An ornate key crafted in copper.
+
+STATISTICS:
+
+Weight: 0~
  
 COPY ~%MOD_FOLDER%/main/itm/ttkeydun.itm~ override
- SAY NAME2 @53
- SAY UNIDENTIFIED_DESC @54
- SAY DESC @54
+ SAY NAME2 ~Iron Key~
+ SAY UNIDENTIFIED_DESC ~A complex looking key made from cold iron.
+
+STATISTICS:
+
+Weight: 0~
+ SAY DESC ~A complex looking key made from cold iron.
+
+STATISTICS:
+
+Weight: 0~
  
 COPY ~%MOD_FOLDER%/main/itm/ttkeyele.itm~ override
- SAY NAME2 @55
- SAY UNIDENTIFIED_DESC @56
- SAY DESC @56
+ SAY NAME2 ~Electrum Key~
+ SAY UNIDENTIFIED_DESC ~An ornate key crafted in electrum.
+
+STATISTICS:
+
+Weight: 0~
+ SAY DESC ~An ornate key crafted in electrum.
+
+STATISTICS:
+
+Weight: 0~
  
 COPY ~%MOD_FOLDER%/main/itm/ttkeygol.itm~ override
- SAY NAME2 @57
- SAY UNIDENTIFIED_DESC @58
- SAY DESC @58
+ SAY NAME2 ~Gold Key~
+ SAY UNIDENTIFIED_DESC ~An ornate key crafted in gold.
+
+STATISTICS:
+
+Weight: 0~
+ SAY DESC ~An ornate key crafted in gold.
+
+STATISTICS:
+
+Weight: 0~
 
 COPY ~%MOD_FOLDER%/main/itm/ttkeypla.itm~ override
- SAY NAME2 @59
- SAY UNIDENTIFIED_DESC @60
- SAY DESC @60
+ SAY NAME2 ~Platinum Key~
+ SAY UNIDENTIFIED_DESC ~An ornate key crafted in platinum.
+
+STATISTICS:
+
+Weight: 0~
+ SAY DESC ~An ornate key crafted in platinum.
+
+STATISTICS:
+
+Weight: 0~
 
 COPY ~%MOD_FOLDER%/main/itm/ttkeysil.itm~ override
- SAY NAME2 @61
- SAY UNIDENTIFIED_DESC @62
- SAY DESC @62
+ SAY NAME2 ~Silver Key~
+ SAY UNIDENTIFIED_DESC ~An ornate key crafted in silver.
+	
+STATISTICS:
+
+Weight: 0~
+ SAY DESC ~An ornate key crafted in silver.
+	
+STATISTICS:
+
+Weight: 0~
 
 COPY ~%MOD_FOLDER%/main/itm/ttnring2.itm~ override
- SAY NAME2 @65
- SAY DESC @66
+ SAY NAME2 ~Hojo War Ring of Nakanishi~
+ SAY DESC ~Hojo War Ring of Nakanishi
+
+Every female samurai of Kozakura clans participated in Hojo War has been given its own family ring of protection by one of Eight Million Gods. This ring was given to Kachiko by her mother upon her ascension to adulthood. Bonded to her blood as it is, its powers may not be used by anyone else.
+
+STATISTICS:
+
+Equipped Abilities:
+– Armor Class: +2
+– Saving Throws: +2
+– Off-hand THAC0: +2
+– Magic Resistance: +10%
+– Immunity to disease and poison
+– Improves casting speed by 4
+– Can memorize two extra arcane spells of each level from 6th to 9th
+
+Weight: 0~
 
 COPY ~%MOD_FOLDER%/main/itm/ttyoring.itm~ override
- SAY NAME2 @67
- SAY DESC @68
+ SAY NAME2 ~Hojo War Ring of Hashimoto~
+ SAY DESC ~Hojo War Ring of Hashimoto
+
+Sanai Hashimoto was a famous samurai of Hashimoto clan and loyal supporter of the Emperor Tokugawa during the final days of the Hojo War. The Emperor granted this ring to him in a recogntion of his deeds and loyalty. After Sanai's death, the ring has been inherited by his son Aino who later granted this ring to his eldest son Yoshimo upon his ascension to adulthood. Bonded to his blood as it is, its powers may not be used by anyone else but Yoshimo.
+
+Equipped Abilities:
+– Armor Class: +2
+– Saving Throws: +2
+– Off-hand THAC0: +2
+– Magic Resistance: +10%
+– Regenerate 1 Hit Point per round
+ 
+Weight: 0~
 
 COPY ~%MOD_FOLDER%/main/itm/ttotakam.itm~ override
- SAY NAME1 @69
- SAY NAME2 @69
- SAY UNIDENTIFIED_DESC @70
- SAY DESC @70
+ SAY NAME1 ~Crescent Moon Medallion~
+ SAY NAME2 ~Crescent Moon Medallion~
+ SAY UNIDENTIFIED_DESC ~A miniature crescent moon on a chain.
+
+STATISTICS:
+
+Weight: 0~
+ SAY DESC ~A miniature crescent moon on a chain.
+
+STATISTICS:
+
+Weight: 0~
  
 COPY ~%MOD_FOLDER%/main/itm/ttrope.itm~ override
- SAY NAME2 @72
- SAY UNIDENTIFIED_DESC @73
- SAY DESC @73
+ SAY NAME2 ~Magical Rope~
+ SAY UNIDENTIFIED_DESC ~This enchanted rope allows the user to descend or ascend any height. It will stretch to any length and still maintain its strength.
+
+STATISTICS:
+
+Weight: 5~
+ SAY DESC ~This enchanted rope allows the user to descend or ascend any height. It will stretch to any length and still maintain its strength.
+
+STATISTICS:
+
+Weight: 5~
  
 COPY ~%MOD_FOLDER%/main/itm/ttpursta.itm~ override
- SAY DESC @75
+ SAY DESC ~This weapon appears to be a huge staff with a ferrule causes the staff to assume the attributes of a mace. However, only the strongest of the people can wield it in one hand.
+
+STATISTICS:
+
+THAC0: +2
+Damage: 2d4+2 (crushing)
+Speed Factor: 2
+Proficiency Type: Quarterstaff
+Type: One-handed
+Requires: 19 Strength
+
+Weight: 4~
  
 COPY ~%MOD_FOLDER%/main/itm/ttringed.itm~ override
- SAY NAME2 @76
- SAY DESC @77
+ SAY NAME2 ~Edion's Ring of Wizardry~
+ SAY DESC ~Edion, a dying necromancer from Sembia, was the recent owner of this powerful ring. He crafted the ring himself for his private use. In his later years, he became so accustomed to wearing it that he almost never removed it. He wore it on the same finger that he would wear a wedding ring on, to symbolize his marriage to the Art.
+
+STATISTICS:
+
+Equipped Abilities:
+– Armor Class: +1
+– THAC0: +2
+– Magic Resistance: +10%
+– Can memorize two extra arcane spells of each level from 4th to 9th
+
+Charge abilities:
+– Stoneskin twice per day
+– Fireshield (Blue) twice per day
+– Conjure Fire Elemental twice per day
+
+Weight: 0~
  
 COPY ~%MOD_FOLDER%/main/itm/ttrobear.itm~ override
- SAY NAME2 @78
- SAY DESC @79
+ SAY NAME2 ~Robe of Armory~
+ SAY DESC ~There are a small number of these valuable gold and crimson robes floating around the Realms, and all of them are the creation of an abjurer named Delgam of the Many Hands - so called for his extensive use of the expression "on the other hand..." Delgam eschewed imbuing his items with offensive powers or other miscellaneous magic effects. Instead, he focused on what abjurers tend to focus on: defense. His robes were extremely popular, so much so that mages were coming to him from all over the world to demand that he make more for them. Delgam decided to fade into obscurity rather than cater to packs of power-hungry wizards. His robes are his most well known legacy.
+
+STATISTICS:
+
+Equipped Abilities:
+– Armor Class: 1
+– Slashing Resistance: +10%
+– Crushing Resistance: +10%
+– Piercing Resistance: +10%
+– Missile Resistance: +10%
+
+Weight: 5~
  
 COPY ~%MOD_FOLDER%/main/itm/ttroghat.itm~ override
- SAY NAME1 @80
- SAY NAME2 @81
- SAY UNIDENTIFIED_DESC @82
- SAY DESC @83
+ SAY NAME1 ~Hat~
+ SAY NAME2 ~Rogue's Cowl~
+ SAY UNIDENTIFIED_DESC ~Magical hats may actually be almost any type of headgear. They shrink or expand to fit any size head. Contemporary fashion and profession often dictate the shape and style of magical hats.~
+ SAY DESC ~This dark brown cowl is meant to be worn on the head and over the shoulders as a broad hood. It was crafted by the gnomish thief and illusionist Brein Chestnut. Brein used the cowl on his own adventures for several years before his childhood sweetheart convinced him to settle down. He gave the cowl to his nephew, Chirchet, who in turn sold the item for a large stretch of farmland.
+
+STATISTICS:
+
+Equipped Abilities:
+– Armor Class: +2
+– Stealth: +10%
+
+Charge abilities:
+– Blindness once per day
+– Color Spray once per day
+
+Weight: 2~
 
 COPY ~%MOD_FOLDER%/main/itm/ttscarab.itm~ override
- SAY NAME2 @84
- SAY DESC @85
+ SAY NAME2 ~Scarab of Goodwill~
+ SAY DESC ~This type of amulet takes the form of a sculpted beetle, and is typically only found in areas around Mulhorand. This particular scarab was crafted by a priest of Nepthys named Ani Haloua. She used it in negotiations with local businesses and the general populace. Similar scarabs are believed to be circulating in the Realms. Priests of Waukeen are particularly fond of them.
+
+STATISTICS:
+
+Equipped Abilities:
+– Dexterity: +2
+– Charisma: +2
+
+Charge abilities:
+– Friends once per day
+– Charm once per day
+
+
+Weight: 2~
 
 COPY ~%MOD_FOLDER%/main/itm/ttwardti.itm~ override
- SAY NAME2 @86
+ SAY NAME2 ~Temporal Wardstone~
  
 COPY ~%MOD_FOLDER%/main/itm/tttrrin2.itm~ override
- SAY NAME2 @87
- SAY DESC @88
+ SAY NAME2 ~Ring of Wizardry II~
+ SAY DESC ~Ring of Wizardry II: Reaching Ring
+
+This is the enchanted version of the famous Ring of Wizardry.
+
+STATISTICS:
+
+Equipped Abilities:
+– Can memorize two extra 5th level, two extra 6th level, one extra 7th level and one extra 8th level arcane spells
+
+Weight: 0~
 
 COPY ~%MOD_FOLDER%/main/itm/ttpot1a.itm~ override
- SAY NAME2 @89
- SAY DESC @90
+ SAY NAME2 ~Potion of Action Transference~
+ SAY DESC ~The liquid in the potion has a strange murky quality to it that you haven't noticed in other potions. It would appear to affect some of your stats but you are not sure which of them and how.
+
+STATISTICS:
+
+Weight: 1~
  
 COPY ~%MOD_FOLDER%/main/itm/ttpot3c.itm~ override
- SAY NAME2 @91
- SAY DESC @90
+ SAY NAME2 ~Potion of Strength Transference~
+ SAY DESC ~The liquid in the potion has a strange murky quality to it that you haven't noticed in other potions. It would appear to affect some of your stats but you are not sure which of them and how.
+
+STATISTICS:
+
+Weight: 1~
  
 COPY ~%MOD_FOLDER%/main/itm/ttpot4b.itm~ override
- SAY NAME2 @92
- SAY DESC @90
+ SAY NAME2 ~Potion of Life Transference~
+ SAY DESC ~The liquid in the potion has a strange murky quality to it that you haven't noticed in other potions. It would appear to affect some of your stats but you are not sure which of them and how.
+
+STATISTICS:
+
+Weight: 1~
  
 COPY ~%MOD_FOLDER%/main/itm/ttpot4c.itm~ override
- SAY NAME2 @93
- SAY DESC @94
+ SAY NAME2 ~Potion of Aura Enhancement~
+ SAY DESC ~When wholly consumed, this oddly murky potion would appear to increase your intelligence and wisdom for one point, and grant you 10% magic resistance. The effect is instantaneous and the potion is destroyed in the process.
+
+STATISTICS:
+
+Weight: 1~
  
 COPY ~%MOD_FOLDER%/main/itm/ttpot5b.itm~ override
- SAY NAME2 @95
- SAY DESC @90
+ SAY NAME2 ~Potion of Holy Transference~
+ SAY DESC ~The liquid in the potion has a strange murky quality to it that you haven't noticed in other potions. It would appear to affect some of your stats but you are not sure which of them and how.
+
+STATISTICS:
+
+Weight: 1~
 
 COPY ~%MOD_FOLDER%/main/itm/ttwuhalt.itm~ override
- SAY NAME2 @96
- SAY DESC @97
+ SAY NAME2 ~Wu Haltai +4~
+ SAY DESC ~Katana +4: Wu Haltai
+
+The wielder of the noble katana, such as this one, must respect the customs of Kara-Tur and of the samurai who once carried this blade into battle. Not doing so could drastically change one's luck for the worse. This particular katana has its counterpart, the "Wu Jen" katana. It is said that when these two are wielded by the same person in battle, the wielder becomes invulnerable. 
+
+STATISTICS:
+
+Equipped Abilities:
+– Armor Class: +3
+– Regenerate 1 Hit Point per round
+
+Combat abilities:
+– Each hit lowers target's Magic Resistance by 10%
+
+THAC0: +4
+Damage: 1d10+4 (slashing)
+Speed Factor: 1
+Proficiency Type: Katana
+Type: One-handed
+Requires:
+ 17 Strength
+ 17 Dexterity
+ 12 Intelligence
+ 
+Weight: 2~
  
 COPY ~%MOD_FOLDER%/main/itm/ttwujen.itm~ override
  SAY NAME2 @400
- SAY DESC @98
+ SAY DESC ~Katana +3: Wu Jen
+
+This katana is a defending counterpart of the Wu Haltai katana. It is said that when these two are wielded by the same person in battle, the wielder becomes invulnerable.
+
+STATISTICS:
+
+Equipped Abilities:
+– Constitution: +3
+– Death Ward (Immunity to all forms of death magic)
+
+Charge Abilities:
+– Greater Restoration once per day
+– Heal once per day
+
+THAC0: +3
+Damage: 1d10+3 (slashing)
+Speed Factor: 1
+Proficiency Type: Katana
+Type: One-handed
+Requires:
+ 15 Dexterity
+ 15 Intelligence
+
+Weight: 2~
 
 COPY ~%MOD_FOLDER%/main/itm/ttogi.itm~ override
- SAY NAME2 @99
- SAY DESC @100
+ SAY NAME2 ~Ogi-Luc's Great Robe~
+ SAY DESC ~This robe was fashioned from strong fabric and dyed dark blue, the favorite color of its proud owner, the archmage Ogi-Luc. A Sembian by birth, Ogi-Luc was a powerful man, as strong in body as he was in mind. However, Ogi-Luc wasn't content to merely be strong. He wanted to be exceptionally strong. When he put on this robe, proud men stood aside and braggarts stilled their tongues. For all of Ogi-Luc's pride and prowess, he was unable to defeat the Red Wizard abjurer Nesk Vhaltim. Nesk took the robe as a prize. It were later stolen and sold by a daring rogue.
+
+STATISTICS:
+
+Equipped Abilities:
+– Armor Class: -1
+– Strength: 23
+– Constitution: 23
+– Fire Resistance: +50%
+– Acid Resistance: +50%
+– Magic Resistance: +15%
+– Immunity to backstab
+– Immunity to normal weapons
+
+Weight: 5~
 
 COPY ~%MOD_FOLDER%/main/itm/ttkenbra.itm~ override
- SAY NAME2 @101
- SAY DESC @102
+ SAY NAME2 ~Kensai Gloves~
+ SAY DESC ~These special leather gloves are enchanted so as to any kensai can wear them, as well as any one else.
+	
+STATISTICS:
+
+Equipped Abilities:
+– Armor Class: +2
+– Hit Points: +15
+– Magic Resistance: +10%
+– THAC0: +2
+– Off-hand THAC0: +2
+– Damage: +2
+– Immunity to +1 magical weapons
+
+Combat abilities:
+– 1 extra attack per round
+
+Weight: 1~
 
 COPY ~%MOD_FOLDER%/main/itm/ttyoleat.itm~ override
- SAY NAME2 @103
- SAY DESC @104
+ SAY NAME2 ~Mourner's Armor~
+ SAY DESC ~This unique suit of armor is of foreign design, created for a Kara-Turian samurai from the Baika Clan. The armor, crafted from thin, stiff leather, is dyed black, but features the insignia of the plum blossom, the mon of the Baika Clan. It was only worn into battle once, when Baika Himuro fought a hopeless battle against the enemy samurai that flooded into his ancestral estate. It is believed that the enemy clan captured the armor and later traded it for siege equipment.
+
+STATISTICS:
+
+Equipped Abilities:
+– Dexterity: -1
+– Hit Points: +15
+– Fire Resistance: +25%
+– Cold Resistance: +25%
+– Missile Resistance: +75%
+– Immunity to backstab
+– Immunity to normal weapons
+– Regenerate 1 Hit Point per round
+– May only be removed with a Remove Curse spell
+
+Armor Class: 0
+	
+Weight: 20~
 
 COPY ~%MOD_FOLDER%/main/itm/ttyokat.itm~ override
- SAY NAME2 @105
- SAY DESC @106
+ SAY NAME2 ~Yoshimo's Katana +4~
+ SAY DESC ~Yoshimo's Katana +4
+
+This blade, being heavily enchanted by Kara-Turian arcane masters, has achieved a semblance of awareness, enough so that it allows only Yoshimo to wield it. Any other than he cannot use this unique katana. It not only grants physical and magical protection to Yoshimo, but also allows him time for an additional attack.
+
+STATISTICS:
+
+Equipped Abilities:
+– Armor Class: +2
+– Magic Resistance: +10%
+
+Combat abilities:
+– 1 extra attack per round
+
+THAC0: +4
+Damage: 1d10+4 (slashing)
+Speed Factor: 3
+Proficiency Type: Katana
+Type: One-handed
+
+Weight: 5~
 
 COPY ~%MOD_FOLDER%/main/itm/ttcharts.itm~ override // Sea Charts
 
@@ -280,7 +805,7 @@ ttyoring yoshimo 9382 2 99998~
 UNLESS ~ttnring2~
 
 COPY_EXISTING ~item_use.2da~ override
-REPLACE ~99999~ @135
+REPLACE ~99999~ ~Kachiko~
 REPLACE ~99998~ #9141
 
 APPEND ~TOOLTIP.2DA~
@@ -438,166 +963,168 @@ BUT_ONLY_IF_IT_CHANGES
 //////////////////////////////
 
 COPY ~%MOD_FOLDER%/main/cre/ttaino.cre~ override
- SAY NAME1 @119
- SAY NAME2 @120
+ SAY NAME1 ~Aino Hashimoto~
+ SAY NAME2 ~Aino~
 
 COPY ~%MOD_FOLDER%/main/cre/ttainoa.cre~ override
- SAY NAME1 @119
- SAY NAME2 @120
+ SAY NAME1 ~Aino Hashimoto~
+ SAY NAME2 ~Aino~
 
 COPY ~%MOD_FOLDER%/main/cre/ttalome.cre~ override
- SAY NAME1 @121
- SAY NAME2 @122
+ SAY NAME1 ~Alome Nakanishi~
+ SAY NAME2 ~Alome~
 
 COPY ~%MOD_FOLDER%/main/cre/ttbasil.cre~ override
- SAY NAME1 @123
- SAY NAME2 @123
+ SAY NAME1 ~Basilisk~
+ SAY NAME2 ~Basilisk~
 
 COPY ~%MOD_FOLDER%/main/cre/ttchdrag.cre~ override
- SAY NAME1 @127
- SAY NAME2 @127
+ SAY NAME1 ~Chromatic Dragon~
+ SAY NAME2 ~Chromatic Dragon~
  
 COPY ~%MOD_FOLDER%/main/cre/ttdeadkf.cre~ override
 COPY ~%MOD_FOLDER%/main/cre/ttdeadkm.cre~ override
 
 COPY ~%MOD_FOLDER%/main/cre/ttwatelg.cre~ override
- SAY NAME1 @128
- SAY NAME2 @128
+ SAY NAME1 ~Greater Water Elemental~
+ SAY NAME2 ~Greater Water Elemental~
  
 COPY ~%MOD_FOLDER%/main/cre/ttwatel.cre~ override
- SAY NAME1 @128
- SAY NAME2 @128
+ SAY NAME1 ~Water Elemental~
+ SAY NAME2 ~Water Elemental~
 
 COPY ~%MOD_FOLDER%/main/cre/ttgzomb.cre~ override
- SAY NAME1 @129
- SAY NAME2 @129
+ SAY NAME1 ~Greater Zombie~
+ SAY NAME2 ~Greater Zombie~
 
 //COPY ~%MOD_FOLDER%/main/cre/tthaksu.cre~ override //haksu.cre
 
 COPY ~%MOD_FOLDER%/main/cre/tthasuno.cre~ override
- SAY NAME1 @118
- SAY NAME2 @118
+ SAY NAME1 ~Hasuno~
+ SAY NAME2 ~Hasuno~
 
 COPY ~%MOD_FOLDER%/main/cre/tthitomi.cre~ override
- SAY NAME1 @130
- SAY NAME2 @131
+ SAY NAME1 ~Hitomi Nakanishi~
+ SAY NAME2 ~Hitomi~
 
 COPY ~%MOD_FOLDER%/main/cre/tthkensf.cre~ override
- SAY NAME1 @132
- SAY NAME2 @132
+ SAY NAME1 ~Hashimoto Guard~
+ SAY NAME2 ~Hashimoto Guard~
 
 COPY ~%MOD_FOLDER%/main/cre/tthkens.cre~ override
- SAY NAME1 @132
- SAY NAME2 @132
+ SAY NAME1 ~Hashimoto Guard~
+ SAY NAME2 ~Hashimoto Guard~
 
 COPY ~%MOD_FOLDER%/main/cre/ttsamur1.cre~ override
- SAY NAME1 @133
- SAY NAME2 @133
+ SAY NAME1 ~Ronin~
+ SAY NAME2 ~Ronin~
 
 COPY ~%MOD_FOLDER%/main/cre/ttsamur2.cre~ override
- SAY NAME1 @134
- SAY NAME2 @134
+ SAY NAME1 ~Ronin Wakashu~
+ SAY NAME2 ~Ronin Wakashu~
 
 COPY ~%MOD_FOLDER%/main/cre/ttkachis.cre~ override
- SAY NAME1 @135
- SAY NAME2 @135
+ SAY NAME1 ~Kachiko~
+ SAY NAME2 ~Kachiko~
 
  COPY ~%MOD_FOLDER%/main/cre/ttkachid.cre~ override
- SAY NAME1 @135
- SAY NAME2 @135
+ SAY NAME1 ~Kachiko~
+ SAY NAME2 ~Kachiko~
  
 COPY ~%MOD_FOLDER%/main/cre/ttkiotsi.cre~ override
- SAY NAME1 @137
- SAY NAME2 @137
+ SAY NAME1 ~Kiotsi~
+ SAY NAME2 ~Kiotsi~
 
 COPY ~%MOD_FOLDER%/main/cre/ttlulu.cre~ override
- SAY NAME1 @139
- SAY NAME2 @140
+ SAY NAME1 ~Lulu Hashimoto~
+ SAY NAME2 ~Lulu~
  
 COPY ~%MOD_FOLDER%/main/cre/ttmasaki.cre~ override
- SAY NAME1 @141
- SAY NAME2 @142
+ SAY NAME1 ~Masaki Hayashi~
+ SAY NAME2 ~Masaki~
 
 COPY ~%MOD_FOLDER%/main/cre/ttmichio.cre~ override
- SAY NAME1 @143
- SAY NAME2 @144
+ SAY NAME1 ~Michio Nakanishi~
+ SAY NAME2 ~Michio~
  
 COPY ~%MOD_FOLDER%/main/cre/ttmomoko.cre~ override
- SAY NAME1 @145
- SAY NAME2 @146
+ SAY NAME1 ~Momoko Nakanishi~
+ SAY NAME2 ~Momoko~
  
 COPY ~%MOD_FOLDER%/main/cre/ttnajoki.cre~ override
- SAY NAME1 @147
- SAY NAME2 @148
+ SAY NAME1 ~Najoki Nakanishi~
+ SAY NAME2 ~Najoki~
  
 COPY ~%MOD_FOLDER%/main/cre/ttnajoka.cre~ override
- SAY NAME1 @147
- SAY NAME2 @148
+ SAY NAME1 ~Najoki Nakanishi~
+ SAY NAME2 ~Najoki~
  
 COPY ~%MOD_FOLDER%/main/cre/ttnanny.cre~ override
- SAY NAME1 @149
- SAY NAME2 @149
+ SAY NAME1 ~Nanny~
+ SAY NAME2 ~Nanny~
  
 COPY ~%MOD_FOLDER%/main/cre/ttnkens.cre~ override
- SAY NAME1 @150
- SAY NAME2 @150
+ SAY NAME1 ~Nakanishi Guard~
+ SAY NAME2 ~Nakanishi Guard~
 
 COPY ~%MOD_FOLDER%/main/cre/ttnkensm.cre~ override
- SAY NAME1 @150
- SAY NAME2 @150
+ SAY NAME1 ~Nakanishi Guard~
+ SAY NAME2 ~Nakanishi Guard~
 
 COPY ~%MOD_FOLDER%/main/cre/ttnkensf.cre~ override
- SAY NAME1 @150
- SAY NAME2 @150
+ SAY NAME1 ~Nakanishi Guard~
+ SAY NAME2 ~Nakanishi Guard~
 
 COPY ~%MOD_FOLDER%/main/cre/ttnlead.cre~ override
- SAY NAME1 @151
- SAY NAME2 @151
+ SAY NAME1 ~Undead Samurai~
+ SAY NAME2 ~Undead Samurai~
  
 COPY ~%MOD_FOLDER%/main/cre/ttnmonk.cre~ override
- SAY NAME1 @152
- SAY NAME2 @152
+ SAY NAME1 ~Nakanishi Acolyte~
+ SAY NAME2 ~Nakanishi Acolyte~
  
 COPY ~%MOD_FOLDER%/main/cre/ttogi.cre~ override
- SAY NAME1 @153
- SAY NAME2 @154
+ SAY NAME1 ~Ogi Hashimoto~
+ SAY NAME2 ~Ogi~
  
 COPY ~%MOD_FOLDER%/main/cre/ttotako.cre~ override
- SAY NAME1 @155
- SAY NAME2 @156
+ SAY NAME1 ~Otako Hashimoto~
+ SAY NAME2 ~Otako~
 
 COPY ~%MOD_FOLDER%/main/cre/ttsasaki.cre~ override
- SAY NAME1 @160
- SAY NAME2 @161
+ SAY NAME1 ~Sasaki Hashimoto~
+ SAY NAME2 ~Sasaki~
 
 COPY ~%MOD_FOLDER%/main/cre/ttstonvf.cre~ override
- SAY NAME1 @162
- SAY NAME2 @162
+ SAY NAME1 ~Fledgling Vampire~
+ SAY NAME2 ~Fledgling Vampire~
  
 COPY ~%MOD_FOLDER%/main/cre/ttstonvm.cre~ override
- SAY NAME1 @162
- SAY NAME2 @162
+ SAY NAME1 ~Fledgling Vampire~
+ SAY NAME2 ~Fledgling Vampire~
  
 COPY ~%MOD_FOLDER%/main/cre/ttundken.cre~ override
- SAY NAME1 @151
- SAY NAME2 @151
+ SAY NAME1 ~Undead Samurai~
+ SAY NAME2 ~Undead Samurai~
 
 COPY ~%MOD_FOLDER%/main/cre/tthsiang.cre~ override
- SAY NAME1 @164
- SAY NAME2 @164
+ SAY NAME1 ~Hsiang~
+ SAY NAME2 ~Hsiang~
 
 COPY ~%MOD_FOLDER%/main/cre/ttkuku.cre~ override
- SAY NAME1 @165
- SAY NAME2 @165
+ SAY NAME1 ~Kuku~
+ SAY NAME2 ~Kuku~
 
 COPY ~%MOD_FOLDER%/main/cre/ttliz06.cre~ override
 COPY ~%MOD_FOLDER%/main/cre/ttliz07.cre~ override
 
 COPY ~%MOD_FOLDER%/main/cre/ttkachi.cre~ override
- SAY NAME1 @135
- SAY NAME2 @135
- SAY BIO @211
+ SAY NAME1 ~Kachiko~
+ SAY NAME2 ~Kachiko~
+ SAY BIO ~Kachiko's dark almond-shaped eyes sparkle mysteriously when you ask her about her past. "I am Kachiko of House Nakanishi," she says in a soft voice, and proceeds to tell you about her far-away native land. She speaks of temples which roofs are shaped as mountains slopes, gardens set amongst stones, of brave warriors who obey a code as strict as it is honorable, of pearls brought from the sea depth, and of Emperors and millions of spirits populating her land until you interrupt her with: "But what about you, Kachiko?" She smiles and answers: "I am Kachiko of House Nakanishi. I am what you see in front of you, my friend. Look into my face and you can read my past, my present and my future."~
 
 //Stores
 COPY ~%MOD_FOLDER%/main/sto/tthasuno.sto~ override
-SAY NAME2 @118
+SAY NAME2 ~Hasuno~
+
+END

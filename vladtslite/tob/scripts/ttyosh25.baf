@@ -9,13 +9,13 @@ IF
     !Dead("ttkachi")
     !CombatCounter(0)
     Exists(LastAttackerOf("Yoshimo"))
-      Allegiance(LastAttackerOf("Yoshimo"),ENEMY)
+    Allegiance(LastAttackerOf("Yoshimo"),ENEMY)
     Global("ttKachikoDies","GLOBAL",0)
 THEN
     RESPONSE #100
-      SetGlobal("ttKachikoDies","GLOBAL",1)
-      DisplayStringHead(Myself,@240)
-      Continue()
+        SetGlobal("ttKachikoDies","GLOBAL",1)
+        DisplayStringHead(Myself,@240)
+        Continue()
 END
   
 IF
@@ -23,11 +23,11 @@ IF
     Dead("ttkachi")
     CombatCounter(0)
     OR(2)
-      Global("ttKachikoDies","GLOBAL",0)
-      Global("ttKachikoDies","GLOBAL",1)
+        Global("ttKachikoDies","GLOBAL",0)
+        Global("ttKachikoDies","GLOBAL",1)
 THEN
     RESPONSE #100
-      SetGlobal("ttKachikoDies","GLOBAL",2)
+        SetGlobal("ttKachikoDies","GLOBAL",2)
 END
   
 IF
@@ -40,8 +40,8 @@ IF
     Global("ttKachikoDies","GLOBAL",2)
 THEN
     RESPONSE #100
-      SetGlobal("ttKachikoDies","GLOBAL",3)
-      StartDialogueNoSet([PC])
+        SetGlobal("ttKachikoDies","GLOBAL",3)
+        StartDialogueNoSet([PC])
 END
   
 IF
@@ -49,10 +49,10 @@ IF
     InParty("ttkachi")
     !Dead("ttkachi")
     OR(2)
-      Global("ttKachikoDies","GLOBAL",1)
-      Global("ttKachikoDies","GLOBAL",2)
+        Global("ttKachikoDies","GLOBAL",1)
+        Global("ttKachikoDies","GLOBAL",2)
     CombatCounter(0)
 THEN
     RESPONSE #100
-      SetGlobal("ttKachikoDies","GLOBAL",0)
+        SetGlobal("ttKachikoDies","GLOBAL",0)
 END

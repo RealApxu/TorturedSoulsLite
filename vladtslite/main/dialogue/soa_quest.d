@@ -21,31 +21,54 @@ BEGIN TTHITOMI
 BEGIN TTNSONS
 
 //////////////////////////////
-// Getting to Island
+// Getting to the Island
 //////////////////////////////
 
 CHAIN
-IF ~Global("ttKachikoQuest","GLOBAL",1)~ THEN TTMESS 0
-~Well, you seem like people I was asked to found. Are you Yoshimo and Kachiko?~
+IF ~Global("ttKachikoQuest","GLOBAL",1)~ THEN TTMESS ttQuestMessengerTalk0
+~Well, you seem like people I am looking for. Are you Yoshimo and Kachiko?~
+DO ~SetGlobal("ttKachikoQuest","GLOBAL",2)~
 == TTKACHIJ ~Yes, it is us. What do you need?~
-== TTMESS ~There goes a word that you need to go to Kara-Tur. I was paid to ~
-= ~Look for captain Nomeas in Vulgar Monkey Tavern. He has a proposition for you.~
+== TTMESS ~There goes a word that you need to go to Kara-Tur. I may know a man who can help you with that.~
+= ~Look for Captain Nomeas in the Vulgar Monkey Tavern. He has a very generous proposition for you.~
+== TTKACHIJ ~Yoshimo, did you hear that? Let us make haste to the Docks! We may see our homeland sooner than we thought!~
+DO ~SetGlobal("ttKachikoQuest","GLOBAL",2) SetGlobalTimer("ttKachikoQuestReminderTimer","GLOBAL",THREE_DAYS) ActionOverride("ttmess",EscapeArea())~
 EXIT
+
 // Remind to PC
+
+CHAIN
+IF ~Global("ttKachikoQuest","GLOBAL",2) GlobalTimerExpired("ttKachikoQuestReminderTimer","GLOBAL") Global("ttKachikoQuestReminder","GLOBAL",0)~ THEN TTKACHIJ ttQuestKachikoReminder0
+~<CHARNAME>, do you remember the sailor who knew how to get to Kara-Tur? It is very important to me to deliever Yoshimo back home.~
+= ~He said that Captain Nomeas from the Vulgar Monkey Tavern can help us. Let's get there as soon as possible.~
+DO ~SetGlobal("ttKachikoQuestReminder","GLOBAL",1)~
+EXIT
 
 // Talk with captain and sailoff
 
 CHAIN
-IF ~Global("ttTalkedToNomeas","GLOBAL",0)~ THEN TTNOMEAS ttSailoff1
-~*HELLO STRING*~
+IF ~GlobalLT("ttKachikoQuest","GLOBAL",3) Global("ttTalkedToNomeas","GLOBAL",0)
+OR(3) !InParty("Yoshimo") !InMyArea("Yoshimo") StateCheck("Yoshimo",CD_STATE_NOTVALID)
+OR(3) !InParty("ttkachi") !InMyArea("ttkachi") StateCheck("ttkachi",CD_STATE_NOTVALID)~ THEN TTNOMEAS ttQuestSailoff0NoKachiko
+~Excuse me, but I am waiting for a pair of very distinct people, and I don't see them in your company. Goodbye.~
+EXIT
+
+CHAIN
+IF ~Global("ttKachikoQuest","GLOBAL",2) Global("ttTalkedToNomeas","GLOBAL",0)
+InParty("Yoshimo") InMyArea("Yoshimo") !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+InParty("ttkachi") InMyArea("ttkachi") !StateCheck("ttkachi",CD_STATE_NOTVALID)~ THEN TTNOMEAS ttQuestSailoff0
+~This is a grand day to see you. You must be <CHARNAME> and <PRO_HISHER> exotic companions.~
+= ~I heard about your little sailing problem. I can provide you the means to get you - and your friends - exactly where they want to go.~
+== TTKACHIJ ~The ship is ours to take, right? <CHARNAME>, can we go to Kara-Tur now?~
 DO ~SetGlobal("ttTalkedToNomeas","GLOBAL",1)~
 END
- ++ ~Nomeas, I have little knowledge of the sea travel. Can you tell me how long will it take us to get to Kara-Tur by sea?~ EXTERN PPSAEM ttSailoff2
+ ++ ~Nomeas, I have little knowledge of the sea travel. Can you tell me how long will it take us to get to Kara-Tur by sea?~ EXTERN PPSAEM ttQuestSailoff0
 
 CHAIN TTNOMEAS ttSailoff2
 ~Half a year, may be a year... It is a long and dangerous route. Not many ships go that far away, and of those that do few return back.~
 END
- ++ ~Yoshimo, Kachiko, I am sorry, but I have to haste to Imoen's rescue, her life is at stake! May be after we find Imoen I will go to Kara-Tur with you...~ EXTERN YOSHJ TS166
+ IF ~!Global("C#IM_ImoenStays","GLOBAL",1)~ THEN REPLY ~Yoshimo, Kachiko, I am sorry, but I have to haste to Imoen's rescue, her life is at stake! Maybe after we find Imoen I will go to Kara-Tur with you...~ EXTERN YOSHJ TS166
+ ++ ~Yoshimo, Kachiko, I am sorry, but I have to hunt down Irenicus first. Maybe after my life is no longer at stake I will go to Kara-Tur with you...~ EXTERN YOSHJ TS166
 
 CHAIN YOSHJ TS166
 ~No! This is impossible! Eh, no, I'd rather part our ways right now.~
@@ -60,26 +83,30 @@ END
 CHAIN KELDORJ TS252
 ~<CHARNAME>, Harkle Harpel is no arch-mage, he belongs to a family of lunatics! For what I know of Harpels we might be turned into frogs or some such if you allow Nomeas to cast the spell! Be careful!~
 END
- ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself. But if it works, my friends prepare to storm Spellhold this afternoon!~ DO ~SetGlobal("ttPay_to_Nomeas","GLOBAL",1)~ EXTERN PPSAEM TS81
- ++ ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself.~ EXTERN PPSAEM TS81
+ IF ~!Global("C#IM_ImoenStays","GLOBAL",1)~ THEN REPLY ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~That's exactly what I heard about Harpells. Irenicus won't escape from me just because I put my trust at some shady spell. We won't have any detours.~ EXTERN YOSHJ TS167
 
 CHAIN JAHEIRAJ TS252
 ~<CHARNAME>, Harkle Harpel is no arch-mage, he belongs to a family of lunatics! For what I know of Harpels we might be turned into frogs or some such if you allow Nomeas to cast the spell! Be careful!~
 END
- ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself. But if it works, my friends prepare to storm Spellhold this afternoon!~ DO ~SetGlobal("ttPay_to_Nomeas","GLOBAL",1)~ EXTERN PPSAEM TS81
- ++ ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself.~ EXTERN PPSAEM TS81
+ IF ~!Global("C#IM_ImoenStays","GLOBAL",1)~ THEN REPLY ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~That's exactly what I heard about Harpells. Irenicus won't escape from me just because I put my trust at some shady spell. We won't have any detours.~ EXTERN YOSHJ TS167
 
 CHAIN ANOMENJ TS252
 ~<CHARNAME>, Harkle Harpel is no arch-mage, he belongs to a family of lunatics! For what I know of Harpels we might be turned into frogs or some such if you allow Nomeas to cast the spell! Be careful!~
 END
- ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself. But if it works, my friends prepare to storm Spellhold this afternoon!~ DO ~SetGlobal("ttPay_to_Nomeas","GLOBAL",1)~ EXTERN PPSAEM TS81
- ++ ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself.~ EXTERN PPSAEM TS81
+ IF ~!Global("C#IM_ImoenStays","GLOBAL",1)~ THEN REPLY ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~That's exactly what I heard about Harpells. Irenicus won't escape from me just because I put my trust at some shady spell. We won't have any detours.~ EXTERN YOSHJ TS167
 
 CHAIN VALYGARJ TS252
 ~<CHARNAME>, Harkle Harpel is no arch-mage, he belongs to a family of lunatics! For what I know of Harpels we might be turned into frogs or some such if you allow Nomeas to cast the spell! Be careful!~
 END
- ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself. But if it works, my friends prepare to storm Spellhold this afternoon!~ DO ~SetGlobal("ttPay_to_Nomeas","GLOBAL",1)~ EXTERN PPSAEM TS81
- ++ ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~Well, what's life if not one big gamble! Cast your spell, Nomeas, and if it fails I will see good old Harkle turned into a frog himself.~ EXTERN PPSAEM TS81
+ IF ~!Global("C#IM_ImoenStays","GLOBAL",1)~ THEN REPLY ~That's exactly what I heard about Harpells. Imoen is too dear to me to trust that this spell is an exception from their customary failures. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~That's exactly what I heard about Harpells. Irenicus won't escape from me just because I put my trust at some shady spell. We won't have any detours.~ EXTERN YOSHJ TS167
 
 CHAIN TTNOMEAS TS81
 ~Of course, I would not part with this scroll for less then 5,000 gold.~
@@ -94,8 +121,8 @@ CHAIN TTNOMEAS TS0
 END
  IF ~PartyGoldLT(5000)~ THEN REPLY ~But I don't have enough coin.~ EXTERN TTNOMEAS KR3
  IF ~PartyGoldGT(4999)~ THEN REPLY ~Okay, take this money, and try to do your best.~ EXTERN TTKACHIJ sailoff2
- ++ ~I think you are bluffing. Imoen is too dear to me to trust this suspicious spell. We won't have any detours.~ EXTERN YOSHJ TS167
-
+ ++ ~I think you are bluffing. I can't trust you and your suspicious spells. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~I need some time to think. We will talk later.~ EXIT
 
 CHAIN TTNOMEAS KR3
 ~I am sure you have spent as much in the past and will again. Surely there be work in the city for you. Or perhaps some of your expensive goods to sell?~
@@ -103,26 +130,40 @@ CHAIN TTNOMEAS KR3
 EXIT
 
 CHAIN
-IF ~Global("ttTalkedToNomeas","GLOBAL",1)~ THEN TTNOMEAS KR5
+IF ~GlobalLT("ttKachikoQuest","GLOBAL",3) Global("ttTalkedToNomeas","GLOBAL",1)
+OR(3) !InParty("Yoshimo") !InMyArea("Yoshimo") StateCheck("Yoshimo",CD_STATE_NOTVALID)
+OR(3) !InParty("ttkachi") !InMyArea("ttkachi") StateCheck("ttkachi",CD_STATE_NOTVALID)~ THEN TTNOMEAS KR5
+~Hey, <CHARNAME>. It's nice to see you again... I don't see Yoshimo and Kachiko with you. Sorry, but we can't seal the deal without them.~
+EXIT
+
+CHAIN
+IF ~Global("ttKachikoQuest","GLOBAL",2) Global("ttTalkedToNomeas","GLOBAL",1)
+InParty("Yoshimo") InMyArea("Yoshimo") !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+InParty("ttkachi") InMyArea("ttkachi") !StateCheck("ttkachi",CD_STATE_NOTVALID)~ THEN TTNOMEAS KR5
 ~Hey, <CHARNAME>. It's nice to see you again. Have you gathered the required fee for me?~
 END
  IF ~PartyGoldLT(5000)~ THEN REPLY ~But I don't have enough coin.~ EXTERN TTNOMEAS KR3
  IF ~PartyGoldGT(4999)~ THEN REPLY ~Okay, take this money, and try to do your best.~ EXTERN TTNOMEAS sailoff2
- ++ ~I think you are bluffing. Imoen is too dear to me to trust this suspicious spell. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~I think you are bluffing. I can't trust you and your suspicious spells. We won't have any detours.~ EXTERN YOSHJ TS167
+ ++ ~I need some time to think. We will talk later.~ EXIT
 
 CHAIN TTNOMEAS sailoff2
 ~With pleasure. Well, then everything is settled. Here is the scroll.~
 == TTKACHIJ ~Oh, we will see Kara-Turian shores and prove that Yoshimo is innocent and restore peace between our families. I agree with you, <CHARNAME>, let the fate decide! Cast the spell, captain!~
 == TTNOMEAS ~Then we are fully staffed and ready to sail. Never a fear nor worry should cross your thoughts this eve, m'<PRO_LADYLORD>. I have traveled this sea a good many times, and I foresee no troubles.~
 = ~Although, I am sure, nothing untoward will happen during our crossing, best that we get underway as soon as possible. Please follow me to the docks where my ship is waiting for us.~
-DO ~StartCutSceneMode()
-StartCutScene("Cut41isb")~
+DO ~SetGlobal("ttKachikoQuest","GLOBAL",3)
+StartCutSceneMode()
+StartCutScene("ttstart")~
 EXIT
 
 CHAIN YOSHJ TS167
-~I understand. I wish you good luck in your dealings with Irenicus and rescuing Imoen. Farewell and do not think ill of us.~
+~I understand. I wish you good luck in your dealings with Irenicus. Farewell and do not think ill of us.~
 == TTKACHIJ ~Good luck to you, <CHARNAME>. Farewell.~
-DO ~~
+DO ~LeaveParty()
+EscapeArea()
+ActionOverride("Yoshimo",LeaveParty())
+ActionOverride("Yoshimo",EscapeArea())~
 EXIT
 
 ///////////////////////////
@@ -131,13 +172,14 @@ EXIT
 
 // Arrival to TS Island
 CHAIN
-IF WEIGHT #7 ~Global("Start_Island","GLOBAL",1) Global("ttNomeasMistake","GLOBAL",0)~ THEN TTNOMEAS TS3
-~Ahem... dear <SIRMAAM> we had arrived it seems...~ DO ~SetGlobal("ttNomeasMistake","GLOBAL",1)~
+IF WEIGHT #7 ~Global("ttOnIsland","GLOBAL",1) Global("ttNomeasMistake","GLOBAL",0)~ THEN TTNOMEAS TS3
+~Ahem... dear <SIRMAAM> we had arrived it seems...~
+DO ~SetGlobal("ttNomeasMistake","GLOBAL",1)~
 END
- ++ ~Where?~ EXTERN TTNOMEAS TS4
+ ++ ~To where?~ EXTERN TTNOMEAS TS4
 
 CHAIN TTNOMEAS TS4
-~Uhm, that's not our destination, I am positive... Maybe it is some part of Kara-Tur. You have couple locals among your ranks they would know better than I.~
+~Uhm, that's not our destination, I am positive... Maybe it is some part of Kara-Tur. You have couple locals among your ranks, they would know better than I.~
 == YOSHJ ~No, I had spent several years sailing around Kara-Tur. This place reminds nothing of what I have seen and with a bay like that it would be a lively port be it in Kara-Tur. The spell went astray, I suppose... I am very sorry, <CHARNAME>.~
 END
  ++ ~So we are stuck in a middle of nowhere. Damn you, Harkle Harpel and the whole mad family of yours! But we have to deal with our plight here now. I heard you are resourceful, Nomeas. Any suggestions?~ EXTERN TTNOMEAS TS5
@@ -145,17 +187,18 @@ END
 CHAIN TTNOMEAS TS5
 ~We'd have to wait for the night to fall, to be able to tell our position from the stars. Meanwhile, the crew will inspect the ship and repair what we can. The journey ahead of us might be long and harsh.~
 END
- ++ ~Then I suggest we go ashore and see if we can find some provisions or any clues to where we are.~ DO ~SetGlobal("ttIslandWar","GLOBAL",1)~ EXIT
+ ++ ~Then I suggest we go ashore and see if we can find some provisions or any clues to where we are.~ EXIT
 
 CHAIN
-IF WEIGHT #8 ~GlobalLT("ttKachikoSaved","GLOBAL",2) GlobalGT("ttIslandWar","GLOBAL",0)~ THEN TTNOMEAS TS6
+IF WEIGHT #8 ~GlobalLT("ttKachikoQuest","GLOBAL",99) Global("ttNomeasMistake","GLOBAL",1)~ THEN TTNOMEAS TS6
 ~We need to cut more timber to repair the ship. Please, come back later.~
 EXIT
 
 // Dead Bodies
 CHAIN
 IF WEIGHT #6 ~Global("ttDeadBodies","GLOBAL",1)~ THEN YOSHJ TS169
-~Dead bodies? Here? Must be another group stranded on this piece of land. We must step carefully.~ DO ~SetGlobal("ttDeadBodies","GLOBAL",2)~
+~Dead bodies? Here? Must be another group stranded on this piece of land. We must step carefully.~
+DO ~SetGlobal("ttDeadBodies","GLOBAL",2)~
 == TTKACHIJ ~Yoshimo, does not this... man looks a bit familiar to you? It is strange but he reminds me Otako Hashimoto.~ [KACHIQ03]
 == YOSHJ ~Kachiko, I can see the resemblance, but that cannot be. Otako was wearing a pendant in a shape of a crescent moon... just like this one... Oh, no! I must be dreaming! Otako...~
 END
@@ -201,7 +244,10 @@ END
 
 // Talk with Aino
 CHAIN
-IF ~NumberOfTimesTalkedTo(0) GlobalLT("ttKachikoSaved","GLOBAL",2)~ THEN TTAINO 0
+IF ~NumberOfTimesTalkedTo(0)
+Global("ttKachikoQuest","GLOBAL",3)
+InParty("Yoshimo") InMyArea("Yoshimo") !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+InParty("ttkachi") InMyArea("ttkachi") !StateCheck("ttkachi",CD_STATE_NOTVALID)~ THEN TTAINO 0
 ~My son! Welcome. I have been waiting for you to come.~
 == YOSHJ ~Father, forgive me if I am not respectful, but would you be able to explain me what is happening? Why are you on this desolate Island? Why there are so many dead bodies around?~
 == TTAINO ~I will...I do not understand it well myself, Yoshimo, but I'll tell you what I know. After you fled, the hatred between Nakanishi and Hashimoto became unbearable... Nakanishi tried to accuse you of Naoko's death in order to have the emperor's wizards find you and execute you... We used all our influence to prevent it. Then they sent an assassin after you... Kachiko.~
@@ -220,9 +266,9 @@ END
 CHAIN TTAINO 6
 ~I do not know. But try to talk to Najoki, Kachiko's mother. She is a priestess and a mage of great power, she might know of something...~
 END
+ ++ ~We shall talk to Najoki then.~ DO ~SetGlobal("ttKachikoQuest","GLOBAL",4)~ EXIT
  ++ ~No, talking is boring. If we have to kill all of the Nakanishi to get the wardstone, then we shall.~ EXTERN TTKACHIJ N29
  ++ ~I say we kill YOU, take the wardstone and get outta here. ~ EXTERN YOSHJ TS181
- ++ ~We shall talk to Najoki then.~ EXIT
 
 CHAIN TTKACHIJ N29
 ~I am Nakanishi. Will you kill me as well?~
@@ -243,7 +289,7 @@ Enemy()~
 EXIT
  
 CHAIN
-IF ~NumTimesTalkedToGT(0) GlobalLT("ttKachikoSaved","GLOBAL",2)~ THEN TTAINO 8
+IF ~NumTimesTalkedToGT(0)~ THEN TTAINO 8
 ~Please hurry... we don't have much time.~
 EXIT
 
@@ -277,23 +323,19 @@ EXIT
 
 // Nanny
 CHAIN
-IF ~NumberOfTimesTalkedTo(0)
-See("Yoshimo")~ THEN TTNANNY 0
+IF ~NumberOfTimesTalkedTo(0) InParty("Yoshimo") InMyArea("Yoshimo") !StateCheck("Yoshimo",CD_STATE_NOTVALID)~ THEN TTNANNY 0
 ~Yoshimo-san, I am glad to see you're healthy and in a good state.~
 == YOSHJ ~Nanny, how are you?~
 == TTNANNY ~Thank you, Yoshimo-san. You know I have been worried about you, and now I feel much better when you are at home with your family. No need to tell you where is your room, I am sure. Your friends may rest there as well.~
 EXIT
 
 CHAIN
-IF ~NumberOfTimesTalkedTo(0)
-OR(2)
-!InPartySlot(LastTalkedToBy,0)
-!Name("Yoshimo",LastTalkedToBy)~ THEN TTNANNY 3
+IF ~NumberOfTimesTalkedTo(0) OR(2) !InPartySlot(LastTalkedToBy,0) !Name("Yoshimo",LastTalkedToBy)~ THEN TTNANNY 3
 ~Greetings to you. Have a nice day.~
 EXIT
 
 CHAIN 
-IF ~!NumberOfTimesTalkedTo(0)~ THEN TTNANNY 2
+IF ~NumTimesTalkedToGT(0)~ THEN TTNANNY 2
 ~I hope everything is alright. Have a nice day.~
 EXIT
 
@@ -304,9 +346,7 @@ IF ~Name("Yoshimo",LastTalkedToBy)~ THEN TTOGI 0
 EXIT
 
 CHAIN
-IF ~OR(2)
-!InPartySlot(LastTalkedToBy,0)
-!Name("Yoshimo",LastTalkedToBy)~ THEN TTOGI 1
+IF ~!Name("Yoshimo",LastTalkedToBy)~ THEN TTOGI 1
 ~Greetings to you. I am Ogi. When I grow up big, I'll be a famous kensai.~
 EXIT
 
@@ -327,8 +367,9 @@ EXIT
 
 // Masaki Near the Nakanishi Dungeon
 CHAIN
-IF ~Global("ttMasakiMeet","GLOBAL",0)~ THEN TTMASAKI 0
-~Kachiko! You have returned and brought the fugitive Yoshimo back. Well done, the spirit of true kensai and true Nakanishi is in you, girl. I am happy to be the first to greet you upon your return.~ DO ~SetGlobal("ttMasakiMeet","GLOBAL",1)~
+IF ~Global("ttKachikoQuest","GLOBAL",4) Global("ttMasakiMeet","GLOBAL",0)~ THEN TTMASAKI 0
+~Kachiko! You have returned and brought the fugitive Yoshimo back. Well done, the spirit of true kensai and true Nakanishi is in you, girl. I am happy to be the first to greet you upon your return.~
+DO ~SetGlobal("ttMasakiMeet","GLOBAL",1)~
 == TTKACHIJ ~I am surprised by your welcome, my cousin, after all those lies you told my parents to prevent me from going after Yoshimo.~ [KACHIQ05]
 == TTMASAKI ~I had been young and foolish and did not want beautiful Kachiko to wonder far away from those who love her. But your deed honors our family. I would see that you have the privilege of executing the murderer.~
 == TTKACHIJ ~Hold, Masaki, you are too hasty. Yoshimo is no murderer and we were going home so the proof of his innocence may be found. But now I meet you on this desolate Island, talking to me as if we are at home...~
@@ -343,22 +384,22 @@ IF ~Global("ttMasakiMeet","GLOBAL",0)~ THEN TTMASAKI 0
 = ~Fool girl! You have been seen entering and leaving Hashimoto's compound. Do you dare to deny it?~
 == TTKACHIJ ~I go where I please. I refuse to see people as enemies because they are named Hashimoto.~ [KACHIQ07]
 == TTMASAKI ~I see. These foreigners have brainwashed you. But we are going to return you to your proper place in the family.~
-DO ~SetGlobal("ttKachikoKidnapped","GLOBAL",1)
+DO ~SetGlobal("ttKachikoQuest","GLOBAL",5)
 StartCutSceneMode()
 StartCutScene("ttcutk01")~
 EXIT
 
 // Kachiko Kidnapped
 CHAIN
-IF WEIGHT #7 ~Global("ttKachikoKidnapped","GLOBAL",1)~ THEN YOSHJ TS177
+IF WEIGHT #7 ~Global("ttKachikoQuest","GLOBAL",5) Global("ttKachikoKidnapped","GLOBAL",1)~ THEN YOSHJ TS177
 ~No! Kachiko... No! I will kill them all! If they harm her in any way, I swear I will kill them all!~
-DO ~SetGlobal("ttKachikoKidnapped","GLOBAL",2)
-RealSetGlobalTimer("ttNKensaiSpawn","GLOBAL",10)~
+DO ~SetGlobal("ttKachikoKidnapped","GLOBAL",2) RealSetGlobalTimer("ttNakanishiKensaiSpawn","GLOBAL",10)~
 EXIT
 
 // Talk with Alome
 CHAIN
-IF ~NumberOfTimesTalkedTo(0) See("Yoshimo")~ THEN TTALOME 0
+IF ~NumberOfTimesTalkedTo(0)
+InParty("Yoshimo") InMyArea("Yoshimo") !StateCheck("Yoshimo",CD_STATE_NOTVALID)~ THEN TTALOME 0
 ~Yoshimo, Yoshimo!~
 == YOSHJ ~Leave me be, child! Did not they tell you that Hashimoto eat little girls like you?~
 == TTALOME ~No... Do you?~
@@ -379,7 +420,8 @@ EXIT
 
 // Talk with Najoki
 CHAIN
-IF ~NumberOfTimesTalkedTo(0) GlobalLT("ttKachikoSaved","GLOBAL",2)~ THEN TTNAJOKI 0
+IF ~NumberOfTimesTalkedTo(0)
+Global("ttKachikoQuest","GLOBAL",5)~ THEN TTNAJOKI 0
 ~So I meet Yoshimo Hashimoto...~
 == YOSHJ ~Najoki-san, I have heard that you are wise and noble woman. Do the rumors err? Why is the lunatic Hayashi ruining your lives, why is he allowed to kidnap your daughter?~
 == TTNAJOKI ~Wise and noble...but a woman. Since years uncounted Nakanishi respected their women, allowed them to have a say in every matter, and valued their opinion. Not anymore, Yoshimo. Masaki has driven my husband into madness and he preaches traditional values. Kachiko was sworn to him long ago... for her return was foreseen. So he has every right in the eyes of my husband to do with Kachiko what he wishes...~
@@ -390,7 +432,7 @@ IF ~NumberOfTimesTalkedTo(0) GlobalLT("ttKachikoSaved","GLOBAL",2)~ THEN TTNAJOK
 == YOSHJ ~My friends... Uhm... Najoki-san, I do not command my friends... I need to ask <CHARNAME> if they'd help me... <CHARNAME>?~
 END
  ++ ~Yoshimo, your father said that the only way for everyone to be freed of the curse is to kill one of the families during a single day. Every person...~ EXTERN TTNAJOKI 4
- ++ ~I am with you, Yoshimo! We have to save Kachiko! Let's go!~ DO ~GiveItemCreate("SCRL63",Player1,0,0,0)~ EXIT
+ ++ ~I am with you, Yoshimo! We have to save Kachiko! Let's go!~ DO ~SetGlobal("ttKachikoQuest","GLOBAL",6) GiveItemCreate("SCRL63",Player1,0,0,0)~ EXIT
  ++ ~I am not sure... Najoki, would you give me any practical help, like giving us directions back to civilization if I go save your daughter?~ EXTERN TTNAJOKI 7
 
 CHAIN TTNAJOKI 4
@@ -402,15 +444,15 @@ CHAIN TTNAJOKI 5
 ~Love and devotion. Perhaps, it sounds banal, but unfortunately humankind hasn't still realized that.~
 END
  ++ ~What?~ EXTERN TTNAJOKI 6
- ++ ~There is certain logic in your words Najoki. We will save your daughter and then we will see what happens. But I do not like the site of a fighting man blushing like a schoolgirl. So we better go.~ DO ~GiveItemCreate("SCRL63",Player1,0,0,0)~ EXIT
+ ++ ~There is certain logic in your words Najoki. We will save your daughter and then we will see what happens. But I do not like the site of a fighting man blushing like a schoolgirl. So we better go.~ DO ~SetGlobal("ttKachikoQuest","GLOBAL",6) GiveItemCreate("SCRL63",Player1,0,0,0)~ EXIT
  ++ ~I am not sure... Najoki, would you give me any practical help, like giving us directions back to civilization if I go save your daughter?~ EXTERN TTNAJOKI 7
 
 CHAIN TTNAJOKI 6
 ~You do not know what love is? Love is strong and it can defeat both hatred and fate.~
-== VICONIJ IF ~InParty("Viconia") !StateCheck("Viconia",CD_STATE_NOTVALID)~ THEN ~Love is for weak-hearted rivvins...~
-== KELDORJ IF ~InParty("Keldorn") !StateCheck("Keldorn",CD_STATE_NOTVALID)~ THEN ~Love of God is a higher calling, then an earthly passion, but still there is a measure of truth in your words, Najoki...~
-== KORGANJ IF ~InParty("Korgan") !StateCheck("Korgan",CD_STATE_NOTVALID)~ THEN ~Re yer gonna stop greasing the floor with yer mumbo-jumbo, stupid woman?~
-== AERIEJ IF ~InParty("Aerie") !StateCheck("Aerie",CD_STATE_NOTVALID)~ THEN ~How... how romantic...~
+== VICONIJ IF ~InParty("Viconia") InMyArea("Viconia") !StateCheck("Viconia",CD_STATE_NOTVALID)~ THEN ~Love is for weak-hearted rivvins...~
+== KELDORJ IF ~InParty("Keldorn") InMyArea("Keldorn") !StateCheck("Keldorn",CD_STATE_NOTVALID)~ THEN ~Love of God is a higher calling, then an earthly passion, but still there is a measure of truth in your words, Najoki...~
+== KORGANJ IF ~InParty("Korgan") InMyArea("Korgan") !StateCheck("Korgan",CD_STATE_NOTVALID)~ THEN ~Re yer gonna stop greasing the floor with yer mumbo-jumbo, stupid woman?~
+== AERIEJ IF ~InParty("Aerie") InMyArea("Aerie") !StateCheck("Aerie",CD_STATE_NOTVALID)~ THEN ~How... how romantic...~
 == TTNAJOKI ~I have a hope that if Hashimoto pledges his heart to Nakanishi, despite everything, the curse will be broken...~
 END
  ++ ~Could you be more specific?~ EXTERN TTNAJOKI 7
@@ -418,11 +460,11 @@ END
 CHAIN TTNAJOKI 7
 ~If you will help Yoshimo to save my daughter I will give you a map... The wizard who cursed us gave it to me as a cruel joke. The map shows the Shiny Gate, the magical portal, which would teleport you wherever you wish to go... We spent years trying to build a seaworthy ship... but none would float. The wizard gave us yet another false hope and another torture for our souls... I will give you the map if you save my daughter.~
 END
- ++ ~That's a suitable reward. Deal, we will help Yoshimo.~ DO ~GiveItemCreate("SCRL63",Player1,0,0,0)~ EXIT
+ ++ ~That's a suitable reward. Deal, we will help Yoshimo.~ DO ~SetGlobal("ttKachikoQuest","GLOBAL",6) GiveItemCreate("SCRL63",Player1,0,0,0)~ EXIT
  ++ ~Why give... Do not tire yourself so, Najoki. I will take it from you myself!~ DO ~SetGlobal("ttEvilPath","GLOBAL",2) Enemy()~ EXIT
 
 CHAIN
-IF ~NumTimesTalkedToGT(0) GlobalLT("ttKachikoSaved","GLOBAL",2)~ THEN TTNAJOKI 8
+IF ~NumTimesTalkedToGT(0)~ THEN TTNAJOKI 8
 ~Please hurry... my daughter's life hangs in the balance.~
 END
  IF ~PartyHasItem("SCRL63")~ THEN EXIT
@@ -430,9 +472,9 @@ END
 
 // Dungeon Entrance - Second meet with Masaki
 CHAIN
-IF ~Global("ttKachikoKidnapped","GLOBAL",3)
-Global("ttAlomeMeet","GLOBAL",1)~ THEN TTMASAKI 10
+IF ~Global("ttKachikoQuest","GLOBAL",6) Global("ttMasakiMeet","GLOBAL",1)~ THEN TTMASAKI 10
 ~You are stupid enough to come here? Do not you know that Nakanishi hold the dungeon now?~
+DO ~SetGlobal("ttMasakiMeet","GLOBAL",2)~
 END
  IF ~Global("ttKachikoHostile","GLOBAL",0) Global("ttEvilPath","GLOBAL",0)~ THEN DO ~SetGlobal("ttKachikoKidnapped","GLOBAL",4)~ EXTERN YOSHJ TS193
  IF ~OR(2) Global("ttKachikoHostile","GLOBAL",1) Global("ttEvilPath","GLOBAL",2)~ THEN DO ~SetGlobal("ttKachikoKidnapped","GLOBAL",4)~ EXTERN YOSHJ TS194
@@ -478,8 +520,9 @@ EXIT
 
 // Dungeon: Second Floor - Third meet with Masaki
 CHAIN
-IF ~Global("ttKachikoKidnapped","GLOBAL",4)~ THEN TTMASAKI 12
-~Doing your best to stay alive? Let me tell you that it is not good enough! You cannot resist Nakanishi for much longer! For Nakanishi's honor!~ DO ~SetGlobal("ttKachikoKidnapped","GLOBAL",5)~
+IF ~Global("ttMasakiMeet","GLOBAL",2)~ THEN TTMASAKI 12
+~Doing your best to stay alive? Let me tell you that it is not good enough! You cannot resist Nakanishi for much longer! For Nakanishi's honor!~
+DO ~SetGlobal("ttMasakiMeet","GLOBAL",3)~
 == YOSHJ ~You! Stay here and fight! I am getting tired of you talking!~
 == TTMASAKI ~Me? Fight scum like you? Ha-ha-ha...~
 DO ~ForceSpell(Myself,DRYAD_TELEPORT)~
@@ -501,18 +544,20 @@ EXIT
 
 // Dungeon: The Crypt - Last meet with Masaki
 CHAIN
-IF ~Global("ttKachikoKidnapped","GLOBAL",5)~ THEN TTMASAKI 14
+IF ~Global("ttMasakiMeet","GLOBAL",3)~ THEN TTMASAKI 14
 ~I see, that I would have to finish you off...short of doing it yourself, you would never get it done... Defend yourself! For Nakanishi's honor!~
-DO ~SetGlobal("ttKachikoKidnapped","GLOBAL",6) Enemy()~
+DO ~SetGlobal("ttMasakiMeet","GLOBAL",4) Enemy()~
 EXIT
 
 // Dungeon: The Crypt - Hasuno
 CHAIN
-IF ~See("Yoshimo") Global("ttHitomiMeet","GLOBAL",0)~ THEN TTHITOMI 0
+IF ~Global("ttHitomiMeet","GLOBAL",0)
+InParty("Yoshimo") InMyArea("Yoshimo") !StateCheck("Yoshimo",CD_STATE_NOTVALID)~ THEN TTHITOMI 0
 ~You have come for my daughter, Yoshimo Hashimoto...~
+DO ~SetGlobal("ttHitomiMeet","GLOBAL",1)~
 END
- IF ~!Dead("ttnajoki") !Global("ttEvilPath","GLOBAL",2)~ THEN REPLY ~Sir, I am afraid we have terrible misunderstanding here... See, your wife suggested that if Yoshimo is allowed to speak to Kachiko, all of us, Nakanishi, and Hashimoto... we can get away...~ DO ~SetGlobal("ttHitomiMeet","GLOBAL",1)~ EXTERN TTHITOMI 1
- ++ ~I did not come here to talk. I do Hashimoto's bidding, which is to end your sorry lives!~ DO ~SetGlobal("ttHitomiMeet","GLOBAL",1)~ EXTERN TTHITOMI 3
+ IF ~!Dead("ttnajoki") !Global("ttEvilPath","GLOBAL",2)~ THEN REPLY ~Sir, I am afraid we have terrible misunderstanding here... See, your wife suggested that if Yoshimo is allowed to speak to Kachiko, all of us, Nakanishi, and Hashimoto... we can get away...~ EXTERN TTHITOMI 1
+ ++ ~I did not come here to talk. I do Hashimoto's bidding, which is to end your sorry lives!~ EXTERN TTHITOMI 3
 
 CHAIN TTHITOMI 1
 ~You are young and naive. My wife's words are those of a weak woman.~
@@ -520,49 +565,51 @@ CHAIN TTHITOMI 1
 == TTHITOMI ~I am tired of hectic bloodshed. No, if we are to fight we shall fight as honorable ancestors taught us. Choose a champion amongst yourselves and let him fight my sons in one on one combat.~
 == YOSHJ ~<CHARNAME>, I should warn you that in such a combat only two weapons are allowed: a noble katana and your hand, and no armor is to cover the fighter's body. And no one is permitted to leave the fighting arena until the fight is over... I am ready and willing to answer the challenge, but it's your decision who shall fight.~
 END
+ IF ~InMyArea(Player1) !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf01")~ EXIT
  IF ~InParty(Player2) See(Player2) !StateCheck(Player2,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER2> would represent us.~ DO ~StartCutSceneMode() StartCutScene("ttcutf02")~ EXIT
  IF ~InParty(Player3) See(Player3) !StateCheck(Player3,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER3> shall face him now.~ DO ~StartCutSceneMode() StartCutScene("ttcutf03")~ EXIT
  IF ~InParty(Player4) See(Player4) !StateCheck(Player4,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER4> is ready to answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf04")~ EXIT
  IF ~InParty(Player5) See(Player5) !StateCheck(Player5,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER5> shall be our champion.~ DO ~StartCutSceneMode() StartCutScene("ttcutf05")~ EXIT
- IF ~See(Player1) !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf01")~ EXIT
  IF ~InParty(Player6) See(Player6) !StateCheck(Player6,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER6>, go ahead.~ DO ~StartCutSceneMode() StartCutScene("ttcutf06")~ EXIT
 
 CHAIN TTHITOMI 3
 ~I am tired of hectic bloodshed. No, if we are to fight we shall fight as honorable ancestors taught us. Choose a champion amongst yourselves and let him fight my sons in one on one combat.~
 == YOSHJ ~<CHARNAME>, I should warn you that in such a combat only two weapons are allowed: a noble katana and your hand, and no armor is to cover the fighter's body. And no one is permitted to leave the fighting arena until the fight is over... I am ready and willing to answer the challenge, but it's your decision who shall fight.~
 END
- IF ~InParty(Player2) See(Player2) !StateCheck(Player2,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER2> would represent us.~ DO ~StartCutSceneMode() StartCutScene("ttcutf02")~ EXIT
- IF ~InParty(Player3) See(Player3) !StateCheck(Player3,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER3> shall face him now.~ DO ~StartCutSceneMode() StartCutScene("ttcutf03")~ EXIT
- IF ~InParty(Player4) See(Player4) !StateCheck(Player4,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER4> is ready to answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf04")~ EXIT
- IF ~InParty(Player5) See(Player5) !StateCheck(Player5,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER5> shall be our champion.~ DO ~StartCutSceneMode() StartCutScene("ttcutf05")~ EXIT
- IF ~See(Player1) !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf01")~ EXIT
- IF ~InParty(Player6) See(Player6) !StateCheck(Player6,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER6>, go ahead.~ DO ~StartCutSceneMode() StartCutScene("ttcutf06")~ EXIT
+ IF ~InMyArea(Player1) !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf01")~ EXIT
+ IF ~InParty(Player2) InMyArea(Player2) !StateCheck(Player2,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER2> would represent us.~ DO ~StartCutSceneMode() StartCutScene("ttcutf02")~ EXIT
+ IF ~InParty(Player3) InMyArea(Player3) !StateCheck(Player3,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER3> shall face him now.~ DO ~StartCutSceneMode() StartCutScene("ttcutf03")~ EXIT
+ IF ~InParty(Player4) InMyArea(Player4) !StateCheck(Player4,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER4> is ready to answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf04")~ EXIT
+ IF ~InParty(Player5) InMyArea(Player5) !StateCheck(Player5,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER5> shall be our champion.~ DO ~StartCutSceneMode() StartCutScene("ttcutf05")~ EXIT
+ IF ~InParty(Player6) InMyArea(Player6) !StateCheck(Player6,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER6>, go ahead.~ DO ~StartCutSceneMode() StartCutScene("ttcutf06")~ EXIT
 
 CHAIN
 IF ~Global("ttPlayerVsMichio","GLOBAL",0) Global("ttPlayerVsMomoko","GLOBAL",3) Global("ttNakanishiDuel","GLOBAL",0)~ THEN TTHITOMI 4
 ~I see that Momoko proved the weaker... Who should stand against my elder son, Michio?~
 END
- IF ~!StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf11")~ EXIT
- IF ~InParty(Player2) !StateCheck(Player2,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER2> would represent us.~ DO ~StartCutSceneMode() StartCutScene("ttcutf12")~ EXIT
- IF ~InParty(Player3) !StateCheck(Player3,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER3> shall face him now.~ DO ~StartCutSceneMode() StartCutScene("ttcutf13")~ EXIT
- IF ~InParty(Player4) !StateCheck(Player4,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER4> is ready to answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf14")~ EXIT
- IF ~InParty(Player5) !StateCheck(Player5,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER5> shall be our champion.~ DO ~StartCutSceneMode() StartCutScene("ttcutf15")~ EXIT
- IF ~InParty(Player6) !StateCheck(Player6,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER6>, go ahead.~ DO ~StartCutSceneMode() StartCutScene("ttcutf16")~ EXIT
+ IF ~InMyArea(Player1) !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf11")~ EXIT
+ IF ~InParty(Player2) InMyArea(Player2) !StateCheck(Player2,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER2> would represent us.~ DO ~StartCutSceneMode() StartCutScene("ttcutf12")~ EXIT
+ IF ~InParty(Player3) InMyArea(Player3) !StateCheck(Player3,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER3> shall face him now.~ DO ~StartCutSceneMode() StartCutScene("ttcutf13")~ EXIT
+ IF ~InParty(Player4) InMyArea(Player4) !StateCheck(Player4,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER4> is ready to answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf14")~ EXIT
+ IF ~InParty(Player5) InMyArea(Player5) !StateCheck(Player5,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER5> shall be our champion.~ DO ~StartCutSceneMode() StartCutScene("ttcutf15")~ EXIT
+ IF ~InParty(Player6) InMyArea(Player6) !StateCheck(Player6,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER6>, go ahead.~ DO ~StartCutSceneMode() StartCutScene("ttcutf16")~ EXIT
  ++ ~I think we need a short break.~ EXIT
 
-CHAIN IF ~Global("ttPlayerVsMichio","GLOBAL",0) Global("ttPlayerVsMomoko","GLOBAL",2) Global("ttNakanishiDuel","GLOBAL",0)~ THEN TTHITOMI 5
+CHAIN
+IF ~Global("ttPlayerVsMichio","GLOBAL",0) Global("ttPlayerVsMomoko","GLOBAL",2) Global("ttNakanishiDuel","GLOBAL",0)~ THEN TTHITOMI 5
 ~The battle is over. Momoko stands undefeated. Is there another who would try their skill against my son?~
 END
- IF ~InParty(Player2) See(Player2) !StateCheck(Player2,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER2> would represent us.~ DO ~StartCutSceneMode() StartCutScene("ttcutf02")~ EXIT
- IF ~InParty(Player3) See(Player3) !StateCheck(Player3,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER3> shall face him now.~ DO ~StartCutSceneMode() StartCutScene("ttcutf03")~ EXIT
- IF ~InParty(Player4) See(Player4) !StateCheck(Player4,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER4> is ready to answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf04")~ EXIT
- IF ~InParty(Player5) See(Player5) !StateCheck(Player5,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER5> shall be our champion.~ DO ~StartCutSceneMode() StartCutScene("ttcutf05")~ EXIT
- IF ~See(Player1) !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf01")~ EXIT
- IF ~InParty(Player6) See(Player6) !StateCheck(Player6,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER6>, go ahead.~ DO ~StartCutSceneMode() StartCutScene("ttcutf06")~ EXIT
+ IF ~InMyArea(Player1) !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf01")~ EXIT
+ IF ~InParty(Player2) InMyArea(Player2) !StateCheck(Player2,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER2> would represent us.~ DO ~StartCutSceneMode() StartCutScene("ttcutf02")~ EXIT
+ IF ~InParty(Player3) InMyArea(Player3) !StateCheck(Player3,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER3> shall face him now.~ DO ~StartCutSceneMode() StartCutScene("ttcutf03")~ EXIT
+ IF ~InParty(Player4) InMyArea(Player4) !StateCheck(Player4,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER4> is ready to answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf04")~ EXIT
+ IF ~InParty(Player5) InMyArea(Player5) !StateCheck(Player5,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER5> shall be our champion.~ DO ~StartCutSceneMode() StartCutScene("ttcutf05")~ EXIT
+ IF ~InParty(Player6) InMyArea(Player6) !StateCheck(Player6,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER6>, go ahead.~ DO ~StartCutSceneMode() StartCutScene("ttcutf06")~ EXIT
  ++ ~No, I think we will cut our losses this day. ~ EXTERN TTHITOMI 9
  ++ ~I think we need a short break.~ EXIT
 
-CHAIN IF ~Global("ttPlayerVsMichio","GLOBAL",3) Global("ttPlayerVsMomoko","GLOBAL",3) Global("ttNakanishiDuel","GLOBAL",0)~ THEN TTHITOMI 6
+CHAIN
+IF ~Global("ttPlayerVsMichio","GLOBAL",3) Global("ttPlayerVsMomoko","GLOBAL",3) Global("ttNakanishiDuel","GLOBAL",0)~ THEN TTHITOMI 6
 ~I stand alone now between you and my daughter. She is still alive. I sense the presence of her soul...~
 END
  IF ~CheckStatGT(LastTalkedToBy(Myself),14,WIS) !Global("ttEvilPath","GLOBAL",2)~ THEN REPLY ~Hitomi, please, trust what your wife said. May be her words are true? May be it is our only chance? Besides, we can always fight after we try to bring Kachiko back to life. ~ EXTERN TTHITOMI 11
@@ -572,12 +619,12 @@ END
 CHAIN IF ~Global("ttPlayerVsMichio","GLOBAL",2) Global("ttPlayerVsMomoko","GLOBAL",3) Global("ttNakanishiDuel","GLOBAL",0)~ THEN TTHITOMI 7
 ~The battle is over. Michio stands undefeated. Is there another who would try their skill against my elder son?~
 END
- IF ~!StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf11")~ EXIT
- IF ~InParty(Player2) !StateCheck(Player2,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER2> would represent us.~ DO ~StartCutSceneMode() StartCutScene("ttcutf12")~ EXIT
- IF ~InParty(Player3) !StateCheck(Player3,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER3> shall face him now.~ DO ~StartCutSceneMode() StartCutScene("ttcutf13")~ EXIT
- IF ~InParty(Player4) !StateCheck(Player4,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER4> is ready to answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf14")~ EXIT
- IF ~InParty(Player5) !StateCheck(Player5,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER5> shall be our champion.~ DO ~StartCutSceneMode() StartCutScene("ttcutf15")~ EXIT
- IF ~InParty(Player6) !StateCheck(Player6,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER6>, go ahead.~ DO ~StartCutSceneMode() StartCutScene("ttcutf16")~ EXIT
+ IF ~InMyArea(Player1) !StateCheck(Player1,CD_STATE_NOTVALID)~ THEN REPLY ~I, myself, shall answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf11")~ EXIT
+ IF ~InParty(Player2) InMyArea(Player2) !StateCheck(Player2,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER2> would represent us.~ DO ~StartCutSceneMode() StartCutScene("ttcutf12")~ EXIT
+ IF ~InParty(Player3) InMyArea(Player3) !StateCheck(Player3,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER3> shall face him now.~ DO ~StartCutSceneMode() StartCutScene("ttcutf13")~ EXIT
+ IF ~InParty(Player4) InMyArea(Player4) !StateCheck(Player4,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER4> is ready to answer your challenge.~ DO ~StartCutSceneMode() StartCutScene("ttcutf14")~ EXIT
+ IF ~InParty(Player5) InMyArea(Player5) !StateCheck(Player5,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER5> shall be our champion.~ DO ~StartCutSceneMode() StartCutScene("ttcutf15")~ EXIT
+ IF ~InParty(Player6) InMyArea(Player6) !StateCheck(Player6,CD_STATE_NOTVALID)~ THEN REPLY ~<PLAYER6>, go ahead.~ DO ~StartCutSceneMode() StartCutScene("ttcutf16")~ EXIT
  ++ ~No, I'm not ready yet.~ EXIT
  ++ ~No, I think we will cut our losses this day. ~ EXTERN TTHITOMI 9
 
@@ -618,7 +665,8 @@ DO ~SetGlobal("ttHitomiAttacked","GLOBAL",1)~
 EXIT
 
 CHAIN
-IF ~!See("Yoshimo") Global("ttHitomiMeet","GLOBAL",0)~ THEN TTHITOMI 15
+IF ~Global("ttHitomiMeet","GLOBAL",0)
+OR(3) !InParty("Yoshimo") !InMyArea("Yoshimo") StateCheck("Yoshimo",CD_STATE_NOTVALID)~ THEN TTHITOMI 15
 ~Until you bring Yoshimo Hashimoto to me, I have nothing to say to you.~
 EXIT
 
@@ -628,10 +676,18 @@ IF ~True()~ THEN VPSONS 0
 ~I have no desire to speak with you.~
 EXIT
 
+//Yoshimo Comment
+CHAIN
+IF WEIGHT #8 ~Global("ttKachikoSavedRemark","GLOBAL",1)~ THEN YOSHJ TS208
+~<CHARNAME>, please cast the scroll. I cannot see her dead...~
+DO ~SetGlobal("ttKachikoSavedRemark","GLOBAL",2)~
+EXIT
+
 // Dungeon: The Crypt - Kachiko Ressurection
 CHAIN
-IF WEIGHT #1 ~Global("ttKachikoReborn","GLOBAL",1)~ THEN TTKACHIP 9
-~Who... who calls for me?~ [KACHIQ09] DO ~SetGlobal("ttKachikoReborn","GLOBAL",2)~
+IF WEIGHT #1 ~Global("ttKachikoQuest","GLOBAL",6) Global("ttKachikoReborn","GLOBAL",1)~ THEN TTKACHIP 9
+~Who... who calls for me?~ [KACHIQ09]
+DO ~SetGlobal("ttKachikoQuest","GLOBAL",7) SetGlobal("ttKachikoReborn","GLOBAL",2)~
 == YOSHJ ~Kachiko... oh, Kachiko. She is so pale and cold... ~
 END
  IF ~!Global("ttEvilPath","GLOBAL",2) !Dead("ttnajoki")~ THEN EXTERN TTKACHIP 10
@@ -647,7 +703,9 @@ CHAIN TTKACHIP 10
 AddXPObject(Myself,80000)
 ActionOverride("Kachiko",ChangeAlignment(Myself,CHAOTIC_GOOD))
 ActionOverride("Kachiko",AddXPObject(Myself,80000))~
-== TTKACHIP ~Yoshimo, I love you too... Let's get out of this cold, terrible place...~ DO ~JoinParty()~
+== TTKACHIP ~Yoshimo, I love you too... Let's get out of this cold, terrible place...~
+DO ~SetGlobal("ttKachikoGoodEnd","GLOBAL",1)
+JoinParty()~
 EXIT
 
 CHAIN TTKACHIP 14
@@ -657,8 +715,10 @@ CHAIN TTKACHIP 14
 == YOSHJ ~Masaki killed Naoko?~
 == TTKACHIP ~Yes, and he alerted the wizard who had helped us to get away from Kara-Tur to this blessed Island about your whereabouts. So even if you flee you'd have to face Joneleth, the great mage, who champions Nakanishi's case.~
 == YOSHJ ~As well as Hashimoto's it seems. My father told me that a mage named Joneleth made an offer of help to him also.~
-== TTKACHIP ~Liar! I will not listen to you any longer! Masaki! Father! Brothers! Let's kill them all! For Nakanishi's honor!~ DO ~SetGlobal("ttKachikoSaved","GLOBAL",3)
-StartCutScene("ttcutBad")~
+== TTKACHIP ~Liar! I will not listen to you any longer! Masaki! Father! Brothers! Let's kill them all! For Nakanishi's honor!~
+DO ~SetGlobal("ttKachikoBadEnd","GLOBAL",1)
+StartCutSceneMode()
+StartCutScene("ttcutbad")~
 EXIT
 
 /////////////////////////
@@ -667,49 +727,48 @@ EXIT
 
 // Island Shore - Aino and Najoki - Good Ending
 CHAIN
-IF ~Global("ttKachikoSaved","GLOBAL",2)~ THEN TTNAJOKI 9
+IF ~Global("ttKachikoQuest","GLOBAL",7) Global("ttKachikoGoodEnd","GLOBAL",1)~ THEN TTNAJOKA 9
 ~Let fate smile at you, brave stranger, for you have freed the doomed from their eternal torture.~
-== TTAINO ~Our souls were accepted by our gods and we all now rest in peace... Nakanishi and Hashimoto alike. Here is the map, stranger, let the winds and the waves be kind to you and your passage be swift.~ DO ~GiveItem("ttwardti",Player1)~
+DO ~SetGlobal("ttKachikoQuest","GLOBAL",8)~
+== TTAINOA ~Our souls were accepted by our gods and we all now rest in peace... Nakanishi and Hashimoto alike. Here is the map, stranger, let the winds and the waves be kind to you and your passage be swift.~ DO ~GiveItem("ttwardti",Player1)~
 = ~My son, I am proud of you and you had shown wisdom and strength beyond your years. Your father bows to you with respect.~
-== TTNAJOKI ~Kachiko and Yoshimo, each of you is now the only surviving member of your family. We paid dearly for our hatred, but now it's no more. Love defeated death. Both Nakanishi and Hashimoto shall continue in your children. Bless you my daughter and fare thee well... Yoshimo, take a good care of her.~
+== TTNAJOKA ~Kachiko and Yoshimo, each of you is now the only surviving member of your family. We paid dearly for our hatred, but now it's no more. Love defeated death. Both Nakanishi and Hashimoto shall continue in your children. Bless you my daughter and fare thee well... Yoshimo, take a good care of her.~
 DO ~GiveItem("ttcharts",Player1)
-SetGlobal("ttEndIsland","GLOBAL",1)
+SetGlobal("ttIslandEnd","GLOBAL",1)
 ActionOverride("ttnajoka",ForceSpell(Myself,DRYAD_TELEPORT))
 ActionOverride("ttainoa",ForceSpell(Myself,DRYAD_TELEPORT))~
 EXIT
 
 // Island Shore - Aino - Bad Ending
 CHAIN
-IF ~OR(2)
-Global("ttKachikoSaved","GLOBAL",3)
-Global("ttEvilPath","GLOBAL",2)~ THEN TTAINO 11
-~My son, your friends and you fought valiantly and I am grateful. Unfortunately, the curse is not lifted, and we will wake up tomorrow to battle Nakanishi once more. They have Kachiko back with them now, but I have no heart to pull you into this madness. Here is the wardstone, which will let you to get away. Run, my son and run swiftly... Farewell.~ DO ~GiveItem("ttwardti",Player1)~
+IF ~Global("ttKachikoQuest","GLOBAL",7) Global("ttKachikoBadEnd","GLOBAL",1)~ THEN TTAINOA 11
+~My son, your friends and you fought valiantly and I am grateful. Unfortunately, the curse is not lifted, and we will wake up tomorrow to battle Nakanishi once more. They have Kachiko back with them now, but I have no heart to pull you into this madness. Here is the wardstone, which will let you to get away. Run, my son and run swiftly... Farewell.~
+DO ~SetGlobal("ttKachikoQuest","GLOBAL",8) GiveItem("ttwardti",Player1)~
 == YOSHJ ~Father, I do not wish to leave without you.~
-== TTAINO ~You do not understand. I cannot leave. None of us can leave. We are all dead, long dead. Flee, my son, as you had done once, save your soul untouched by hatred and treachery!~
+== TTAINOA ~You do not understand. I cannot leave. None of us can leave. We are all dead, long dead. Flee, my son, as you had done once, save your soul untouched by hatred and treachery!~
 == YOSHJ ~I am afraid it's too late. Kachiko is dead and she was my only reason to be unstained by treachery...~
 END
  ++ ~What are you talking about, Yoshimo?~ EXTERN YOSHJ TS204
 
 CHAIN YOSHJ TS204
 ~Nothing, <CHARNAME>. You were right, we should not have come here. Now, let's go rescue your friend.~
-DO ~SetGlobal("ttEndIsland","GLOBAL",1)
-SetGlobal("ttEvilPath","GLOBAL",3)
+DO ~SetGlobal("ttIslandEnd","GLOBAL",1)
 ActionOverride("ttainoa",ForceSpell(Myself,DRYAD_TELEPORT))
 ChangeAlignment(Myself,CHAOTIC_EVIL)~
 EXIT
 
 // Island Shore - Talk with Captain
 CHAIN
-IF WEIGHT #9 ~Global("ttOnIsland","GLOBAL",1) Global("ttEndIsland","GLOBAL",2)~ THEN TTNOMEAS TS29
+IF WEIGHT #9 ~Global("ttKachikoQuest","GLOBAL",8) Global("ttOnIsland","GLOBAL",1) Global("ttIslandEnd","GLOBAL",1)~ THEN TTNOMEAS TS29
 ~The good news is that the ship is ready to sail. The bad news is that we are far to the south from Athkatla, and I am not sure if we will see Amn's shores again.~
 = ~I have no knowledge of these waters and I am reluctant to start out without more information... What is your command, my <PRO_LADYLORD>?~
+DO ~SetGlobal("ttIslandEnd","GLOBAL",2)~
 END
- ++ ~Well, I'd trade you my good news! I got a map, showing a magical portal, which can teleport our ship back to our lands, and a wardstone, which makes possible to restore our time-space continuum.~ DO ~SetGlobal("ttEndIsland","GLOBAL",3)~ EXTERN TTNOMEAS TS30
+ ++ ~Well, I'd trade you my good news! I got a map, showing a magical portal, which can teleport our ship back to our lands, and a wardstone, which makes possible to restore our time-space continuum.~ EXTERN TTNOMEAS TS30
 
 CHAIN TTNOMEAS TS30
 ~Magical portal? Time wardstone? Sounds just as good as the Fog of Fate spell... Let me see the sea charts you get...~
 = ~Hmm, looks like it was made with skill. I have a feeling it's genuine.~
 = ~I suggest that we go to Athkatla and then sail further in a more traditional way, because the area miles around the city is heavily warded against magical travels... Rig up, crew!~
-DO ~StartCutSceneMode()
-StartCutScene("ttend")~
+DO ~SetGlobal("ttOnIsland","GLOBAL",2) StartCutSceneMode() StartCutScene("ttend")~
 EXIT

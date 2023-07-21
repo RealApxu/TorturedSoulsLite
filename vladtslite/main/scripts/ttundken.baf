@@ -1,8 +1,20 @@
 IF
 	Allegiance(Myself,NEUTRAL)
-	Global("ttSamuraiMeeting","GLOBAL",1)
+	OR(2)
+		Global("ttSamuraiMeeting","GLOBAL",1)
+		Global("ttSamuraiAttacked","GLOBAL",1)
 THEN
 	RESPONSE #100
+		Enemy()
+END
+
+IF
+	Global("ttSamuraiAttacked","GLOBAL",0)
+	AttackedBy([PC],DEFAULT)
+	Allegiance(Myself,NEUTRAL)
+THEN
+	RESPONSE #100
+		SetGlobal("ttSamuraiAttacked","GLOBAL",1)
 		Enemy()
 END
 
@@ -59,22 +71,4 @@ THEN
 		ReallyForceSpell(LastSeenBy(Myself),WIZARD_POWER_WORD_KILL)
 	RESPONSE #40
 		AttackReevaluate(NearestEnemyOf(Myself),15)
-END
-
-IF
-	Global("ttSamuraiAttacked","GLOBAL",0)
-	AttackedBy([PC],DEFAULT)
-	Allegiance(Myself,NEUTRAL)
-THEN
-	RESPONSE #100
-		SetGlobal("ttSamuraiAttacked","GLOBAL",1)
-		Enemy()
-END
-
-IF
-	Allegiance(Myself,NEUTRAL)
-	Global("ttSamuraiAttacked","GLOBAL",1)
-THEN
-	RESPONSE #100
-		Enemy()
 END

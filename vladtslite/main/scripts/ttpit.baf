@@ -1,5 +1,22 @@
 IF
 	Clicked([ANYONE])
+	!Range(LastTrigger,12)
+THEN
+	RESPONSE #100
+		DisplayString(Myself,14702) // You are too far away to use that.
+END
+
+IF
+	Clicked([ANYONE])
+	Range(LastTrigger,12)
+	!PartyHasItem("ttrope")
+THEN
+	RESPONSE #100
+		DisplayString(Myself,@252)
+END
+
+IF
+	Clicked([ANYONE])
 	Range(LastTrigger,12)
 	PartyHasItem("ttrope")
 THEN
@@ -20,21 +37,4 @@ THEN
 		Wait(1)
 		FadeFromColor([20.0],0)
 		Wait(1)
-END
-
-IF
-	Clicked([ANYONE])
-	Range(LastTrigger,12)
-	!PartyHasItem("ttrope")
-THEN
-	RESPONSE #100
-		DisplayString(Myself,@252)
-END
-
-IF
-	Clicked([ANYONE])
-	!Range(LastTrigger,12)
-THEN
-	RESPONSE #100
-		DisplayString(Myself,14702) // You are too far away to use that.
 END

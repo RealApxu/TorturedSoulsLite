@@ -8,7 +8,7 @@ THEN
 END
 
 IF
-	RealGlobalTimerExpired("ttNKensaiSpawn","GLOBAL")
+	RealGlobalTimerExpired("ttNakanishiKensaiSpawn","GLOBAL")
 	Global("ttKachikoKidnapped","GLOBAL",2)
 THEN
 	RESPONSE #100

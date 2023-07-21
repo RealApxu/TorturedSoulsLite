@@ -5,26 +5,22 @@
 IF
   InParty(Myself)
   See(Player1)
-  CombatCounter(0)
-  !See([ENEMY])
-  !StateCheck(Player1,CD_STATE_NOTVALID)
-  !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+  CombatCounter(0) !See([ENEMY])
+  !StateCheck(Player1,CD_STATE_NOTVALID) !StateCheck("Yoshimo",CD_STATE_NOTVALID)
   GlobalLT("Chapter","GLOBAL",%bg_chapter_4%)
   Global("ttKachikoMeet","GLOBAL",0)
 THEN
   RESPONSE #100
     SetGlobal("ttKachikoMeet","GLOBAL",1)
-    SetGlobalTimer("ttKachikoMeetTimer","GLOBAL",SEVEN_DAYS)
+    SetGlobalTimer("ttKachikoMeetTimer","GLOBAL",THREE_DAYS)
 END
 
 IF
   GlobalTimerExpired("ttKachikoMeetTimer","GLOBAL")
   InParty(Myself)
   See(Player1)
-  CombatCounter(0)
-  !See([ENEMY])
-  !StateCheck(Player1,CD_STATE_NOTVALID)
-  !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+  CombatCounter(0) !See([ENEMY])
+  !StateCheck(Player1,CD_STATE_NOTVALID) !StateCheck("Yoshimo",CD_STATE_NOTVALID)
   OR(6)
     AreaCheck("AR0020")
     AreaCheck("AR0300")
@@ -37,7 +33,7 @@ IF
 THEN
   RESPONSE #100
     SetGlobal("ttKachikoMeet","GLOBAL",2)
-    CreateCreatureObjectDoor("ttkachi","Yoshimo",0,0,0)
+    CreateCreatureObject("ttkachi","Yoshimo",0,0,0)
 END
 
 ////////////////////////////////
@@ -70,6 +66,7 @@ IF
 THEN
   RESPONSE #100
     SetGlobal("ttKachikoDies","GLOBAL",2)
+    Continue()
 END
 
 IF
@@ -97,6 +94,7 @@ IF
 THEN
   RESPONSE #100
     SetGlobal("ttKachikoDies","GLOBAL",0)
+    Continue()
 END
 
 //////////////////////////////
@@ -115,6 +113,13 @@ END
 
 IF
   Global("ttKachikoKidnapped","GLOBAL",1)
+THEN
+  RESPONSE #100
+    StartDialogNoSet([PC])
+END
+
+IF
+  Global("ttKachikoSaved","GLOBAL",1)
 THEN
   RESPONSE #100
     StartDialogNoSet([PC])

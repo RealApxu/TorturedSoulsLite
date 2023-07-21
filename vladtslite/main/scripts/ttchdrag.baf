@@ -2,16 +2,16 @@ IF
 	Delay(6)
 THEN
 	RESPONSE #25
-		SetGlobal("Red_Dragon","LOCALS",1)
+		SetGlobal("ttRedDragon","LOCALS",1)
 		Polymorph(DRAGON_RED)
 	RESPONSE #25
-		SetGlobal("Aqua_Dragon","LOCALS",1)
+		SetGlobal("ttAquaDragon","LOCALS",1)
 		Polymorph(DRAGON_MULTICOLOR)
 	RESPONSE #25
-		SetGlobal("Blue_Dragon","LOCALS",1)
+		SetGlobal("ttBlueDragon","LOCALS",1)
 		Polymorph(DRAGON_BLUE)
 	RESPONSE #25
-		SetGlobal("Green_Dragon","LOCALS",1)
+		SetGlobal("ttGreenDragon","LOCALS",1)
 		Polymorph(DRAGON_GREEN)
 END
 
@@ -24,140 +24,140 @@ THEN
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("RemoveMagic","LOCALS",0)
+	Global("ttRemoveMagic","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(Myself,DRAGON_STONE_SKIN)
 		ForceSpell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-		SetGlobal("StoneSkin","LOCALS",1)
-		SetGlobal("RemoveMagic","LOCALS",1)
+		SetGlobal("ttStoneSkin","LOCALS",1)
+		SetGlobal("ttRemoveMagic","LOCALS",1)
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
 	!Detect([PC])
 	HPLT(Myself,50)
 	CombatCounter(0)
 THEN
 	RESPONSE #100
-		SetGlobal("RemoveMagic","LOCALS",0)
-		SetGlobal("WingBuffet","LOCALS",0)
-		SetGlobal("Haste","LOCALS",0)
-		SetGlobal("DRAGONFEAR","LOCALS",0)
+		SetGlobal("ttRemoveMagic","LOCALS",0)
+		SetGlobal("ttWingBuffet","LOCALS",0)
+		SetGlobal("ttHaste","LOCALS",0)
+		SetGlobal("ttDragonFear","LOCALS",0)
 		ForceSpell(Myself,CLERIC_HEAL)
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("DRAGONFEAR","LOCALS",0)
+	Global("ttDragonFear","LOCALS",0)
 THEN
 	RESPONSE #100
 		ReallyForceSpell(NearestEnemyOf(Myself),DRAGON_FEAR)
 		ReallyForceSpell(NearestEnemyOf(Myself),DRAGON_LOWER_FIRE)
-		SetGlobal("DRAGONFEAR","LOCALS",1)
-		SetGlobalTimer("REDDRAGONBREATH","LOCALS",1)
+		SetGlobal("ttDragonFear","LOCALS",1)
+		SetGlobalTimer("ttRedDragonBreath","LOCALS",1)
 		ForceSpell(LastSeenBy(Myself),DRAGON_WING_BUFFET)
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
-	GlobalTimerExpired("REDDRAGONBREATH","LOCALS")
+	Global("ttRedDragon","LOCALS",1)
+	GlobalTimerExpired("ttRedDragonBreath","LOCALS")
 	See(NearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),11)
-	Global("WingBuffet","LOCALS",0)
+	Global("ttWingBuffet","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),DRAGON_WING_BUFFET)
 		Wait(1)
-		SetGlobal("WingBuffet","LOCALS",1)
+		SetGlobal("ttWingBuffet","LOCALS",1)
 	RESPONSE #60
 		Continue()
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 	!Range(LastSeenBy(Myself),10)
-	GlobalTimerExpired("REDDRAGONBREATH","LOCALS")
+	GlobalTimerExpired("ttRedDragonBreath","LOCALS")
 THEN
 	RESPONSE #100
-		SetGlobal("WingBuffet","LOCALS",0)
+		SetGlobal("ttWingBuffet","LOCALS",0)
 		ForceSpell(LastSeenBy(Myself),RED_DRAGON_BREATH)
 		ReallyForceSpell(LastSeenBy(Myself),RED_DRAGON_HIT)
-		SetGlobalTimer("REDDRAGONBREATH","LOCALS",18)
+		SetGlobalTimer("ttRedDragonBreath","LOCALS",18)
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
-	Global("WingBuffet","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
+	Global("ttWingBuffet","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),11)
 THEN
 	RESPONSE #100
-		SetGlobal("WingBuffet","LOCALS",0)
-		SetGlobalTimer("REDDRAGONBREATH","LOCALS",18)
+		SetGlobal("ttWingBuffet","LOCALS",0)
+		SetGlobalTimer("ttRedDragonBreath","LOCALS",18)
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("Offense1","LOCALS",0)
+	Global("ttOffense1","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),WIZARD_GREATER_MALISON)
-		SetGlobal("Offense1","LOCALS",1)
+		SetGlobal("ttOffense1","LOCALS",1)
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("Haste","LOCALS",0)
+	Global("ttHaste","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(Myself,WIZARD_HASTE)
-		SetGlobal("Haste","LOCALS",1)
+		SetGlobal("ttHaste","LOCALS",1)
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("HoldPerson","LOCALS",0)
+	Global("ttHoldPerson","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)
-		SetGlobal("HoldPerson","LOCALS",1)
+		SetGlobal("ttHoldPerson","LOCALS",1)
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
-	Global("Silence","LOCALS",0)
+	Global("ttRedDragon","LOCALS",1)
+	Global("ttSilence","LOCALS",0)
 	OR(2)
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),DRAGON_SILENCE)
-		SetGlobal("Silence","LOCALS",1)
+		SetGlobal("ttSilence","LOCALS",1)
 		AttackOneRound(LastSeenBy(Myself))
 		AttackOneRound(LastSeenBy(Myself))
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 	Delay(6)
-	GlobalLT("CharmPerson","LOCALS",3)
+	GlobalLT("ttCharmPerson","LOCALS",3)
 THEN
 	RESPONSE #100
 		ForceSpell(NearestEnemyOf(Myself),WIZARD_CHARM_PERSON)
-		IncrementGlobal("CharmPerson","LOCALS",1)
+		IncrementGlobal("ttCharmPerson","LOCALS",1)
 END
 
 IF
-	Global("Red_Dragon","LOCALS",1)
+	Global("ttRedDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
@@ -168,7 +168,7 @@ THEN
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	!Allegiance(Myself,ENEMY)
 	OR(3)
 		AttackedBy([GOODCUTOFF],DEFAULT)
@@ -180,13 +180,13 @@ THEN
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	Detect(NearestEnemyOf(Myself))
-	!GlobalTimerNotExpired("SpSequencer","LOCALS")
+	!GlobalTimerNotExpired("ttSpellSequencer","LOCALS")
 THEN
 	RESPONSE #100
-		SetGlobalTimer("SpSequencer","LOCALS",1000)
-		SetGlobal("SeqUsed","LOCALS",1)
+		SetGlobalTimer("ttSpellSequencer","LOCALS",1000)
+		SetGlobal("ttSequencerUsed","LOCALS",1)
 		DisplayString(Myself,39969) // Spell Sequencer - Fired
 		ReallyForceSpell(Myself,DRAGON_STONE_SKIN)
 		ReallyForceSpellRES("jwglobe",Myself) // Globe of Invulnerability
@@ -194,12 +194,12 @@ THEN
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	!GlobalTimerNotExpired("DRAGONFEAR","LOCALS")
+	!GlobalTimerNotExpired("ttDragonFear","LOCALS")
 THEN
 	RESPONSE #100
-		SetGlobalTimer("DRAGONFEAR","LOCALS",100)
+		SetGlobalTimer("ttDragonFear","LOCALS",100)
 		PlaySound("BLACK01")
 		ReallyForceSpell(NearestEnemyOf(Myself),DRAGON_FEAR)
 		ReallyForceSpell(NearestEnemyOf(Myself),0)
@@ -207,21 +207,21 @@ THEN
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	OR(3)
 		SpellCast([GOODCUTOFF],WIZARD_INCENDIARY_CLOUD)
 		SpellCast([GOODCUTOFF],WIZARD_STINKING_CLOUD)
 		SpellCast([GOODCUTOFF],WIZARD_DEATH_FOG)
-	!GlobalTimerNotExpired("WINGBUFFET","LOCALS")
+	!GlobalTimerNotExpired("ttWingBuffet","LOCALS")
 THEN
 	RESPONSE #100
-		SetGlobalTimer("WINGBUFFET","LOCALS",8)
+		SetGlobalTimer("ttWingBuffet","LOCALS",8)
 		ApplySpell(Myself,0)
 		ForceSpell(NearestEnemyOf(Myself),DRAGON_WING_BUFFET)
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	Allegiance(Myself,ENEMY)
 	OR(7)
 		Gender(NearestEnemyOf(Myself),ILLUSIONARY)
@@ -239,20 +239,20 @@ THEN
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	Allegiance(Myself,ENEMY)
 	CheckStat(Myself,0,STONESKINS)
-	Global("SeqUsed","LOCALS",1)
-	!GlobalTimerNotExpired("DragonStoneSkin","LOCALS")
+	Global("ttSequencerUsed","LOCALS",1)
+	!GlobalTimerNotExpired("ttDragonStoneskin","LOCALS")
 	RandomNum(2,1)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("DragonStoneSkin","LOCALS",30)
+		SetGlobalTimer("ttDragonStoneskin","LOCALS",30)
 		ForceSpell(Myself,DRAGON_STONE_SKIN)
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	OR(2)
 		!Allegiance(LastSeenBy(Myself),GOODCUTOFF)
 		!See([GOODCUTOFF])
@@ -263,7 +263,7 @@ THEN
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	OR(2)
 		!Allegiance(LastSeenBy(Myself),GOODCUTOFF)
 		!See([GOODCUTOFF])
@@ -274,24 +274,24 @@ THEN
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
-	!GlobalTimerNotExpired("WINGBUFFET","LOCALS")
+	Global("ttGreenDragon","LOCALS",1)
+	!GlobalTimerNotExpired("ttWingBuffet","LOCALS")
 	Range(LastSeenBy(Myself),10)
 	RandomNum(2,1)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("WINGBUFFET","LOCALS",8)
+		SetGlobalTimer("ttWingBuffet","LOCALS",8)
 		ForceSpell(LastSeenBy(Myself),DRAGON_WING_BUFFET)
 		Wait(1)
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	!Range(LastSeenBy(Myself),10)
-	!GlobalTimerNotExpired("GREENDRAGONBREATH","LOCALS")
+	!GlobalTimerNotExpired("ttGreenDragonBreath","LOCALS")
 THEN
 	RESPONSE #100
-		SetGlobalTimer("GREENDRAGONBREATH","LOCALS",12)
+		SetGlobalTimer("ttGreenDragonBreath","LOCALS",12)
 		Wait(6)
 		ForceSpell(LastSeenBy(Myself),GREEN_DRAGON_BREATH)
 		ReallyForceSpellRES("DrGrBrHt",LastSeenBy(Myself)) // No such index
@@ -299,20 +299,20 @@ THEN
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
+	Global("ttGreenDragon","LOCALS",1)
 	Allegiance(Myself,ENEMY)
 	Range(LastSeenBy(Myself),15)
 	RandomNum(3,1)
-	!GlobalTimerNotExpired("dbPlant","LOCALS")
+	!GlobalTimerNotExpired("ttdbPlant","LOCALS")
 THEN
 	RESPONSE #100
-		SetGlobalTimer("dbPlant","LOCALS",1000)
+		SetGlobalTimer("ttdbPlant","LOCALS",1000)
 		ForceSpell(Myself,BLACK_DRAGON_PLANT)
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
-	!GlobalTimerNotExpired("dbOffense1","LOCALS")
+	Global("ttGreenDragon","LOCALS",1)
+	!GlobalTimerNotExpired("ttdbOffense1","LOCALS")
 	RandomNum(2,1)
 	OR(5)
 		Class(LastSeenBy(Myself),DRUID_ALL)
@@ -324,157 +324,157 @@ IF
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),BLACK_DRAGON_INSECT)
-		SetGlobalTimer("dbOffense1","LOCALS",1000)
+		SetGlobalTimer("ttdbOffense1","LOCALS",1000)
 END
 
 IF
-	Global("Green_Dragon","LOCALS",1)
-	!GlobalTimerNotExpired("dbCharm","LOCALS")
+	Global("ttGreenDragon","LOCALS",1)
+	!GlobalTimerNotExpired("ttdbCharm","LOCALS")
 	RandomNum(3,1)
 	!CheckStatGT(LastSeenBy(Myself),50,RESISTMAGIC)
 	HasBounceEffects(LastSeenBy(Myself))
 	!StateCheck(LastSeenBy(Myself),STATE_CHARMED)
 THEN
 	RESPONSE #100
-		SetGlobalTimer("dbCharm","LOCALS",30)
+		SetGlobalTimer("ttdbCharm","LOCALS",30)
 		ForceSpell(LastSeenBy(Myself),WIZARD_DIRE_CHARM)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("RemoveMagic","LOCALS",0)
+	Global("ttRemoveMagic","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(Myself,DRAGON_STONE_SKIN)
 		ForceSpell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-		SetGlobal("StoneSkin","LOCALS",1)
-		SetGlobal("RemoveMagic","LOCALS",1)
+		SetGlobal("ttStoneSkin","LOCALS",1)
+		SetGlobal("ttRemoveMagic","LOCALS",1)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
 	!Detect([PC])
 	HPLT(Myself,50)
 	CombatCounter(0)
 THEN
 	RESPONSE #100
-		SetGlobal("RemoveMagic","LOCALS",0)
-		SetGlobal("WingBuffet","LOCALS",0)
-		SetGlobal("Haste","LOCALS",0)
-		SetGlobal("DRAGONFEAR","LOCALS",0)
+		SetGlobal("ttRemoveMagic","LOCALS",0)
+		SetGlobal("ttWingBuffet","LOCALS",0)
+		SetGlobal("ttHaste","LOCALS",0)
+		SetGlobal("ttDragonFear","LOCALS",0)
 		ForceSpell(Myself,CLERIC_HEAL)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("DRAGONFEAR","LOCALS",0)
+	Global("ttDragonFear","LOCALS",0)
 THEN
 	RESPONSE #100
 		ReallyForceSpell(NearestEnemyOf(Myself),DRAGON_FEAR)
 		ReallyForceSpell(NearestEnemyOf(Myself),DRAGON_LOWER_ELECTRICAL)
-		SetGlobal("DRAGONFEAR","LOCALS",1)
-		SetGlobalTimer("BLUEDRAGONBREATH","LOCALS",1)
+		SetGlobal("ttDragonFear","LOCALS",1)
+		SetGlobalTimer("ttBlueDragonBreath","LOCALS",1)
 		ForceSpell(LastSeenBy(Myself),DRAGON_WING_BUFFET)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
-	GlobalTimerExpired("BLUEDRAGONBREATH","LOCALS")
+	Global("ttBlueDragon","LOCALS",1)
+	GlobalTimerExpired("ttBlueDragonBreath","LOCALS")
 	See(NearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),11)
-	Global("WingBuffet","LOCALS",0)
+	Global("ttWingBuffet","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),DRAGON_WING_BUFFET)
 		Wait(1)
-		SetGlobal("WingBuffet","LOCALS",1)
+		SetGlobal("ttWingBuffet","LOCALS",1)
 	RESPONSE #60
 		Continue()
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 	!Range(LastSeenBy(Myself),10)
-	GlobalTimerExpired("BLUEDRAGONBREATH","LOCALS")
+	GlobalTimerExpired("ttBlueDragonBreath","LOCALS")
 THEN
 	RESPONSE #100
-		SetGlobal("WingBuffet","LOCALS",0)
+		SetGlobal("ttWingBuffet","LOCALS",0)
 		ForceSpell(LastSeenBy(Myself),BLUE_DRAGON_BREATH)
 		ReallyForceSpell(LastSeenBy(Myself),0)
-		SetGlobalTimer("BLUEDRAGONBREATH","LOCALS",18)
+		SetGlobalTimer("ttBlueDragonBreath","LOCALS",18)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
-	Global("WingBuffet","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
+	Global("ttWingBuffet","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),11)
 THEN
 	RESPONSE #100
-		SetGlobal("WingBuffet","LOCALS",0)
-		SetGlobalTimer("BLUEDRAGONBREATH","LOCALS",18)
+		SetGlobal("ttWingBuffet","LOCALS",0)
+		SetGlobalTimer("ttBlueDragonBreath","LOCALS",18)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("Offense1","LOCALS",0)
+	Global("ttOffense1","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),WIZARD_GREATER_MALISON)
-		SetGlobal("Offense1","LOCALS",1)
+		SetGlobal("ttOffense1","LOCALS",1)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("Haste","LOCALS",0)
+	Global("ttHaste","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(Myself,WIZARD_HASTE)
-		SetGlobal("Haste","LOCALS",1)
+		SetGlobal("ttHaste","LOCALS",1)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("HoldPerson","LOCALS",0)
+	Global("ttHoldPerson","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),CLERIC_HOLD_PERSON)
-		SetGlobal("HoldPerson","LOCALS",1)
+		SetGlobal("ttHoldPerson","LOCALS",1)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
-	Global("Silence","LOCALS",0)
+	Global("ttBlueDragon","LOCALS",1)
+	Global("ttSilence","LOCALS",0)
 	OR(2)
 		See(NearestEnemyOfType([0.0.0.MAGE_ALL]))
 		See(NearestEnemyOfType([0.0.0.CLERIC_ALL]))
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),DRAGON_SILENCE)
-		SetGlobal("Silence","LOCALS",1)
+		SetGlobal("ttSilence","LOCALS",1)
 		AttackOneRound(LastSeenBy(Myself))
 		AttackOneRound(LastSeenBy(Myself))
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 	Delay(6)
-	GlobalLT("CharmPerson","LOCALS",3)
+	GlobalLT("ttCharmPerson","LOCALS",3)
 THEN
 	RESPONSE #100
 		ForceSpell(NearestEnemyOf(Myself),WIZARD_CHARM_PERSON)
-		IncrementGlobal("CharmPerson","LOCALS",1)
+		IncrementGlobal("ttCharmPerson","LOCALS",1)
 END
 
 IF
-	Global("Blue_Dragon","LOCALS",1)
+	Global("ttBlueDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100
@@ -485,123 +485,123 @@ THEN
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	See([GOODCUTOFF.0.0.0.0.SUMMONED])
-	Global("sdSummon","LOCALS",0)
+	Global("ttsdSummon","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),WIZARD_DEATH_SPELL)
-		SetGlobal("sdSummon","LOCALS",1)
+		SetGlobal("ttsdSummon","LOCALS",1)
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("RemoveMagic","LOCALS",0)
+	Global("ttRemoveMagic","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(Myself,DRAGON_STONE_SKIN)
 		ForceSpell(LastSeenBy(Myself),WIZARD_DISPEL_MAGIC)
-		SetGlobal("StoneSkin","LOCALS",1)
-		SetGlobal("RemoveMagic","LOCALS",1)
+		SetGlobal("ttStoneSkin","LOCALS",1)
+		SetGlobal("ttRemoveMagic","LOCALS",1)
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	!Detect([PC])
 	HPLT(Myself,50)
 	CombatCounter(0)
 THEN
 	RESPONSE #100
-		SetGlobal("RemoveMagic","LOCALS",0)
-		SetGlobal("WingBuffet","LOCALS",0)
-		SetGlobal("Haste","LOCALS",0)
-		SetGlobal("DRAGONFEAR","LOCALS",0)
+		SetGlobal("ttRemoveMagic","LOCALS",0)
+		SetGlobal("ttWingBuffet","LOCALS",0)
+		SetGlobal("ttHaste","LOCALS",0)
+		SetGlobal("ttDragonFear","LOCALS",0)
 		ForceSpell(Myself,CLERIC_HEAL)
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("DRAGONFEAR","LOCALS",0)
+	Global("ttDragonFear","LOCALS",0)
 THEN
 	RESPONSE #100
 		ReallyForceSpell(NearestEnemyOf(Myself),DRAGON_FEAR)
-		SetGlobal("DRAGONFEAR","LOCALS",1)
-		SetGlobalTimer("SHADOWDRAGONBREATH","LOCALS",1)
+		SetGlobal("ttDragonFear","LOCALS",1)
+		SetGlobalTimer("ttShadowDragonBreath","LOCALS",1)
 		ForceSpell(LastSeenBy(Myself),DRAGON_WING_BUFFET)
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
-	GlobalTimerExpired("SHADOWDRAGONBREATH","LOCALS")
+	Global("ttAquaDragon","LOCALS",1)
+	GlobalTimerExpired("ttShadowDragonBreath","LOCALS")
 	See(NearestEnemyOf(Myself))
 	Range(LastSeenBy(Myself),11)
-	Global("WingBuffet","LOCALS",0)
+	Global("ttWingBuffet","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),DRAGON_WING_BUFFET)
 		Wait(3)
-		SetGlobal("WingBuffet","LOCALS",1)
+		SetGlobal("ttWingBuffet","LOCALS",1)
 	RESPONSE #60
 		Continue()
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 	!Range(LastSeenBy(Myself),10)
-	GlobalTimerExpired("SHADOWDRAGONBREATH","LOCALS")
+	GlobalTimerExpired("ttShadowDragonBreath","LOCALS")
 THEN
 	RESPONSE #100
-		SetGlobal("WingBuffet","LOCALS",0)
+		SetGlobal("ttWingBuffet","LOCALS",0)
 		ForceSpell(LastSeenBy(Myself),SHADOW_DRAGON_BREATH)
-		SetGlobalTimer("SHADOWDRAGONBREATH","LOCALS",18)
+		SetGlobalTimer("ttShadowDragonBreath","LOCALS",18)
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("Offensive","LOCALS",0)
+	Global("ttOffensive","LOCALS",0)
 THEN
 	RESPONSE #100
 		ForceSpell(Myself,PROTECTION_MAGIC_WEAPON_NOEFF)
-		SetGlobal("Offensive","LOCALS",2)
+		SetGlobal("ttOffensive","LOCALS",2)
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("Offensive","LOCALS",2)
+	Global("ttOffensive","LOCALS",2)
 THEN
 	RESPONSE #100
 		AttackOneRound(LastSeenBy(Myself))
 		AttackOneRound(LastSeenBy(Myself))
-		SetGlobal("Offensive","LOCALS",3)
+		SetGlobal("ttOffensive","LOCALS",3)
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("Offensive","LOCALS",3)
+	Global("ttOffensive","LOCALS",3)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),WIZARD_CHAOS)
-		SetGlobal("Offensive","LOCALS",4)
+		SetGlobal("ttOffensive","LOCALS",4)
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
-	Global("Offensive","LOCALS",4)
+	Global("ttOffensive","LOCALS",4)
 THEN
 	RESPONSE #100
 		ForceSpell(LastSeenBy(Myself),WIZARD_GREATER_MALISON)
-		SetGlobal("Offensive","LOCALS",5)
+		SetGlobal("ttOffensive","LOCALS",5)
 END
 
 IF
-	Global("Aqua_Dragon","LOCALS",1)
+	Global("ttAquaDragon","LOCALS",1)
 	See(NearestEnemyOf(Myself))
 THEN
 	RESPONSE #100

@@ -67,8 +67,8 @@ Charge abilities:
   Duration: 1 turn
 
 Weight: 1~*/
-@22   = ~Blade Of The Night~
-@23   = ~This was the weapon used by the most famous assassin in Kara Tur, but none knew her name apart from the emperor. She was the greatest thief the world had ever seen. She received this powerful weapon after completing a series of succesful missions for the emperor, who decided she was worthy of the blade. It was made by the emperors best weapon smiths, and then tempered in the bloods of red, black, silver and blue dragons. The legend says this weapon would make anyone almost as good as thief as the original owner, but because of the strong enchantments, the katana requires much from its wielder, and it is only usable by a thief.
+//@22   = ~Blade Of The Night~
+/*@23   = ~This was the weapon used by the most famous assassin in Kara Tur, but none knew her name apart from the emperor. She was the greatest thief the world had ever seen. She received this powerful weapon after completing a series of succesful missions for the emperor, who decided she was worthy of the blade. It was made by the emperors best weapon smiths, and then tempered in the bloods of red, black, silver and blue dragons. The legend says this weapon would make anyone almost as good as thief as the original owner, but because of the strong enchantments, the katana requires much from its wielder, and it is only usable by a thief.
 
 STATISTICS:
 
@@ -91,7 +91,7 @@ Type: One-handed
 Requires:
  6 Strength
 
-Weight: 6~
+Weight: 6~*/
 @24   = ~The Black Bow~
 @25   = ~A rough bow with a dusty appearance, the Black Bow was created as an instrument of vengeance by a Cormyrean settler in the Western Heartlands of Faerun. A former soldier named Jonan of Suzail, after years of campaigning in the name of the crown, finally returned home to marry his childhood sweetheart. Through all of his years in the military, he remained true to his love and saved his earnings. He and his new wife moved west in the hopes that they would find frontier land to settle. In the lands north of Baldur's Gate and east of the Trollbark Forest, Jonan built his home and farm. Within five years, there were raiders in the area, and farms were being destroyed all around Jonan's. Eventually, the raiders targeted Jonan's home, killing his wife and child and leaving him for dead. His farm was burned to the ground. Weeks later, Jonan crafted this bow and rubbed the ashes of his farm and family into the grain of the wood. He later went on a murderous rampage, slaying each of the bandits where he found them, and later killing anyone they associated with. Sages debate how the bow became enchanted, but most believe that, after Jonan's death, it was blessed by a god. Some say it was blessed by Tyr, some say by Hoar, and others say by Bhaal. Theories tend to revolve around whether the speaker believes Jonan's actions were just, vengeful, or murderous.
 
@@ -119,7 +119,7 @@ Equipped abilities:
 – Doubles movement rate
 
 Weight: 4~
-@28   = ~Edventar's Gift~
+//@28   = ~Edventar's Gift~
 @29   = ~Defender +4~
 @30   = ~The composite bow is similar to the long bow, except that the staff being made from more than one type of material is heavier, and about as high as the archer is, usually 6 to 6.5 feet. Even though the composite bow is slightly slower then the long bow, it has more range and is more accurate. This particular bow has been enhanced with magical properties, giving it an air of perfection. Moreover the heavy staff of this bow is made of magically enhanted cedar and cembra pine, which grants additional protection to its wielder.
 
@@ -656,9 +656,9 @@ Weight: 5~
 @133  = ~Ronin~
 @134  = ~Ronin Wakashu~
 @135  = ~Kachiko~
-@136  = ~King~
+//@136  = ~King~
 @137  = ~Kiotsi~
-@138  = ~Knight~
+//@138  = ~Knight~
 @139  = ~Lulu Hashimoto~
 @140  = ~Lulu~
 @141  = ~Masaki Hayashi~

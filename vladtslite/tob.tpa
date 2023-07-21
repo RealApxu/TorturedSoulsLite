@@ -1,3 +1,5 @@
+DEFINE_ACTION_FUNCTION tslite_tob BEGIN
+
 // Changing Yoshimo Values in 2DAs (Taken from jmaeq's Yoshimo's Remorse)
 COPY_EXISTING ~pdialog.2da~ ~override~
 REPLACE_TEXTUALLY
@@ -21,13 +23,15 @@ COPY ~%MOD_FOLDER%/tob/cre/ttkach25.cre~ override
 
 //Dialogues
 COMPILE ~%MOD_FOLDER%/tob/dialogue/tob_join.d~
-~%MOD_FOLDER%/tob/dialogue/tob_talks.d~
-~%MOD_FOLDER%/tob/dialogue/tob_banters.d~
+        ~%MOD_FOLDER%/tob/dialogue/tob_talks.d~
+        ~%MOD_FOLDER%/tob/dialogue/tob_banters.d~
 
 //Scripts
 
 EXTEND_TOP ~AR6200.BCS~ ~%MOD_FOLDER%/tob/scripts/append_ar6200.baf~
 
 COMPILE ~%MOD_FOLDER%/tob/scripts/ttkach25.baf~
-~%MOD_FOLDER%/tob/scripts/ttkach2d.baf~
-~%MOD_FOLDER%/tob/scripts/ttyosh25.baf~
+        ~%MOD_FOLDER%/tob/scripts/ttkach2d.baf~
+        ~%MOD_FOLDER%/tob/scripts/ttyosh25.baf~
+
+END

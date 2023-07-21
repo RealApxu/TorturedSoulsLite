@@ -97,11 +97,8 @@ END
 
 IF
 	InParty("Yoshimo")
-	See([PC])
-	See("Yoshimo")
-	!StateCheck(Myself,CD_STATE_NOTVALID)
-	!StateCheck(Player1,CD_STATE_NOTVALID)
-    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	See([PC]) See("Yoshimo")
+	!StateCheck(Myself,CD_STATE_NOTVALID) !StateCheck(Player1,CD_STATE_NOTVALID) !StateCheck("Yoshimo",CD_STATE_NOTVALID)
 	Global("ttKachikoMeet","GLOBAL",2)
 THEN
 	RESPONSE #100
@@ -113,10 +110,9 @@ END
 ///////////////////////////////
 
 IF
-	InParty(Myself)
-	InParty("Yoshimo")
-    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	!StateCheck(Myself,CD_STATE_NOTVALID)
+	InParty(Myself) InParty("Yoshimo")
+    !StateCheck(Myself,CD_STATE_NOTVALID) !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0) !See([ENEMY])
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("ttOnIsland","GLOBAL",1)
 	Global("ttKachikoRomanceActive","GLOBAL",0)
@@ -133,13 +129,10 @@ END
 IF
 	GlobalTimerExpired("ttKachikoRomanceTimer","GLOBAL")
 	Global("ttKachikoRomanceActive","GLOBAL",1)
-	InParty(Myself)
-	InParty("Yoshimo")
+	InParty(Myself) InParty("Yoshimo")
 	See("Yoshimo")
-	!StateCheck(Myself,CD_STATE_NOTVALID)
-    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	CombatCounter(0)
-	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID) !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0) !See([ENEMY])
 	!AreaType(DUNGEON)
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("ttOnIsland","GLOBAL",1)
@@ -154,13 +147,10 @@ END
 IF
 	GlobalTimerExpired("ttKachikoRomanceTimer","GLOBAL")
 	Global("ttKachikoRomanceActive","GLOBAL",1)
-	InParty(Myself)
-	InParty("Yoshimo")
+	InParty(Myself) InParty("Yoshimo")
 	See("Yoshimo")
-	!StateCheck(Myself,CD_STATE_NOTVALID)
-    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	CombatCounter(0)
-	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID) !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0) !See([ENEMY])
 	!AreaType(DUNGEON)
 	GlobalLT("Chapter","GLOBAL",%bg2_chapter_4%)
 	!Global("ttOnIsland","GLOBAL",1)
@@ -176,18 +166,15 @@ END
 
 // Lovetalk 5 is in the Dream Script
 
-// Talk 6
+// Last Talk
 
 IF
 	GlobalTimerExpired("ttKachikoRomanceTimer","GLOBAL")
 	Global("ttKachikoRomanceActive","GLOBAL",1)
-	InParty(Myself)
-	InParty("Yoshimo")
+	InParty(Myself) InParty("Yoshimo")
 	See("Yoshimo")
-	!StateCheck(Myself,CD_STATE_NOTVALID)
-    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	CombatCounter(0)
-	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID) !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0) !See([ENEMY])
 	Global("ttYoshimoExcused","GLOBAL",3)
 	Global("ttKachikoLoveTalk","GLOBAL",11)
 THEN
@@ -199,13 +186,10 @@ END
 IF
 	GlobalTimerExpired("ttKachikoRomanceTimer","GLOBAL")
 	Global("ttKachikoRomanceActive","GLOBAL",1)
-	InParty(Myself)
-	InParty("Yoshimo")
+	InParty(Myself) InParty("Yoshimo")
 	See("Yoshimo")
-	!StateCheck(Myself,CD_STATE_NOTVALID)
-    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
-	CombatCounter(0)
-	!See([ENEMY])
+	!StateCheck(Myself,CD_STATE_NOTVALID) !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	CombatCounter(0) !See([ENEMY])
 	!AreaType(DUNGEON)
 	!Global("ttOnIsland","GLOBAL",1)
 	Global("ttKachikoLoveTalk","GLOBAL",11)
@@ -222,8 +206,7 @@ IF
 	See("Yoshimo")
 	InParty("Yoshimo")
 	!Dead("Yoshimo")
-	!StateCheck(Myself,CD_STATE_NOTVALID)
-    !StateCheck("Yoshimo",CD_STATE_NOTVALID)
+	!StateCheck(Myself,CD_STATE_NOTVALID) !StateCheck("Yoshimo",CD_STATE_NOTVALID)
 	CombatCounter(0)
 	!Range([NEUTRAL],10)
 	PartyRested()
@@ -240,8 +223,7 @@ END
 /////////////////////////////////////////
 
 IF
-	InParty(Myself)
-	InParty("Yoshimo")
+	InParty(Myself) InParty("Yoshimo")
 	!StateCheck(Myself,CD_STATE_NOTVALID)
 	!StateCheck(Player1,CD_STATE_NOTVALID)
     !StateCheck("Yoshimo",CD_STATE_NOTVALID)
@@ -254,8 +236,7 @@ THEN
 END
 
 IF
-	InParty(Myself)
-	InParty("Yoshimo")
+	InParty(Myself) InParty("Yoshimo")
 	See([PC])
 	See("Yoshimo")
 	!StateCheck(Myself,CD_STATE_NOTVALID)
@@ -274,8 +255,7 @@ END
 /////////////////////////////////
 
 IF
-	InParty(Myself)
-	InParty("Yoshimo")
+	InParty(Myself) InParty("Yoshimo")
 	HPPercentLT("Yoshimo",20)
 	!Dead("Yoshimo")
 	!CombatCounter(0)
@@ -316,8 +296,7 @@ THEN
 END
 
 IF
-	InParty(Myself)
-	InParty("Yoshimo")
+	InParty(Myself) InParty("Yoshimo")
 	!Dead("Yoshimo")
 	OR(2)
 		Global("ttYoshimoDies","GLOBAL",1)
