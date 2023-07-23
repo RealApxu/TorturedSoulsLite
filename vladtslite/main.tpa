@@ -10,10 +10,10 @@ END
 
 //Splash Screens
 COPY ~%MOD_FOLDER%/main/2da/ttstart.2da~ override
-REPLACE ~99999~ ~After Nomeas had finished his incantations you stood for a few minutes in expectation. The ship, ready to sail was still in Athkatla's docks... You were about to sigh and pronounce your thanks that at least it was not frog-turning, and request refund from the sly sailor. Suddenly the crew became agitated, everyone pointing to the east. You turned and saw a gray cloud speeding across the sky straight for the ship. A few of the crewmen leaped overboard. Someone behind your back whispered: "that's how the fate looks?" and spat heartily on the deck. Then the world became one great gray fog and all you could sense is the movement of tremendous speed... But you could not distinguish the direction or count the time... Slowly you had lost your consciousness... and regained it in what seemed a short instant. The ship is riding shallow waters in a sheltered bay by a stony beach. The captain approaches you hesitantly...~ [vptheme1]
+REPLACE ~99999~ ~After Nomeas had finished his incantations you stood for a few minutes in expectation. The ship, ready to sail was still in Athkatla's docks... You were about to sigh and pronounce your thanks that at least it was not frog-turning, and request refund from the sly sailor. Suddenly the crew became agitated, everyone pointing to the east. You turned and saw a gray cloud speeding across the sky straight for the ship. A few of the crewmen leaped overboard. Someone behind your back whispered: "that's how the fate looks?" and spat heartily on the deck. Then the world became one great gray fog and all you could sense is the movement of tremendous speed... But you could not distinguish the direction or count the time... Slowly you had lost your consciousness... and regained it in what seemed a short instant. The ship is riding shallow waters in a sheltered bay by a stony beach. The captain approaches you hesitantly...~ [ttstart]
 
 COPY ~%MOD_FOLDER%/main/2da/ttend.2da~ override
-REPLACE ~99999~ ~After few hours of uninterrupted sail you see a shiny circlet on the horizon. It is the portal! Nomeas slows the ship down. Your seasoned captain looks nervous as the ship enters the time gate. "Athkatla" says he steadily... and the familiar harbor appears in view...~ [vptheme2]
+REPLACE ~99999~ ~After few hours of uninterrupted sail you see a shiny circlet on the horizon. It is the portal! Nomeas slows the ship down. Your seasoned captain looks nervous as the ship enters the time gate. "Athkatla" says he steadily... and the familiar harbor appears in view...~ [ttend]
 
 //Adding Kachiko to 2DAs
 APPEND ~PDIALOG.2da~
@@ -219,7 +219,7 @@ COPY ~%MOD_FOLDER%/main/itm/ttkatfir.itm~ override
  SAY NAME2 ~Katana +3: Fire Element~
  SAY DESC ~Katana +3 Fire Element
 
-One of the four elemental katanas, probably the most formidable, but at the same time, the most difficult to handle, this katana bestows the power of Fire upon the wielder, who must respect the customs of Kara-Tur. Not doing so could drastically change one's luck for the worse. Only those of pure heart may use the elemental katanas. In addition, this particular katana requires its owner respects the natural ballance.
+One of the four elemental katanas, probably the most formidable, but at the same time, the most difficult to handle, this katana bestows the power of Fire upon the wielder, who must respect the customs of Kara-Tur. Not doing so could drastically change one's luck for the worse. Only those of pure heart may use the elemental katanas. In addition, this particular katana requires its owner respects the natural balance.
 
 STATISTICS:
 
